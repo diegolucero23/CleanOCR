@@ -1,0 +1,1259 @@
+# The Latter Day Saint's Messenger And Advocate
+## Volume 01, Issue 17
+
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 257
+**Source File:** page_257.json
+---
+
+# SERMON No. 2
+
+DEDICATED TO THE SAINTS OF THE LAST DAYS.
+
+BY 8. RIGDON.
+
+[Continued from page 248.]
+
+Hebrews 2d chapter 6th verse: "What is man that thou art mindful of him? or the son of man that thou visitest him?"
+
+The instance as quoted which took place at Ephesus, is another evidence of this same power in man, see the 6th verse of the 19th chapter of Acts, as above quoted. Paul "laid his hands on them," after they were baptised, "and they received the Holy Ghost, and spake with tongues and prophecied." But if any are led yet to dispute the fact of this power in man, by which he can be saved, in the Savior's prayer recorded in the 16th chapter of John's gospel, the fact is again set forth in a manner most unanswerably. See John's gospel 17th chapter from the 20th to the close of the 24th verse, 'Neither pray I for these alone, but for them also which shall believe on me through their word; that they all may be one; as thou, Father, art in me, and I in thee, that they also may be one in us, that the world may believe that thou hast sent me. And the glory which thou gavest me I have given them; that they may be one, even as we are one: I in them, and thou in me, that they may be made perfect in one; and that the world may know that thou hast sent me, and hast loved them, as thou hast loved me.-
+
+Father, I will that they also whom thou hast given me be with me where I am; that they may behold my glory, which thou hast given me: for thour lovedst me before the foundation of the world.' By reading the former part of this prayer, and then the verses we have quoted, nothing can be made plainer than the fact, that the Savior received all menas possessing the same capacities of holding communion with God. He here prays that those who might believe on him through the word of the apostles, might be one with the apostles, and one with the Father and the Son, as the apostles were. How could this be done? there could be but one way, and that was, the way to by which the apostles became one with the Father and the Son. Now if this prayer of the Savior is ever fulfilled, who can but see that the persons here said to believe on Christ through the apostles word, must have the power to do so. In the 21st verse it is said, speaking of those who believed through the apostles word; That they all may be one' be one. Hence when the gospel was received, and hande laid on those who were baptized
+
+word and the apostles themselves, 'as thou, Father, art in me and 1 in thee.' How was Christ one. with the Father? it was by the spirit of holiness which dwelt in both, and the same spirit of revelation which dwelt in the apostles, and by which they were made one with the father and the son; and how could those who believed through the apostles word become one with them all? No answer but one can be given, by the same spirit by which the Father and the Son becaine one, and by which the apostles became one with the Father and the Son, and what adds force to it is that it is said in the 22d verse "And the glory which thou hast given me I have given them, that they might be one even as we are one." Now who was it to whom this glory was given? the answer is to both the apostles and those who believed through their word.-
+
+In the above sayings of the Savior the capacities of man and his capabilities are set forth in a way not to be mistaken. Man is capable of being one with the Father and the Son, of being united in oneness with them; and happy for our investigation, we have had the whole subject in language which cannot be mistaken. For this cause the Savior gave his word to man, that man might be one with him and the Father; and he also gave them his glory, that they might be one with him and the Father. Man then must be capable of being so or else the Savior would not have deigned and to give him the means of becoming so.
+
+We have now hefore us the whole, design of God in revealing himself to man, it was because of the capabilities of man to be made like himself, to be one with him, for this cause the Savior deigned to die for man. To this end the gospel was sent to man. To this end it was that God proposed to raise him from the dead. Man was capable of an exaltation that he knew nothing about, but God knew what man who was, and therefore was "mindful of him" and knew who the son of man was therefore "visited him."
+
+It matters not whether it is apostles or those who believed on their word, the object to be obtained was the same, that they all may be one with the Father and the Son.. It is because of this that the same gospel was sent, that all through believing and obeying might obtain a union with the Deity, and be sharers in his wisdom, power, and glory. For this cause the promise of "the gift of the Holy Ghost" was given to all, that all might be one. Hence when the gospel was received, and hande laid on those who were baptized
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 258
+**Source File:** page_258.json
+---
+
+they spake with tongues and prophesied, be-diseases; of having power over devils, and
+cause the Lord sent the gospel into the world things that were not God like in their nature; and
+that both they who administered and those all this because the object was to make man
+who are administered to, might, by the same like God, so that he might be one with him.
+gospel and the same "gift of the Holy Ghost," We will further pursue the history of man,
+become one with the Father and Son.
+which only tends to confirm what we have said
+We think we need not pursue this part of above.
+our subject any farther; all may see, if they As we have before said the bible takes man
+desire to see, the light in which the great Godjat the time of the union of body and spirit, and
+views the human family, and we can see why leaves him at the time of the resurrection, ex-
+the gospel was sent to man, that man might cept a few isolated expressions which can do
+be made partaker of "the Holy Ghost," both little more than awaken in us a desire for more
+male and female, that, through that gift, they revelation; but we have learned some impor-
+might be partakers of eternal life, and be onetant things about man, in the acc unt we have,
+with the Father and the Son. If man then is to which we will give attention. In the pres-
+not a partaker of "the Holy Ghost," and ent state of existence, all know that man is
+through that obtain divine communications, it capable of suffering, that there is nothing in
+is not for want of capacities for so doing; but the state of existence itself, to prevent a man
+because he denies himself the offered boon of from suffering. In the next state, which
+heaven. For God who knows what man is, is a state of separation, we have also learned
+has said he is capable of being made like him that man is capable of suffering, that is, the
+self, and become one with him, by receiving spirit can suffer after it is separated from the
+the gospel which he has sent; for by that he body, and gone into another state of existence.
+can be made partaker of "the Holy Ghost," The rich man, in the unseen world or in the
+which will be in him "a well of water spring-world of spirits, opened his eyes in torment.
+ing up unto eternal life."
+This establishes the fact, that a disembodied
+Hence the apostles went forth into the world spirit can suffer, that there is nothing in the
+to proclaim the gospel, that men through obe-di-embodied state, itself, calculated to give.
+dience thereto might receive "the Holy peace; and when we reach the last state of
+Ghost," and through receiving "the Holy which we have any knowledge by our writ
+Ghost" might be made one with the Fatherten revelations; that is the state after the resur-
+and the Son, and being made one with the frection, there we are told that some are rais-
+Father and the 'Son, might, like them, haveled to shame and everlasting contempt," so
+eternal life. The Lord knowing man's cipa- that in that state also man is capable of suffer-
+bilities sent the gospel, that we might be made ing. and there is nothing in either state itself
+partakers with him in the benefits of the Holy which saves a man from suffering, whether in
+Ghost, and through that "gift of the Holy the flesh, in a disembodied state or in the resur-
+Ghost" might be taught of God; obtain light rection. In all these various states man is
+upon light, revelation upon revelation, until capable of suffering. For the rich man in his
+all our powers and faculties were evolved, disembodied state was tormented, and some
+and we be like the Father and the Son, and will be raised to shame and contempt. On
+he made meet to be partakers with them in the other hand it is said, that Lazarus in the
+their glory. He then that denies the spirit of disembodied state was comforted, and it is al-
+revelation, denies salvation; for salvation so said, that in the state after the resurrection
+comes by reason of being like the Father and some will be raised to everlasting life. What
+the Son, and this alone is obtained by the spirit makes the difference? why is one in the dis-
+of revelation in our hearts.
+embodied state, comforted and another tor-
+Having ascertained the object for which the mented? as to the organization, both are alike;
+Lord addressed himself to man, or revealed both are disembodied spirits, and why not
+himself to any portion of the human family; both alike? Why not both tormented or both
+which was because that man was capable of comforted? The same may be said about men
+being united with himself, (God) and such after the resurrection. Why is one raised to
+was man that, by divine influence, he was ca-shame and contempt, and another to everlast-
+pable of understanding and comprehending asing life? Both are raised from the dead, and.
+God understood and comprehended; and that recieve their bodies, and yet one has shame
+man might be put into the possession of all and the other life everlasting. Why this dif-
+his nature was capable of, caused the Lord to fference? The fact then of raising a man from
+reveal himself to him, and adapt his scheme the dead, does not secure him life everlasting.
+to the capacities of man, so that its effects No fact can be taught more plainly than the
+were felt by both men and women, in a way one that there is no change to which man is
+tending to the grand object to be accomplish-subjected, that is, from life to death and from
+ed. The effects on all both men and women death to the resurrection, that in itself has
+were felt, as soon as any obeyed the proclama-power to give man rest, Man çan suffer in
+tion sent. The persons rer rendering obedience his disembodied state after death, as well as
+found themselves in possession of new pow-while in the flesh; and he can suffer after the
+er, a power of looking into futurity; of removing resurrection, as well as before; and the man
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 259
+**Source File:** page_259.json
+---
+
+that feigns te himself that all are happy in (because our testimony among you was be-
+their disembodied state after death, or in their lieved) in that day." But we need not mul-
+reunited state after the resurrection, does justtiply quotations on this subject, as the scrip-
+as those do who make for themselves and oth-tures every where abound with them. There
+ers an eterral heaven and an eternal hell; sup-is no subject on which the sacred writers have
+ply the place of revelation with conjecture, said so much as on this one, that whatever
+and that a bold one too, one in direct opposi-tends to promote the interest, happiness, and
+tion to all that is written. All that any man peace of man in the other state of existence, is
+knows or can know about these dates of man's something done here in the flesh. The Diety
+existence, is by what is written in the revelations, knowing "what man is," and understanding
+all else is conjecture. When a Diest or Athe-upon what principle it is that man can be ben-
+ist gives to himself an existence, in an orga-ifited in his other states of existence, did, "be-
+nized form, after this state of existence is dis-fore the foundation of the world," devise a
+solved, he does it by conjecture; and when scheme, and before ordained, and pre-deter-
+he makes that state of existence to be either a mined, that by virtue of that scheme of things,
+state of happiness or misery, he does so by he would raise all who received it to be par-
+conjecture, and conjecture only; for he has no takers with himself in his glory, and make
+other means by which he can do it; and when them one with him, and through the influence
+he says he has no organized existence after that scheme of things would exercise over
+this state of existence, he says so by conjecture, both the bodies and minds of men, introduce
+and conjecture only; for he can have no knowl-them, in their future state of existence, into a
+edge about it only by revelation; and when relation with the Deity, which would secure
+he effects to laugh at the christians, so cal unto them comfort in their disembodied state,
+led. about their ideas of futurity, he laughs atard eternel life in the state after the resurres-
+himself, for his theory rests wholy upon con-tion.
+jecture, and theirs cannot be worse; he laughs This is the cause why the gospel is sent un-
+at them for what he calls conjecture, and yet to man, because if man died without it their
+builds his whole hopes and fears, if he has spirits could not be comforted after death, nor
+any, on the uncertainty of conjecture. could they be raised to everlasting life, and all
+All then that any person or persons can the world would be in a state of misery, whether
+know about a future state, he knows only by desembodied or raised from the dead.
+revelation. And now, with the revelations in. Thus far can we trace the history of man in
+your hands, we renew the inquiry; what makes the revelations, and we must leave our readers
+marn to differ in the future state of his exis-to be their own judges whether they need any
+tence? differ he does, as sure as there is reve-more revelations or not. One thing more and
+lation, and what says the bible about this dif-then we shall leave the subject for the present.
+ference?
+From what Peter says we have a hint given
+In the conversation, recorded by Luke, in relation to the final place of residence of the
+which took place between the rich man and righteous. He says "we look for a new hea-
+Lazarus, it was something which was done in ven and new earth wherein dwelleth right-
+this world which did it, as affe rich man desi-jeousness," and from what he says about
+red Abraham to send Lazarus to his five breth-them, we may infer, that the righteous will
+ren to warn them, lest they went to that place dwell there; but we have no account of a hell
+of torment. And according to what all the after the first hell is cast into the lake of fire.
+writers say, it was something which men daj Here the written revelations leave us, and
+in this world which makes the difference at the if we are to have no more revelation, we
+time of the resurrection. Hence it is said that must be fruitful in conjecture, or else remain
+he that believes not the gospel, shall be damn-unsatisfied in this state of existence, let it be
+ed. All the admonitions contained in thelas it may in the others.
+scriptures are to this effect; they were deliv-
+
+For the Messenger and Advocate.
+## ESSAY ON TRUE AND FALSE
+### PROPHETS.
+
+ered in view of the effect to be produced on
+man, after he left this world and this state of
+existence. When Christ comes, the second
+time, according to Paul, he will take ven.
+geance on them that know not God, and obey
+not the Gospel. See 2d Thessalonians 1;
+710, "And to you who are troubled, rest
+with us, when the Lord Jesus shall be revealed
+from heaven, with his mighty angels, in flam-
+ing fire, taking vengeance on them that know
+not God, and that obey not the gospel of our
+Lord Jesus Christ; who shall be punished
+with everlasting destruction from the presence
+of the Lord, and from the glory of his power
+when he shall come to be glorified in his saints,
+and to be admired in all them that believe
+
+Take heed lest any man deceive you: For many
+shall come in my name. -Mark 13: 5, 6.
+
+Why has the Lord in the various ages of
+the world called men, commissiored them,
+and sent them to prophesy to their fellow men;
+even at the peril of their lives?
+Weanswer, it was because the people to
+whom they were sent, loved darkness. rather
+than light-because their deeds were evil;
+because they had hearkened to false prophets,
+or false teachers, or both, who aided by the En-
+emy had introduced among them false princi-
+www.Latter DayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 260
+**Source File:** page_260.json
+---
+
+ples and practices calculated to bring uponighteousness in them that perish." When the
+them punishment instead of blessings: by apostle John was desribing the scenes which
+causing them to violate the laws of God.- would take place before the comming of the
+Que prophets were always sent to warn the Messiah, he says "For they are the spirits of
+people of thir danger, to call them back again devils working miracles, which go forth unto
+from their wanderings. But if they took not the kings of the earth, and of the whole world,
+the warning and repented, then they were to to gather them to the battle of the great day of
+denounce the calamities and judgements God Almighty." Again we find the follow-
+which would fall upon them in consequence ing conclusice remarks in the 19th chapter of
+of disobedience. The object of false prophets his visions. "And the beast was taken, and
+always was and always will be to deceive.- with hiin the false prophet that wrought mira-
+The object of true prophets to the converse, cles before him, these were both.
+always was and always will be to undeceive, cast alive into the lake of fire burning wit
+and lead men to the knowledge of the true brimstone." From the above quotations we
+may learn, if we are susceptable of tuition at
+God.....
+
+All attentive readers of holy writ must know all, that the power of working miracles will
+that the age in which the Messah will make not in the last days, be confined to the prophets
+his appearance, is one particularly marked out of God. And inded if we search closely we
+by himself, and by his apostles as one in will find that the Magicians of Egypt with-
+which will appear many false Clirists, false stood Moses and Aaron; and that through them
+prophets, and false teachers heaps of them, miraculous power was manifested in the pres-
+whose only object will be to deceive. And the ence of Pharoah and his court. In the days
+apostle's declaration was that "many shall of the Savior's ministry he found a man that
+follow their prenicious ways; by reason of could not be confined with chains he would
+whom the way of truth shall be evil spoken pluck them off by some strange power.. And
+of." In as much as "many false prophets" so the apostles met with a Simon Magus who
+Fare to make their appearance in the last age had bewitched the people of Samaria so that
+and are "to deceive many," in consequence of they called him, the great power of God."
+their devices: we would ask an important After examining the above can any intelli-
+question. How may those prophets sent of gent man ever suppose that we are to know a
+God be known from those sent by the Enemy? true prophet from a false one by miraculous
+A man cannot be a prophet unless he is inspir- power being manifested, even to so great a
+ed. A true prophet alway was and always degree as "to call fire down from heaven on
+• will be inspired, of God. A false one must earth in the sight of men." Rev. 13: 13.
+get his inepiration from the Devil-it must
+come from beneath. Inspiration then is not We have met with some in our day who
+that gift or principle by which we are to judge supposed that if they could reach the point
+whether the man who presents himself as where they could rend the veil and obtain vis
+prophet, is true or false, Many people of this ions, then they would arrive at a positive cer-
+age, and among them those who are called 'ainty. Then there could be no mistake.-
+learned, suppose that if the Lord calls a man Now if so, above all things persons who wish
+and sends him to prophesy to any people, he is to live above doubts should seek to obtain vis-
+bound to endue that man with power to work ions. If no power can give visions but that of
+miracles as did Moses, Joshua, and Peter; or God, then to obtain a vision would settle all
+those to whom he is sent are not bound to re- cavil in the mind of the person thus favored
+ceive him. Nay, but they go-farther, they forever. But how is the fact in the case?-
+hold that they are bound to reject both him The word of God informs us that when Jesus
+and his message, The above notion is either was on earth, he went up upon an exceedieg
+true or false. If false, and we can succed in high mountain, and there the devil appeared.
+showing it, then we shall have obtained one to him and conversed with him. During their
+interview the enemy had power to draw away
+important point that the learned of the age, the veil and show the Savior "all the king-
+who oppose our views of religion could not doms of the world and the glory of them." -
+reach. If power to work miracles is the test This was an extensive view-a vision in earn-
+of a true prophet, then we are bound to receive ist. It is also said that the devil has power
+all who come as prophets, who possess mira- to transform himself nigh into an angel of
+culous power. But the Savior and his inspir- light." Now if the the Devil once had the
+ed apostles have given us some lessons-im- power and execised it too, with so extraordi-
+portant lessons on this subject, "For there nary a personage and on a very important oc-
+shall arise false Christs, and false prophets, casion, shall we not conclude that in the last
+and shall show great signs and wonders," to days when he comes with all deceiveableness
+seduce and to deceive if it were possible even of unrighteousness, that he will show visions
+to crown his deceptions?
+the elect.
+Paul speaking of the times of the second ad- We think that we have clearly shown that
+vent says "whose coming is after the working the people who live in the age in which
+of Satan with all power and signs aud lying the Savion will make his appearance in glory,
+wonders, and with all deceivableness of unri-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 261
+**Source File:** page_261.json
+---
+
+#
+
+above all others should be careful not to be deceived.
+
+It has not been our object however in the preceding remarks, to do away with the idea that the true servants of God in the kingdom of Jesus Christ, who will prepare it for his advent, will not be inspired and have visions and miraculous power given them from heaven; in order to bring about the purposes of God: and that too as marvelously as in the days of Moses, and even more so, to assist them to overcome and ruin the power of the devil. No.
+But our object has been to show that false notions exist relative to the power and privilege of true prophets of God, and to put all the lovers of truth on their guard, so that they may understand and obey the command of the Savior, "Take heed lest any man deceive you."
+Now if we believe the inspired writings that are generally believed and received as canonl ical, we are bound to believe that God will work by miraculous power through' his ser-vants in the age—the very age in which the Messiah will come. The prophecies of Isaiah are very plain upon the subject. "And the Lord shall utterly destroy the tongue of the Egyptian sea; and with his mighty wind shall he shake his hand over the river and smite it in the seven streams, and make men go over dry shod. And there shall be an high way for the remnent of his people, which shall be left, from Assyria; like as it was to Israel in the day that he came up out of the land of Egypt." * Neither the Red sea which lies east of Egypt, nor the river Nile which empties it-self into the Mediterranean by seven principal mouths has ever as yet been particularly disturbed in their beds, or any high way been cast-up there. But to fulfil the prophecy, it will require at some future period, an omnipo-tent arm stretched out over them in miracu-lous, yes marvelous power. A mighty agitation in nature in order to throw up that "high way," for the redeemed to walk on. In his 25 chapter he speaks of the power that will be displayed at that important period. "Then that the eyes of the blind shall be opened, and the ears of the deaf shall be unstopped: then shall the lame man leap as an heart, and the tongue of the dumb shall sing, for in the wilderness shall waters break out, and streams in the desert." No person who believes in the restora-tion of scatered Israel to the lands of their inheritance again, will doubt or can doubt but that God will bring them back by power.-
+Will return them again as he led them from Egypt by giving to his servants, whom he will raise up, power supernatural power, even surpassing Mossos and Aaron.
+
+Jeremiah says on this subject, "Therefore, behold the days come saith the Lord, that it shall no more be said, the Lord liveth that brought up the children of Israel out of the and of Egypt; but the Lord liveth that brought hem up from the land of the north, and from 'I the lands whether he had driven them; and
+
+#
+
+I will bring them again into their land that I gave unto their fathers." Why will it no more be said that the Lord liveth that brought up the children of Isreal from Egypt? Every Jew in all past ages as well as the present, looks back with feelings of pride, and points the world to the mighty displays of God's power in their behalf, as their fathers were passing from Egypt to Canaan. But says the prophet, there will come a time in the history of that distinguished nation that those miracles wrought by Moses and Joshua, will not come into remembrance—not even mentioned, in consequence of the superlative ex-cellence and grandeur of those displays which God will make in their behalt, when the time comes for their restoration from all countries whither they have been "a hiss and a by-word." Power, yes, marvellously miracu-lous power must be shown forth, or they never will cease to mention those miracles exerted in behalf of their fathers in their journey to the Canaan.
+
+The Lord seems to have had two objects in the view in giving man power to work miracles. First, to arrest the attention of unbelievers, and cause them to investigate the truth. Secondly, the immediate benefit of the person or persons on whom, or for whom the power was exerted. Miracles never converted any person to the knowledge of the true God, nor never will. They were performed in Egypt, yet Pharaoh and his court were hardened—they perished in the Red sea. Hundreds and thousands of Jews perished in the land of their fathers, by the hands of the Romas, although they had seen and known the stupendous counteractions of the laws of nature by Jesus, and his apostles. Signs did not convert Pharaoh nor Herod, but they were hardened and fell. Faith and obedience to the truth alone convert the sinner from the error of his way. And after he becomes a believer of the gospel and follower of the Lamb, then the words of the. Savior are that "signs shall follow them that believe," This accords with Paul's view of belief or faith. He says "Faith comes by hearing." Now if faith comes by hearing the word of God, it does not come by seeing miracles. But miracles and signs serve to confirm the true believer. Mark 16: 20, "The Lord working with them, (the believers) and -in-conferming the word with signs following, amen." Paul writes in the same strain Heb. 2: 4, "God also bearing them witness (the believers) both with signs and wonders and with divers miracles, and gifts of the Holy Ghost, according to his own will." Ifthe notion of the learned is true that power to work miracles is the test of a prophet sent of God, then the Lord would hold himself bound to give every one that he sent power to perform them. And no people would be under condemnation for rejecting a prophet until after he had performed miracles to prove his mission. Upon this principle we would be com-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 262
+**Source File:** page_262.json
+---
+
+#
+
+pelled to reject the testimony of the greatest shall the coming of the Son of man be."
+prophet that was ever born of a woman, viz: What, will a true prophet like Noah warn
+John the Baptist. He performed no miracles, that people who will live when Messiah
+John 10:41. But another view of the sub-comes? Certainly so. If not it, cannot be
+ject, if miracles were performed to beget faith sin ilar to the days of Noah
+in the beholders, then Jesus who had power Reader turn to the eleventh chapter of Rev-
+to work them should have preformed them elations and read it through, and we think
+where he found the greatest amount of unbe-that if you are candid, you will come to the
+lief reigning, but he did not do so-nor he same conclusion that we have, that is, that
+could not do so. What, could not? Mark 6: after the outcasts of Israel have been gathered
+5, "And he could there do no mighty work." back to old Jerusalem, then false prophets will
+But again if his miracles were intended to be-go out among the heathen working miracles
+get faith in the wicked, why did he so often before them, and by that means will stir them
+say to those on whom the work had been per-up, and a great army of Gog and Magog will
+formed, and even charge them strictly saying come up to take spoil." Then and there
+See thou tell no man." Matt. 8: 4, Mark 5: God will raise up two witnesses of truth, who
+43. And when king Herod so much desired with also work miracles and who will prophe-
+to see a miracle and "hoped to have seen onesy to the great torment of all the wicked who
+done by him and questioned with him in many hear them. When they finish their work and
+words, but he (Jesus) answered him nothing." testimony, as an evidence that they were true
+Luke 23: 8, 9. If-miracles would produce prophets of God, and had well done, they
+faith, why did he not exert his power and con-hear a great voice from heaven saying unto
+vert the king?
+them, come up hither." The truth of the mat-
+The influence of a miracle upon the heart of ter is, that the Holy Spirit of the Lord about
+a wicked man is fully shown in Acts 4: 16,17, which all the religious world are talking, writ-
+"What shall we do to these men? for that ing, and praying, is in reality the "spirit of
+indeed a notable miracle has been done by prophecy." So the angel of the Lord unders
+them is manifest to all them tha dwell in Je-stood it when he visited Join in the isle of
+rusalem, and we cannot deny it. But, that it Patmos, "For the testimony of Jesus is the
+spread no further among the people, let us strait-spirit of prophesy." Rev. 19: 10.
+ly threaten them, that they speak henceforth We can see by looking over all the above
+to no man in this name." After the above re-ground that Satan can inspire his subjects,
+search we come more and more to the conclu-show visions, and give them power to work
+sion with Paul, that faith comes by hearing miracles. He can do more, he can show vis-
+the word of God, and not by seeing miracles. ions to the servants of the Lord. Then the
+That the Lord will raise up true prophets to conclusion is inevitable that the performance
+warn the inhabitants of the earth, before "that of a miracle by a man, is not evidence conclu-
+great and dreadful day of the Lord" comes, sive, that he is a man of God sent with a mes-
+in which all the proud and all that deisage to the world.
+wickedly, shall be stuble, and the day that The rule by which to distinguish a true pro-
+cometh shall burn them up," is a plain matter phet from a false one, certainly never has been
+of fact sustained both by reason and revelation. understood or acted upon by the people to
+Before the antideluvians were destroyed by whom the Lord sent his servants. For we are
+*the flood, Noah a prophet of God, migthy in assured by the Savior himself that if the peo-
+word and in deed, warned them for one hun-ple to whom the true prophets were sent had
+dred and twenty years. And although he not stoned and killed them "the Lord would
+was not very successful in converting them, have gathered the people together," he would
+yet he preached to them in righteousness-un-have protected, fed, and prospered them.--
+till the Lord shut him up in the ark. Before Now we believe that those persecutors of the
+Sodom and the cities of the plain, had brim-prophets of God, with Saul of Tarsus, verily
+stope and fire rained upon them from the Lord thought that "they were doing God's service."
+out of heaven, to their entire destruction, Lot They thought that the false prophets were true
+that godly man lived among them: and when ones, and that the true ones were of the devil.
+the angels of God visited him and told him So it will be in the last days, the false proph.
+their errand, he ran to warn his friends to flee ets will go out and "deceive the nations," and
+with him, in order to escape destruction. He gather them together to battle. But the true
+was not very successful in convincing them ones like Noah, Lot, John, and Paul will be
+or being the means of saving even his own listened to but by few. It will be as Isaiala
+household. As it was in the days of Noah saw it. "The inhabitants of the earth will be
+and of Lot, so shall be in the day of the sec- burned, and but few men left." Isa. 24: 6.
+ond coming of Messiah.. The wicked paid no But we inquire why will it be so? Why
+heed to the warning in either case, "but were will people not take warning by the past, and
+marrying and giving in marriage" until their be prepared for that day of days? The an
+destruction overtook them. We would ask, swer now is, and will be at the end, as it was
+will it be so at the advent! Jesus said Mat. 24: in the days of the Savior, "men love darkness(
+37, "But as the days of Noah were, soprather than light, because their deeds are evil."
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 263
+**Source File:** page_263.json
+---
+
+## The great and uniform object of all the rev-
+elations that God has ever given or manifest-
+ed to man, from the days of Adam to the pres
+ent time, has been to develop his own charac-
+ter, and show to man that he might form rela-
+tions with the heavens, so firm, and so fixed,
+that all the combinations of earth and hell
+could not deceive him. After man has formed
+those relations with his heavenly Father, has
+been adopted into his kingdom, and has receiv-
+ed the spirit of adoption the spirit of theses
+kingdom-the earnest of his inheritance; then
+if he lives to his privilege false Apostles may
+testify, false Prophets may prophesy; and if
+the people desire it, they may "heap to them-
+selves teachers having itching ears, they may
+turn away their ears from the truth and be
+turned unto fables," Yet the man with the
+seal of his adoption in his heart, with an "unc-
+tion from the Holy One, may know all things."
+He may know whether God has sent the apos-
+tle, prophet, or teacher, or whether he is a de-
+ceiver. John said to the saints in his day "ye
+know all things." 1st John 2; 20. It was at
+upon this principle of knowledge that Paul
+said to his brethren of Thessalonica, "but ye
+brethren are not in darkness, that that day
+should overtake you as a thief. Ye are the
+children of light." James, the apostle, laid
+down in the kingdom of Christ one general,
+grand principle of action. And if that princi-
+ple was only lived to, no man need ever be
+deceived by falsé apostles, prophets or teach-
+ers. If any of you lack wisdom, let him ask
+of God, that giveth to all men liberally, and
+úpbraideth not: and it shall be given him."
+James 1: 5. This is the great key or princi-
+ple, which throws wide open the door of intel-
+ligence to man.
+
+Suppose the true signs of the coming of the
+Son of man should appear, the sun should be
+darkened, the moon turned to blood, and the
+stars begin to fall from heaven. How, we
+would ask, may it be known that those signs
+are then given to announce the advent? We will
+answer, if the saint's mind is in doubt, if he
+lacks wisdom, if he knows not the object for
+which the signs are shown, he looks up to
+God and says, Father give me knowledge of
+those things; give me wisdom that I may
+know what to do. His God gives hiin liberaly.
+He stands then without fear, in the midst of
+- the wreck of nations, and the contention of
+elements-trusting in his heavenly Father.
+
+But how may a true prophet be known from
+a false one? We are well aware that to an
+swer this query correctly, requires deep re
+search, reflection, and combination of princi
+ples, times, characters, and circumstances.
+No man with the bible history before him can
+help but see the difficulties under which all
+the true prophets of God were placed. When
+they had a message to deliver to the world, they
+generally, may we not say, universally, had not
+to go-at their peril, and combat the prejudices
+of the age in which they lived; the systems of
+
+
+rev-corruption which had been introduced by false
+est-prophets, or false teachers, or both; who had
+res prophesied or taught lies in the name of the
+rac-Lord, and in consequence thereof the practices
+rela- of the people had become so corrupt, that they
+fixed, called aloud for vengeance from heaven; but
+hell that God who is "abundant in goodness truth
+med and mercy," "at sundry times and in divers
+has manners spake in time past unto the fathers
+receiv-by the prophets," in order to correct their abu
+by-ses and lead them back unto himself, lest his
+then judgements should fall upon them for their
+destruction.
+
+The people to whom the Lord sent his pro
+phets, had generally become so wedded to
+their transgressions and the false teachers had
+b obtained such an influence over them, that
+the they usually rose up and killed the prophets,
+and stoned them that were sent unto them."
+Now if the test that the people of this age
+have set up, by which to determine true from
+de false prophets, that is, power to work miracles,
+fa is a correct one, how easy would it have been,
+was at any time for the Lord, "Who hath measur
+Paulled the waters in the hollow of his hand, and
+yemeted out the heavens with a span, compre
+day hended the dust of the earth in a measure, and
+the weighed the mountains in scales, and the hills
+laid in a balance," to have given to every prophet
+that power by which he could have convinced
+his hearers, and thus have saved his prophets
+from horrid persecutions, privations, and gen
+erally an untimely-and-not unfrequently a
+ask horrid death?
+
+and "True prophets were always sent to cry re
+penitance, to reform those to whom they were
+sent, to lay down principles that would better
+their condition, that if observed, would elevate
+their characters before God. False prophets
+cry peace, peace, all is well. "No evil shall
+come upon you." Jer. 23. 17. The prophe
+cies of true prophets always did and always will
+welcome to pass, because God spake through them,
+"For prophecy came not in old time by the
+will of man: but holy men of God spake as they
+were moved by the Holy Girost." 2d Peter 1:
+21. False prophets are not seers, they cannot
+look into the future, their prophecies therefore
+are all uncertainty. Their inspiration is from
+the devil, or they speak from the imagination
+of their own hearts. If a prophet appears be
+fore any people and makes a declaration or
+delivers a message, and that declaration or
+message is derogatory to the true character of
+God, or is contrary to any fixed principle as
+laid down in the divine volume, then that
+man is not sent of God; but his inspiration is
+from beneath. Because a man sent of God
+will speak his word, and the Lord would not
+speak against his own character or against
+any word that he had ever given to any former
+prophet. The Lord said Isaiah 8: 20, "To
+the law and to the testimony, if they speak
+had not according to this word, it is because their
+is no light in them." A message delivered
+by any prophet which has not for its ultimate
+
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 264
+**Source File:** page_264.json
+---
+
+object, love to God and peace and good will to cate occasionally their progress in the divine
+man, is not of God. The Lord in all his reve life, and their prospects of the future. One
+lations, through his prophets to man, lays in word more and we have done, brethren, when
+them deep the foundations of peace-the high-
+est and best interest of man..
+you write you will please to pay your postage.
+Finally, after all we have said we know. of The postage on letters is reduced, but still it
+hut one infallible rule by which to judge of A-requires money to pay it-especially where
+postles, Prophets, or Revelators, purporting many letters are received.
+to be sent of God. The man who sets him-
+self up for judge in these matters ought, before Our news from the Elders abroad continues
+he passes decision, first to be sure that he to be of the most cheering kind. Where they
+himself is in possession of the Holy Spirit, have gone out trusting in God, and have pro-
+"For the Spirit searcheth all things, yea, the
+deep things of God 1st Cor. 2: 10. And claimed the gospel of truth in demonstra
+further, Paul says verse 15, "He that is spirit of the Spirit, they have found attentive hear-
+ual judgeth ALL things." This is a sweeping ers. And where they have continued their
+declaration, and the converse of it would be labors success has crowned their ministry,
+that he who is not spiritual cannot judge of
+-spiritual matters. But again Paul says, "the
+and they have been enabled to rejoice in the
+natural man receiveth not the things of the privilege of introducing members among us,
+Spirit of God-because they are spiritually who are full of faith, and who so far manifest
+discerned."
+forth good works meet for the kingdom. In
+The great reason why the true prophets of this city we move steadily onward, increasing
+God, who were sent in the various ages of the in numbers slowly. The saints are growing
+world, and even his own Son, were rejected in numbers slowly. The saints are growing
+of men was that the people to whom they were not only in the knowledge of the truth, but
+sent, were not possessed of the Spirit of God. are also increasing in good works, and in
+They well knew that the prophets had a dif love one toward another in the Lord. They
+ferent spirit from themselves, and willingly
+justifying the one which possessed them, they stand "rejoicing in hope of the glory of God,
+of course condemned and frequently executed and not only so, but we glory in tribulations
+God's chosen. The wicked always did and also: knowing that tribulation worketh pa-
+always will condemn and reject the prophets tience; and patience experience, and experi-
+of God, and call them deceivers. Those only
+who receive the truth, and love it in their ence hope; and hope maketh not ashamed, be-
+hearts, will ever be benefited by directions cause the love of God is shed abroad in our
+from on high. They will hear the voice of hearts by the Holy Ghost, which is given un,
+"that prophet." It will not be stange to them to us.
+They will cry as did Abraham, "herea am 1
+Lord." And when they learn the message We learn from Elder J. A. Forgeus La-
+they will with delight put into practice every harpe III. July 4 '45 and also from others of
+holy principle revealed. They will not be
+our brethren of the awfully dreadful state of
+afraid of "any man deceiving them by any society in that region of murders-two of
+means."
+Brethren of the kingdom of Christ, shall we which were lately committed in Hancock Co.
+live continually so spiritual that we can within 24 hours. Arms and amunition seem to
+"judge all things," and yet, we ourselves bebe in good demand there, and there are many
+judged or condemned by no man? May God
+grant it in all our behalves.
+forebodings and conjectures among all classes
+as to what a few months, and probably from
+W. E. McLELLIN.
+the present signs, even what a few weeks will
+bring forth. Awful indeed must that state of
+# MESSENGER AND ADVOCATE
+society be when life and the peacable posses-
+sion of property are not vouchsafed to the cit-
+## PITTSBURGH, PA, JULY 15, 1845.
+izens by the strong arm of the Law. But
+We wish to say a word about writing letters. such seems to be the state of society in and a-
+It is required of all the traveling Elders to bout Hancock Co. Ill. We are truly sorry
+write to us occasionally, and let us know how that causes should have existed to lead to such
+they are doing, what they are doing, and es- a state of things. But so it is. Since the
+pecially how the cause of truth prospers on commencement of this paper, we have said a
+account of their labours in their ministry.- number of times that troubles serious trouh-
+We should be happy to receive such letters would befall the people of Nauvoo. We
+frequently. We wish also that Elders wholes knew that certain causes would produce cer-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 265
+**Source File:** page_265.json
+---
+
+# COMMUNICATIONS
+
+## THE MORMONS.
+
+We have a few words to say in relation to Nauvoo and the attitude we sustain to that people. There is an attempt made and making by that people, to make all believe, over whom they have any influence, that we are some how or other engaged in trying to bring mobs on them or to inflame the public mind against them; this we do not believe we have power to do if we had any desire to do so; we say let the Lord judge whether we have or not.
+
+All that we have ever said, or intend to say, or ever did intend to say about that people, was to make all acquainted with the true state of the case, as it existed between them and us. We did see a disposition on the part of that people, to mislead the public mind on the subject, and make a wrong impression on them. The object we had in view has been obtained, and since all the facts have been elicited, necessary to the accomplishment of that object, we are not disposed to keep up a war with them or any other people.
+
+As to their peculiar religious tenets which was the cause of the real difference between them and us, and out of which the evils grew which are effecting them, and likely to do it, belongs to themselves, and as far as we are concerned, they may enjoy them, since the public know or may know, both through their own writings and ours, what the real difference is; these called-forth all we have said in relation to them, it being our firm conviction that they were not according to Godliness.
+
+The proofs they gave to the world that we were seeking their lives, have so plainly shewn that they were mistaken, if they thought so, that a word is all that is necessary. They sent forth the alarm that we were colliging with certain men who they said were the active agents in the death of, the Smiths. Namely the messis Laws, Fosters, Higbees, & Bennett, facts have proven that between them and us, there was no concert of action. We had a conversation, last winter in Ohio, with Mr. William Law whom we unexpectedly met on his way to visit his brothers, in Mercer co. in this state. The conversation was a friendly one, but terminated in convincing both parties that our religious views were so widely different that no union could exist, and so we parted, agreeing to disagree, and so the matter ended. As to the others mentioned, we never had any conversation with them, and the facts have settled the question in dispute, if there ever were one, that none of them had any disposition to unite with us in a church relation, but we consider they have a right to any do so, if they comply with what we consider the only way of admission, which is baptism for the remission of sins, and the laying on of hands for the gift of the Holy Spirit, as all others attain their standing with us.
+
+---
+
+tain effects and we know so still: however we may deplore the results.
+
+The letter from brother N. B. Helverson, found in another column, will be read with deep interest, as it sets forth in plainness the principles by which P. P. Pratt and his adherents are governed.
+
+## EXTRACTS OF LETTERS.
+
+We have received letters from our brethren from different points, which we cannot publish at length, but we make the following extracts:
+
+Elder G. M. Hinkle writes from Buffalo I. T. June '45-Dear Brethren, in the kingdom and common cause of our Master, I am glad to inform you that the Lord has already fulfilled his promises to me in a great degree as made when I was set apart to this mission; for he has given us near one hundred of my old brethren and we have had the pleasure of leading them down into the waters of baptism, and through the ordinances of introducing them into the kingdom of God. The prospects are more and more flattering every day in this region of country."
+
+Elders H. Kellogg and L. Rich write from Kirtland O.. June 28 '45. "When we returned from conference we commenced teaching and exhorting the brethren and sisters to holy living, and our meetings have been very interesting. We have baptized thirteen, and we think there are more here who will soon follow their example. We have confidence that the good brethren of the grand council will have wisdom to do all things according to the pattern, and to bear off the Kingdom triumphant"
+
+Also from S. Wardell Longbranch N. J. July 8. 1845. "Our worthy bro. G. Divine has just arrived at our place in good health. I wish you to continue to send me the Messenger and Advocate. I like it much, very much indeed. I send one dollar enclosed to pay for it for one year."
+
+We make the following extract from a letter received from brother Joseph Reeve of Woodstown, N. J. dated July 1, 1845. It is a source of great satisfaction to us, to receive the many testimonials from our brethren abroad in various parts of the country, manifesting their firmness and integrity in the cause of truth.
+
+"Sir, please send me all the numbers of the Messenger from the] commencement. - We have not had any papers nor has any Elder been here since Brother Rigdon was here last fall. The twelveites have been to visit us, but we stand firm to our post. Brother Robison is well and in good spirits.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 266
+**Source File:** page_266.json
+---
+
+Mr. P. P. Pratt seemed so certain of there cause of our publishing a paper when we did.
+being some connection between us and the and had they not done that, it is probable
+above named persons, that he gave forth a pro-that we should not have published a paper till
+phecy in the New York Prophet, that such this time; but we were compelled to do so, as
+would be the case, and when a c rtain paper a measure of self defence, and we have been.
+made its appearance, said to have been written we may say, almost compelled from, aud ever
+by Joseph Sarith during his life time, and seal-since by the force of circumstances, over which
+ed, and deposited in the hands of Dr. J. C. we have had no control, and things, pertain--
+Bennett never to be opened until after Mraing to us, have been conducted, and are now
+Smith's death, Mr. P. P. Pratt reminded the conducting by an unseen hand, and things
+people that he had prophecied, that the church take place which are astonishing to ourselves,
+of Christ would be composed in part of the and as unexpected to us, as they could be to
+person's, to whom he and others took such others.
+decided exception, and gave the appearance Between us and the Mormons there is a
+of this paper as proof of the fact. Now as to greater difference of religious belief, than al-
+the paper we know just as much about it as most any are apprised of. There is scarcely
+Mr. Pratt, Dr. Bennett says it was by Josephone point of similarity. It might appear, at
+Smith deposited in his [Bennett's] hands to first sight, that we agreed in the original pro-
+be disposed of as he did. This is what we clamation of the gospel, of baptism for the re-
+know about it, Dr. Bennett sent the paper to mission of sins, and the gift of the Holy Spir-
+another person's address, who has it now. - it, but when the matter is closely examined it
+This is all we know about it, and Dr. Bennett will be found that the difference here is very
+has gone his own way, and attending to his great. They seem to think, or we judge so
+own business, as far as we know; and we pre-from their action, that the proclamation is gen.
+sume has as little idea of ever joining with the etal without any regard to the order of the
+church of Christ, as he has with the Mormon church whatever, to this we take exception,
+church. So much for the paper.
+while we believe in baptism for the remission
+
+We are well assured from faets, which are of sins, and the gift of the Holy Spirit, we be-
+stuborn, that the enemies of the people of lieve that the promise of either, remission of
+Nauvoo, in their own vicinity, are as deeply sins or the gift of the Holy Spirit, is not ob-
+opposed to us as they are to them, and if weltained only as the persons administering, are
+were located in Nauvoo, as the inhabitants of doing so by virtue of their standing in their
+Nauvoo are, we could expect nothing but op-place in the church of Christ. That if the ec-
+position from them. We havereasons for this. elesiastical order of the church is hroken, the
+In all the notices taken of us in the papers, in promised gifts cease, and neither baptism nor
+that country, opposed to the people of Nanvoo the laying on of hands can bestow them, only
+there appears to be an ill feeling toward us a-as the true order of the church, where Christ
+bout which we cannot be mistaken. We are appointed these blessings to be obtained, is re-
+never spoken of in a respectfull but disretained, that as soon as this ecclesiastical ar-
+spectfull manner, and the very forms of ex-rangement of the church is broken, the bless-
+pression shew a feeling of deep-prejudice-a-ings cease, and every foul spirit and evil
+gainst us. Not from any personal hostility, work will follow.
+we judge, for we do not know how there could The pretentions of the people of Nauvoo, -
+be any, for we never had any personal diffi-founded on the primitive church, that at the
+culties with any of them; but the people there death of the Savior the twelve apostles took
+seem to believe, absolutely, that our religion the authority, is so singular a mistake, that it
+- is an imposition practised and_practising on needs but very little reflection to see it. The
+the people, and they cannot have any forbear- Savior never formed a church while he was
+ance with it or us. This is a something we here in the flesh; if he had, it would have
+have, and will have to bear through our life- ceased to exist. The apostles could not have
+time, as far as we can see.
+taken the authority in a church that the Sav-
+The charge then, attempted to be made by ior organized himself; -for the same authority
+the people of Nauvoo, is forever repelled by under which the church of Christ is organized,
+facts, so that all may see if they wish to see, is necessary to the existence of the church;
+and when facts are left to tell the true state of take the authority away by which it was or-
+the case, it is that the church of Christ and the ganized, and the order of things established
+Mormons, are so widely different in their res would cease to exist. Hence it was that the
+spective belief, that they are of necessity op-Savior organized no church while here, be-
+posed to each other, as far as their religion is cause, when he went away, there was no such
+concerned, and the attempt to introduce ex-authority to take his place, and instead of his
+traneous matter in the controversy, is without organizing a church, he went away and then
+foundation in truth. The attempt was made empowered the apostles to organize the
+by that people, for months before our paper church, and that order could be preserved;
+was published, to make a false impression on but no sooner did apostles cease in that
+the public mind, through the medium of their church, than it ceased to exist; and all the
+paper, by false statements, which were the spiritual gifts ceased also, and if we ask why
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 267
+**Source File:** page_267.json
+---
+
+the spiritual gifts ceased? the answer and the other failure, among the many prophecies of
+only answer which can be given is that the Mr. Pratt, since his notable prophecy of the
+ecclesiastical order through which the gifts destruction of New York.
+were bestowed was broken.
+But the church of Christ has obtained a dis..
+We, in opposition to the people ai. Nauvoo, tinctive character, and the differences between
+believe that in order to have the blessings us and that people are being known, and we
+continue in the church, it is necessary that will have very little need of noticing them at
+the whole body should be fitly framed togethany time. The more evil they speak of us,
+er, each joint supplying its place, and then and the more efforts they use for our injury,
+the spiritual nourishment will flow to each the more evidence the people will have that
+part; but disorganize the body, and the nour we are not of them, and as we know we are
+ishment will not reach every part, and take off in the hands of the Lord and not in theirs, we
+the head and it will reach none of the mem-jaře disposed hereafter to let them abuse us at
+bers, but the people of Nauvoo claim the their pleasure. The end for which we ever
+right of disorganizing the body, and yet pro-noticed them is now obtained.
+claim the blessings, which were only prom-
+ised to the body perfectly organized. In this
+SIDNEY RIGDON.
+there is between us and them antessential dif
+ference in the elementary principles of the
+gospel.
+
+Hampton, Ill.
+
+PRESIDENT RIGDON:
+
+Last evening I returned
+Another essential difference between them home from attending a conference in Buffalo,
+and is is the principle of exaltation. This lowa the seat of Elders Hinkle and Blakes-
+/ they say is to be done through a system of lee's labors since their return from the confer-
+sealing up women to them in this world, tolence at Pittsburgh. President A. Cowles
+be their wives in eternity as well as time. and myself arrived 'there an Friday evening,
+- This is what they call the blessings of Jacob, and on Saturday afternoon our meeting com-
+and that their exaltation is in consequence of menced. Numbers were in attendance who
+it. To this we do and ever did, take decided lid not belong to the "Church of Christ."
+exception: we believe that the exaltation of Some of whom had come from more than forty
+man depends upon the evolition of faculty, by miles distant, in order to hear and see. Bro.
+means of the gift of the Holy Spirit, enlight- Cowles preached to us a very excellent, plain
+ening the mind, until it can be a companion discourse, and was followed by Elder. J.
+for the Deity, and become one with him. - Blakeslee with an exhortation, in demonstra-
+There is scarcely one essential principle per-tion and in power.
+taining to salvation, about which the Mormons On Sunday morning after baptism, brother
+and the church of Christ agree.
+Cowles again addressed a very large congre-
+These are the real differences between the gation on the doctrine and practice of the
+Mormons and us, in our religious beliefs. All kingdom of God. The fire of the Spirit of
+that is said about the church of Christ, being God seemed to burn in the old man's heart,
+partakers with their enemies their enemies and he poured it out in a flood of light upon
+themselves can be witnesses; we have no his attentive hearers. Elder Hinkle followed
+idea that their enemies would make common him with some very definite remarks. In the
+cause with us against them, or in any thing afternoon Elder Blakeslee and myself occupi-
+else, if we can judge from their papers; indeedled some over three hours in two discourses,
+so manifest are these things, that Mr. Hyde concerning the Book of Mormon, and the
+wrote a letter to this city declaring that the work of God that will be accomplished in this
+people at St. Louis were as much opposed to generation. We then broke bread, and had a
+us as they were to them, and though they good time of rejoicing with our brethren and
+were friendly to our face yet, when our back sisters. The Spirit of truth operated freely
+was turned, they would speak in most disres- in our hearts, and all the saints seemed to re-
+pecifull terms of us, à something of which we alize our great and high privileges.
+have no doubt; but why is it that Mr. Hyde_Sometime (I think) during the winter of
+has so shortly found out that we are making 1830, the fulness of the gospel of the Son of
+common cause together? the truth is, he God was introduced in the northern part_of
+knows better and always did. The letter he the State of Ohio, by the Elders of the church
+wrote here was doubtless true and is now the of Christ, where many converts were made to
+truth, and the people of Nauvoo know it as the faith when the truth, with the love of it,
+well as we; but this cry about uniting with found its way to the heart of a young man
+their enemies, was raised for effect. But time who was then studying medicine in the vill-
+and facts_have put the matter forever at rest, age of Painsville, by the name of Harvey.
+and all see there is no connection between us Whitlock. He was soon baptized and set
+and the Laws, Fosters, Higbees, and Bennet, apart to the ministry. He travelled extensive-
+persons about whom we have nothing to say, ly; and his name stands forth conspicuously
+only that they have a right to any religion among the sufferers of the church, during their
+they choose and we claim no right to say persecutions in Mo. in 1833. He separated.
+nay, nor any disposition to say so. It is an from the Church (I think) in '36: and has for
+www.Latter DayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 268
+**Source File:** page_268.json
+---
+
+several years been extensively engaged in his professional business, in the prairie wilds of Iowa. During our April conference I directed the Messenger and Advocate to be sent to him He read it. And saw in it that we were not only determined to plead for virtue, holiness, and faith unfeigned; but that we were deter. mined to put into practice every holy prenci-ing at Pittsburgh, met with the church in a
+ple that the Lord required at our hands. lower room, in another part of the building,
+Hearing of our conference in Buffalo, and and occasionally during the evening, we could.
+not living more than fifty miles distant, he hear the melody of their voices arising to
+was in attendance from its commencement; heaven's King-which cheered and encoura
+and hearing and seeing what he did, he came ed our hearts.
+to the full and settled Conclusion to unite Let me tell you sir, we may expect much
+with us, and throw all his energies into the from the labors of those strong men of God
+scale; and again lift his voice in defence of of the west, in the wide field of the world,
+the glorious principles of the kingdom of God. which is white already to harvest. O! that
+Opportunity being given he arose and in as God may prosper them and cause them to
+humble a manner as I ever heard, asked ad-gather many sheaves, and obtain many stars
+mission into our fellowship by obedience. in their crowns of rejoicing; and come up.up-
+It was my privilege to introduce him by bap on mount Zion when the Lord makes up his
+tism and ordination into the Church of Christ, jewels for the millenial rest.
+and ministry of the Son of God." Elder Whit- President Cowles and myself expecting to
+lock is one of the men throngh whose minis-leave for the east in a few days, and probably
+try and tuition, I was first made fully acquain-never to return to the west, desired all bur-
+ted with the fulness of the gospel of the new brethren and sisters to meet us on the next
+and everlasting covenant. Now dear brother, morning, so as to have a kind of farewell
+I need not tell you my feelings when I led meeting. We met at 8 o'clock. There was a
+that man down and immersed him in the full attendance. I have often heard the saying
+great Mississippi; and in accordance with "the best of the wine is left to the last of the
+the manifestations of the Spirit of God to feast," but I never more fully realized its
+us, Elder Blakeslee the president of the truth than on this occasion. After the meet-
+Twelve" and myself laid or hands upon him ing was opened, I arose to deliver my valedic-
+and set him apart to that holy ministry, by tory. The power of the Holy Spirit rested
+the authority of which he can again lift up his down upon me. I walked the floor to and fro,
+voice, and publish the principles of salvation and poured out my feelings, until the sympa...
+to all who may hear, with those thrills of el-thies of our natures were tuned to the highest
+oquence, that are seldom heard except from key, and were only allayed by giving vent to
+gifted minds and voices like his. I pray God a flood of tears. O! "that time that time, sa-
+to preserve him in faithfulness, and make him cred in my memory! Those brethren and
+an ornament in his kingdom. My father in sisters too, I never, no never shall forget
+the flesh, and my father in the gospel, are them. Then brother Cowles, and I stood,
+both in the kingdom; and I have been privi- and the brethren and sisters passed and gave
+leged to introduce them since I last saw you. us their hands. O! my soul, lift up thyself
+Again, I say praise the Lord, O! my soul. and rejoice in God, for the joy and rejoicing
+Our conference business commenced on in the Lord of that occasion.
+Monday morning, A. Cowles presiding.- We left the brethren baptizing those who
+From the representation of the bran es, it became convinced, but how many they thus
+was found that near one hundred had come received, I have not yet heard. As I said at
+into the order of the kingdom, as established the close of my last letter, the cause of our
+at our Pittsburgh conference. The most of holy Redeemer, no power on earth can stay
+the day was spent in teaching and preparing it, while we trust not in the arm of flesh, but
+the minds of the ministry for their consecra- in the faithfulness of Daniel's God. Let youry
+tion, and for their future labors. I have not heart, my dear brother, trust in God, and
+the minutes before me, but I believe about walk in uprightness before him, and no evil
+fifteen were dedicated to God, after the strong-thing that rises up against you, or the causse
+est assurances from them that they-each one, in which yon are engaged, will ever prosper,
+would occupy upon his talents, as the Lordjeven so, Amon.
+would open the way. They all seemed to re-
+alize the necessity of their immediate and
+speedy action in the cause-in publishing the
+gospel of peace to the world.
+
+W. E. McLELLIN.
+York, July 9th, 1845.
+BROTHER RIGDON:
+Dear Sir:-It has been
+In the evening the ministry met in an upper
+room, apart from the world, and there received a long while since I joined the "Mormon"
+their solemn consecration to God; and with Society. The reasons that induced me to be-
+us, entered into a firm covenant "to stand-by come a member were many, a few of which I-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 269
+**Source File:** page_269.json
+---
+
+will name: 1st I believed them to be a vir-all the moral sensibilities of our nature. I
+tuous and honest people. 2d They had the mean the spiritual wife system; which I CAN
+pure doctrine of Christ. 3rd They were gov- PROVE they taught in Philadelphia, as well as
+erned by revelation, and organised after the pat Nauvoo, by the testimony of respectable and
+tern of heaven. But alas, how altered is that honest men.
+church, now instead of virtue; burning lust To countenance such men for one moment,
+and seduction; instead of pure, the most de-as leaders in the chruch of the living God,
+moralizing and diabolical doctrine. The would be a flat violation of all law, common
+church organization is broken up, and the sense, reason, or any other ruleby whichenlight-
+voice of Revelation is, heard no more among end or civilized people are governed. There
+them; instead of a true, she is an apostate are heathens and barbarians, who would scorn
+church. She is without a head, and is like such a doctrine, as eminating from God. It
+the frail bark on the tempestuous ocean with too is a downrigt insult to ask any man to
+out a rudder to guide her into a port of safety, support men who teach it. Soon their folly
+So abject is the condition of the church, so far will become so manifest; that they will be over-
+as divine and spiritual influence is concerned, whelmed with shame and disgrace. - Already
+that I-am constrained to give thanks to the their adminstration is not approved by God,
+sovereign Ruler of the universe, for enabling and the end of their wickedness is drawing
+me to see it, before I was entangled in that nigh. By this time, I had conversed with a
+most desperate, and destructive sink of vice goodly number of persons on the subject,
+and immorality. I left the sectarian world, members of the church. I found none that
+and thank heaven for ridding me of false doc-could deny it, hence, my mind was nearly
+trine; and how I feel to rejoice ten fold more, made up to leave the church, but I said noth-
+because, I have been cut off from the liability ing about it to any one.
+of falling into corruption and adultery. Being It was impossible for me to fellowship them,
+snatched, by the hand of Omnipotence, from and on refusing the sacrament last Sunday,
+the verge of ruin, my feet are planted upon my license was demanded. But not being
+the rock Christ Jesus, the Savior of the world. disposed to comply; without, a trial, I was.ci-
+Verily, 1 am compelled to exclain, how infi-ted by elder Grant, to appear before a great
+nite is thy mercy O Lord; and what am I, Mormon Sanhedrim, composed of officials, on
+that thou art mindful of me.. Thou hast de the following Monday evening. At this op-
+livered me from the snares of the adversary, portunity I rejoiced, for he that loves the truth
+and placed me in the light, and liberty of the need not be afraid nor ashamed. At the time
+children of God, by allowing me to be disfel-set I was on the spot and in my place, alone
+lowshipped from that which was formerly thy without a friend to speak in my behalf; I ask-
+church in Philadelphia, where once thy spirited the privilege of bringing a friend with_me,
+was felt, and thy people rejoiced, and glorified but was denied; in fact one happened in, but
+thee, but now no more.
+was ordered out. Friendless apparently at
+But I must hasten, I wish to relate some of first, yet before I left, I believe I had some,
+the circumstances under which I was excom-who were inclined to think as I did, not one
+municated. I had been away from home near-half of them voted against me. The Great
+ly ten months among a people where no church guh, P. P. Pratt, was present, and the contest
+has been established. Last week I returned was between. him and myself. My tongue
+to Philadelphia, when I arrived, I heard of the was loosed; my heart was full of matter, and
+abominations, and wickedness of the heads of though they tried to browbeat and gag me, yet
+the church, spoken-of-by-numerous persons, my strength and_voice_increased, and bid-de-
+and found that many of the best members infiance to their attempts to silence me. I was
+the church were turned out withouta hearing. doing my duty as an elder in Israel, and be-
+simply because they dared, like men and wo-fore I left, I made them quake under the all
+men, express their opinions about the affairs powerful lash of truth. When I entered the
+of the church. Dealing with members in this Hall they flattered themselves that I would
+mode, I considered a flat violation of all law, not be able to make any defence before his
+and my suspicions were soon aroused; thought highness P. P. Pratt, but before I left, I suc-
+I, there must be something "rotten in Den-ceeded in changing the faces of some, from a
+mark." Hence I'immediately began to in-contemptible and insignificant sneer to a long
+quire into the matter and soon found an other hypocritical face. The garb of sanctity was
+reason why they were cut off; was because torn off these spiritual wife hypocrits, and
+they would not sustain the twelve, right of their moral deformity laid bare.
+wrong. I pressed my inquiries a little farther. Elder Pratt, frequently refered to the book
+and I soon discovered the ground of opposi of Covenants to sustain his position, but when
+tion to the twelve, and why these excommu- I chalanged him, or any one present to debate
+nicated brethren would not sustain them. It is the subject, in reference to authority he drop-
+'because they arrogate to themselves authority ped the book of Covenants, and said no more
+which does not belong to them, which amounts about it. From, the course pursued by him,
+to a glaring usurpation of power, and teach a and the twelve I am ready to believe, they do
+doctrine damning in itself, and abhorant to not believe either that, or the book of Mormon.
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 270
+**Source File:** page_270.json
+---
+
+# They to me look like a set of ambitions aspir-
+ants. Hence I never wish to have any thing
+more to do with them. They may vomit forth all
+their filth and spleen, spread abroad all them
+Tancorous vituperation, piebald ribaldry and
+slander. I am to all intents and purposes
+with you in following the Lord in his own ap
+pointed way. I give God honor and glory for the
+again placing my feet in the way of salvation
+May God bless and prosper bis people, under
+the guidance of his Prophet (Sidney Rigdon)
+is the prayer of your unworthy brother.
+
+N. B. HELVERSON.
+
+Boston, June 24, 1845.
+
+PRESIDENT S. RIGDON:
+
+Dear Brother in Christ, I take my pen to
+drop a few lines to you at this time.
+
+God knows, worlds of wealth is of no val
+ue to the gospel of our blessed-Saviour; my
+soul grows larger and expands in the light
+and glory of God. I have been to the East, Pr.
+I preached in the Baptist church Sunday before
+last; with intense anxiety the people heard
+me in the forenoon, and desired their Elder to
+give way for me in the afternoon, to which he
+consented. 1-gladly embraced the opportuni
+ty, and tried to leave no stone unturned to
+show them the first principles of the gospel,
+and the organization of the kingdom of God.
+Left them in a good state of feeling, all bun
+the Elder, he was very uneasy but treated me
+gentlemanly; may God bless him and his
+church to imbrace the gospel. In Boston last
+Sunday I preached 3 times, and once in Cam
+bridgeport where I now live.
+
+While I was gone to the East, my house
+was assailed in the night time by a band of
+rumans, who insulted my family with hard
+words and foul speeches, to their great anoy
+ance, until they were compelled to calk on
+their neighbors for assistance and protection.
+When I returned and found the treatinent so
+gross, without the least provocation my feel
+ings were very much-excited, and I made an
+effort to ferret out the offenders; the neighbors
+were very much stired up about it; never was
+known so gross an insult on a respectable fam
+ily in this region of country. But now came
+the test of my religion, up comes a man in a
+čarriage for me to go to Boston to lay hands on
+his aged mother, who was supposed to be dy
+ing, I felt I had a wrong spirit, but I took
+my oil and went. This showed me the im
+portance of being always ready. I told the
+Lord, like Sampson, if he would return to me,
+I would submit all persecufors to his charge,
+and pray for them. The spirit of the living
+God came with power while I looked on the
+dying woman; I was astonished, she had not
+so much as opened her eyes, neither spoker,
+or even noticed any one for some time; but
+the spirit bid me pray; I did. It bid me a
+noint and lay on my hands. The old lady
+turned over from a doubled up position in
+bed, and looked up. Such was the marvel-
+
+fous change, that her children and grand chil
+dren were greatly-ainazed, they all burst forth
+all into a flood of tears. Color came in her face
+like a child, she fell asleep, and I told them.
+Spirit said if she sleeps she shall do
+well. The night's rest refreshed her, and the
+next day she talked with her children all about
+the goodness of God. I went the second time.
+and her sons and daughters all kneeled down,
+while I prayed, and. God blessed me in a won
+derful manner. One of the sons-told me it was
+the first time he ever knelt before God, but
+hoped it would not be the last. She got up
+after I left the room; she is a miracle indeed.
+I think the whole family will embrace the gos
+pel. I spent part of the day with them yes
+terday.
+
+Sunday we had a heavenly time in our church,
+the spirit of God rested upon us, the spirit of
+my prophecy was poured out in great effusion,
+and I can assure you it came with mighty pow
+er. The brethren and sisters came together
+last night at my house, to partake of the Lord's
+supper; and such prophecying by the spirit I
+never heard in this vicinity. And to tell you
+the whole story in a word, I have been filled
+with perfect love ever since this persecution
+to arose falsely for Christ's sake,
+I preached on the town scales in Cambridge
+port last sunday morning at 8 o'clock, to hun
+dreds. The most respectable came up and
+took me by the hand and expressed the best of
+his feelings toward me. All the respectable part
+of the place talke as much again notice of my
+unusual persecutions as I do. * My
+soul is happy, praise the Lord, peace on earth,
+and good will to man.
+Now Sir, the desire of the honest in this re
+ligion of country is, that you should come here
+and spend some time. The citizens of Peter
+boro, are very anxious for you to come and
+make them a visit, and lay before them the
+principles of life. Trejoice to hear the pros
+pect of the saints abroad. I wish you health
+and happiness and that the blessings of God+
+may ever be with you.
+From your unworthy brother.
+
+Wm. HUTCHINGS.
+
+Vest Buffalo, Scott co. I. T. June 21, 1845.
+
+DEAR BROTHER -E. ROBINSON:
+
+This will in
+form you, that I am at this place, (West Buf
+falo Scott co. 1. T.) with my wife and family,
+in as comfortable circumstances as could be
+expected, all things considered. And now I
+will give you a short history of the dealings of
+the good Lord with me since I left your city,
+which was on the 14th April, 1845, and in
+company with as good men as this age could
+produce. I made my way toward home..as
+last as steam (applied to the boat I traveled
+a-on) could carry me, with but one little delay;
+and I arrived at Hamptom Rock Island co. Ilt.
+the 27th, found my family all well; and as a
+matter of course glad to see me. We preach-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 271
+**Source File:** page_271.json
+---
+
+ed several times on our way home, and we to speak the word' with much power in the
+think left good impressions on the hearts of hearing of the people..
+many who sailed with us.
+
+On Sunday night last, as I was about to lie
+I tarried at home three days and then wendown to rest, I kneeled before my heavenly
+to Buffalo to join elder G. M. Hinkle in the Father, and asked him in the name of Jesus
+Mission appointed me by the first presidency, Christ to open the way before his servants,
+in Lowa and Hinois. We have labored day that they might go forth and preach the gospel
+and night diligently unto the present time, the of the Kingdom of God to the people; that
+Lord working with us, and confirming the they might rear, and understand, believe, and
+word with signs following, and we have had repent of their sins, and obey the cominand
+to our assistance some of the time, that ener-ments of God: that they might partake of his
+-getic and faithful laborer in the cause of truth, pirit to enlighten their minds, in order that
+elder W. E. McLellin, and that worthy and they might know the signs of the times"
+well beloved brother President A. Cowles: which already betoken the near approach of
+They attended our conference in this place, the Son of God. To this end was my strong
+the present week. The work is fairly intro-desire, and my supplications before the Lord,
+duced in this-region on both sides of the Mis, and then I laid me down and rested during the
+sissippi river. We have baptized in all, 89 night, not thinking of going myself to any
+persons, and many more are believing, and I place soon. But when I arose in the morning,
+expect to immerse some more on tomorrow, at it was manifested to me to go to the little
+this place. Thus the Kingdom of heaven is town of Knoxville in Ohio, where I have an
+beginning to roll onward in its course, in ful uncle living, and preach the gospel of the
+filinent of some prophecies made at the time kingdom, and bear my testimony to them.
+of its organization, in the city of Pittsburgh So with this light I conferred not with flesh
+last April.
+and blood," but left my home last Monday
+Dear Brother-sufice it to say, that all things with faith in in my heavenly Father that he
+pertaining to the Kingdom of heaven in the would open the way before me. The same
+West, as far as I have any knowledge, are go. day, in the evening I reached Knoxville. The
+ing on about right. The Lord is with us in news soon spread that a strange preacher had/
+very deed, and so are some of the servants of come to town. I conversed freely, and the
+the prince of darkness, each endeavoring to next day a young man who lived at the place
+establish his claimes to the purchased pesses- where I stopped said he would like to hear
+sion. But the Kingdom of our God is gaining me preach. I told him I would preach if a
+ground, and will if all his subjects are faithful house could be found for the meeting. He
+triumph gloriously. I had well nigh said, soon obtained the school house. An appoint-
+pray for us, but I know if you have the spirit ment was circulated for evening. The school
+of the Lord, as I verily believe you have, you house was filled and some stood outside. I
+cannot forget it any more, than you could for preached to them, and the Lord poured out
+get to setile up your accounts with your own this Spirit upon me mightily, which indeed
+heart, every morning and evening. You will preached through me "the wonderful works
+see by the minutes of our conference published of God." The congregation listened very at-
+in the 12th No. of the Ensign, what we have tentively to what I spake to them in the name
+been doing more fully than 1 could write on of the Lord. Some said they believed what I
+this sheet.
+said, and all treated me very kindly-and may
+God grant that they may receive the truth,.
+Indeed Sir from the time of the organization and the love of it in their hearts, and be sav-
+at Pittsburgh up to the present time, my mind ed by faith and obedience in the kingdom of
+has been feasting on the peaceable things of our Lord Jesus"
+the kingdom, while the word of God is like a
+fire in my heart and bones, shut up. I feel On the 9th I left for Wellsville believing
+that I am now in my right element. I have that God would open a door that I might
+enjoyed much of the spirit of God in days preach the things, which were in my heart to
+gone by while preaching the gospel, but I feel the inhabitants of that village also. I arrived
+as though I had now just began to live. Iset there about 10 o'clock A. M.. After I had
+out anew with our organization of the king through the town and trying to get a house to
+dom of God, and my determination is, by the speak in, but my labour seemed to be all in
+grace of God, to be faithful to the time of the vain. I came there to preach to the people,
+and I was determined that I would not be
+frustrated. So when I found that I could not
+get a house-(although there were plenty,) I
+told those who refused that. I could preach on
+the corner of the street. But I was informed
+that I might preach in the grove at the upper
+Since I left you on a short end of town. I then went from house to house
+tour of preaching, the Lord has blessed me and told the people that I would preach in the
+very much with his Spirit, which caused me evening, and by doing so a goodly number ass
+
+Yours in hope of the rest of God.
+JAMES BLAKEŚLEE.
+
+Wellsvill, O.
+DEAR BROTHER:-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 17 | **Page:** 273
+**Source File:** page_272.json
+---
+
+sembled at the time appointed. When Iarose authority while he is a member of their Church.
+before that people to lay before them the gos- O what blindness of heart and of mind-and
+pel of the Kingdom of God, this I can say in to what an extent cannot human beings be du
+truth, that no man living can, even imagin ped. Our brethren here are very anxious that
+my feelings, except he has been called bro. McLellin should come to this city im
+with the same holy calling, and feels mediately. Indeed I am satisfied that there
+the weight of the same holy ministry. I had is no place in the United States where he
+no fear, for the Lord's spirit had cast that all could do more good. Dear brother, urge him
+ont; and I was filled with power to declare to come on right away if possible.
+truths to that people, and bear to them a tes-
+timony which they never can forget. I had
+spoken to them about an hour on the princi-
+B. WINCHESTER.
+ples of the gospel, when the spirit of God said
+*Pittsburgh July 7, 1845.*
+to me to prophesy." The future was then
+*MY DEAR FRIEND:*
+in a degree opened up before me, and I declar At the hearty request of my good
+ed to them many things which made them friend F I stoped at the Iron city, s0
+look very earnestly at me, I assure you: and I Philadelphia, ere I see it, will be two or three
+felt some astonished myself. days older, and I that wane of time, nearer
+the tomb. Sunday I went in company with..
+Whem I closed I could say with the Psal my friend to the meeting of a people known
+mist, "Praise the Lord-O! my soul." For the as the Church of Christ; the place is com-
+Lord did bless me wonderfully while I stood fortably fitted up, and will hold a congrega-
+before that people. My prayer to God is that tion from 3 to 5 hundred, and upon this occa-
+his kingdom may roll on with power, for the sion it was well filled, you know I stand free
+salvation of all the honest in heart; until it from all Secfs, Creeds and Societies, and thus
+shall bring in the rest of God: for which all I speak and write impartially, wherever I find
+the ancient saints and prophets looked with sincerity in a people seeking after that holiest
+so much anxiety. and brightest gem, divine truth-and a thought
+May the Lord bless you my brethren in the like this entered my mind; out of the vast
+truth. myriads that have passed and are now on the
+stage of action, can this little flock, congre-
+ROBERT KINCAID. gated in this up stairs room, be now the cho
+N. B. Brother Croxall will preach in this sen people of God, who are to assist in bring-
+place next Sunday. ing about the mighty results and to be the
+R. K. principal laborers in the last hour of the six
+thousand years? who dare say to the contrary?
+*Philadelphia, Jn'y 9th, 1845.* Not I.
+BROTHER E. ROBINSON-Having a few lei- The excellent discourse by Elder McLellin,
+sure moments I occupy them in writing to you. free from severe reflections upon the benight-
+* * * Our meetings last Sunday were well ed, state of the world. No spleen-no coarse
+attended. The official meinbers here seem to epithets, to maintain a point in doctrine, lav-
+be awakened to a sense of their duty, and have ished upon the sectarian world-hut charita-
+commenced preaching in other places besides ble language and feeling keeping company
+our usual one. * * There has been quite a with the speaker and congregation-in fine,
+flare up among the twelveites here. Elder better order, unaffected piety, I have not seen
+Helverson a man of more than ordinary abil- since I first heard the sound of the everlasting
+ity, who had been absent for some time retur- gospel. That's right, give us example-"by
+ned on a visit among his relatives. Hearing their fruits shall ye know them" says our di-
+many reports he felt to investigate, conse- vine Master. The meeting over, I was forced
+quently came to our meeting on Sunday morn- to the conclusion if truth is not here, where is
+ing. This was enough. * * He was it to be found?. Consider well. Meditate on
+cited to trial. The great apostle "I Parley the text, "Lord whoshall abide in thy taberna-
+P. Pratt," was sent for 'or came accidentally. cle? Whoshall dwell in thy holy hill?" ? You,
+The Elder was put on trial. The principal whispered the still small voice, if you prac-
+charge was slander founded upon this principle tice the lesson taught this morning by the
+-If the twelve had done wrong he had no bu- preacher.
+siness to accuse them of it, or to tell it to any
+one else. He undertook to plead his own
+cause by referring to the book of Covenants.
+But they would arise and say he was out of T. A. L.
+order. The Elder then requested time to in- **MESSENGER & ADVOCATE,**
+vestigate and consider upon the claims of the
+twelve. Whereupon "I Parley" under whose **OF THE CHURCH OF CHRIST,**
+special jurisdiction Elder H. lived "moved he Is printed about the first and fifteenth of every
+be cut off from the Church" that he might month, by
+have time to investigate. This is a tacit ac- **E. ROBINSON,**
+knowledgement of what their actions have in- (Book, Joband Xylographic Printer,) No. 197
+dicated for some time past. That is, that no Liberty st. Head of Wood, Pittsburgh Pa.
+man shall have the right to investigate their TERMS: I per annum payable p in advance
+www.Latter DayTruth.org

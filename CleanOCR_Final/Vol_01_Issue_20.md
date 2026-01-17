@@ -1,0 +1,1061 @@
+# The Latter Day Saint's Messenger And Advocate
+## Volume 01, Issue 20
+
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 305
+**Source File:** page_305.json
+---
+
+# THE PLAN OF SALVATION.
+
+BY S. RIGDON.
+
+If any should think that we have not giv-en evidence sufficient on this subject, we have others against which no valid objection can be raised, we allude to the baptism of John the Baptist, John baptised multitudes, but not one spiritual gift followed his bap-tism; his disciples or those who were bap tised with his baptism, in the days of Paul, had no knowledge of the Holy Spirit. Now why was this so! the answer is easy, Johr had no order of government established, and as the spiritual gifts come after the order of government, no such things could follow John's baptism. The same may be said of John him self for it said of John, though his was more than a prophet, that he "performed no miracle" and if it is asked why! the answer is at hand; John had not establisned the order of the gov-ernment of heaven, and it was after that, and not before, that miracles came.
+
+In pursuing the history of the Savior, there are some things that savor very much of the same idea. We have no account of there being miracles wrought among those whom he baptised, though it is said that he "bapti-sed more disciples than John," until he set his disciples in order, and then they went out and came back, saying, "the devils are sub-ject to us in thy name." These testimoni.als, we think, ought to put the subject, at rest in every candid mind.
+
+Having then the facts of this subject before tis, we may inquire after the order of govern ment by which all the wonders of the church of Christ were preformed; for it is in vain to look for the powers of the spiritual king-dom any where but in the kingdom itself, which, to be the kingdom of heaven, must be organized according to the pattern: In order to do this, we must begin where we can begin, and with the revelations extant in our hands, we can and must begin with Moses; for it is in his writings where we have the first account given of this order. That the power of God attended the order of the things which Moses established, needs no proof from us; for all who read the scrip-tures, must be well acquainted with this fact, and also that the order established by Moses was of divine appointment, will not be doubt-ed by those acquainted with the bible. The question to be settled is, what was the order of things organized by Moses! This we will at-tempt to answer.
+
+One thing is certain, that the first step in the organization, was to choose and inspire
+
+Moses to set the house of God in order before God. The second step was to call and set a-part Aaron to be with and assist Moses, and the third step, to put this head of the organiza-tion in order, was to place Hurr with Moses and Aaron, and this done, this part of the or-der was completed. For the accounts of the union of Moses and Aaron, we direct the rea-der to the 4th chapter of Exodus from the 10th verse to the close of the chapter, where the account is given in detail. For the ac-count of Hur's connection with Moses and Aaron, see the 17th chapter of Exodus where all the attendant circumstances are related, as also the benefits which followed from this part of the organization. Had that quorum not have been organized, as God had directed Moses, there Israel would have been destroy-ed. So closely did the Lord adhere to the pattern he had given Moses; every iota of which, had to be observed in order for Israel' to have the power of God with them, but having the order full and complete, the pow. er of God was pledged for their deliverance. This quorum stood at the head of the organi-zation, and without which the rest of the or-der would have been unavailing, as the case with Amalek clearly shows.
+
+Israel once having this head of their organ-ization completed, the power of God was exer-ted unto their deliverance, which would not have been the case had there not heen three persons thus united. Moses and Aaron alone could not have done it, but in order to have the power of God with them, so that their en-emies could not prevail, Hur must be united with them. Having this part of the pattern given to Moses completed, they could then complete the rest.
+
+We are favored with another department of the organization in the 11th chapter of the hook of Numbers. Let the reader in order to see the entire subject, read the whole chap-ter. This part of the organization consisted of seventy persons, whom Moses knew to be el-ders of the people and officers over them. See the 16th verse "And the Lord said unto Mo-ses gather unto me seventy men of the elders of Israel, whom thon knowest to be the elders of the people, and officers over them; and bring them unto the tabernacle of the congre-gation, that they may stand there with thee.' Moses was here commanded to take seventy men whom he knew to be elders of the peo-ple. Little doubt can remain they were of those mentioned in the 18th chapter of Exodus in whom Moses, at the instance of his father-in-law, had appointed rulers over the people, tu
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 306
+**Source File:** page_306.json
+---
+
+lers of thousands, iulers of hundreds, rulers This institution of things, was so organized
+of fifties, and rulers of tens: See 25th and 26th that the three at its head, through and by vir
+verses of the 18th chapter of Exodus. "And tue of the place they occupied, held constant
+Moses chose able men out of all Israel, and communication with the heavens, and received
+made them heads over the people, rulers of all necessary information for the direction of
+thousands, rulers of hundreds, rulers of fifties the whole, and in the pattern of heavenly
+and rulers of tens. And they judged the things stood as representing the things in
+people at all seasons; the hard causes they heaven: the head of all, the Father, Son, and
+brought unto Moses, but every small cause Holy Spirit, without which, in the heaven-
+they judged themselves;" be this as it may ly things, no salvation could come to man,
+the account here given shews that it was es-and so it was on earth. Without a quorum
+sential for the establishing and governing of three at the head, and that quorum appoin-
+of the people, that the seventy here spoken ted of God, there could be no communication
+of, should be appointed, and that the affairs with the heavens.
+of Israel could not be conducted without them; After the Jews had set aside this pattern of
+for proof of this see 14th and 15th verses of the heavenly things, all went into confusion.
+this 11th chapter of Numbers. "I am not "The laws were transgressed-The ordinan-
+able to bear all this people alone, because it is ces changed, and the everlasting covenent bro-
+too heavy for me. And if thou deal thus ken;" but while the chain of communication
+with me kill me I pray thee, out of hand, with the heavens remained unbroken, all
+if I have found favour in thy sight: and let things prospered with the people; but when
+me not see my wretchedness."
+intirely destroyed, all their ordinances, instead
+We have now so much of the organization of being efficatious, became an abomination
+of Israel. First three, then seventy. The to the Lord; that which before had been sweet
+next account we have of the farther comple-incense before the Lord, then became a stink
+tion of the organization, is in the 13th chap-in his nose. Isaiah sets this forth in a force-
+ter of the book of Numbers, to which we able point of light, in the first chapter of his
+would invite the attention of the reader. This prophecy, see from the 10th to the close of the
+quorum consisted of twelve, and from what 15th verse, "Here the word of the Lord ye rus
+is said in the first verse of the chapter, they lers of Sodom; give ear unto the law of our
+must have been either of the seventy or else God, ye people of Gomorrah. To what pur-
+of the first number mentioned in the 18th pose is the multitude of your sacrifices unto
+chapter of Exodus, for they were to be of me? saith the Lord: I am full of the burnt-of
+the rulers of the people, or else of both. ferings of rams, and the fat of fed beasts; and
+We have now followed the organization of I delight.not in the blood of bullocks, or of
+Israel in the order of government until we lambs, or of hegoats. When ye come to ap-
+have three, seventy, and twelve, and from what pear before me, who hath required this at your
+is said about them, they could act in more hands, to tread my courts? bring no more vain
+capacities than one; for they were rulers be-oblations; incense is an abomination unto me;
+fore they were chosen to these distinctive of the new moons and sabbaths, the calling of
+fices. We deem it unnecessary to follow this assemblies, I cannot away with; it is iniquity,
+organisation any farther, whatever other au- even the solem meetings. Your new moons
+thorities there were, they were subordinate to and your appointed feasts my soul hateth;
+these three grand quorums, the existence of I am weary to bear them. And when ye
+which were indispensible in managing the af- spread forth your hands; I will hide mine
+fairs of Israel, and in getting thein in their eyes from you; yea, when ye make many
+lands, and to set aside either of them, would prayers, I will not hear, your hands are full of
+have destroyed the order.
+blood." The Lord, through Isaiah, admitted
+Moses in thus organizing Israel was com-that Israel offered sacrifices, and prayers, but
+manded to do it according to the pattern instead of there availing any thing, they were
+which had been given him, and Paul the apos-an abomination in his sight. The query is
+tle speaking of this pattern, says that "it was why were they an abomination in his sight?
+the pattern of heavenly things." This order something was wrong; but it was not a lack
+as set forth by the old testament authors is of sacrifices, for the Lord said he was full of
+purely of dixine origin and at the time of them, and he "delighted not in the blood of
+its organization, the only order of things ac-bullocks or of lambs or of hegoats." The
+knowledged by the powers of heaven, and time was when the Lord did delight in them;
+while it was maintained in purity, the peo-but now that which he had once delighted in,
+ple who belonged to it, were preserved by was an abomination in his sight. The only
+divine power, and every ordinance which was legitimate reason which can be assigned for
+attached thereto, was efficatious and through this, is that they had set aside the order of
+obedience thereto the promised blessings were government the Lord had istablished among
+enjoyed; but no sooner was the order bro-them, and to attempt to perpetuate the ordi
+ken, then there was an end to all the bless-nances when this was dorre, was an insult t.
+ings formerly received through the ordinan-heaven. Incense might be burnt, the smoke
+ces ordained for the benefit of that people. of their sacrifices might ascend up, the herds
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 307
+**Source File:** page_307.json
+---
+
+and flocks might low, and blate, and bleed, and John, crucified the Savior, on whom they
+all to no avail. The altars might smoke con- were dependant for the gift of the Holy Ghost,
+tinually with the sacrifices, and yet, their sins and rejected the "counsel of God against
+remain unremitted. They might stretch forth themselves," and fell a prey to their own cor-
+their hands and make many prayers, but the ruptions; and though multitudes of them were
+Lord would not hear.
+baptized by John, they did not, by virtue of
+The cause of all this, could not be because that baptism, receive the Holy Ghost. They
+Israel did not desire the ordinances appointed refused to have the order of the government of
+unto them; for this the Lord says they did. - heaven established, and, in consequence, the
+Where then was the difficulty? Oh! they had ordinance of baptism could not avail them
+broken the order of government, and had ceas-jany thing, any more than the altar could after
+ed to act according to the pattern, and in con- they had broken the chain of communication
+sequence had broken the chain of communica- with heaven; for this must be restored, and
+tion between them and the Lord; and the Lord that could only be done by restoring the full
+would not hear neither would he answer; order of the government of heaven, and until
+but followed them with curses until destruc- that was done, ordinances were of no use, nor
+tion come on them. to the uttermost. What were they of use to the Jews, only as the peo-
+more evidence need we that the observance of ple, who obeyed them, were thereby prepared
+ordinances are of no avil, only when adminis-to have the order of heaven established; and
+tered by those who preserve the order of gov- when they rejected that, their baptism was,
+eroment which the Lord has established, only enhancing their condemnation.
+which gives power and efficacy to the ordi- Having so far examined the mission of
+nance, and without which the attempt to ad-John, we will now examine the organization
+minister ordinances in the name of the Lord, and the effects of that organization, as estab-
+is an abomintion in his sight, and will eventu-lished by the apostles. At the time they
+ate at last in the destruction of the people who made their appearance in the world, the Jew-
+do it. Let so much suffice at present for the ish altar had lost its efficacy, the multitudes
+Jews.
+baptized by John were scattered all over Ju-
+In order morefully to have this subject fair-dea, without having enjoyed the gift of the
+ly before our readers, it will be necessary to Holy Ghost, and communion with the heav-
+take a view of the organization of the, so cal ens had ceased, both among Jews and Gen-
+led, christian church; ch; but before examining tiles. All the ordinances that had been ad-
+the organization of the christian chruch; a few ministered or were administering, were of no
+words about the mission of John the Baptist avail, no gifts of the Holy Spirit followed.-
+will be necessary. We have seen that the Jews Let us now see how the Lord went to work
+by reason of having broken the chain of com- to remedy the evil, and again reinstate man in
+munication with the heavens, had rendered his favor. It was not by administering ordi-
+useless all the ordinances which pertained to nances, nor calling upon people to repent, for
+the institution of things instituted for the ben- this many had done, and on profession of re-
+efit of that people, so that they were left with-pentance, and not only on profession of repen-
+out the blessings of heaven, and the power of tance, but by also bringing forth the fruits of
+God, according to the original design and in- repentance for John required "fruits meet for
+tention of heaven in their policy, and that all repentance"-had been haptized by John, and
+their efforts in obeying them, procured no othe there they stood, and must stand, until some-
+er result than to insult the heavens. If the thing else was done. Now what was that
+Jews, then, were ever again to enjoy the favor something? It was by establishing an order
+of heaven, the Lord must take their case in of government among those who had been
+hand, and send a man or men inspired from on baptized.
+t.
+high to again reinstate the Jews in the favor To obtain this object, the Savior chose
+of heaven. Such was the mission of John the twelve men, and out of these twelve three, to
+Baptist. He came as the Lord's messenger whom he gave the keys of the kingdom or
+to reinstate that people in the favor of God.- ministry, and by this choice of three, as in the
+This he did by preaching the baptism of re-days of Moses, began again to establish his
+pentance for the remission of sins, accompani-order of government on the earth, that the or.
+ed with a promise that "there was one coming dinances, which were at this time unavailing,
+after him, whose shoe latchet he was not wor-might be made of importance to man.
+thy to stoop down and unloose;"; and, through To prepare the three, namely Peter, James
+this medium, they would again be placed and John, for their calling, the Savior took a
+particular course, which all others were not
+within the reach of divine favor.
+Accordingly he went through all the regions privileged to enjoy, not even the rest of the
+of Judea and Jerusalem, preaching and bap-twelve. There were important occasions on
+tising, but the full attainment of the blessings which Peter, James, and Joka, were only al-
+of John's mission, was dependant on some lowed to accompany the Savior. Thus pre-
+thing which was afferwards to take place;-paring three to stand at the head of his gov-
+that was the gift or baptism of the Holy Ghost; ernment, representatives of the Father, Son,
+but the Jows refused the boon offered, rejected and Holy Ghost, through whom all blessings
+www.Latter Day Truth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 308
+**Source File:** page_308.json
+---
+
+#
+flow to mankind; and unless they have repre- Having now fairly settled the question that
+sentatives, on earth, all communication will the Savior in order to restore the power of
+cease between God and man, as we shall see God to the world, did it by first preparing
+as we pass along.
+three men to stand as the head of his church,
+In the 17th chapter of Mathew, commencing we will follow them through their history, and
+with the 1st verse to the close of the 9th, we this will be confirmed by the place they sup-
+have the following account:
+plied. Paul called them pillers, at the time
+"And after six days Jesus taketh Peter, of his visit to Jerusalem to see the apostles.-
+James, and John his brother, and bringeth See Gallations 2d chapter and 9th verse, "And
+them up into a high mountain, apart, and was when James, Cephas, and John, who seemed
+transfigured before them; and his face did to be pillors, perceived the grace that was
+shine as the sun, and his raiment was white given unte me, they gave to me and Barnabas
+as the light. And. behold, there appeared the right hand of fellowship; that we should go
+unto them Moses and Elias, talking with him. unto the Gentiles, and they unto the circum-
+Then answered Peter, and said unto Jesus, cision." These expressions supposes there
+Lord, it is good for us to be here; if thou wilt, to be some difference between them and the
+let us make here three tabernacles; one for other apostles. They were the ones that sat
+thee, and one for Moses, and one for Elias.- in judgement on Paul's case, "When James,
+While he yet spake, behold, a bright cloud Cephes, and John, perceived the grace that
+overshadowed them: and behold a voice out was given me," says Paul, "they gave me and
+of the cloud, which said, This is my beloved Barnabas the righthand of fellowship."
+Son, in whom I am well pleased; hear ye him. These three then were holding a place of their
+And when the disciples heard it they fell on own in the offices of the church. They sat in
+their face, and were sore afraid. And Jesus judgement on man's pretentious to be called
+came and touched them, and said, Arise, and of God. In this quorum of three, Peter stood
+be not afraid. And when they had lifted up at the head, as is evident. Paul says in the
+their eyes, they saw no man. save lesus only. 7th verse of this chapter, that "the gospel of
+And as they came down from the mountain, the circumcision was committed to Peter,"
+Jesus charged them, saying, Tell the vision to "But contrariwise, when they saw that the
+no man, until the Son of man be risen again gospel of the uncircumcision was committed
+from the dead."
+unto me, as the gospel of the circumcision
+Here is related one of those notable instan-was unto Peter." This would of necssity
+ces where the Savior seperated Peter, James, give Peter the head.
+and John, and manifested himself to them in In the grand apostolic council held at Je-
+a manner he did to none others, where they rusalem James presided. See Acts of the a
+had a heavenly vision, which they were for-postles 15: 13-20, "And after they had held
+bidden to tell to any others, apostles, or not their peace, James answered, saying, Men and
+apostles, until "after the Son of man had risen brethren hearken unto me: Simon hath de-
+from the dead." Here were glories shown, clared how God at the first did visit the Gen-
+that none of the other apostles saw, they were tiles, to take out of them a people for his name.
+peculiar to the three, and calculated in an em- And to this agree the words of the prophets;
+inent degree, to qualify them for their office, as it is written, after this I will return and
+and give them advantages over the other will build again the tabernacle of David,
+apostles. Another instance is recorded in the which is fallen down; and I will build again
+26th chapter of Matthew 36th and 37th verses. the ruins thereof, aud I will set it up; that the
+"Then cometh Jesus with them unto a place residue of men might seek after the Lord, and
+called Gethsemane, and saith unto the disci-all the Gentiles, upon whom my name is cal-
+ples, Sit ye here, while I go and pray yonder. led, saith the Lord, who doeth all these things,
+And he took with him Peter and the two sons Known unto God are all his works from the
+of Zebedee, and began to be sorrowful and beginning of the world. Wherefore my sen-
+very heavy." The sons of Zebedee here tence is, that we trouble not them which from
+mentioned were James and John. Other in-jamong the Gentiles are turned to God: but
+stances might be cited but we deem these suf- that we write unto them, that they abstain
+ficient.
+from pollutions of idols, and from fornication,
+From the above quotations, we learn some and from things strangled, and from blood."
+important facts, that Peter, James, and John, In the 19th verse James says, "wherefore my
+were the only ones permitted to be with the sentence is, that we trouble not the Gentiles,
+Savior at the two most important events in his &c. The expression "my sentence," shows
+life. The one was when he manifested his at once, that he was presiding in the council,
+glory, and when Moses and Elias appeared and passed the descision, to which they all a-
+with him; and the other was at the time of his greed. This shews that James, held a place
+deepest sufferings. These two periods in the in advance of the rest of the twelve. As to
+Savior's history, being by far the most important John, we have the fullest evidence of the
+in his whole history. No others, then, had place he supplied in the affairs of the church
+the advantages they had. They stood in these until the last account we have of him; he was
+respects far in advance of the other apostles, then an exile in the Isle of Patmos, and, from
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 309
+**Source File:** page_309.json
+---
+
+the account given, the churchés were sending In searching after this fact, we will again
+messengers to him, as the presiding officer in have recourse to the sayings of Paul. In the
+the church to get instruction. See the 2d 9th chapter of 1st Corinthians 4-6th verses
+chapter of Revelations, when John was direc-we have the following: "Have we not power
+ted to write to the angels or more properly to eat and to drink? Have we not power to
+the messengers of the seven churches of Asia. lead about a sister, a wife, as well as other
+As to these so called angel or messengers, apostles, and as the brethren of the Lod, and
+they could be none other than messengers the Cephas? Or I only and Barnabas, have not
+churches of Asia had sent to John as their we power to forbear working?" Here Barna-
+leader, to get instruction in relation to the af-bas is called an apostle as well as Paul, and
+fairs of the church. Thus we see that Peter, in the 2d chapter of Galatians, 9th verse it is
+James, and John, stood as presiding officersa-said that Peter, James, and John gave the
+mong the authoritiesof the church as longasthey right hand of fellowship to Barnabas as well
+lived, and held a distinctive office over the rest as to Paul that he might go to the Gentiles,
+of the twelve or rather, as the case will appear, and in the 1st chapter of the epistle to the Gal-
+over the twelve. Thus these three men pre-atians and 19th verse, Paul says thus "But
+sided in and over the whole church of God un-other of the apostles saw I none, save James
+til our bible closes their history,
+the Lord's brother." At this time, according
+The fact being fairly settled that Christ, in to this, James the Lord's brother was an apos-
+order to bestow the power of God on man, pre-tle. He was not one of the twelve first cho-
+pared means for so doing, by first ordaining, sen, James the son of Zebadee, and James the
+qualifying and setting apart three persons, to son of Alpheus, were, but not James the Lord's
+preside over and direct the affairs of his church, brother. The question is fairly settled that
+we will examine how he farther proceeds in before the whole organization was completed,
+order to accomplish this work. The next there were, twelve apostles, without Peter,
+thing done to obtain the end desired was to James, and John, whom, we have shown, oc-
+organize twelve into a quorum, as we are cupied a station peculiar to themselves, and
+pleased to call it. In order to show this, one in which none others but themselves could
+clearly, we will call into review such passa-act, because they were the only ones qualified
+ges of scripture as will fairly settle the ques- for it.
+tion. This is the more necessary, as their is an We have now clearly established, that, in
+opinion prevalent among religionists that Pe-the first instance, in order to prepare the way
+ter, James, and John, were an essential and to bestow the power, and blessings of the or-
+indevisable part of the twelve. In order to dinances, pertaining to the gospel, upon all
+have the subject set forth in a clear and un-those who believed. There had to be first of
+answerable point of light, we will follow the all, three qualified and set apart to stand
+history of the apostles from the crucifixion of at the head, and direct the concerns of the
+the Savior, until the whole matter is made whole church; and after that, a subordinate
+plain.
+quorum of twelve, over whom the three pre-
+After the crucifixion of the Savior, and at sided. For the benefit of our readers we will
+the time he made his appearance after his res-here insert the names of the twelve, over
+urrection, we are told the number of the apos-whom as well as all others who were admit-
+tles was eleven, see Mark 16th chapter 14th ted into the church, Peter, James, and John,
+verse, "Afterwards he appeared unto the elev-presided, Andrew, Peter's brother; Philip and
+en, as they sat at meat and upbraided them Bartholomew; Thomas, and Matthew the pub-
+with their unbelief and hardness of heart, be-lican; James the son of Alpheas, and Lebbous,
+cause they believed not them which had seen whose surename was Thadius; Simon the Ca-
+him after he was risen." This was after the nanite; Matthias, Paul, Barnabas, and James,
+defection of Judas Iscariot. In the 1st chap-the Lord's brother.
+ter of the Acts of the apostles we have the ac- The next thing done in the organization,
+count of the appointment of Matthias, was the appointment of seventy, see Luke 10:
+to fill the place from whence Judas had fall-1, "After these things the Lord appointed oth-
+en by transgression. Thus making the num-er seventy also, and sent them two and two
+ber of twelve including Peter, James and John. before his face, into every city and place
+In the days of Paul he gives us the following, whether he himself would come." These al-
+in relation to the apostles, see Ist Corinthi-so, after they had been set in order, found the
+ans 15th chapter and 5th verse, "And that he power of God with them, see 17th verse "And
+was seen of Cephas, then of the twelve." - the seventy returned again with joy, saying,
+Here Paul speaks of twelve, and the twelve in Lord, even the devils are subject unto us
+distinction to Peter He says the Savior was through thy name." Another part of the or-
+seen of Cephas or Peter, and then of the ganization is found in the 6th chapter of the
+twelve. At this time, then, there was a Acts of the apostles, read from the 1st to the
+twelve, seperate from Peter. We ask again close of the 6th verse, which is as follows:-
+were there twelve leaving Peter, James, and "And in those days, when the number of the
+John, to act in their capacity as presidents of disciples was multiplied, there arose a mur-
+the whole church, twelve and all the rest? moring of the Grecians against the Hebrews,
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 310
+**Source File:** page_310.json
+---
+
+because their widows were neglected in the the world of sin, and of righteousness, and of
+daily ministration. Then the twelve called judgment: of sin, because they believe not on
+the multitude of the disciples unto them, and me: of righteousness, because the prince of
+said, it is not reason that we should leave the this world is judged. I have yet many things
+word of God, and serve tables. Wherefore, to say unto you, but ye cannot bear them now.
+brethren, look ye out among you seven men of Howbeit when he, the Spirit of truth, is come
+honest report, full of the Holy Ghost and wis-he will guide you into all truth: for he shall
+dom, whom we may appoint over this busi-not speak of himself; but whatsoever he shall
+ness. But we will give ourselves continually hear, that shall he speak, and show you things
+to prayer, and to the ministry of the word.- to come." In these sayings, the Savior gives
+And the saying pleased the whole multitude. the reason why it was necessary for him to
+and they chose Stephen, a man full of faith go away; for if he did not, the Holy Spirit
+and of the Holy Ghost, and Philip, and Pro-would not come, and if the Holy Spirit did not
+chorus, and Nicanor and Timon, and Parme-come, the order of heaven could not be organ-
+nas, and Nicolas a proselyte of Antioch; ized on earth; for the apostles were forbid to
+whom they set before the apostles; and when preach until it did come, and if the government
+they had prayed, they laid their hands on of heaven was not organized on earth, the or-
+them." There were other subornate quorums, dinances as we have seen, would be unavail-
+which are not necessary at present to refer to ing. Therefore it was expedient that he
+as the above formed the principal ones. should goaway; but with whom, if Christ had
+We have been thus particular in tracing the staid would he been associated to stand as the
+organization of the primitive, so called christi-pattern of the heavenly things. His associa-
+an church, as it is a matter of importance for tions were with the Father and the Holy
+all the saints of the last days to understand it, Spirit. He could not, then, had he staid, or-
+that they need not be led astray by designing ganized the pattern of the heavenly things
+men, as some have been making shipwreck of here; and as man could not be benefitted un-
+the faith to their own destruction.
+less there were an order of government estab-
+We shall now examine the effects which lished, it was expedient he should go away,
+followed this organization. Let the reader and the Holy Spirit besent down. The great
+keep in mind the condition of the world before object of the whole scheme was to make the
+this organization was framed, John had bap-believers partakers of the Holy Spirit, and this
+tised multitudes, on the profession of their re-could not be done only through an order of
+pantance, but no spiritual blessings followed. things aranged for this purpose. So it was
+Jesus and his disciples had baptised more than needful for the disciples that the Savior should
+John, but still no account of spiritual bless-go away.
+ings following; but no sooner did the apostles As to John, look at his disciples after the
+appear in the world under the organization, as apostolic organization, no sooner did the apos-
+the Lord had directed, than the effects instant-tles'administer to them, than they received
+ly followed; the Lord confirmed "the word the Holy Ghost, and spake with toungues and
+with signs following." Not only was bap-prophecied. Wherever the apostles went, af-
+tism of repentance administered for the remis-ter their organization, and administered,
+sion of sins, but the gift of the Holy Ghost fol-whether it was to John's disciples or others,
+lowed. What caused the differance between spiritual blessings immediately followed,
+the effects which followed the baptism of the but until that organization, the ordinan-
+apostles and that of John? no answer can be ces, no matter by whom administered, one
+given but one, and that is that the apostles ac-sent of God, and though he were more than a
+ted under a system of government, organized prophet did not bring the promised blessings:
+according to the will of God, and John had but after the organization they did and no fail-
+no such organization, nor ever obtained one. ure.
+The conclusion which follows, is inevetable, From such a variety of testimony, we may
+that ordinances are only efficatious when they say with confidence that the question, with_all
+are administered by those who are part of an who acknowledge the bible as evidence, must
+organization, appointed and established, by be settled, that there are no ordinances, estab-
+the immediate direction of heaven.
+lished for the church of Christ, that is of any a-
+We will here say a few more things concer-vail to any person, unless the true government
+ning the Savior and John. Neither John, nor of the chruch is organized, and that according
+the Savior, organized any plan of government to the pattern of the heavenly things, as we
+while here. There are some sayings of the have shown above, and the ordinances admin-
+Savior, recorded in 16th chapter of John'sgos-istered by those who compose that organized
+pel, which are worthy of notice. From the body, or are members of it.
+7th to the close of the 13th verse, they are as There is no difficulty in accounting for the
+follows: "Nevertheless I te'l you the truth; case of Cornelius, of whom it was said that his
+It is expedient for you that I go away: for if 1 "prayers and his alms came up as a memorial
+go not away, the Comforter will not come un-before God," and an heavenly messenger sent
+to you; but if I depart, I will send him unto to give him instructions and tell him how he
+you. And when he is come, he will reprove and his house could be saved, for notwithstan-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 311
+**Source File:** page_311.json
+---
+
+-311
+
+ding his righteousness and prayers he could administering the ordinances of the church as
+not be saved without sending for Peter, and found in the New Testament, no visible re-
+being baptised into the church of Christ, as sults follow. And there can be but one rea-
+then organized. This establishes what we son assigned for it, and that is, that that which
+have before said, that prayers are unavailing. gave efficacy to the ordinances, has been bro-
+unless the person offering them, is united with ken up and ceased to exist.
+an organization according to the pattern of the We have in our own day, and very recent-
+heavenly things. Hence when the Jews hadly a proof of this, which admits of no contro-
+deranged the order of government established versy, in the Mormon church. P. P. Pratt
+by the direction of heaven they were told that has but a short time since, called upon the El-
+when they streched forth their hands, and made ders of that church to cease preaching to the
+many prayers, the Lord would not hear them," Gentiles, assuring them that if they do bap-
+and that their sacrifices had become an abomi-tise and build churches among them, that the
+nation to him. In the order of heaven, as in spiritual gifts will not follow. Hence that
+other things, like causes will produce like ef- people had no sooner set aside the true order
+fects.
+of the government of the church, than one of
+There is no difficulty in seeing the true con- their principal leaders, has to come out and de-
+dition of the religious world, themselves being clare that the spiritual gifts had ceased, and
+judges. They all say that "the spiriual gifts would cease to follow their ministration.-
+have ceased," admitting what they say to be This could only be by rejecting the true order
+true, it remains to inquire why they have established for the government of the church.
+ceased? There is but one cause which can be No such a declaration as that made by Mr.
+assigned, by those who acknowlege the bible Pratt, was ever heard from the pen or lips of
+as authority in matters of religion, and thatan apostle, while he was acting under the
+cause is that the order of government, which true order of church government, as organized
+God had established for his own church, has according to the will of heaven. While they
+been broken, and ceased to exist. It was by were thus acting, they called upon all small
+virtue of the order of church government, that and great to hear, believe, obey and receive
+they existed in the first place, and the cause the Holy Ghost. It mattered not how much
+must first cease, before the effect could. If the opposition they had to encounter; if any be-
+cause still existed the effect would follow. lieved, Jew or Gentile, and was willing to
+Follow the apostles wherever they went. obey, they administered the Holy Spirit to
+after they were organized, and the same of them, and so would it be with Mr. Pratt if he
+fects followed their ministry, whether among had not rejected the true order of the church
+Jews or Gentiles, Arien, Barbarian, Scythian, government; where ever he could find a be-
+bond or free, the same effects followed their liever who was willing to obey, he could ad-
+ministration, and ceased not until their organ-minister to him the gift of the Holy Spirit;-
+ization was broken, then and not till then, did but since he has rejected the true order of heav-
+the spiritual gifts cease, though the ordinances en, he is under the necessity of saying to his
+continued; but as in the days of John the Bap- brethren, it is in vain to administer, for if you
+tist, the spiritual gifts did not follow the admin- do, the gifts will not follow. Proof direct that
+istration of them. People are now administer-he has rejected the true order of the church of
+ing baptism, and some of them must admister Christ, and the power of the gospel has ceased
+in the same mode the apostles did, for it is ad to follow him, Thus out of his own mouth
+ministered in every way it could be by apos- he is judged.
+tles or others, but no gifts of the Holy Ghost There never was an apostle, apostle who stood ad-
+follow. People profess faith and repentance; ministering in the true order of God, since the
+as in the days of old, and are baptised on the world began, who would have to tell his fol-
+profession of their faith and repentance; butlowers, that the gifts will not follow though
+they all declare that the gifts of the Holy Spir- you should administer and build up churches.
+it do not follow, and the reason is obvious, the Such sayings never flow only from the pen or
+order of church government, as organized of lips of an apostate from the truth. For where
+the Lord, is no where to be found among them. the true order of God is, there the gifts will
+And thus it is, that the ordinances, when at-follow, whether among Jews or Gentiles, and
+tended to, are without the results which an-earth and hell cannot prevent it. The world
+ciently followed. Did the same church gov-land hell may cry delusion, fanatacism, false-
+ernment exist now as did among the apostles, prophet, as long and as loud as they please,
+the administration of the ordinances, would but that man who has been called of God, and
+produce the same effect and not fail.
+consecrated to his ministery, as the Lord di-
+Take all Christendom together, of all de-rects, and is maintaining the true order of the
+nominations, Catholics, and all the rest-for government of the chruch of Christ, can admin-
+the Catholics are driven to the necessity of cal-ister, and when he does it to those who be-
+ling the spiritual gifts absurdities and itlieve, the gifts will follow whether among
+wants but little observation to see, that the or-Jews or Gentiles, and nothing can hinder;
+der of heaven has ceased throughout the land, and nothing but apostacy can prevent it; for
+and though the different denominations are so God has decreed concerning those that obey
+
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 312
+**Source File:** page_312.json
+---
+
+him, and none can doprive them of their right "God placed in his church first apostles, sec-
+before God, No man, but an apostate from ond prophets, and afterwards miracles and
+the truth, dare say to one of his followers, gifts of the Holy Spirit." Their organization,
+"cease to administer in the name of Jesus, for if they have any, has not the prophets and a-
+the blessings will not follow if you do;" and postles, and cannot have that which followed
+no person but an alien from the truth would after apostles and prophets. They baptise
+either believe or obey such a mandate. and keep baptising, and have to join the rest
+The religious world denying the order of of the world in saying the gift of the Holy
+the Lord's government in his church, are at- Spirit has ceased. But why multiply evi-
+tempting to save themselves by ordinances, dences, the whole religious world is a mass
+which the Lord ordained to he effecatious of evidence. They all say that the order of
+through maintaining the true order of the God is out of the world, and so are the gifts
+church government which he caused to be es- of the Holy Spirit. This then is admitted, but
+tablished; but when they administer the ordi- what follows, it is that as soon as the true or-
+nances no fruit follows, or not the fruits which der of government of the church returns, the
+followed the apostles, after they were organi-gifts of the Holy Spirit will return, and when
+zed according to the pattern of the heavenly it departs the departs they depart. They were married in
+things. The fruits which were to, and did their youth, and cannot be parted in their old
+follow that organization, were never found any age. To this the Mormons, the Campbelits
+where else, nor never will be. All the relig-or Disciples, and the whole religious world
+ions which men can invent, and all the Zeal bears testimony; all saying the same things,
+they use in propogating them will be unavail-and seeing the bible is a mass of testimony
+ing; the gifts of the Holy Spirit does not nor confirming the same facts, the truth of it can
+will not follow their administrations, nor will no longer be doubted.
+the gifts of the spirit ever be found again in Well then might Daniel say at a certain
+the world only, where the church is organized time, the God of heaven would set up a king-
+according to the pattern of the heavenly things. dom, for if he did not, his blessings must cease
+Men may administer ordinances, and re-ad-forever to flow to man; and when Christ came
+minister them; and all will be vain and fruit- he would smite the whole earth with a curse.
+less. Admitting that P. P. Pratt and his co- From the view we have taken of the world
+adjuters ever had the gifts of the spirit, and and the bible, it is easily seen why it was
+then there is an end to all controversy, him-that the God of heaven was to set up a king-
+self being judge, that he and they have reject-dom in the last days, and what is meant by the
+ed the order of God as delivered by revelation. prophets, when they say, "the Lord would
+For while it is a fact, demonstrated by every set his hand again the second time to recover
+day's observation, that where the order of God the remnant of his people, that had been scat-
+is not, there the blessings of the Holy Spirit terred." He would have to restore his order
+are not, it is equally certain, if we can credit to the world, in order to prepare the way of
+the testimony of the sacred writers, that where Messiah's coming. We can also see what
+the order of God is, and where the ordinar.ces is meant by the times of the restitution of all
+are administered in obedience to that order, things, and why it was that there was to be
+there the blessings of the spirit are, for there such a dispensation as that of the fuleness of
+is not one instance on record to the contrary. times. All these things are made plain and
+We have many visible profs of these things easy of understanding, by looking at the world
+before our eyes. Some fifteen years since in the glass of the bible.
+there rose a sect calling themselves disciples, What was the Lord to do when he was
+the rest of the world, where they were known, to do the things above quoted? this can be
+called them Campbellites. This sect admin-answered, by asking, what had the world
+istered the ordinance of baptism by immersion, lost, all can answer, they had lost the gifts
+for the renmission of sins, saying to those of the Holy Spirit, and a restoration implies
+whom they baptized, that they should receive restoring some thing that had been lost. If
+the Holy Spirit as promised; but where and there is to be a restoration of all things,
+when did they receive it, at no time nor place. that cannot be done without restoring the or-
+There is not a sect in Christendom, that has der of church government, which all say is
+less and knows less of the Holy Spirit than lost; and if the order of church government
+they do, nor none who deny its influence more is restored, the gifts of the Holy Spirit will
+stoutly, nor more bitterly, than they do; proof pe restored with it: for we have no account
+to point, that all their baptising leaves them of the order of the government of the church
+where it finds them, strangers to God, to his of Christ existing, without the gifts of the
+order, and his blessings. Why do not the Holy Spirit existing. These always have
+Disciples, so called, or the Campbellites, re-gone together; for we have no account of the
+ceive the Holy Spirit. It is not for want of spiritual gifts existing, where the order of
+dministering ordinances in view of them, for the church did not exist. Now if there is to
+this they do; but no Holy Spirit follows.- be a restoration of all things, as Peter says
+The true reason is they have not the first, and there will, and the heavens must receive--
+cannot have the afterwards. For savs Paul Christ until that takes place, and that can-
+
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 213
+**Source File:** page_313.json
+---
+
+not take place until Elias or an Elias comes that the Lord might again begin to work
+who is to be the restorer. Then, indeed un-by his power among men, for the redemption
+less the Lord does set his hand again the se- of the purchased possession. The Lord never
+cond time to recover his people, Christ can had any other object in giving laws, institu-
+never come, only with a curse to smite the tions, ordinances, and forms of government
+whole earth.
+to man, but to and through these means, estab-
+With all these facts before us, the subject lish his power with them, and bestow his
+is a plain one and easy of understanding spiritual blessings upon them. Daniel says
+and the way the Lord will and must proceed to this end, the God of heaven would set up
+if he is unchangable, is plain and open before a kingdom, and when it was set up, bear ft off
+us. He must do as Daniel said he would, triumphant.
+that is "set up a kingdom" and if he sets All the prophets viewing this subject, have
+"up a kingdom" we have in the scriptures spoken of the effects of this kingdom. No
+how he would do it, if he does as he has man can read the sayings of the former day
+done in former times, and if he does not then prophets, without being convinced that the
+he has changed. We can then plainly see affairs of this world cannot wind up, without
+what must be done in the last days in or-great manifestations of Divine power, as great,
+der to restore all things.
+if not greater, than ever has been. But how
+First the Lord must prepare and qualify shall this he? From the view we have taken,
+three men, to stand at the head of his church it can only be by establishing an order of
+and kingdom as representatives of the heav-things through which the ordinances can again
+enly things; for so he did at all times before be made efficacious, and the blessings of of the
+when he began to prepare the way to bestow spirit, follow. Take Catholicism as it now
+the blessings of the Holy Spirit on men. This exists, and how long will it have to exist, to
+is the first step in putting the things of God make the ordinances efficacious, and the bless-
+in order in the world, and at this place the ings of the Holy Spirit return to man. All
+God of heaven" must begin to set up his will have to answer, that if it continued eter-
+kingdom. Then comes the other order of nally, this would never be done by that sys-
+government such as twelve, seventy, and af- tem; for poor creatures, they, like the rest,
+ter this gifts, miracles, &c., and thus follows have to cry "absurdity" at the idea of the
+helps in government or governments. Thus blessings of the Holy Spirit ever being resto-
+it is that God sets up a kingdom among men, red to man. And how long will Protestantism
+and the only plan we have an account of.- have to continue, with its "Bible, whole Bible,
+And Paul says of it that it was devised in and nothing else but the Bible," before the
+heaven "before the world was" and cursed blessings of the Holy Spirit will, by virtue
+be the man that alters or changes it, yea, of their varied orders, be restored to men?
+cursed be an angel from heaven if he does Eternity would leave the world as far as re-
+it.
+lates to the gifts of the Holy Spirit where it is,
+So unchangable are the fixed purposes of with only Protestantism and Catholicism in it.
+God, and so immutable are his ways, and so Upon what principle is it, that all the dis-
+uniform his course. If it be asked w why this plays of Divine power, by which the prophets
+uniformity in the course of the Deity in his declare the varied scenes of this stage of hu-
+intercourse with men? we answer that man man existence are to wind up and pass away,
+may not be deceived, and if he is deceived and give place to another state of existence that
+it may be his own fault, for having before is to come to the world. Mormonism, like the
+him the order in which the Lord always pro-rest, has failed, and they cry no gifts of the
+ceeds in regulating his church, he has only Spirit will follow our adıninistrations. The
+to lay aside his prejudices, and look for him-case is too plain to admit of a doubt; the God
+self, and if he will not, he must bear the of heaven must "set up a kingdom," or else
+consequences. If any say lo here is the the Bible, as well as Catholicism, Protestant
+church of Christ, or lo there, no man need belism, and Mormonism, must fail.
+deceived, he has only to compare the order That there are to be displays of Divine
+with that found in the scriptures, and if it power, with which the affairs of the pres-
+does not bear the divine impress, he may sent state of human existence are to be
+know that it is not of God, and it will curse wound up, none who believe the Bible will
+the author, and condemn those who embrace dare deny, and they cannot be exercised
+it, so that all men, into whose hands the bi-among men, only by ostablishing an order of
+ble comes, may be left without excuse, and things for that purpose, as we have before
+the believer be justified, and God be just; for clearly proven. So that the conclusion forced
+such is, and will be the result of God's deal- on the mind, is that, in order for the restora-
+ings with men.
+tion of all things, the Lord will first establish
+When Daniel speaks of the God of heaven and put his kingdom in order according to the
+setting up a kingdom, it was at a time when pattern of the heavenly things, as before
+the power of God was no where on the earth, shown, and maintain that order, and by that
+as manifested to the ancients under the gos-bring the restitution of all things spoken of by
+pel order, and the kingdom was to be set up, all the prophets; usher in the promised rest,
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 314
+**Source File:** page_314.json
+---
+
+# MESSENGER AND ADVOCATE,
+## PITTSBURGH, PA.
+When a subscriber in the country, wishes to send for the Messenger and Advocate, he can now take a sheet of cap or letter paper, write us a long communication on it, and inclose a bank bill and send it 300 miles for five cents-or any distance further for ten cents. As the price of our paper is very low. ourfriends must, in all cases, pay the postage on their letters. It will be but little for them, but it is very burthensome to us.
+
+It would seem from communications received in various ways, that we are objects of envy in a peculiar manner: not only are the papers of the country, occasionally throwing out abuse, but there is a new system invented of sending us abusive letters, some are anonymous and others bear the signature of those who probably wrote them, or else there are those who are writing abusive letters over false signatures. We have recently received one of those productions with a signature to it that render it doubtful to us, whether or no, it is not written over a false signature, as we could not feel to charge the man, whose name is signed to it, with being sufficiently degraded to write such a production; for if we are to take it as an index to the author's heart, it must be degraded indeed, far beneath any thing we had supposed. It bears the signature of Charles Ivins, Keokuk, Iowa.
+
+We cannot feel yet, to charge this very low and degraded production to his pen, and if he has not written it, we give him a chance to say so, and if he has we should really like to know it; for though Mr Ivins may not have had the advantages of refined society, we are not willing to lay to his charge, without the best evidence, a production that would disgrace any man, that was raised in a civilized community.
+
+The letter was directed to Elder Josiah Ells of Allegheny city.
+
+We are favored with letters, post marked at Nauvoo, of a similar character but generally, anonymous. All of which we have in reserve, as we shall probally at some future day give the history of that people, of which these letters will form a part. It is on this account, we give Mr Ivins the opportunity of taking the reproach off his character
+
+if he is not guilty; for unless he is guilty, we do not wish to hand down to posterity his name appended to such a production.
+
+As to the efforts making at Nauvoo; they are such as the authors are capable of making. Their manner of doing things, are surely peculiar to themselves. Paul said, long since of some people who should live in the last days, that they would "wax worse and worse deceiving and being deceived," and if there are ever were or could be a people who answered that description, it is the people of Nauvoo. If they do not, none ever did or will.
+
+The course they pursue is not only to deceive the world alone but one another.-
+
+At one time the cry is "let the church of Christ alone let them die in peace" but before the sound thereof gets round, and back from whence it started, it is followed by another "they have ruined us, they have been the means of our Charters being taken; our lives and property are in danger." That is soon followed by the news "we are at peace, all is well and doing well." The next thing we hear are letters teeming with falsehoods issuing from their press, dated at Pittsburgh or some where else, said to be from a correspondent at the place where it bears date, but lo and behold on reading the communication, it is the production of one residing at Nauvoo who is well known for perjury, as his style always betrays him. Then finding that will not suceed they have recourse to an old stratagem, that of sending some of their tools abroad to invent and write falsehoods to them from such places as they may direst. A recent instance of the revival of this system has made its appearence; an ignorant booby by the name of Amos Fielding, is now employed in this service. The system was invented a long time since, and a docter Foster was the first agent in the employ of the author of this system of things. The Doctor started on his mission, with all the enthusiasm of his nature, and soon favoured the West with any quantity of letters of the above description; but what was the result? what might be expected? The Doctor, and his master soon quarrelled, and nothing but blood would satiate either party; the result was the master fell a victing to his own invention of desception, and then his followers made the Doctor leave without ceremony.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 315
+**Source File:** page_315.json
+---
+
+Such are the schemes, and such the results of a corrupted people. If this is not "deceiv-ing and being deceived", then no such things ever did, or ever will exist. No people but those whose "consciences are seared as with a hot iron" could be guilty of such folly and madness; but they have their reward, and ere long will receive it.
+
+In the history of all the religions, and of all those who were followers of the religions revealed in the bible, there is nothing like the people of Nauvoo only among those whom the bible charges with having apostatised from the living God; the description of those whom the sacred writers call enemies to God so exactly suit the people of Nauvoo, that had that society existed in the days of the apostles, they could not have described them more perfectly than they have done; the de-scription is to the life.
+
+There never were a people who served the living God, who could be driven to the a-buses and corruptions, to which the people of Nauvoo are driven, only apostatizing from God; nothing could do this, but want of confi-dence in God, which no people that serve God can lack; for they that serve God have the promise, "that they shall know of the doctrine whether it be true or false," so that a people that serve.God cannot lack confidence in him.
+
+It is in all cases where men have recourse to false means to sustain themselves, they do it because they have not confidence in God; if they have confidence in God, they would trust the care and keeping of themselves into his hands in righteousness, come good or come evil. They would say as did Paul "I know him in whom I have believed, and I know he is able to keep whatsover I have trusted in his hands."
+
+A people who fear God have none occasion to condescend to falshood nor wicked strata-gems, they take "the contradiction of sinners against themselves with patience, as seeing him who is invisible" without fear. The people of God, in these respects, have always been and will always remain, an astonish mind, at the same time, I can safely say that ment to the world. Through good report as I never tried harder, and was more devoted in well as evil their confidence was an anchor to my life, yet with all my tears and with all my the soul. Their characters, their life, and their prayers, 1 find I have erred in spirit and judge-all, they committed in to the hands of God as ment; and whilst in the midst of these into the hands of a faithful creator. Their en-troubles, and trials, and temptations, and dif-emies might rage and foam, persecute and re-ficulties, no love, no faith, no zeal,-Lo and vile, but still they laid their case open before behold an olive branch of peace, of love and
+
+the Lord, and waited patiently on him until he sent deliverance, and if they had to die at the hands of their enemies, they bore it as from the hand of their God.
+
+As to the people of Nauvoo or elsewhere if it is any satisfaction to them to rail at us, they can have all the benefit that will result from.it, either in time or eternity, knowing as of we do that ere long the Lord will judge be-tween us, and also knowing that we are in the hand of God, and not in theirs, and when they have gone far enough, the Lord will say "thus farshalt thon go and no farther," and there we will leave it.
+
+Philadelphia,
+
+August 20th 1845.
+
+MY DEAR BROTHER:
+
+I need not begin to tell you, (for language is inadequate,) how most heartily I do thank you for the very kind and affectionate letter which I received from you at the hands of Brother McLellin. It came very opportunely; for truly a friend is one who will give the warning voice to his friend when he sees him in danger, for I now realise that I was in danger, standing as it were upon a precipice; but whom shall I most thank? I feel to raise my heart to my heavenly Father, and say O Father, I will thank and praiso thee for all thy loving kindness; thou hast seen my ways and my wanderings from thee; thou hast shown thy servants the truth, the way, and the light, and that light has conie to me, and has reached the secret recesses of my heart more mightily than it ever did before.
+
+I need not stop here to tell you the why's and wherefore's any more, concerning the sore trials and afflictions which Lhave had to pass in through since I saw you. Being well aware that I have brought many of them on myself, I do not feel to justify myself in the premises; yet at the same time when I reflect back it would appear as if circumstances were beyond my control. The many brethren that have passed through, and the different counsel res ceived from them, seented to bewilder my
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 316
+**Source File:** page_316.json
+---
+
+mercy barsted in upon us, and spoke peace to earth, but heaven: and I will remove all those
+the anxious heart, and calmed our troubled things that can be shaken, and those things
+minds; truly a good Samaritan. I know you which cannot be shaken shall remain. There.
+have anticipated who that individual is, well fore we have received a Kingdom which can-
+it is brother McLellin; and what shall I say not be shaken, neither moved nor destroyed,
+of that beloved Brother? I know that I can but it shall roll forth and break in peices all
+say nothing of him, but what you already other kingdoms, and bring in the rest of God;
+know; but be assured of this one thing, that yea, even the redemption of the purchased pos-
+he came not lording it over us with a sword, session.
+but in all meekness and love, forbearance and Beloved Brother, the following is a sample
+longsuffering; and I pray God he may have of the fruit which this branch of the true vine
+the peace maker's reward. He has indeed en-bears: Love without dissemulation, and to be
+listed my feelings to that extent, that I feel I of the same mind one toward another, and not
+could go to the death for him. to be wise in our own conceit, nor to be over-
+The prospect is glorious for peace; brother come of evil, but overcome evil with good,
+McLellin preached several times with good re-and always to be instant in prayer. In all our
+sults, and the 'brethren have met him in the meetings we have the out pourings of spiritual
+private houses several times, and we hold a-gifts, such as faith, healing, wisdom, knowl-
+nother meeting this evening. We all, wholedge, revelations, tongues, interpretations,
+have met, feel a spirit of repentance and con- dreams, visions, and the ministering of angels
+fession. With the blessings of God we will from the mansions of glory: therefore, our
+have peace. I hope Dear Brother that you, hearts rejoice and our cups run over.
+nor no one of you will lose confidence in me, We have baptized two more, one on the
+for let us be merciful, and then we will obtain 13th and the other on the 20th, and many more
+mercy. are believing, I pray God our heavely Father,
+Brother McLellin received a letter from bro- that they may believe with their hearts unto
+ther Rigdon last evening, and one from his righteousness, and add unto their faith virtue,
+wife this morning which has gladdened his that they may receive the gift of the Holy
+heart; he stops with me which is a blessing. Ghost, which will produced in them a knowl.
+Brother Soby is well and in good spirits.- edge of those everlasting truths which we pro-
+Give my best respects to all the brethren, and clai A, and they be saved though as by fire;
+tell them that I urgently request that they wil yea, even with those few that will be left,
+remember me in their prayers, that I may stand when the earth shall be burned up and few
+unto the end; and receive for yourself the es-men left.
+teem of your Brother in the gospel,
+And hope of the rest of God, Please inform brother Lynch that his bor
+J. H. NEWTON. ther David, is one of those who was baptizəd,
+. Το WM. RICHARDS. and is now rejoicing with all his house in the.
+God of their salvation.
+Plesantville, Washington Co. Pa. Aug. 25, '45 Your brother in the kingdom
+BROTHER E. ROBINSON, and church of Christ.
+Dear Sir:-I have the pleasure JOHN FRAZER.
+of informing you that the branch of the church P. S. Since the above was written I have
+of Christ, in this place, is bearing fruit of an had the privilige of baptising one more, thanks
+excellent quality, in consequence of it abiding be to our heavenly Father,
+in the vine; yea, even in him who hath organ- Aug. 29. Yours, J. F.
+ized his kingdom, and hath called the mem- 
+bers therein a chosen generation, a Royal ESSAY ON THE PROPHESIES AND
+priesthood, an holy nation, a peculiar people, COMING EVENTS.
+that we should shew forth the praises of him [CONTINUED FROM PAGE 251.]
+MR. EDITOR:
+who hath called us to go and bring forth much
+Having been very busily employed with
+fruit, and that it should remain: yea, even the common avocations of life, I have neglect-
+when the voice of him that speaketh from ed to write for a few weeks past, but now re-
+heaven, saying, I will not only shake theſtory. In view of the remnant of Israel, we
+安
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 317
+**Source File:** page_317.json
+---
+
+think the subject is perfectly plain, that they a prophet to warn the generation in the which
+will be gathered as well as all nations pre- he will come, of their danger, then he is a
+paratory to the coming of Christ; and we partial God, and not what the scriptures re
+have set forth a part of the means the Lord present him to be; and that scripture is not
+will make use of to bring about this gather-all true, which says, as it was in the days of
+ing according to his own word. We are Noah, so shall also the coming of the son of
+aware, that the traditions of the Gentile world, man be. But in view of the parable of the
+do not all agree with the prophetic (Bible) marriage supper before quoted, Christ said at
+history; but where did they get their tradi-supper-time, he sent out his servants to tell
+tions? They must have inherited them from those that are bidden to come, for all things
+their forefathers. See Jeremiah, 16th chapter are now ready. The Lord will send his ser-
+and 19th verse: "O my God, my strength, vants to warn the generation that he comes in,
+and my fortress, and my refuge in the day of that they may escape the calamities and judg-
+affliction, the Gentiles shall come unto thee ments that shall fall upon the world at that
+from the ends of the earth, and shall say, day. In the 24th chapter of Matthew, Christ
+surely our fathers have inherited lies, vanity, spake of two servants that should be appoint-
+and things wherein there is no profit." Byled to rule over his house-hold, to give them
+the above quotation, we learn that the Gen-meat in due seuson, One of them would be a
+tiles that obtain a knowledge of the truth, faithful and wise servant, whom his lord when
+will confess that they have inherited tradi- he come, should find so doing; the other was
+tions that are false, when they are gathered called an evil servant, because he began to
+together from the end of the earth. We are eat and drink with the drunken, and smite his
+aware, also, that the religious world do not fellow-servants. Christ said the Lord of that
+generally profess to believe, that there was to servant would come in a day that he looketh
+be any prophets or miracles after the suffer-not for him, and cut him assunder, and ap-
+ing of Christ and his apostles in the flesh. point him his portion with hypocrites; then
+We shall endeavor to prove by the word of shall the kingdom of heaven be likened to
+the Lord, that those traditions are false. See ten virgins, which took their lamps and went
+Luke 14th chapter, 15th, 16th, and 17th forth to meet the bridegroom. By the 24th
+verses: "And when one of them that sat at and 25th chapters of Matthew, we can see
+meat with him heard these things, he said clearly, that Christ predicted what should
+unto him, blessed is he that shall eat bread in take place preparatory to his second advent;
+the kingdom of God. Then said he unto him, that there will be a something, or some kind
+a certain man made a great supper, and bade of an organization which he called the king-
+many: and sent his servant at supper-time, dom of heaven, compared to ten virgins, with
+to say to them that were bidden, come, for alla faithful and wise servant appointed to rule
+things are now ready."
+There is a time spoken of in the scriptures, Lord at his coming, and whoever is led by the
+over them, which will go forth to meet the
+with its attendant events, called the marriage Spirit of God, will understand their day of
+supper of the Lamb. I need not spend time visitation, and if they live in the generation
+to prove, that it will take place at the second that Christ shall come in, they will discern
+advent of Christ, as but few if any disputes the times, and seek safety where there is re-
+it. In view of that great and notable day, fuge, and obey the principles of the kingdom;
+there has been much written by the inspired that is, be born of water and of the spirit,
+writers, setting forth the necessary prepara- that they may enter into it by the door. See
+tions. When a nobleman upon the earth Joel, 2d chapter and 23d verse: "And it shall
+makes a marriage for his son, he makes great come to pass, that whosoever shall call on the
+preparations before hand, and some times at- name of the Lord shall be delivered: for in
+tended with great expense. Here let me ask Mount Zion and in Jerusalem shall be deliver-
+a question. Will the great day of the Lord, ance, as the Lord hath said, and in the rem-
+or marriage supper of the Lamb, take place, nant whom the Lord shall call."
+and the inhabitants of the earth know nothing But in view of the Lord sending a prophet
+of it until it overtakes them as a thief in the to prepare the way before his second advent,
+night! This may be the case with the most of see Malachi, 3d chapter, 1st, 2d, 3d and 4th
+them; but is it because they have no oppor-verses: "Behold, I will send my messenger,
+tunity to learn the truth concerning it? Oand he shall prepare the way before me: and
+yes, says some, for the Lord said, "as it was the Lord, whom ye sesk, shall suddenly come
+in the days of Noah, so shall the coming of to his temple, even the messenger of the cov
+the son of man be." They were eating, drink-enant, whom ye delight in: behold, he shall
+ing, marrying, and given in marriage, until come, saith the Lord of hosts. But who may
+the day that Noah entered the Ark, and knew abide his coming? and who shall stand when
+not until the flood came and swept them all he appeareth? for he is like a refiner's fire,
+away. Let me here ask the objectioner, if and like fuller's soap! And shall sit as a re-
+the Lord sent that generation a prophet to finer and purifier of silver; and he shall purify
+warn them of the impending danger that hung the sons of Levi, and purge them as gold and
+over their head! If he did, and does not send silver, that they may offer unto the Lord an
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 318
+**Source File:** page_318.json
+---
+
+offering in righteousness. Then shall the shalt thou go forth out of the city, and thou
+offering of Judah and Jerusalem be pleasant shalt dwell in the field, and thou shaltgo even
+unto the Lord, as in the days of old, and as into Babylon; there shalt thou be delivered;
+former years." The Lord said, behold I will there the Lord shall redeem-thee from the hand
+send my messenger and he shall prepare the of thine enemies." The 1st verse tells when.
+way before me. But says the objector to Compare the above with Isaiah 66th chapter,
+there boing prophets prophets in the last days: did not 7th and 8th verses: "Before she travailed,
+Malachi's prediction tion refer to John the ba the baptist? she brought forth; before her pain came, she
+I answer, that it did not, and for the best of was delivered of a man child. Who hath
+reasons; for those things the Lord said by heard of such a thing who hath seen such
+Malachi, should take place when he appeared, things? Shall the earth be made to bring
+did not take place. The Lord said the sons forth in one day? or shall a nation be born at
+of Levi should offer an acceptable offering injonce? for as soon as Zion travailed, she
+righteousness; then shall the offering of Ju-brought forth her children." I consider that
+dah and Jerusalem be pleasant unto the Lord, Zion's man child spoken of by Isaiah, and
+a's in the days of old, and as in former years. Malachi's messenger, and the wise servant
+I do not recollect reading any account of spoken of by Christ in the 24th chapter of
+the sons of Levi offering an acceptable offer- Matthew, all refers to the same person. Let
+ing unto the Lord at the first coming of Christ; us here examine the vision of John the Bap-
+and so far from the offering of Judah and Je-tist, and the vision of Malachi's messenger,
+rusalem being pleasant unto the Lord, the and see how they agree. See Isaiah 40th
+prophecy of Daniel was fulfilled on their chapter and 2d verse: "Speak ye com-
+heads. They set up the abomination that fortably to Jerusalem, and cry unto her, tha
+maketh desolate Christ said. See Matthew, her warfare is accomplished, that her ini-
+23d chapter, 37th, 38th and 39th verses:quity is pardoned: for she hath received at
+"O. Jerusalem, Jerusalem, thou that killest the Lord's hand double forall her sins."
+the prophets, and stonest them which are sent According to the above prophecy, John's
+unto thee, how often would I have gathered mission was to prepare the Jews to receive
+thy children together, even as a hen gathereth their Lord at his coming, or in other words, to
+her chickens under her wings, and ye would prepere their way before them. See Luke 7th
+not. Behold your house is left unto you des- chapter and 27th verse: "This is he of whom
+olate. For I say unto you, ye shall not see it is written, behold, I send my messenger
+me henceforth, till ye shall say, blessed is he before thy face, which shall prepare thy way
+that cometh in the name of the Lord." And before thee."" As it is written in the proph-
+instead of accepting their offering, he called ets, behold, I send my messenger before thy
+them serpents, ye generation of vipers, how face, which shall prepare thy way before
+can you escape the damnation of hell. And thee." -" For this is he of whom it is writ-
+instead of the prophecy of Malachi being ful-ten, behold, I send my messenger before thy
+filled, a prophecy of Micah is fulfilling on face, which shall prepare thy way before
+their heads. See Micah, 5th chapter, Ist, 2d, thee."
+and 3d verses: "No gather thyself in troops, From the foregoing quotations, it is clearly
+O daughter of troops: he hath laid siege seen what John's vision was. We shall here
+against us: they shall smite the judge of Is notice what John had to do, in order to pre-
+rael with a rod upon the cheek. But thou, pare the Jews to receive their king at his first
+Bethlehem Ephratah, though thou be little coming. The subject that is now before us,
+among the thousands of Judah, yet out of thee is the setting up of Christ's kingdom among
+shall he come forth unto me that is to be ruler the Jews at Jerusalem; and his kingdom
+in Israel; whose goings forth have been from could not be set up, until a sufficient number
+of old, from everlasting. Therefore will he had become subjects, out of which he could
+give them up, until the time that she which select the necessary officers to organize with,
+travaileth hath brought forth: then the rem-for where there is no administrators, there is
+nant of his brethren shall return unto the no government nor kingdom, but a mass of
+children of Israel.". Compare this with Mark confusion. John was sent with a commission
+15th chapter and 19th verse: and they smote to prepare subjects for his kingdom, and the
+him on the head with a reed, and did spit mode of preparation was first to believe in
+upon him, and bowing their knees worshipped their king; second, to repent of their sins;
+him. Micah said they would smite him with third, to be baptized for the remission of their
+a rod upon the cheek; therefore will he givesins; which was an initiating ordinance. See
+them up until the time that she which travail-John 3d chapter and 5th verse: "Jesus answer-
+eth hath brought forth: then the remnant of ed, verily, verily, I say unto thee, except a man
+his brethren shall return to the children of be born of water, and of the Spirit, he cannot
+Israel. Some may be ready to inquire who enterinto the kingdom of God." The Jews ston-
+it is spoken of by Micah that travaileth; the ed and killed the prophets that was sent unto
+answer is in the 4th chapter and 10th verse: them in the name of the Lord, to teach them
+"Be in pain, and labor to bring forth, Odaugh the principles of righteousness down to the
+ter of Zion, like a woman in travail for now days of John; last of all, he was sent to pre
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 319
+**Source File:** page_319.json
+---
+
+pare subjects for the kingdom, and they did together, all things in earth that is not recon-
+unto him whatsoever they listed, and he was ciled, will be taken out of their way, that the
+thrust into prison and beheaded; and instead kingdom which cannot be shaken, may remain.
+of their being righteous enough to organize Therefore, it becomes necessary for him to
+with, they were a generation of vipers. And send a messenger to prepare the way before
+Christ said from the day of John the baptist him, that when he comes, he may find faith
+until now, the kingdom of heaven suffereth on the earth, and not smite the whole earth
+violence, and the violent taketh it by force. with a curse; and consequently, the Lord
+Christ also spake a parable unto them on this said by Malachi, behold I will send my mes-
+subject. See Matthew, 21st chapter, from senger, and he shall prepare the way before
+the 33d to the 43d verse. In conclusion he me. The Lord said by the prophet Micah,
+said, therefore, say I unto you, the kingdom that out of Bethlehem shall he come, who is
+of God shall be taken from you and given to to be ruler in Israel. He who is to be ruler in
+a nation bringing forth the fruits thereof. Israel, will rule Israel when the time appoint-
+Christ said of John, this is Elias if you willed comes; and he will not only rule Israel,
+receive hin; but when John found that they but all the families of the earth. See Zach.
+would not receive him, he said of Christ, he 14th chapter, and 9th verse: And the Lord
+inust increase, but I must decrease. We shall shall be king over all the earth: in that day.....
+now notice the messenger spoken of by Mal-shall there be one Lord, and his name one.
+achi. The Lord said he shall prepare the We think we have made the subject suffi
+way before me, and the Lord whom ya seek ciently plain, so that he that reads may under.
+shall suddenly come to his temple. In order to stand. We shall now ask one or two ques-
+understand this preparation, it is necessary to tions, and leave our readers to solve it for
+learn some of the purposes of God concern-themselves. Will the kingdom of heaven go
+ing the second advent of Christ. We are not forth to meet the Lord at his coming, and
+altogether left in the dark, for the Lord has have no man appointed of God to lead them,
+revealed many things, and the revealed things or messenger to prepare the way? How will
+belong to us; they are written for our instruc-they know when to go out to meet him, and
+tion. We shall here notice a revelation in where to go to, without a prophet to give
+Paul's Epistle to the Colossians, 1st chapter them the word of the Lord?
+16th, 17th, 18th, 19th and 20th verses: "For
+by him were all things created, that are in
+heaven, and that are in earth, visible and in-
+visible, whether they be thrones, or dominions,
+or principalities, or powers: all things were
+created by him, and for him and he is before
+all things, and by him all things consist. And
+he is the head of the body, the church: who
+is the beginning, the first-born from the dead;
+that in all things he might have the pre-emi-
+nence. For it pleased the Father that in him
+should all fulness dwell; and having made
+peace through the blood of his cross, by him
+to reconcile all things unto himself; by him,
+I say, whether they be things in earth, or 14
+things in heaven."
+It is said in the above quotation, that all
+things were created by him and for him,
+whether they be thrones, or dominions, princi-
+palities, or powers, and a work of reconcilia-
+tion is going on, to reconcile all things unto
+himself, whether things in earth, or heaven, of
+and all things that is not reconciled, nor will
+not become reconciled, will be punished, as
+he said by the prophet Isaiah, 24th chapter,
+and 21st verse: "And it shall come to pass
+in that day, that the Lord shall punish the
+host of the high ones that are on high, and
+the kings of the earth upon the earth." And
+that part of the heavens that are reconciled,
+he will bring with him when he comes. See
+Revelations, 19th chapter and 14th verse:
+→ And the armies which were in heaven fol-
+lowed him upon white horses, clothed in fine
+linen, white and clean." At the great resti-
+tution, when the heavens and the earth come
+
+AMOS B. TOMLINSON,
+
+Pittsburgh, September 3, 1845.
+DEAR BROTHER IN THE LORD:
+I wish to give you
+some information concerning the mission that'
+was assigned Elder Brothers and myself at
+the April Conference. We left Pittsburgh,
+on July 3d, and arrived at Beaver in the after-
+noon, went home with brother Greig, remain-
+led with him that night. Brother Greig and
+wife treated us with the utmost kindness; we
+left them with the blessing of God, and pur-
+sued on our journey. On the 4th we walked
+or 14 miles, and arrived at the house of brother
+Pry; gave out an appointment to preach the
+same evening, we had quite an interesting
+congregation, we preached the plan of salva-
+tion to them, and I trust much good may result
+from it. We continued our journey and pas-
+sed on to Kirtland. We conversed with some
+of the brethen in this place and vicinity, up-
+on the all important subject of the organization
+as of the church, and made known unto them the
+apostacy that had taken place with the people
+pass at Nauvoo; and some felt inclined to investi-
+gate the subject presented. We contiuned on
+and our journey to Cleveland, Ohio. On this rout
+And we met with many things of interest; we saw
+while Mr. Martin Harris, he bore testimony to the
+See Book of Mormon, said he wrote part of it
+verse: while Mr. Joseph Smith translated it from the
+plate of Gold. I have not space in my letter,
+at this time, to enter into particulars with re-
+gard to the conversation we had with Mr.
+Harris.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 20 | **Page:** 320
+**Source File:** page_320.json
+---
+
+We passed on to the state of Michigan, took up our labors in Brownstown, Wayne co. In this place we found a branch of the church that stood connected with that body of people at Nauvoo; we appointed meetings and preached to them; our congregations were generally large and attentive. A portion of our time was devoted in examining the organization of the church, as it existed 15 years ago. proving that it was in accordance with the apostolic organization in the days of Christ; also proving that the twelve apostles, now so called, and the people at Nauvoo, have departed from the organization; and not only departed from the organization of the church, but have also taught many things that are calculated to destroy the happiness of mankind. We proved to them also, that Elder S. Rigdon is the legitimate president of the kingdom of God. The people all said that we had proved, according to our revelations, that if Joseph Smith was a prophet of God, then it followed, according to the revelations, that Elder Rigdon was also a prophet.
+
+We baptized 6 in this region of country, and another gave in her name. Five of these were members of the branch at Brownstown. Places for preaching are open all through the country; the people are anxious to hear the truth. May God our heavenly Father, be pleased to send more laborers into this part of his vinyard, is our prayer.
+
+We left Brownstown, and the saints were rejoicing in the truth, We preached in Franklin, Oakland co. some 6 or 7 times, and held one discussion with one of the Elders of that branch of the church. This branch also adhere to the twelve, but when the truth was preached, with regard to the apostacy that took place in Nauvoo, some of them expressed a determination to investigate the subject.-
+The people in this place also said, that if J. Smith was a prophet, then Elder Rigdon must be one also. When we left this place, the people returned us their thanks for our labors, and many said, they believed we were men of God. I have no doubt but many will receive the truth in this vicinity. We preached in other places and the same results followed.-
+The people want some more of our Elders sent to that State. The work of God is onward, and who can stop its progress? The answer is no one; but it will continue to spread among the nations of the earth until all things are consumated in righteousness. I have many things to say, which I trust will be edifying to the saints, but I must defer it until my next.
+
+I would say in conclusion, to all the saints of God, let us keep the commands of our heavenly Father; let us practice the principles which we teach others; let us act in righteousness towards all men. We have many exampels before us where men have done that which is wrong; look at the people of Nauvoo, a people once in the favor of God; a people with'a prophet; a people who taught all the world that the church of Christ could not exist on the earth without a prophet at the head of it; and a people that have cried to the world, and "O your fathers garnished the tombs of the apostles, and you, their children, hold their memory sacred, and yet with all this, you do not want God, our kind Father, to send a prophet or an apostle into your midst; O how fallen is this generation," And truly it is so; but behold, O hark, and hear O ye nations of the earth, this same people that taught you so, many of them have fallen into the same dilemma; this same people have rejected a prophet of God; they have said they did not want one to be in their midst, O how can it be? I will tell you dear reader, it is because they have transgressed the law of God, they became exalted in their own minds, they departed from the truth, and thus they fell.-
+When their prophet was murdered, they became like all former generations, they are ready to worship the the men that fell. But also they want no more living prophet in their midst; so they have said, and we do not feel to walk after them; they have fallen off from the true vine, hence they cannot receive any nourishment. Our prayer to God is that they may see the error of their ways, and turn therefrom. I would inform the saints that Elder Brothers intends to stay in Michigan, and he wants some help. Whe will go? The people wish you to come and preach. Let us be up and improving our tallents while the day lasts. May God bless you all, is my prayer.
+
+J. COOPER.
+
+## CONFERENCE NOTICE.
+
+A special Conference of the Church of Christ will be held in Philadelphia on the 6th day of October next.
+
+All absentee members of the Grand Council from the general Conference, and all officers of branches, Presidents, Priests, Teachera and Deacons, and also all travelling High Priests and Elders, who were not present at the general Conference, are particularly requested to attend.
+
+By order of the Twelve.
+
+S. BENNETT, C'lk.
+
+## MESSENGER & ADVOCATE,
+
+OF THE CHURCH OF CHRIST,
+Is printed about the first and fifteenth of every month, by
+
+E. ROBINSON,
+(Book, Job and Xylographic Printer,) No. 197 Liberty st. Head of Wood, Pittsburgh Pa.
+TERMS:-One Dollar per annum, payable, in all cases, in advance. Any person procuring us five new subscribers, and forwarding us five dollars current money, shall receive one volume gratis. All letters must be addressed to E. Robinson, Publisher, Post PAID, to receive attention.

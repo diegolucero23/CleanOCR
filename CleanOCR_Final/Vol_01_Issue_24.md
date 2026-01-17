@@ -1,0 +1,1332 @@
+# The Latter Day Saint's Messenger And Advocate
+## Volume 01, Issue 24
+
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 369
+**Source File:** page_369.json
+---
+
+# ESSAY ON THE GOSPEL.
+
+BY S. RIGDON,
+
+Continued from page 359.
+
+There is one thing necessary to know in order to have a correct knowledge of the gospel; it is, that it was, and is, and ever will be the same; that it is as immutable as God himself, or Jesus the Savior, and that the gospel is the scheme of life and salvation; and there was not nor will not be any other; it is that scheme of things by which all that are saved, will be saved, and all who are now saved were saved by it. The apostle Paul, in his epistle to the Ephesians, Ist chapter from the 3rd to the 11 verse, gives us the following account of the scheme of life and salvation, which he promulged in his day to the generation among whom he lived, and to whom the Lord sent him. "Blessed be the God and Father of our Lord Jesus Christ, who hath blessed us with all spiritual blessings in heavenly places in Christ: according as he hath chosen us in him, before the foundation of the world, that we should be holy and without blame before him in love: having predestinated us unto the adoption of children by Jesus Christ to himself, according to the good pleasure of his will, to the praise of the glory of his grace, wherein he has made us accepted in the beloved. In whom we have redemption through his blood, the forgiveness of sins, according to the riches of his grace; wherein he hatli abounded towards us in all wisdom and prudence; having made known unto us the mystery of his will, according to his good pleasure, which he has purposed in himself; that in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth; even in him."
+
+In the foregoing quotation the apostle gives us an outline of the order of things, which he proclaimed to the people of his day, which he said he had not received of man, nor by man; but by revelation of Jesus Christ. Galatians 1: 11,12, "But I certify you brethren, that the gospel which was preached of me is not after man: for I neither received it of man, neither was I taught it, but by the revelation of Jesus Christ."
+
+The account then which the apostle gives of the proclamation which he proclaimed_to the world is, that the same thing which he received by immediate revelation from Jesus Christ, was a scheme of which had originated in eternity, before the world was, "Blessed be the God and Father of our Lord Jesus Christ, who hath blessed us with all spiritual bless-ings in heavenly places in Christ Jesus: according as he hath chosen us in him before the foundation of the world." Ephesians 1: 3, 4. Having predestinated us unto the adoption of children by Jesus Christ, to himself. 5 verse. That is, before the foundation of the world. No language need be plainer than this, that is, that God before he framed the world, had laid the scheme of life and salvation, and before he formed Adam's dust into man, he had predestinated that the human family should be made children to himself, through Jesus Christ, and all this was fixed before the foundation of the world; and this is what Paul had revealed unto him to proclaim to the uncircumcision, as well as Peter to the circumcision. But it was in Jesus Christ that men were to be made children to God, or that God made children to himself out of the apostate race of man. "He hath chosen us in him in whom we have redemption through his blood, the forgiveness of sins wherein he hath abounded toward us, or in him he hath abounded towards us in all wisdom and prudence." In all these instances it is in him, not out of him, that men are to receive blessings, and to become sons of God.
+
+This is in perfect accordance with what this same apostle says in the epistle to the Galatians, when speaking of Abraham, and the gospel proclaimed to him, 3 chapter and 8 verse: "And the scripture, foseeing that God would justify the heatlien through faith, preached before the gospel unto Abraham, saying, in thee shall all nations be blessed." The promise to which the apostle alludes is found in the book of Genesis 12; 1, 2, 3. Now the Lord had said unto Abraham, get thee out of thy country, and from thy kindred and from thy father's house, unto a land that I shall shew thee of: and I will make of thee a great nation, and I will bless thee and make thy name great; and thou shalt be a blessing and I will bless them that bless thee, and by curse them that curse thee: and in thee shall all families of the earth be blessed. In the 22 chapter 15, 16, 17 and 18 verses, the promise reads thus: "And the angel of the Lord called unto Abraham out of heaven the second time, and said, by myself I have sworn saith the Lord, for because thou hast done this thing, and hast not withheld thy son, thine only son, that in blessings I will bless thee, and in multiplying I will multiply thy seed as the stars of heaven, and as the sand which is upon the sea-shore, and thy seed shall possess the gate of his enemies; and in thy seed shaft all the nations of the earth be blessed; because thou hast done these things."
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 370
+**Source File:** page_370.json
+---
+
+In the former of these quotations it is said, in the 16 verse; "Now to Abraham and his
+that in thee shall all families of the earth beſseed were the promises made. He saith not.
+blessed. And in the latter that in thy seed and to seeds, as of many: but as of one, and
+shall all nations be blessed.
+to thy seed, which is Christ." According to
+In the 28 chapter we have an account of this explanation, the promise to Abraham and
+the same promise being confirmed unto Jacob: his seed stands thus. That in thee, and, in
+for according to the declarations of the Christ thy seed, shall all the families of the
+Psalmist David this promise was made unto earth be blessed. We can see by this that it
+Abraham, and by oath unto Isaac, and con- was not enough that a person should be a re-
+firmed unto Jacob. See 105 Psalm, 8, 9 and gular decendant from Abraham to entitle them
+10 verses; "He hath remembered his cov-to the blessings of heaven, but they must be
+enant forever, the word which he commanded in his seed also, which is Christ, so that to
+unto a thousand generations, [or the genera-jobtain eternal life, a person must be both in
+tions of the thousand years.) Which cov Abraham and in Christ.
+venant he made with Abraham, and his oath What is here said about Abraham and his
+unto Isaac and confirmed the same unto Jacob seed, so directly corresponds with what the
+for a law, and to Isreal for an everlasting cov-apostle has said in the epistle to the Ephes
+enant. The account of this confirmation welians, as before quoted, concerning the-scheme
+have in the 28 of Genesis and the 10, 11, 12, of things which he proclaimed to the world,
+13 and 14 verses. "And Jacob went out or the plan of life and salvation, which is cal
+from Beer-sheba and went toward Haran. And led the gospel, that even a careless reader can-
+he lighted upon a certain place, and tarried there not avoid seeing how completely they harmo-
+all night, because the sun was set; and he nize? Mark reader that the apostle said that
+took of the stones of that place, and put then God had chosen us in Christ Jesus before
+for his pillow, and lay down in that place to the foundation of the world. Eph. 1: 4.-
+sleep. And he dreamed, and behold a ladder Again in whom we have redemption through
+set upon the earth, and the top of it reached to his blood, the forgiveness of sins wherein [or
+heaven: and behold the angels of God ascend-in whom] he hath abounded towards us in all
+ing and descending on it. And behold the wisdom and prudence. So then we are cho-
+Lord stood above it, and said I am the Lord sen to be sons of God in Christand it is in him
+God of Abraham thy father, and the God of we have redemption, the forgiveness of sins,
+Isaac: the land whereon thou liest, to thee and it is in him that God abounds unto us in
+will I give it and to thy seed. And thy seed all wisdom and prudence. And the promise
+shall be as the dust of the earth, and thou to Abraham was, that in his seed all the na-
+shaltspread abroad to the west, and to the east. tions of the earth should be blessed, or that in-
+and to the north, and to the south: and in thee Christ all the nations of the earth should be
+and in thy seed shall all the families of the blessed, and that says the apostle, is what
+earth be blessed." Here it is said to Jacob God purposed in himself before the founda-
+that in him and in his seed all families of the tion of the world, and agreeably to that plan,
+earth should be blessed, and putting both the men should be blessed: in Christ Jesus they
+former quotations together and it would read should get the remission of sins; in Christ
+the same way to Abraham; for one says in Jesus they should get redemption; and in
+thee, and the other says in thy seed, so that Christ Jesus God woulda albound towards
+the promise to Abraham, Isaac, and Jacob, them in all wisdom and prudence; and says
+was, that in them, and in their seed, should the promise to Abrahain, (or the gospel as
+all the families, or nations of the earth be before preached to Abraham) in thee and in
+blessed, and this is what is called the gospel, thy seed shall all the families of the earth be
+which Paul says was preached before to Abra-blessed; whether they are descendants of
+ham: Galatians 3: 8. It is necessary that the Shem, Ham, or Japheth, in Christ they should
+reader should notice particularly that it is in be blessed; for God will abound to all who
+Abraham, and in his seed that all the fami-jare in Christ Jesus, in wisdom and prudence:
+lies of the earth should be blessed, and riot they will have redemption, the forgivness of
+out of them; for here lays the mistake with sins.
+1.
+many; they do not notice that little preposition It is in view of this promise made to Abra-
+in, and they faney to themselves that they tham and his seed that the apostle says, Rom.
+will be blessed, whether they are in Abra- 6: 6, 7. "For they are not all Israel which
+ham and his seed, or out of them; not think are of Isreal: neither, because they are the
+ing that there is a difference between in and seed of Abraham, are they children: but in
+Isaac shall thy seed be called," And in Rom.
+-out.
+Concerning this promise made to Abraham 4: 11, 12, 13, the apostle says, "And he
+the New Testament writers have said many [Abraham] received the sign of circumcision
+things. In the 3 chapter of the epistle to the a seal of the righteousness of the faith which
+Galatians, the apostle Paul settles the ques-he had, yet being uncircumcised: that he
+tion, who the seed was, concerning whom it might be the father of all them that believe..
+was said, that in thy sed shall all the tami-though they be not circumcised, that right-
+lies of the earth be blessed. He says thus. Fousness might be imputed to them also; and the
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 371
+**Source File:** page_371.json
+---
+
+father of circumcision to them who are not of him which Paul afterwards preached, and-con-
+the circumcision only, but who also walk incerning which he said that any man, or an
+the steps of that faith of our father Abraham, angel from heaven should be accursed if he
+which he had, yet being uncircumcised."- preached any other. Neither can we with
+For the promise that he should be the heir of safety admit it, having the testimony which
+the world, was not to Abraham, or to his seed we have on this subject before us, that God
+through the law, but through the righteous-had at any period of the world any other way
+ness of faith.
+of making sons and daughters but the one; for
+The careful reader of the New Testament Paul says that the gospel was before the
+will find that the allusions to the promise world was, and the thing which he received
+made to Abraham and his seed are very nuhy revelation, was the same which had exist-
+merous, but would not be to our purpose toed from eternity.
+quote at present.
+But to have the whole subject fairly before
+It is necessary to remark here, that thelus, we will attend to the proclamation of
+apostle has pronouced a curse on any person, him in whom God had wrought effectually to
+or even an angel from heaven, if they preach the apostleship of the circumcision, we mean
+any other gospel, than the one which he had Peter. We have this proclamation, to the cir-
+proclaimed. See Gal. 1. 8, 9. And he says as cumcision in the 2 chapter of the Acts_of_the
+quoted above, that, the gospel which he pro-apostles, 37, 38, and 39 verses, it reads thus.
+claimed, had been before preached to Abra "Now when the Jews heard this, they were
+ham, telling him, that in his seed, that is, in pricked in their hearts, and said unto Peter
+Christ Jesus, all the families of the earth and the rest of the apostles, men and brethren
+should be blessed, and from what he said to what shall we do? Then Peter said unto
+the Romans it is evident that the apostle ex them, repent, and be baptized every one of you
+cludes the fleshly seed of Abraham from bein the name of Jesus Christ, for the remission
+ing the children of Abraham according to this of sins, and ye shall receive the gift of the Holy
+promise, only such as had faith like the faith-Spirit. For the promise is unto you, and to
+ful Abraham, and that all others who had this your children, and to all that are afar off, even
+faith, were equally entitled to the blessings oflas many as the Lord-our God shall call.
+Abraham whether they were his fleshly seed The reader may see very easily, that all
+or not; it mattered not from whom they de these men understood the subject alike; for
+scended; for if through faith they were enabl-the specimens which we have of their preach-
+ed to get into Christ Jesus, they would being are alike.. Paul says as quoted above
+considered Abraham's children, and heirs ac-that in Christ we have the forgivness of sins
+cording to the promise.
+and redemption through his blood, and that
+In the third chapter to the Galatians the in him, we are made partakers of the bless-
+mystery is solved, how it is' that we are paulings of Abrahaur, and lie also says, that it is
+into Christ, and become Abraham's seed audiby baptism that we are put into Christ.-
+heirs according to the promise. Verses 26, Peter says, repent, and be baptized every one
+27,28. "For ye are all the children of Godiof you, in the name of Jesus Christ for the re-
+by faith in Christ Jesus. For as many ofanission of sins, and you shall receive the gift
+you as have been baptized into Christ, have of the Holy Spirit. Why be baptized in
+put on Christ. There is neither Jow nor the name of Jesus Christ for the remission of
+Greek, there is neither bond nor free, there is sins? because, that by baptism Paul says that
+neither male nor female; for yo are all one in you put on Christ, "as many of you as are bap-
+Christ Jesus. And if ye be Christ's then aretized into Christ have put on Christ," and be
+ye Abraham's seed and heirs accordingling in Christ you have remission of sins and
+to the promise. This carries the promise redemption through his blood; and in him God
+made to Abraham to its legitimate issue and will abound to you in all wisdom and pru
+shows what it was that was preached to Abra-dence. Therefore, repent, and be baptized
+ham that it was not only in his seed that all every one of you in the name of Jesus Christ,
+the families of the earth were to be blessed, and you shall receive the gift of the Holy
+but that they were to be put in his seed, that Spirit, or in other words God will abound
+is Christ, by baptism; for for as many of you as towards you in all wisdom and prudence.-
+have been baptized into Christ, have put on through the gift of the Holy Spirit. These
+Christ. We could hardly admit the thought two apostles then surely had the same views
+that the Lord had told Abraham that in him on the subject of the gospel; and let it not be
+and in his seed all the families of the earth forgotten, that Paul says, that this gospel was
+should be blessed, and yet not tell hiur how in preached to Abraham, and not only to Abra-
+was that they were to become his children, or ham, but that it originated in-eternity, before
+in other words, how they were to be put inte the world was, and that it was not some new
+Christ, Abraham's seed. No doubt therefore thing which has sprang into existence with
+can exist, but that Abrahara knew all abounthim and his cotemporaries, and was not
+it; for if he did not, could it be said that he known till then. But more on this point
+had the gospel preached unto him? It could hereafier.
+not, unless hohed that thing preached unto Inasmuch then, as the gospel was preached
+[www.LatterDayTruth.org](http://www.latterdaytruth.org)
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 372
+**Source File:** page_372.json
+---
+
+to Abraham, would it be thought hazarding were saved, at any time, or in any period of
+much to say that baptism was preached to him the world, without knowing how they were
+for the remission of sins, or could the gospel saved or by what means they were made par-
+be preached to Abraham and this not be takers of the grace of life, is to suppose an
+preached! Perhaps some might say, that it improbability: that is, it is to suppose that
+was told to Abraham that in his seed all the they were saved, and were not saved at the
+families of the earth should be blessed, and same time: for the revelation of the plan of
+that was all, could it be said that the gospel salvation was essential to the salvation of any
+was preached to Abraham. And yet it was of the human family. It mattered not how
+not preached to him, or was Abraham left to good the scheme of it was; which was devi-
+guess the rest and find out what was meant sed in eternity, nor how well suited to the sit-
+by being in his seed. But let us go back and uation of man; nor how well calculated to
+look a little at this subject. Paul as before save men; nor yet, how competent it was to
+quoted, has told us that it was a fixed princi-save, still it would never have saved one indi-
+ple in the economy of God and that before vidual since the world began, unless it had
+the foundation of the world, that men were to been revealed to him. Let it have remained
+be saved by being in Christ. And he also secreted in the bosom of eternity, without its
+tells us that Christ was Abraham's seed.- being made known to man, and the world
+Is this testimony correct? If it is, ever since would have been nothing the better of it, but
+man was in existence there has been but one would all have gone to destruction, together.
+way of being saved; for God, according to the Another thing which would appear very
+apostle's statement, had fixed it by an irrevo strange, is that there should be an Abel, an
+cable decree and that before the world was Enoch, and others, who had great power with
+that men should be saved in this way and God, who got many revelations from God,
+none other. The question now arises, was and had great faith, so as to obtain testimony
+this scheme of things kept hid from the early that they were accepted of him, and that they
+ages of the world, so that they did not under-pleased him; and yet with all that they
+stand it, and were saved by it? If so there knew, they did not know, nor understand the
+never was any need of understanding it from scheme of things, by which they had this
+that day to this; for if they could be saved by power with God, and through which they ob-
+it without understanding it, so could we and tained it. Enoch prophesied of the coming of
+so could all others, and Paul's assertions to the Lord with ten thousand of his saints to
+the Ephesians be worse than vain. "That judge the world; Jude 14th verse; which judg-
+by grace are ye saved through faith," and for ment came by reason of the atonement of the
+when there was no understanding there could anointed Savior, and it would be very strange
+be no faith. And there is nothing more cer-indeed if Enoch should not have known any
+tain, than this, that if the ancients were not thing of the sacrifice of the Savior, and yet
+made acquainted with the scheme of life, knew of his coming to judge the world, be-
+they must have been saved without it, or else cause they rejected the salvation which was
+they were destroyed for want of knowing it. offered to them by reason of that atonement,
+The latter cannot be admitted, and it is very and not only knew of the sacrifice of the
+hard to admit the former, that is, that any Savior, but of the way by which the world of
+people were ever saved without understanding mankind was made partakers of the benefits
+how it was done, that they were saved, or of that atonement; that is by being put into
+that any persons could be washed from all sin Christ Jesus, and that work of putting in by
+by the Lamb, and yet know nothing of Jesus, Baptism, in water, according to what Paul
+the Lamb of God, and be taken into heaven has said, "That as many of you as have been
+by a scheme of things of which they had no baptised into Chirist, have put on Christ;"
+knowledge? We are told that without faith and I may add, that none others, but those
+it is impossible to please God, and where who were baptised into Christ did put him on
+could faith be in all this matter; or had the or could put him on; for there was no other
+ancients the happy faculty of believing on him way of putting on Christ.
+of whom they had not heard, and of hearing, Who can doubt but that man who had faith
+without a preacher? Mark, reader, that Paulisufficient to get revelations, and to obtain
+has fixed this matter forever; that it is in knowledge of the great day of judgment.
+Christ Jesus that men were to be saved, when the Lord should come with ten thou-
+since the foundation of the world, and in nosand of his saints, who walked with him three
+other way; so that the ancients must eitherthundred years, and had faith sufficient to be
+have known that they were in Christ, (we translated, who can doubt I say? but this
+mean those among them who were saved,) oman was acquainted with the whole scheme
+else th they did not: if they did not they were of life and salvation, or the gospel. No
+saved in ignorance; and the old maxim with person can doubt it, but one who is incapable
+them holds good that ignorance is the mother of judging any matters.
+of devotion. But on this point there can be But the Scriptures are pointed on this sub-
+no difference of opinion among the candid; for ject, and so clear that a cavaler has no room
+to admit that any portion of the human family, left, only to show his unfairness and want of
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 373
+**Source File:** page_373.json
+---
+
+#
+candor. Paul says to Timothy, in his se- There is nothing which gives greater peace
+cond epistle, 1:9,10, "Who hath saved us, and satisfaction to the mind, than clear views
+and called us with a holy calling, not accor-on the gospel; to understand it correctly is to
+ding to our works, but according to his own understand the will of God to men, and to put
+purpose and grace, which was given us in a person in possession of truths which will
+Christ Jesus before the world began; but is guard him against the various impositions
+now made manifest by the offering of our which have been imposed on the world, at one
+Savior Jesus Christ, who hath abolished period of it and another: and to give him pow-
+death, and hath brought life and immortalityjer to become extensively acquainted with
+to light, through the gospel." If this states God, as well as the heavenly worlds. But
+ment be correct, life and immortality came to it is necessary in order to a clear understand.
+light by the gospel, the same as to say, that ing of the gospel, that we should have a cor-
+unless the gospel had come, life and immor-rect understanding of its origin, and of its pro-
+tality would not have come to light. Let us gress among men; for without this knowl..
+ask, when did life and immortality come to edge, we are liable to be led into darkness,
+Jight? Before answering this question, let and all the glory of the gospel be hid from
+me ask, what is meant by life and immortal-our eyes.
+ity? I answer, the knowledge of a future ex- Let me here observe, that whatever the
+istence, or an existence after the present state, gospel was, it now is, and ever will be, that
+in a state of superior glory, and this is the it has not nor will it change: its laws are the
+knowledge which came to light by the gospel. same; its institutions are the same: its com-
+When did it come to light? Enoch had know mands are the same, and its regulations are
+ledge of life and immortality, or else he would the same, whatever it required of one man in
+not have had faith to have been translated; forder to obtain eternal life, it required of all
+for could he have faith about a thing of which men and that in every age of the world, and
+he never heard? And Paul says that this will require the same until all shall be
+knowledge caine to light by the gospel. If gathered that will be gathered, and those
+so, Enoch had knowledge of the gospel, and who have obeyed its requisitions enter into
+if he had knowledge of the gospel, he knew the rest, which God has prepared for them.-
+that men must be in Christ Jesus, or else And it is not only the same yesterday, to-day,
+they could not be blessed, and he must have and forever, and changes not: but it is the
+known that men were put in Christ by bap-only scheme of things by which any portion
+tism, or else there was another gospel, for of the human family has been, or will be sa-
+this was the one which Paul preached, and ved; for it is only by virtue of the gospel that
+which he said was before the foundation of salvation was ever proclaimed among men,
+the world, and by which we had grace in from first to last; for by it life and immotali-
+Christ, before the world was, and it was ty came to light; so says Paul, 2d, Timothy
+through this gospel that life and immortality 1: 15, and as the knowledge of life and im-
+came to light, and Enoch must have been mortality is essential to salvation, it is easily
+put into Christ, according to the law of this seen, there could be no salvation without the
+gospel, or else he would not have walked gospel, and not only without the gospel but
+with God three hundred years; for no man without the knowledge.of ledge of it also; for how
+can walk with God unless he has obeyed the could a man have faith in that of which he
+gospel; and Enoch must have been baptised never heard.
+-for the remission of sins, and have received Seeing then, that life and immortality
+the gift of the Holy Spirit, by the laying on came to light by the gospel, and without the
+of the hands of some one who had-authority knowledge of life and immortality no person
+from God so to do, or else he would not have could be saved, there can no difficulty exist
+known of life and immortality.
+on the minds of any of the human family, un-
+This matter will appear exceedingly plain, less they create one where none realy existe
+if we attend a little to the promises made to as to the time the gospel was promulgated to
+those who believe and obey the gospel. They man; it must have been promlugated as early
+were to those who were baptised for the re as life and immortality was known, and they
+nission of sins, that they should receive the were known ever since the time that salvation
+gift of the Holy Spirit, and through this gift was proelimed among the family of man;
+they should see visions, dream dreams and for salvation is a matter of faith, and faith
+prophesy; see Acts of the Apostles, 2.1 chap, cannot exist in relation to it without hearing
+Let us look at Enoch then, and see what the word of the Lord, for itis by hearing the
+great knowledge he had of things of God, and word of the Lord, that faith in-relation to sal-
+ask him, how did you come to have this know-yation comes. As far back then as we date
+ledge? The answer: By seeing visions.-salvation, so far back we date the proclama-
+And how did you obtain power with God to tion of the gospel to man: and it must be so
+see visions? The answer would be, I obeyediunless it can be proven that God had more
+the gospel, received the Holy Spirit, and ways than one of saving mankind, and to do
+thereby saw visions, and through this means this Paul must be refuted, for he says that the
+I obtained all my knowledge.
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 374
+**Source File:** page_374.json
+---
+
+foundation of the world, and that no other force the conclusion on the mind, that the
+fonndation could any man lay than that which ancients-had the gospel among them, and
+is laid, which is Christ Jésus, and Peter says that is, that according to the sacred record the
+that there is no other name given under heav-fruits of it abounded among them as far back
+en among men, by which they can be saved as the days of Abel. If we inquire what are
+but in the name of Christ Jesus.
+the things which attend the gospel? we will
+May we not reason a little upon this sub. find that prophecying was one thing, and we
+ject. Let us ask then, what was the most are told that Abel was a prophet, for the Savior
+important thing witch God could cominuni-said to the Jews, that the blood of all the pro-
+cate to his creature man? The answer is, phets should be required at their hands, from
+the thing which would save him; if God ev-the blood of righteous Abel to the blood of
+er at any time condescended to speak to man. Zacharias. Matthew 23:34, 35 verses,
+there can no good reason be shewn why he Enoch was also a prophet: for he foretold of
+did not communicate to him the things which the second advent as recorded by Jude.-
+were of the greatest consequence to him, and Who does not know, that when the apostles
+as God always acts according to reason and proclaimed the gospel, they promised to those
+never against it we may conclude that he did who received it that they should prophesy?
+declare unto man the gospel or the way by seeing then that prophesying was a fruit of
+which he was to be saved: but what would the gospel who can help seeing that it was
+be very strange would be that there should be by virtue of it that men prophesied, we cannot
+a great number of persons saved in the ear-see where there can be a risk in believing
+lier ages of the world, and yet not know how that wherever there are or were prophets,
+they were saved, be saved in ignorance! It there the gospel is, or was, and one strong
+would be equally as strange that prophets, reason which confirms this belief is that
+such as Enoch for instance, the seventh from whenever the gospel is lost prophesying is
+Adam, could prophesy of the second coming lost also; this generation is all the proof wo
+of Christ and of his judging the world, and yet need on this subject, for if we ask why has pro-
+not know of his first coming and of his dying phesying ceased in this generation? the an-
+for the world. And what would be strang-swer is: because they have lost the gospel.-
+er still would be, that men could be saved And not having the gospel, they cannot have
+by faith, and yet never hear, nor know, of the fruits of it; but we see the ancients. had
+the way of salvation through the blood of the the fruits of it, and how could they have the
+Lamb. This would be believing without fruits of it and yet not have the gospel? is a
+hearing, and being saved without understand-question we will leave for those more learn-
+ing, and having faith without hearing the ed than ourselves to answer.
+word of God, or in other words it would be be- From reflection, we have been forced into
+lieving on him of whom they had not heard, the conclusion that the gospel was as well
+or else it would be hearing without a preach known among the ancients as among any
+or, and if it were any of these things, it would other people, not even the anti-deluvians or
+put the shame on all the sacred writers, and the people before the flood excepted. We
+- expose them to just ridicule. But_wafleit is are satisfied, that wherever the fruits of the
+written in the pages of the divine oracles, gospel are or were found, there the gospel
+that salvation is of s of faith, and and inen cannot wasalso; for nothing else could produce thể
+have faith in a being of whom they have not effects of the gospel, but the gospel itself, or
+heard, nor hear without one to tell them, or alelse the gospel was unnecessary; for men
+preacher, and that life and immortality came could have enjoyed all the blessings which it
+to light by the gospel, and that Abol was a conters, without its existence. And if any
+- prophet, and that Enoch the seventhi from thing besides the gospel could produce the
+Adam was translated, and that God saves same effects of the gospel, then it was vain,
+men by the gospeland nothing else, for what and worse than vain, for the Savior to say
+ever will save mer is the gospel so long concerning it, "That he that believed it not,
+it will be believed by every thinking man that, should be damned;" for they could have been
+the gospel was made known to the ancients saved, if it were admitted, that something
+as well as to us. But what seems to put the else could produce the same effect of the gos.
+matter at rest as relates to the antiquity of pel. For instance-if-mon-could-have-the spir
+the gospel proclamation is, that the apostle it of pr the apostle it of prophecying, and prophecy without obey-
+Paul says that the gospel which he proclaiming the gospel, then it was in vain for the
+ed, or what was to the same effect, that the Savior to say, y, "That he that believeth not
+scheme of things which he tanght, was devis shall be dainned;" for who does not know
+ed before the foundation of the world, and that a prophet could be saved. But the truth
+that it was God's fixed-purpose to save is, all the prophets from righteous Abel down
+men in that way or by that plan and none until the present time had obeyed the gospel,
+other; so tha that if there there was salvatiorat alland had their communion with God by virtue
+among the ancients, it was because they had of their obedience to it.
+the gospel among them.
+We have evidence, I think, extant in the
+There are some other considerations which seriptures, which is not easily set aside,
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 375
+**Source File:** page_375.json
+---
+
+though cavilers may cavil at it, that Abraham could have caused Moses to have suffered re-
+had a perfect knowledge of the gospel. We proach for Christ's sake, unless he had know-
+want it distinctly understood, that when we ledge of him, and all the knowledge that any
+speak of the gospel, we mean the whole sys-being can have of Christ, is, as Savior of the
+tem, with all its ordinances and laws as pro world, and if Moses suffered reproach for
+claimed on the day of pentecost;" for we Christ's sake, he must have done so because
+know nothing of the gospel distinct from bap-he proclaimed him as Savior of the world, and
+tism for the remission of sins, and the gift of must have known as did Abraham, that it was
+the Holy Spirit by the laying on of the hands in Christ that all the families of the earth
+of those who are called and ordained unto should be blessed, for if he did not know
+this power. Take these things away and this, he did not know any thing about him,
+where is the gospel? We answer no where for it was in consequence of this, that he was
+there is no such thing. For distinct from known to the world. Had it not been for this
+those things, there is no salvation; if there is the name of Christ would not have been
+salvation without bapism for the remission of known in the world. And if Moses knew
+sins, and the gift of the Holy Spirit, by the any thing of Christ, he could have known
+laying on of the hands, we know nothing of nothing of him but what was known of him
+it; for God our heavenly father does not work as the Savior of the world. So that from
+at random; but by the strictest rule, even one all the light we can get on this subject,
+established by himself for the rule of his con- Moses must have had the same knowledge
+duct in relation to his creature man, before which Abraham had: indeed there was no
+the world was; by that rule he has worked, other knowledge to be had of Christ, but
+and will work, until time is no more.. this; take this away and the knowledge of
+In a former part of this treatise, we exam-Christ ceases; and so far as the knowledge of
+ined the ground on which our opinion was Christ extended, so far did the knowledge of
+founded that Abraham had a knowledge of the gospel extend; and so far as the know-
+the gospel. We shall now notice some things ledge of the gospel extended, so far did or does
+said in the scriptures about Moses. the knowledge of Christ extend; for they go
+The Savior, in the 5th chap. of John's gos together and neither of them is found-alone.-
+pel and 46th verse, says to the Jews, "Had But what settles this question, in the mind of
+ye believed Moses, ye would have believed every candid person forever is, that the fruits
+me, for he wrote of me." And in the 11th which are peculiar to the gospel are found no
+chapter of the epistle to the Hebrews and 26 where but in obedience to it, were found with
+verse. "Paul says that Moses esteemed the Moses. He had the spirit of prophecy and of
+reproaches of Christ greater riches than the revelation, he also had visions, and the power
+treasures of Egypt." From both of these quo- of miracles attended him; all these are fruits
+tations we learn this fact that Moses had a of the gospel, and found among those who are
+knowledge of Christ, to some extent at baptized for the remission of sins, and who
+least; and we think if examined a little, it receive the gift of the Holy Spirit by the lay
+will be found that his knowledge was preting on of hand's. If any should object, and
+ty extensive; probably as much so as any say that the scriptures never mention the bap
+other man; for says the Savior, he wrote of tism of Moses, we reply, neither do they men-.
+me. We think that it is not probable that tion his writing of Christ, they only say he
+Moses wrote of Christ without understand-did write of him; and we have no doubt if
+ing what he wrote, neither is it likely that these. writings were once obtained, we will in-
+he began to write on a subject which he them, find the account of his baptism; for
+did not understand most perfectly, particu-every circumstance in relation to him tends to
+larly when we consider who Moses was, establish this fact on the mind, that he openly
+that he had both seen and conversed with acknowledged Christ, and this can only be
+God, and received revelations from him, and done by being baptized in his name for the
+was in a situation to have both correct and ex- remission of sins, and by receiving the Holy
+tensive knowledge of all things which he de- Spirit by the laying on of hands in his name;
+sired to know: it appears also that that in conse and having thus openly acknowledged him,
+quence of the knowledge which he had of he had to suffer reproach for his name; for it
+Christ
+rist he had to suffer reproach; for ha es- would be very singular ar indeed if Moses had
+teemed the reproaches of Christ, greater riches eater riches to suffer reproaches of Christ, when he had
+than the treasures of Egypt; but why the te never acknowledged him; and let me repeat
+proaches of Christ? Because he had know it again, that no person did, or or ever will ac-
+will ac
+ledge of him and wrote of him, and for this knowledge Christ only those who do it by
+knowledge, or for writing it, he had to suffer being immersed in water for the remission of
+reproach. This is sufficient to shew to any sins; this is the way and the only way by
+person who is willing to be instructed, that which any person ever has or ever will ac
+Mozes must have understood the nature of knowledge Christ. They may acknowledge
+Christ's office, as Savior of the world, or why men, or some other beings in doing other
+Suffer reproach for his sake?--Every inan of things, but they can acknowledge Christ in
+apy understanding must know, that nothing no other way, and that for the best of all rea
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 376
+**Source File:** page_376.json
+---
+
+cons, because there is no other way of acknow-wade against us we have moved steadily on-
+edging him; for do all other things that any ward, being greatly blessed and prospered
+human creature could do, and leave this un-by our heavenly Father; and we now can as-
+done, and Christ would not be acknowledged. sure our friends, that, to us, the prospects nev-
+Seeing then, that Moses suffered the reproach-er appeared brighter or more glorious. Thus
+es of Christ, it follows of necessity that he much on the past, we will now say a few
+must have been baptized for the remission of words on the future.
+sins in his name, or he could not have been The God of heaven has set to his hand and
+reproached for his sake.
+
+# MESSENGER AND ADVOCATE
+
+PITTSBURGH, PA. NOVEMBER 1, 1845.
+
+PRESIDENT RIGDON has not yet returned called upon us, together with many others, to
+from visiting the eastern churches-lhe spent proclaim to the world these things, and declare
+several days in the City of New York, lec. unto them gald tidings of great joy through
+turing to large and attentive audiences, from an obedience to his commandments. To
+whence he left for Boston, where he arrived pare a people for his coming, he has sent forth
+Monday evening, the 20th ult. in excellent the fullness of the everlasting gospel by the
+health and spirits, amidst the joyous greetings hand of an angel, calling upon all living to
+of kind brethren. We look for his return "fear God and give glory to him for the hour
+about the 15th inst. of his judgments has come;" and notwith-
+We shall give the conference minutes in gospel have turned therefrom, and turned the
+our next. grace of God into laciviousness, yet the prin-
+
+## TO OUR PATRONS...
+
+It will be observed that this No. (24) closes unbroken--and none of his plans or purposes
+the first volume of the Messenger and Advo- ward agreeable to the counsel of his own will.
+cate-we presume our subscribers understand, The Lord has also caused his kingdom to
+by what we have heretofore said, that this be organized and established among men,
+will be the last paper sent to them until their which is to bring in everlasting righteousness
+subscription is renewed-if they have not un- be found in the 11th and 12th No's. of this
+derstood this fact, we will now inform them vol. Now wo is us if we preach not the gos-
+of it, so that they may know the reason why pel of the kingdom of heaven; for we know, in-
+the 2d volume is not forwarded to them. and calling, the Lord of hosts will bring us
+Brethren, and friends, we are so situated, off triumphant, and we shall win for ourselves
+that with the blessings of the Lord, we shall a crown drrejoicing and a seat at his right
+be able to continue the publication of this pe. hand; for he is faithful who has promised.
+riodical regularly, even should our subscrip With these things before us we strive to la
+tion list not be as large as many others of our sayings, and all our actions we shall have to
+contemporaries, as we are a practical printer, render an account to our Father who is in heav-
+and have procured a good press and materialen, in that day when he shall come to reward
+of our own, so that those who may feel an in- the faithful, and to cast off the unbelieving
+terest in aiding the cause of truth, by patroniz, and rebellious,
+We do not feel to close without tendering.
+ing us, need have no fears of losing their mo our thanks to our friends and brethren, who
+ney, by the failure of the paper as has toc fer- have kindly stepped forward and aided us, by
+quently been the case in the world. their faith and means in the performance of
+When this paper was commenced, our one-our arduous duties; and we trust and pray they
+mies were very free and ready to prophecy will be amply rewarded for all they have done,
+that it would not continue for one year, buter may do hereafter.
+would be broken up immediately; not being In the 2nd vol., the first No. of which will-
+contented with this prediction and using be issued this month, we shall strive, as we
+in vain, all the influence and means in their have in the present, to set forth the principles
+power to accomplish, to them, so desirable an of righteousness in simplicity and plainness, 80
+object, they commenced heralding forth to the that all who will, may be benefited thereby;
+world, that we were "dead, twice dead, and and to faithfully warn our fellow men to flee the
+plucked up by the roots." Notwithstanding wrath to come, and save themselves from this
+all these exertions and efforts which have been untoward generation, that they may be prepar
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 377
+**Source File:** page_377.json
+---
+
+red to abide the coming the of Son of man, "And there were great voices in heaven, say-
+which is now fast hastening upon the world, ing, the kingdoms of this world are become
+when he "shall be revealed from heaven with the kingdoms of our Lord, and his Christ; and
+his mighty angels, in flaming fire taking ven-he shall reign forever and ever." We say...
+geence on them that know not God and that that such a state of things must exist before
+obey not the gospel of our Lord Jesus Christ." the final judgment, is a fact so notorious in
+prophecy that no bible reader would hazard
+William Smith, one of the 'twelve,' and his reputation by contending against it. The
+patriarch of the church of Latter Day Saints, Id Psalmist, the sweet singer of Israel, sung
+has come out in a lengthy proclamation, which
+is before us, against the proceedings of the lead of it in lively strains thus "Blessed be the
+ers at Nauvoo: he makes startling disclosures Lord God, the God of Israel, who only doeth
+of horrid transactions in that city; notifies the wondrous things. And blessed be his glori-
+people to pay no more tithing, as the-funds to ous name forever; and let the whole earth be
+his knowledge, are appropriated to the most li-filled with his glory. Ainen and amen."
+centious and beastly purposes; also to Stop Daniel dreamed of it, and all the prophets,
+gathering; says the church at Nauvoo is a head-though tortured, died in faith of it, not accep
+less body without a presidency of Three, con-ing deliverence; that they might obtain by re-
+sequently cannot administer in sacred things: surrection an inheritance in the world when it
+The warns them not to follow the counsel of B should be redeemed from wo, by the organi-
+Young, for nought but ruin and utter destrue-
+tion awaits him and his followers:--Thus much zation, future progress, and final triumph of
+for William:-Now what we have to say to all the kingdom of God.
+these apostates, is, take your own course; but The Lord himself, in order to redeem his
+it would be greatly to your interest to repent, people and bring in "a rest" to the earth,
+obey the gospel of peace, enter the church of must establish an order of things which he
+Christ, and keep all his commandments.
+
+# THE KINGDOM OF HEAVEN.
+
+BY W. E. M'LELLIN.
+
+"Wherefore we receiving a kingdom which will be pleased to designate in contradistinc-
+cannot be moved, let us have grace, where-tion of all other things "the kingdom of heav-
+by we may serve God acceptably with rev-en." In it there must and will be an order of
+erence and godly fear. Heb. 12: 28. things peculiar to itself. The Lord's wisdom
+The finger of inspiration in other places in will be displayed in its organization, and his
+the holy book calls this "the kingdom of heav-power will be manifested in its defence, and
+en, the kingdom of God's dear Son, the king-it will be to his honor and glory to cause its
+dom of Christ-the kingdom of God." Our final triumph. That people then in the last
+mind has been lately occupied particularly days who are so happy as to get that organi-
+upon this subject, and more particularly upon zation "that kingdom which cannot be mov-
+two points, that is, the order, or orders of min-ed," will have the heavens engaged for their
+istry in "the kingdom of Christ," and the welfare. The angels will watch their course
+manner of spirit those ministers should pos-with intense anxiety, and they will delight to
+sess and manifest towards each other, and to minister from time to time to those faithful ones
+the world in order that the kingdom which is in that kingdom, who shall be heirs with them
+in "righteousness, peace, and joy in the Holy in the great salvation at the final triumph.
+Ghost" might be established among men; and There are certain things without which no
+progress until it would bring in that "rest of kingdom either earthly or heavenly can exist.
+which remaineth to the people of God." There must be in order to establish and carry
+When "nothing shall hurt nor destroy in all on a kingdom, a King, laws, an order of min-
+the holy mountain."、When as Isaiah says istry, and subjects or citizens. The kingdom
+Thy people also shall be all righteous, Thy of God could not be established or exist so as
+watchmen shall lift up the voice, with the to carry on its opperations without these four
+voice together shall they sing, for they shall leading parts, any more than an earthly king-
+see eye to eye when the Lord shall bring a-dom could.
+gain Zion," Yea, when "all shall know the Of the character, the power, and the quali-
+Lord from the least unto the greatest. For fications of Jesus Christ, the Sovreign of his
+the earth shall be filled with the knowledge kingdom on earth, we need only to refer to
+of the glory of the Lord, as the waters cover the voice of inspiration by Isaiah 11:2-5.-
+the sea." That the people of the Lord must "And the Spirit of the Lord shall rest upon
+in the last days, receive a kingdom which him, the spirit of wisdom and understanding,
+cannot be moved or given to another people, the spirit of counsel and might, the spirit-of
+but which will progress until "the kingdom knowledge and of the fear of the Lord; and
+and dominion, and the greatness of the king-shall make him of quick understanding in the
+dom under the whole heaven, shall be given fear of the Lord; and he shall not judge after
+to the people of the saints of the Most High, the sight of his eyes; neither reprove after
+whose kingdom is an everlasting kingdom, the hearing of his ears: but with righteousness
+and all dominions shall serve and obey him." shall he judge the poor. and reprove with-
+equity for the meek of the earth: and he shall
+smite the earth with the rod of his mouth, and
+with the breath of his lips shall he slay the
+wicked: And righteousness shall be the gir-
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 378
+**Source File:** page_378.json
+---
+
+dle of his loins, and faithfulness the girdle of to all the world, and ministered to all true pe-
+his reins." In the character and administra-lievers. Then to have the whole government
+tion of Jesus, as King, all those who live un complete and operate without schism there
+der his government whether as ministers or as should be a quorum of seven to attend to all
+people may expect such laws and regulations financial operations--to all temporal affairs for
+as will be best calculated to develop the hu- the general good of the whole.
+man mind, so as to give all that liberty, al In the days when God led Israel from E-
+that intelligence, and all that enjoyment which gypt to Canaan he called Moses, Aaron and
+man in mortality is capable of receiving. Hur to stand before him in the first-presiden
+None are natural born citizens of the king cy. In the days of Christ's incarnation he
+dom of heaven. All have to be born into it-called Peter, James and John, and delivered
+have to be legally adopted in order to enjoy to them the keys of his kingdom. And now
+communion and fellowship with the King. again_in the dispensation of the fulness of
+with the angels, his heavenly ministers, to times, in our own days the Lord has opened
+the heirs of salvation, with his legally appoin again the heavens and called Sidney, Samuel
+ted ministry on earth, and with each other.- and Ebenezer and delivered to them "the key
+But as none can obey the laws of adoption of the house of David," and bid them reorgan-
+without a ministry to wait upon them and ad-ize “the kingdom of heaven" on earth and
+_minister to them we shall next speak of the prepare a people for his second advent-which
+order of his ministry in his carrying on the is soon at hand.
+operations of his government.
+The great object of Israel in the days of
+The bible in its süccinct account does not Moses was to get possession of the land of
+give us the particular form of church govern Canaan--the land of their inheritance. The
+ment which God revealed unto Adam, to E-great object of the apostles was to get both
+noch, to Noah, or to Abraham. It is not until Jew and Gentile to believe that Jesus was the
+the days of Moses that we have the order of the Christ the Son of God; and to publish his
+government of heaven set forth among men in gospel his laws to all nations and to build up
+their specific members, orders, or quorums of his church among all people. And now the
+ministry: in the relation that these quorums prime object of the church of Christ in our
+bore to each other, to the kingdom of Christ on days, is to bring about the restoration to the
+earth and to the heavenly things themselves. kingdom of God of all things spoken of by all
+There are in the scriptures what we call hal- the holy prophets since the world began. To
+lowed or special numbers. Three, seven, restore both Jew and Gentile to the knowl
+twelve, seventy, and an hundred and forty edge of the true God--to the true knowledge
+and four are some of those numbers. They of his divine government, and thus bring in
+are special because the Lord has been pleased the Millenniel glory and rest to the whole
+in the organization of his church or kingdom earth. In the days of Israel the Lord chose
+on earth in the variousages of the world, to callTWELVE men among that people, as apostles
+and set apartindividuals into classes, quorums or special witnesses to them concerning the
+or councils of ministers of three, seven, twelve land of Canaan, whose names were Shammua,
+seventy &c., in order to carry on the opera- Shaphat, Caleb, Igal, Oshea, Palti, Gaddiel,
+tions of his government among men. In the Gaddi, Ammiel, Sethur, Nahbi, and Genel.
+days of Moses and Israel, in the days of Peter And in order to quallify them to bear their
+and the apostles, and in the church of Christ testimony he sent them up to view the land and
+in our own days we must find those peculiar to search it out. Num. 13. Jesus who came
+numbers, each one in its place, all operating to restore the gospel to the world with all its
+and working together under Jesus, the King. grace and truth chose TWELVE men to be his.
+or otherwise we find not that kingdom which witnesses, his apostles, whose names are:
+cannot be moved.
+Andrew, Peter's brother; Philip and Bartho-
+The kingdom of heaven cannot exist-on lomew, Thomas, and Matthew the publican;
+earth among men without THREE men at its James the son of Alpheas, and Lebben's,
+head, called of God by the voice of revelation, whose surename was Thadius; Simon the
+and acknowledged in their office by the voice Canaanite; Matthias, Paul, Barnabas, and
+of the kingdom to stand as a first presiden-James, the Lord's brother, to bear testimony
+cy; holding the keys of the kingdom of of his name, his character, his doctrine, and
+heaven." There must be twelve men, called his resurrection "in Jerusalem, in all Judea,
+especial witnesses or apostles to act-under the in Samaria, and unto the uttermost part of the
+direction of the THREE, to note the particular earth." And now again in this dispensation
+important incidents of the dealings of God has the Lord favoured his "kingdom which
+with the people among whom th they are cal called cannot be moved," with TWELVE men: (whose
+to minister: to bear witness or record so that names, may be found in the minutes of our
+-it may be had or handed down to the latest April conference,) to bear the same relation
+generations. And again there must still be in his kingdom in this day which those twelve
+another quorum of seventy to-assist to bear did in former ages to the time and circumstan-
+the burthen of the kingdom, so that the gospel ces in which they lived. Yes they have to
+----the law of the kingdoin might be published publish to the world that this is the age in
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 379
+**Source File:** page_379.json
+---
+
+which the Lord will burn the wicked as stub-men on earth; and that too on one of the most
+ble, that the hour of his judgment has come, extraordinary occasions ever recorded in any
+and that all must repent and turn to God or be history. Ex. 17:10–12. There that trio
+made like unto Sodom and Gomorrah. This stood pleading with heaven, Moses in the cen-
+testimony is that the time, the set time to fa-tre with uplifted hands, being braced by
+vour Zion is come, that this is the day of the Aaron and Hur on either side; while Joshua
+mercy and of the gathering together of the leading the hosts of Israel struggled in the
+people of God in order to prepare for the Mil-valley beneath not only for liberty butaeven
+linnial rest.
+for their very existence as a nation or people
+In the days of Israel the Lord chose on earth.
+seventy, "elders of the people, rulers among When Jesus came to earth to re organize
+them," to stand with the first presidency and his kingdom with a ministry in their proper
+them
+"hear the burthen of the people," so that the relations to each other, to the kingdom and to
+kingdom thus organized might prosper. In the heavens he singled out THREE men as
+the meridian of time when Jesus went about "pillars" to the centre one of whom he gave
+doing good "the Lord appointed other seventy "the keys of his kingdom." And in order to
+also, and sent them two and two before his qualify them to act in that important relation
+face, as lambs among wolves." Telling he invited them to go with him up into a high
+them to say unto all people where they min-mountain apart and there he unveiled to them
+istered that "The kingdom of God_is come his glory and the beauty of the heavens.
+-nigh unto you."
+He showed to them the pattern of heavenly
+And now again when the Lord is determin-things. There James, Peter and John gazed
+ed to establish Zion and to rebuild Jerusalem upon the brightness of the three, Moses, Elais
+upon her own heaps, when he has organized and Jesus, who stood before them. There
+his kingdom for the last time, when he has de- they received knowledge how they could use
+termined to bring in by IT "the rest that re. "the keys" in opening the gospel door to Jew
+inains to the people of God;" and to gather and to Gentile; and how to spread that gos-
+together in one all things in Christ both which pel to all the world.
+are in the heavens and which are on the earth, There they received knowledge and quali
+and to reign over them for one thousand years fications above any others then living upon the
+in perfect peace as King of kings and Lord face of the earth. Information which really
+of lords: he has to our great joy called into qualified them to be pillars-pedestals to
+existence a grand council or sanhederim of brace up and stay the whole fabric of the apos
+seventy ministers to stand with the first pre-tolic church. Jesus had other apostles but-he
+sidency of his church in bearing off this made. Peter, James and Johy his presiding
+-kingdom of God triumphant which he has or-prime ministers on earth. To them it was
+ganized among us. This is according to the given power to unlock the kingdom to both
+pattern of heavenly things shown to Moses Jew and Gentile. Peter was to that age
+and to Peter in the mountain, and now again what Moses was to the age in which he lived.
+unto Sidney who is now the first Elder of this And now again in "the dispencation of the
+kingdom of prophets, priests and kings unto fulness of times," when "the hour of God's
+God-who are called upon by virtue of their judgement is come," and the voice from heav-
+high office.and calling before God in this en is sounding to all the honest hearted in
+grand organization to minister righteousness, Babylon to come out of her my people, that
+peace, and joy in the Holy Spirit to all the ye bo not partakers of her sins, and that ye re-
+world.
+ceive not of her plagues." When the Lord
+This we find in the days of Moses THREE, has set his hand to organize that last kingdom
+TWELVE and seventy. In the days of the a- which "shall never be thrown, down or given
+postles there were THREE, TWELVE and to another people" we should look for him to
+seventy. And now again in this dispensation organize it with a quorum of first presidency
+of the fulness of times" there are THREE, of THREE in it, at its-head to hold the keys of
+TWELVE and seventy. The three dispensa it in order to receive the word of the Lord at
+tions or periods thus corresponding in the his month and communicate it to the people
+numbers of their ministry, and in their couns as in the days of Moses and of Peter. This
+cils thus organized ized the Lord met met with them, we believe the Lord has done for us, and that
+and manifested himself to them in great fer the pattern is again perfect; and now the
+cy
+kingdom can and will be built up unto the
+When the Lord began to exercise govern-Lord as in olden times.
+ment over the children of Israel, in order to This council of THREE is the centre of
+lead them from Egypt to Canaan he organiz-the highest authority which God ever gave
+ed among them a quorum, council or presi-to man on earth. The man who in any age
+dency of THREE men. That presidency he of the world occupies the centre in the first
+called up on a mountain apart from the rostol presidency of the people of the Lordas Moses
+the world, to act before him in a relation tordid, bears the same relation to the church of
+cach other, to the heavens, and to the camp of God which the eternal Father dogs to all the
+Israel, in a capacity different from all other freavenly hosts. He is in reality as Jethro
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 380
+**Source File:** page_380.json
+---
+
+said to Moses “to God-ward for the people.” Lord's people, who have not a quorum or
+That is, he is the Lord's seer, the people's council of three (and no more,) at their head
+prophet--who receives the law of the Lord in their church organization, are in the dark
+from his mouth and declares it unto the poor and their works are in the dark that is God
+ple. He holds the keys of the kingdom of does not reveal to them for their salvation; but
+heaven. But inasmuch as the Son and the they will as a people at the winding up scone
+Holy Spirit are one with the Father in bear- be turned on the left hand with all that forget
+ing record in heaven, so two counsellors are God. They may have cried Lord, Lord, but
+one with the seer in bearing witness on earth, they did not organize on the platform accord-
+and in the discharge of all his official duties, ing to the pattern which heaven had devised
+The pattern is complete. The first presiden and revealed to man in his sacred word as
+cy of THREE in the kingdom of God on earth clearly as the noon-day sun beam. There
+represents the first presidency of THREE in fore he cannot own them as his. They have
+the heavens, where God sits in the midst of by their folly forced him to say I know you
+all his glories beholding their order and their not-I never revealed myself to you, and you
+harmony.
+therefore know me not and must be destroy.
+From our youth up we have heard much ed.
+reasoning ahout the doctrine of the trinity- If we search through all the denominations
+the unity &c. of the Godhead. We_have of_christendom, Catholics, Greek church,
+thought much on the subject and have heard abject_and have heard and all_Protestantism, shall we find any of
+many comparisons made, (by the professedly either one of them with their ministry organi-
+learned,) in order to elucidate that deep, that zed into quorums of three, seven, twleve and
+all important doctrine of inspiration. But we seventy, except the "church of Christ?" If
+are free to confess that we never saw any it were necessary to have that peculiar or-
+thing that God had organized or made on earth ganization of ministry in olden time "for the
+among men, until we saw the church of perfecting of the saints, for the work of the
+Christ" organized with its quorum or coun-ministry, and for the edifying of the body of
+cil of first presidency of three at its head on Christ," we would ask can any people now
+earth, wherein "the invisible things of him in this nineteenth century, place themselves
+from the creation of the world are clearly seen, under a different form of church government,
+being understood by the things that are made, and yet grow into perfection? Can they have
+even his eternal power and Godhead; so that the faith, once delivered unto the saints, and
+they are without excuse." Rom. 1: 20. In not have that order of ministry through which
+the organization of the kingdom which can-the Lord always ministers the gospel to the
+not be moved, we can clearly see how this world? Nay, verily. And here we can see
+first council of THREE on earth organized or one great reason why the religious orders in
+made as a pattern of the THREE in heaven, the world are multiplying, or breaking to
+shadows forth "his eternal power and God-pieces and getting further and further apart.
+head," so that men are left without excuse. It is because the government of heaven has
+And in order that Jesus might more fully show beed rejected and men poor weak men have
+to his THREE prime ministers on earth how sought out inventions to govern what they
+"the fulness of the Godhead dwelt in him bod-call the church of God. The Lord has left
+ily" he took them up into an high moun-them to themselves because they desired it,
+tain apart where they saw "his glory, and and they are running to and fro, and denomi-
+the two men that stood with him." Luke 9: nations are incresing among them. Forins of
+32. Here in this vision three glorified person-church government areas abundant as the sects
+ages (Jesus in the centre,) appeared stand-are, all differing the one from the other, each
+ing together in the presence of the three who one claiming to be best, to have been drawn
+were chosen to stand holding the keys at the up by the most profound wisdom of men, all
+head in the kingdom organized on earth for based upon or having been drawn from the di
+the salvation of men. In this glorious viss vine oracles of God: but not the oracles them-
+ion the pattern of the Godhead was clearly selves. Nay, it would spoil their religion in
+seen on earth.
+a moment, if they were to acknowledge that
+There are THREE who bear record in God had directly revealed to them one-item-of
+heaven, and they are one. There are THREE their creeds.
+as a pattern of them to bear witness on earth, The Catholics declare that the Pope is the
+and they in all their official acts agree in one, head of their organization, he holds the keys
+God is the centre of three in heaven from of St. Peter, yet he has not two counesllors as
+whom all light and intelligence springs to all Moses and Peter had. Here we see a falling
+heaven and earth, and his seer on earth assist-away from three to one. And in their order
+ed by two counsellors is the medium through of ministry following they run still wider
+whom must be manifested all laws for the ins from that pattern given of the Lord. The
+struction and regulation of his kingdom here; head of the Greek church is the Patriarch of
+in order that all things may be done after the Constantinople-One man, not three. The
+council of his own will in heaven and on earth. government of the church of England is epis--
+Any church'or people claiming to be the copal. The kingis the supreme head. The
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 381
+**Source File:** page_381.json
+---
+
+Methodist church is governed by Bishops and lead, guide, or direct his church. He could
+their numbers are governed by the demand for not show to them whether he loved them, or
+their labors. Their general conference in- was displeased with them.
+creases them at pleasure. But here we will God is the fountain of all intelligence:-
+stop following the sects and parties who claim And it is the spirit of revelation only that
+to be christians, for the farther you go down opens up to man the medium to that fountain.
+the darker the picture grows relative to church Deny that spirit and man is in the dark. He
+goverment. And it matters not to us which then is forced to grope his way through the
+of their numerous forms is best or worst, so world. His spirit is restless. He flies to in-
+that we cannot find that form among them ventions. But his wisdom is folly. His in-
+which the Lord gave for the government of his ventions of creeds to govern the church are
+church. For the express injunction of heav- subject to mutation, to alteration, and to im-
+en to Moses was "to make all things accord-provement. After generations will set his
+ing to the pattern shewed to him in the mount," forms. rules, and modes of worship aside, saya
+The Lord has given a pattern of ministry in ing that he lived in a darker age, and form
+his word, and that people who establishes "a new ones for themselves; dividing and tear-
+kingdom which cannot be moved" must do iting asunder those formerly bound together un-
+precisely according to that pattern, or other-der the old established forms. Confusion and
+wise it will be shaken, moved, and blown to schism arises, envy, jealousy and every evil-
+the four winds; when "the Lord of hosts shall work follows-Thus the religious world are
+reign in mount Zion, and in Jerusalem, and going on and have been for centuries past, and
+before his ancients gloriously."
+would be for ages to come unless the Lord
+But having the precise organization, pat-had been kind enough to raise up a ministry
+terned after heavenly things, governed by cor-and endue them with "power from on high,"b
+rect, holy, just and good principles, and then with the spirit of direct revelation from heav- 8
+led by the spirit of all truth, God being theiren, so as to enable man as in olden time to
+father, Jesus being their brother and friend, commune with "the spirits of just men made
+angels being their messengers and ministers, perfect, with ministering angels, with. Jesus
+and prophets being their associates and com the mediator of the new covenant, and with
+"panions, they will triumph, gloriously tri- God the judge of all."
+umph over all the powers of darkness; and The spirit of intelligence, of revelation then
+bring in the rest of God, and universal peace is the one which should characterize every
+to the whole earth.
+minister of the "church of Christ." Without
+But we said that we would say something that spirit no nan was ever, in any age of the
+about the spirit that the ministry should pos- world, called to be a minister of the gospel of
+sess and manifest towards each other, and to- Christ. It is the spirit of prophecy that points
+wards the world in order to gain that final out men called of God to preach the gospel..
+triumph. The organization of heaven among Read Acts 13: 1, 2. 1st Tim. 4: 14.
+men anciently did not (when they were right The spirit that the ministry should possess
+before God,) even once think of ever being in the kingdom of heaven now set up among
+governed by any other principle than by di-us, "which cannot be moved," and that which
+rect revelations from God through their seers they ought to manifest to each other and to the
+They never assembled in conference in order world, must hear as its fruit love, joy, peace,
+to make creeds by their own wisdom to gov-long-suffering, gentleness, faith, meekness,
+ern the church over which the Holy Ghost and temperence: against which their is no
+had made them overseers. Nay, for that law. They that are Christ's elect messengers
+would have been a denial of their religion of to the world must live in the Spirit, and also
+the fundamental principle which governed walk in the Spirit, and not be desirous of vain
+glory; but each one esteem others better than
+them.
+The principle of communing with God was himself. Then they will have confidence in
+the dearest one that ever animated the bosom each other. They will walk together being
+of an ancient saint. Take that principle away agreed, being of one mind and one heart, and
+and such a being as a saint could not exist. the God of peace will dwell with them, Amen.
+Philadelphia, Aug. 24, 1845.
+
+The kingdom of God does not exist on earth
+except that principle exists in it. Except the
+spirit of revelation has been given to organize
+it, to govern it, and, then to carry it on to fu-
+ture triumph. It is that principle and privi-
+lege and that only which the ministry in that down to write a few lines to you: to inform
+kingdom possess of obtaining direct intelli- you of my health which is very good, and also
+gence from heaven through the medium of the that of my family, through the mercy of God"
+Holy Spirit, by the voice of angels and of pro- our heavenly Father. Thave felt to rejoice ever
+phets, that distinguishes it as the kingdom of since I saw you, and have all confidence in
+God. Without that spirit of revelation, of in- the work of God in these last days; and my
+telligence being possessed and understood on prayer to God is that the work may prosper
+carth among men, the Lord could not teach, for it is truly the greatest work ever commenc-
+
+Kirtland Oct 12, 1845.
+BROTHER ROBINSON,
+Dear Sir: I now sit a
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 382
+**Source File:** page_382.json
+---
+
+ed on the earth; it is that which is to fulfill To show the true state of the church, and
+the words of the prophets in former days con- give the full account of its re-organization,
+cerning the coming of Christ in power and and the establishment of the kingdom of God,
+great glory, to recompense to every man ac-and also set forth the doctrines of the kingdom
+cording to his work, whether it be good or in detail, as they are contained in the scrip-
+bad. May the God of all mercies prepare us tures, we knew would require a paper to be
+for that day.
+published oftener than once a month, there-
+It rejoices my heart to read in the papers fore we concluded to publish the first volume
+of the spread of the truth, and the effect it has, semi-monthly, which we have done at a re
+I feel incouraged in the prospect in this place, duced price-much lower in fact than we,
+for the spirit of the Lord is working in the could afford to do in justice to ourselves
+hearts of those who have not walked with the it has been attended with a vast amount of
+old church, on the account of things that were labor in preparing the matter, which is almost
+not according to truth; they seem to have a de- entirely original, and will compose when
+sire to know the truth, and we are trying completed, a work of 384 closely printed oc-
+to show themt he truth according to the scrip-tavo pages the expense also has been heavy.
+tures, the Lord working with us. Brother upon a few individuals, which however has
+Stoddard and wife have united with us, and been borne with cheerfulness, knowing the
+there are several more we expect will soon. importance of the work to be accomplished.
+We have good meetings here; we have the The great object for publishing this peri-
+Temple every Sabbath now; the twelveites odical being in a great ineasure obtained--
+are in trouble about it, but we are determined the church of Christ being re-organized upon
+to move steadily along as the spirit may di its original, and only sure foundation-and
+rect, that we may be blessed of our heavenly the kingdom of heaven established, and roll-
+Father. The twelvites are leaving for the ing forth with success and prosperity-we
+west, seven families left to day.
+I remain your brother in the
+New and everlasting covenat.
+LEONARD RICH.
+
+# PROSPECTUS
+## FOR THE SECOND VOLUME OF THE
+### MESSENGER & ALVOCATE
+
+As the first volume of the MESSENGER AND communicate their feelings and success in the
+ADVOCATE is drawing to a close, we deem ministry. No pains will be spared, on our
+advisable to give our patrons and friends an part, to make the Messenger an interesting
+early notice of our intention to continue its and useful sheet, such an one as the wants of
+publication.
+the saints demand; and we entertain no fears
+The comencement of this paper was under that we shall be suffered to pass unrewarded
+circumstances very peculiar and trying. We for our toils.
+were under the painful necessity of lifting our TERMS:-One Dollar per annum, paya-
+pens and voices against an apostacy the most ble, in all cases in advance; as we cannot
+daring, and of opposing doctrines the most send the paper to any except the pay accom
+revolting, demoralizing, and destructive, that pany the order. Any person procuring five
+ever-mortals were called upon to witness; es new subscribers, and forwarding us five dol-
+pecially in a civilized community; and wellars current inoney, shall receive one volume
+think it exceedingly doubtful if the history of gratis. All letters must be addressed to the
+the most barbarous or heathen nations can publisher, Post Paid, to receive attention.
+show a parallel; we mean the private teachings
+E. ROBINSON.
+and practices of the leaders at Nauvoo.
+To save the church of Christ from an entire Table of contents for the first volume of the
+ruin and, overthrow, required an effort worthy Messenger and Advocate.
+of the high and exalted end to be obtained. To the public
+This effort we felt willing to make, agreably Letter of J. A. Forgeus
+to the requirements of our heavenly Father. Minutes of conference
+knowing that with his aid and blessings this Letter of J. M. Greig
+glorious object could be accomplished; and wes Rigdon's reply
+have the unspeakable privilege of seeing that B. Winchester's letter to the saints
+our labours have not been fruitless or van, but Editors remarks on Nauvoo
+have been attended with abundant success, J. H. Newton's certificate
+through the goodness, and under the guidance Prospeetus
+of him who hath said, "though heaven and
+earth pass away, not one jot or title of my samnel Bennett's letter to the churches
+word shall fail."
+
+No. 1
+Page
+4
+ib.
+11
+12
+ib.
+14
+15
+16
+ib.
+No. 2.
+Reply to J. M. Greig concluded
+17
+The gospel as proclaimed by the apostles
+25
+28.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 383
+**Source File:** page_383.json
+---
+
+Affairs at Nauvoo Editorial
+Editorial-To our friends
+Letter from S. G. Flagg
+Communication of An Observor
+No. 3.
+A circular from the church in Pittsburgh
+to the churches throughout the world
+The first Presidency
+On the law of God
+The Editors absence
+G. J. Adam's debate with O-Bachelor
+Intelligence from the churches
+Extract from Book of Covenants
+Notice of the Nauvoo Neighbor
+Notice of O. Hyde
+-Material for-the-man of sin
+To the saints
+New York Prophet
+Letter from R. Savary to G. J. Adams
+Trial of the first presidency
+Church government and N. Y. Promet
+Natuvoo and the leading men of thatcity
+Ho the Mormons by JE Page
+No. 4.
+The Celestial Law-
+Kingdom of Daniel
+Reply to Old Man in Israel:
+Notice to agents and correspondents
+On the duties of man:
+Darkness that can be felt
+The prince of inobocrats again
+The Mormons approaching infidelity
+Brigham Young and bogus making:
+Wim. Smith,s call to the churches to raise
+money to prosecute
+Communication from E. Robinson
+do do A. Falconer
+do do J. H. jr.
+N. Y. Prophet and H. Newten
+No. 5.
+The Temple
+The Bible as a book
+Letter from Wm. Small
+Communication of R. Savary
+Province of reason in religion
+Cheering news from the churches
+Those who live in glass houses should not
+throw, the first stone
+On prayer
+Editorial notice of O Hyde
+Influx of Jews to the Holy land
+Carry out the measures of Joseph Smith
+The apostates and rebellious spirits at
+Nauvoo
+Letter from E Robinson
+Falsehood of the Apostates
+Poetry
+No. 6.
+Infidelity No. 2
+Gospel of Jesus Christ
+History of Pres. Rigdon's mission to the east
+Sayings & doings of the apostates at Nauvoo
+Wm Smith's charge agaist W Woodruff
+Letter from Wm E McLellin
+Letter from ER Swackhammer
+Minutes of conference held in Cincinnati
+Letter from C. Seichrist
+"The saints in Pittsburgh, to the saints scat-
+tered abroad, send Greeting
+Nauvoo the Mormons
+No. 7.
+The purposes of God
+Condition of Nauvoo and vicinity
+31 Letter from London
+103
+ib. Salutatory
+104
+32 Authority of the apostate twelve
+105
+ib. Shifts of the spiritual-wife men
+106
+PP Pratt's proclamation
+ib.
+Superiority of mind over matter
+ib.
+33 To the saints throughout the world
+108
+35 Letter from DK
+110
+40 Answer to the same
+111
+41 Another rescue
+ib.
+ib. Poetry Apostacy of the church
+ib.
+No. 8.
+42 The purposes of God-Continued.
+1-13
+ib. Parable of the Prodigal Son
+1.15
+ib. Communication of A. F, To the Saints 117
+ib. Extract of a letter from Nauvoo
+118:
+ib. Communication of J, Parsons
+118
+43 Letter from: John Frazer
+120
+ib. Minutes of a conference at Six Mile Ferry ib
+44 The force of truth
+ib
+46 The Nauvoo Neighbor
+122
+ib. Elder Hardy's trial
+ib
+48 The progress of the work
+123
+Interesting Dialogue
+ib
+49 The Mormons.
+125
+52 John A. Eaton's Letter to J Hardy
+127
+5 Benj Winchester's Letter to do
+ib
+56 Poetry-A song of Zion
+128
+ib.
+No. 9
+ib. Benj F Grouard letter from Otehiti Island 129
+57 Letter from Samuel James
+ib
+ib. Communication from John Hardy
+131
+ib.
+do "James M Greig
+132
+To Brigham Young
+135
+ib. The Sabbath of rest
+137
+58 P. P. Pratt's call, to defend Nauvoo
+139
+60 Letter fromWm. Hutchings
+ib
+62 Minutes of a conference in St. Louis
+140
+64 do do in Leachburgh Pa ib
+Communication of J. Logan
+ib
+65 Cheering intelligence from our friends
+141
+67 A beautiful parable
+ib
+69 Remarks on H. Rowe's communication
+ib
+70 Mormonism-Spiritual wife Doctrine
+142
+ib. Mormon meeting
+143
+73 From Nauvoo
+ib
+Pittsburgh Morning Post,
+ib-
+ib. P. P. Pratt's desire
+144
+74 Poetry Father and Son
+ib
+No. 10
+ib. President Rigdon's visit to Kirtland
+145
+75 On the present state of the world
+146
+Communication from Wm. E. M'Lellin
+149
+ib. Lamentation for the daughter of Zion
+151
+79 To our patrons
+152
+80 Coming forth of the Book of Mormon
+ib. Jesus, a pattern for the saints
+ib
+153
+President, Rigdon's return from Kirtland
+154
+81 Letter from J. Gibson Divine
+ib
+84 Communication from Wm. E, M'Lellin158
+88 Poetry-Mercy tempering justice
+159
+90 Obituary of Asa Works
+ib
+No. 11.
+ib. A Sermon dedicated to the Saints of the
+last days
+161
+94 Editorial notice of the conference
+167
+95 Name-of the church
+168
+Minutes of conference in Pittsburgh, Ap'l 6 'ib
+ib. Preamble and resolutions of the Church
+176
+96 Conference notice
+ib
+No. 12
+97 Essay on future events By S. Rigdon
+197
+101 A word on the progress of wuth
+185
+www.LatterDayTruth.org.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 24 | **Page:** 384
+**Source File:** page_384.json
+---
+
+# Earthquake in Mexico 176 Baptisms in this city 281
+# Minutes of conference in Pitts. Concluded ib Kirtland and the church ib
+# Address of the Committee of the Church of The Book of Mormon ib
+# Christ to the Citizens of the U. States Letter from J Hatch Jr 282
+# and the world, on the subject of the organ- Communication from A. ib
+# ization of the kingdom of God spoken of Parable of the sower 283
+# by Daniel
+# Letter from C. A. Rogers 170 Letter from Louis De Buren 284
+# Important to the Mormons 192 Reply 285
+## No. 13.
+# Essay on future events No. II. 192 Sermon No 3-By S. Rigdon 280
+# Letter from E. R. Swackhammer 197 Extract from the Book of Mormon 295
+# Progress of the work since conference 200 Call to attend conference 296
+# Reply to the Pittsburgh Gazette 201 President Rigdon's return from the east 297
+# Essay on the prophecies & coming events 203 The church ib
+# J. G. Divine's letter-P. P. Pratt 207 Letter from Tho's Crawford- ib
+## No. 14. Plan of Salvation- 298
+# Essay on future events-No II. 206 Extract from letters 300
+# Communication from R. Kincaid 214 Repentance ib
+# Progress of the gospel of the kingdom 216 Letter from Wm E M'Lellin 302
+# Reply to the Pittsburgh Catholic 217 do do NB-Helverson 303
+# To the various branches of the Church 219 Conference notice -304
+# To the public 220
+# Communication from E. R. Swackhammer ib Withdrawal of fellowship from GC Smith ib
+# Extract from the "Ensign" ib
+## No. 20
+# Extract of letters from Elders Benj. Win- Plan of Salvation-Continued from p. 298 305
+# chester Wm. Hutchings, Benj. Staf- Remarks on anonymous letters 314
+# ford Sam'l. A. Forgues 222 Letter from JH Newton 315
+# The Mormons 224 do do John Frazer 317
+## No. 15. Essay on the prophecies-Contin'd from p 250 ib
+# Sermon No. 2-On man By S.. Rigdon 225 Communication from J. Cooper 219
+# Essay on the prophecies-Continued
+## No. 21
+# Letter from G. M. Hinkle 229
+# Spread of truth and the spirit of inquiry 231 Essay on Priesthood-By S Rigdon 321
+# Editorial notice of L. M. Davis' letter 232 Second volume 328
+# The people of Nauvoo 233 The church ib
+# On Prayer-By S. Rigdon ib Remarks on H Herringshaw's letter ib
+# History of facts. 234 Essay on Life and Death-By S Rigdon 329
+# Communication from ER Swackhammer 235 Letter from Andrew S Taylor 331
+# Letter from J. Hatch and R. Ellis 237 do do JM Greig 332
+# do do Henry H-Wade 240 do do Wm E M'Lellin 333
+# do do L M Davis ib do do J Hatch Jr ib
+# do do JA Forgues ib do do James Blakeslee 334
+## No. 16 do do Austin Cowles, ib
+# Sermon No 2-Continued 241 do do N B. Helverson 338-
+# Instruction to the Saints 248 Poetry 226
+# Protestant Unionist 249
+## No.22
+# Nauvoo once more ib Treaties on the calamities of the last days 337
+# Essay on the prophecies-Continued from ib Treaties on Condemnation 342
+# page 229 250 Remarks on the difficulties in the west ib.
+# Letter from Wm E M'Lellin 251 Reflections on the duty of man 246
+# do do ER Swackhammer 254 Letter from Tho's A Lyne 347
+## No. 17 do do James Blakeslee 348
+# Sermon No 2-Continued from page 240 257 Anti Mormon outrage ib
+# Essay on true and false prophets 259
+## No. 23.
+# A word about writing letters 264 Essay on the gospel 353
+# Our news from the Elders abroad ib On perfection 359
+# Of a letter from JA Forgeus ib The conference ib
+# Extracts from letters 265 From the Elders 361
+# Communication-the Mormons ib Letter from G. M Hinkle ib
+# Letter from Wm E M'Lellin 267 Miracles in the last days 362
+# do do NB Helverson 268 Lecture on Faith 367
+# do do Wm Hutchings 270 Singular Phenomenon on Lake Ontario 366
+# do do James Blakeslee ib Mormon news ib
+# do do R. Kincaid, 271 Poetry on the second advent 367
+# do do B Winchester 272 Obituary notice of Mariah M. Leach ib
+# do do T. A. L. ib
+## No 18
+## No. 24.
+# Extract from the prophecy of Enoch 273 Essay on the gospel-Contin'd from p 353 369
+# Un faith 275 Elder Rigdon's visit to New York 376
+# Extract from the Book of Mormon 279 To our patron's ib
+# To our subscribers and agents. 281 Wm. Smith's expose of the twelve 377
+# President Rigdon's departure for the east ib The kingdom of heaven 15
+# Letter from Leonard Rich -381

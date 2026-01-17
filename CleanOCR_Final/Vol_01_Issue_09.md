@@ -1,0 +1,1199 @@
+# The Latter Day Saint's Messenger And Advocate
+## Volume 01, Issue 09
+
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 129
+**Source File:** page_129.json
+---
+
+# LATTER DAY SAINT'S
+# MESSENGER AND ADVOCATE.
+VOL. 1 PITTSBURGH, MARCH 1, 1845 No. 9.
+We have just received the following very in- the natives, and those who are left are none the
+teresting letter from Otehiti, which will, no less busy. We have only baptized four white
+doubt, be read with pleasure by all who love persons, but there are a number more believ
+the truth and desire the prosperity of the king ing, who, we hope ere long will be obedient
+dom of Christ. The Lord has truly set to the truth. The natives, what few we have
+his hand again the second time, and the honest terested, and are very desirous of hearing, it is
+are rejoicing in Israel's God, for his arm is something which appears congenial to them-
+making bare, and he is accompa ying the something adapted to their capacities. We
+word with signs following:-
+beg an interest in the prayers of the saints,
+that we may be prospered and blessed in our
+Lission, and return in safety to the church and
+ur families. We entreat you also to embrace
+Otehiti, 19th Sept. 1844.
+RESPECTED BROTHER, I have made bold every opportunity of sending us news, as I
+to address a few lines to you, which I hope assure you every scrap we can get respecting.
+will be interesting to you, and also to all the the church will be sacred to us. Salute the
+saints who are anxious for the spread of the saints for us.
+gospel. Brother Rogers has written to Ameri- Yours in the hond of the covenant,
+BENJAMIN F. GROUARD..
+For the Messenger and Advocate.
+Laharp, III. January 28th, 1845.
+PRESIDENT S. RIGDON:
+ca a month or two since, giving a statemen
+of the affairs here, that is in a political point
+of view, which I am sorry to say, are not muc
+better now than when he wrote. The natives
+are still under arms, the greatest part of them
+waiting for orders from the Queen, who has
+gone down to some of the leeward islands. Dear Brother, This evening 1 take my
+But in all probability the natives will eventu pen to answer your leter, which came to hand
+ally have to submit, which being the case, the yesterday. The cheering intelligence it con
+. quicker they do so, the better it will be fortained, was a source of much pleasure and
+them, both in a spiritual and temporal point gratification, to hear of your prosperity in your
+mission to the eastern cities, and that the Lord
+of view.
+Brother Pratt is still at Tooboni, a small is still working, confirming the word with
+island, 300 miles from this. We received a let-signs following. In consequence of a multi-
+ter from him a few days since, which brings tude of business, I have been prevented from
+cheering news to us. There are on the island writing sooner, but I shall hereafter (no pre
+eight or nine American mechanics, who are venting providence) keep up that correspon-
+building a schooner there. They have all bulence which ought to exist among brethren,
+one offeyed the gospel, and also quite a num to carry into effect those principles of eternal
+ber of the natives, among which I expect are truth, which have been devised for the salva-
+the king and one of the head chiefs of the ition of the human family. Jam making every
+land, as Brother-Pratt wrote us they had giver arrangement to come to Pittsburgh in the
+their names for baptism. He has organized a spring, that I may more fully engage in the
+branch of the church there, and there is every work, and stand in the place whereunto I have
+prospect of an abundant harvest.
+been appointed. I see you have given Marks
+Brother Rogers and myself have not, owing passing notice. I was not a little surprised
+to the unsettled state of affairs, made ont quinin seeing his notice in the Neighbor. Asliort
+so well on this island. Yet notwithstanding time af er I visited him, and irquired why he
+the Lord is clearing the way before is, and had pursued such a course. Said he, 'I have
+we anticipate ere long an abundant harvest Tuto darkness, and know not who are ight.
+from our labors. In a recent battle that was we had a warm time, said he. (referring to
+fought between the French and natives, there treing brought before the council) and they de..
+was an English missi nary killed, in conseclared I should sien that paper or be expelled;
+quence of his foolistly exposing himself. I took it home, showed it to my wife, and she
+Shortly after this accident they concluded to said sin it. I did so, and returned i. Said
+leave the island. To but there (their numbe me, the twelve vere there is my accuseis.
+formerly being 11) which they since have hey inquired whether I believed Rigdon
+dove. Tus, what has been less to them, hoss uld stand at the the dof the church? Tre-
+been gain to us, in taking out of our way pled, he is ordained to the highest office of any
+set of men who were engaged with every er one in the church, of whom I have any know.
+ergy of their soul, to destroy our influence with ledge. I said, gentlemen, have you any or
+www.Latter Day Truth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 130
+**Source File:** page_130.json
+---
+
+# 130.
+
+dination higher than that which I have receiv-when he was ordained. He either knew not
+ed myself? They said, No. I then inquired what those keys were, or perhaps was asham-
+upon what do you predicate your authority to ed to tell, and I was left without the informa-
+lead the church? They said, we were at the tion. I then inquired if they had filled up the
+Mansion sometime before Joseph's death, and quorum of the twelve since Brigham has been
+he said to us, Brethren, I am tired hearing the appointed president of the church. Said he,
+burthen of the church, you must round up every officer can officiate in all the offices be-
+your shoulders, and bear it till 1 fest.. Said I. low him.. Iam aware of that, said I, but we
+is that all the authority you have received? should observe the pattern that God has given
+They said, yes. Mr. Marks then told me he us, by keeping all the quorums perfect. The
+was present when the twelve were ordained. pattern may vary (said he) according to cir-
+and Brigham Young was ordained under Hy-cumstances. Not in the same dispensation,
+rum Smith, to the office of prophet, priest, and said I. O, yes, said he. We were then in
+king, and Brigham ordained the rest of the terrupted, and our conversation closed, leaving
+twelve to the same office. And that he me under the impression that he was not-in
+(Marks) was ordained to the same office under possession of a sufficiency of wisdom, and, I
+the hands of Joseph Smith. He also stated may add, knowledge enough on that subject,
+that he was present when you received your to correct the errors of any man. He is, like
+ordination, under the hands of Joseph Smith; those who adhere to the same principles, principles, as
+that it was as follows: "I ordain you to be blind men traveling in darkness, while the
+a prophet, seer, revelator, and translator, to be light of truth, and the pattern that God has
+equal with me in kolding the keys of this last given, is presented in bold relief, that the most
+kingdom, but not to excel: even so. Amen." superficial observer can discover the principles,
+He then said, I have no confidence in these and organization of the kingdom of God. Thus
+fellows (referring to the twelve and others) every one acquainted with the facts know that
+they are as full of the devil as they can live. the pretended authority of these men rests on
+They will soon break up here; and some will a false foundation. I will now give a short
+go to the west. Will you go to the west? sketch of Brother Brigham's history. A few
+said 1. He said, no. Said I, Brother Marks, weeks ago I was at a meeting in Nauvoo,
+do you remember saying to me, that you had Brigham made his appearance on the stand,
+made it a subject of prayer, and had got a tes-assuming a great deal of dignity and self-im-
+timony that Mr. Rigdon was the man to stand portance. In the course of his remarks, said
+at the head of the church, and you had made a he, some want to know whether they must ob-
+covenant before God, though all men forsake serve counsel, said he, you must take counsel,
+him you would not? Said he, I do. Well, I but some will say we will take counsel it inis
+said, remember the consequences.
+good. I say, if you exercise your judgments,
+I have been informed that Erastus Snow, and do not take the counsel of the twelve you
+in conversation concerning Marks, said they will be damned. There is that temple to be
+had no confidence in him, but had got him built; some have prophesied it shall not be
+where they wanted him; they had destroyed built, but I prophesy it shall be built; said he,
+his influence!
+I would prophesy it should be, if I knew it
+1 frequently think of the saying of the Sa-would not.
+vior: The ox knoweth his owner, and the ass He then spoke of the women and boys be-
+his master's crib, but Israel doth not know, ing unruly, and they must take measures to
+my people doth not consider.
+keep them in subjection. He spoke of the
+- In a conversation with Orson Pratt, a few mayor and other officers not doing their duty,
+weeks since, he commenced by saying, Do then said he, if you will not do as 1 say, I will
+you still believe that Rigdon is the man who tell you what I will do, I will go off and leave
+should stand at the head of the church? Said you, and take as many with me as will go, like
+"I, Having thoroughly investigated the subject, Lyman Wight. This confirms the statement
+I am firmly established in that principle; but of Marks. Query, If Brigham Young would
+I am now, (as I always have been since I came give counsel that is false, and prophesy a lie,
+into this church) open to conviction. Now, what benefit would those receive who believed
+sir, if you see my error, it is your duty to cor and obeyed his dictation. The corruption of
+rect it. Said he, Perhaps I have not wisdom his heart is still furthermore made manifest,
+enough. Said I, You stand in a place where when we také into consideration his views
+there should be a sufficiency of wisdom to with respect to the counsel and ordinances of
+correct every error. He remained silent. Iheaven being administered. In a sermon de-
+continued, Iam not partial, but am satisfied livered in La Harp, (last winter) afier shame-
+with the man that God appoints; being or fully abusing the elders present, said he, many
+dained according to the law he has given on will go around the twelve to Joseph for coun-
+the subject, in the Book of Covenants. Said sel, and he will tell them any thing, and when
+he, Brother Young has keys that Rigdon has they leave, he will curse them for fools, that
+not..
+they knew no better.
+I inquired what those keys were, and how And speaking concerning your ordination,
+he obtained them. Said he, I was not present at the time those bulls of excommunication
+
+www.Latter Day Truth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 131
+**Source File:** page_131.json
+---
+
+were hurled forth, like a thunderstorm, with-cussion, on the claims of Elder Rigdon to the
+out mixture of mercy, said he, Joseph ordain-presidency of the church of Christ, the Doc-
+ed him because he wanted to go east, to get trine and Covenants, &c. being rules of evi-
+peaches, and apples, &c. &c. Most shame-dence. I continued its publication two weeks,
+fully ridiculous! That that man whom God but ascertained that they dared not abide the
+had called to stand at the head; to counsel, written law, knowing it would condemn them.
+ordain, and set in order all the affairs of the I see by the "fallen prophet," that Parley P.,
+church in this last dispensation, that he should of spiritual wife notoriety," after giving his
+be permitted to trifle with the consciences of chum, G. J. Adams, a wholesale rebuke for
+men, and abuse ordinances with which God swindling the saints out of money, has gone at
+had intrusted him. At the same time-declar-it himself, and the poor dupes weekly bow
+ing. if any man would speak a word against their faces to the "grindstone," as their names
+Joseph, he (Brigham) would knock them off in the "false Prophet" testify. If that is the
+ne stand. See the blindness of the human only thing that will bring them to their senses,
+heart, when deprived of the Spirit of God, and the Lord help Parley to swindle them to their
+the light of truth. Lhaveja better opinion of heart's content. There are two of the Boston
+the God that I worship, for he says if Joseph twelveites that have parted with a few hundreds
+should ever transgress, he should not have each, and they have Parley and Brigham's
+power, except to ordain another in his stead. names for security. When they receive pay
+Brigham Young knows the fact that you have I will inform you! though it is hinted to me
+"the legal authority placed on you, and would that it will be the same time that Adams goes
+try to hide his usurpation, under this refuge of to Russia, with his " sub-marine" infernal ma-
+lies and misrepresentations The great effort chines! which machines cost the saints from
+of the twelve and their adherents, is to prevent 3000 to 4000 dollars to my personal know-
+their people from hearing, they dare not inves-ledge, and where is the money? Echo an-
+tigate the subject before the public. Lightswers where, unless Isaiah may be allowed
+has come into the world, but men love dark-to answer, 3: 14, "Ye have eaten up the vin-
+ness rather than light, because their deeds are yard; the spoil of the poor is in your houses.
+evil. They will not come to the light lest The twelveites here are resorting to the most
+their deeds should be reproved..
+Yours respectfully,
+SAMUEL JAMES.
+To President S. Rigdon.
+
+For the Messenger and Advocate.
+Boston, Feb. 4th, 1845.
+No. I.
+
+DEAR BROTHER,-1 now improve a few
+leisure moments in the agreeable task of ad-prominent elders of the church to eat their in-
+dressing a few lines to you on the affairs of terpretations of prophecy, and thereby prove
+the kingdom of our Lord and his Christ. Our themselves false teachers, even from the be-
+prospects here in Boston, taking all things into ginning. For instance, the 12th chap. of Rev.
+consideration, are flattering indeed, Wehave instead of being fulfilled in the rise and fall
+leased a commodious hall, over the Boylston of the primitive church 1800 years sice, all
+Market, in Washington street, where we hold yet remains to be fulfilled in the church of the
+meetings regularly on Sundays and Thursday last days. The loss and restoration of the
+evenings, and other evenings we hold meet-priesthood, which has been the theme of so
+ings at private houses. Our number is at many eloquent sermons by the apostles of this
+present 10, that-have organized with us in full, church, has, by these wise heads, been proved
+and there is quite a number that meet with us, to be all stuff! and the priesthood has got to
+that have not yet joined us, and many that he restored at the dedication of the Nauvoo
+have turned from the apostates, and are nearly Temple!!
+ready to give up the whole work, in conse O, ye Pratts, and Pages, and Adamses,
+quence of of the awful corruptions that have hide your diminished heads, while the oracles,
+manifested themselves among the twelve and Nickerson and Browntake the rostrum. The
+their adherents. We have had the Spirit of great red dragon, with seven heads and ten
+God manifested among us in our meetings re- horns, which is to stand ready ady to devour the
+cently in a remarkable manner, which has man child, and to draw the third the third part of the
+caused us to rejoice in the God of our salva-stars of heaven! is Sidney Rigdon! And the
+tion. war in HEAVEN was between Michael and his
+The apostatos here keep an "awful quiet" angels, and Sidney Rigdon and his angels!
+on the subject of the organization of the And the dragon, the old serpent, called the
+church, which shows good sense, though not Devil and Satan is Sidney Rigdon!! The
+much honesty. I published in the. Boston whole of that chapter, and similar ones they
+Daily Bee a challenge to all the elders of the explain in the same laughable manner, in or-
+apostates in Boston, to meet me in public dis-der to support their rotten and sinking cause.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 133
+**Source File:** page_132.json
+---
+
+Sidney Rigdon is the seven-headed and ten council acted without a first president. See
+horned dragon. Sidney Rigdon is the false Book of Doctrine and Covenants, sec. 5. par.
+prophet that will call fire down from heaven. 5. 2dly, the high council was not lawfully
+Sidney Rigdon is the self same man, or angel, organized. Sec. 5, par. 7. 3rdly, the law
+that fought the battle in heaven with Michael, was not complied with in sec. 5, par. 8. 4thly
+even Lucifer, that was cast out to the earth the council was called by persons havin noau-
+and Sidney Rigdon is the Alpha and Omiga thority to do so at a stake of Zion, $ c. 3, par.
+of prophecy. Dear brother, Ishould look up-12. The twelve travelling high council thus
+on these things with astonishment, had notcting in the office, and not under the direction
+the Lord said, by the mouth of one of his ser of the first presidency. Ad. Sthly, because
+vants, speaking of these very sa ne characters, the charges gainst President Rigdon were not
+that he would send them strong delusion, substantiated, as will appear when we come
+that they might believe a lie and be dainued, to examine the evidence-in detail.
+because they receive not the truth, but have We ay also, that the decision is void upon
+pleasure in unrighteousness," vide the spiri principles of common law, common justice and
+tual wife systein; therefore the most absurd common sense. Upon principles of common
+and ludicrous, statement that comes from-trem law a citation should be issued by a perion
+surprises me not, they being as "natural brute competent to try; accompanied by a copy of
+beasts, speak evil of the things they under the charges, which was not the case in this
+stand not, and shall utterly perish in theirow instance.
+corruptions." In my next I will give an in- 2lly. The witnesses wereincompetent: "a
+terpretation of a certain portion of Jabu's Re nad man or an idiot, when subject to frequent.
+velations, something that the apostates are litr currence, are incompetent witnesses."-See
+tle aware of, and if they do not get sick of ap Roscoe's Crir. Evd. 963, for reasons stared in
+plying "Revelations" to Mormonism, then Gibb's Evd. 139.
+Adams will not go to Russia and convert "It is a general rule that a person who is to
+Michael the Princes I will show the to elvites be the gainer or looser in the event of the cause
+abas spiritual wifeiles, that two can play upon in which he is called to give evidence is in-
+one instrument, with what success judge afier competent, and cannot be mi ed. 2d.
+reading. The spiritual wife doctrine begins Hawk P. C. 46, and 1st MeNully's Evd. 53.
+to work in New Bedford: it is a system tha Upon principles of common justice, because
+will work out its own core, only let it alone-the most shamefal efforts were made by the
+the harder they deny it the faster it manifests twelve and their associates, to forestall publ.c
+itself. The saints here stand firm, and are res opinion, by inflammatory speed hes, both in
+joicing in the Lord.
+public and in private, Characterized by the
+Yours, &c. JOHN HARDY nostoutrageous falsehoods, and violent de
+P.S. The twelveites here have been so ba dinunciations. Meetings were called in differ-
+pushed that one of their elders wrote 400 miles, ont parts of the city, at which persons were
+to a man out of the church, to have him write engaged, privately filling the minds of the peo-
+against me, offering him pay for his trouble, ple with the poison of prejudice. And upon
+but instead of complying he sent him a most principles of common sense the decisionis void,
+withering rebuke. So much for the honesty
+of the Boston apostates!
+J. H.
+because the same persons who accuse Presi-
+dent Rigdon, denounce him, also prejudged
+him, by first withdrawing the hand of fellow-
+ship, then appear as witnesses, and pleaders
+### For the Messenger and Advocate..
+BROTHER BENNETT:-Realizing the neces against him, thus usurping the prerogative of
+sity of discharging every duty, that in the day the high council, and then, to "cap the climax"
+of days, blood may not be found upon our gar-having, as they said, actually cut President
+ments. 1 propose for the benefit of the saints, Rigdon off-(cut th mselves off) the twelve send
+to investigate the matter of Pres't. S. Rigdons Orson Hyde to St. Louis, who, through Bro-
+trial of Sep. 8th 1844 ther William Small, offered, in behalf of the
+To doso understandingly, the reader should welve, that every thing which had been said
+have the Times and Seasons, and book of Doc against President Rigdon, should be removed.
+and Cov. before him while we proceed to if he, President Rigdon, would wou come back and
+consider the general features of the trial, as to council with them. Void, we repeat, because
+legality, and propriety. What I mean by le he witnesses were permitted unrestrained to
+gality is according to the law of the church, abuse and insult the character of President
+as contained in the book of Doc. and Cov. Rigdon, before the high council and the pe
+and what I mean by propriety is according to ple, showing show plainly two things. 1 that
+common law-common justice-and-cominow the high council were unacquainted with, er
+sense; after which I propose to examine the regardless of their duties, and also that the
+Testimony in detail. witnesses were incompetent, rendered so by
+We assure them that the act of expulsion anger and prejudice.
+passed against President Rigdon is void, upon And lastly void!! because the whole affair
+principles of law: because, 1st, the high was a most ridiculous burlesque, upon ciril
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 133
+**Source File:** page_133.json
+---
+
+jurisprudence, and insulting to reason and in their ministry for the salvation of Zion, and
+common sense. Now for the charges and of the nations of Israel, and of the Gentiles, as
+evidence. The reader will please remember many as will believe, that through your ad-
+that we take their ir own repor of the trial, and ninistration, they may receive the word, and
+alth agh many things which transpired at the through theis administration, the word may go
+time have been by them suppres-ed, but we forth to the ends of the earth, unto the Gentiles
+will ju 'ge them by heir own account of this first and then behold, and to they shall-turn
+most shareful affair. Here the reader is run,o the Jews: and then cometh the day when
+ferred to the Times and Seasons, October and the arm of the Lord shall be revealed in power
+November, 1844
+in convincing the nations, the heathen nations,
+We commence with Brigham's testimony. the house of Joseph, of the gospel of their sal-
+in par. 2, after an st singular application of vation."
+much every way," (by the way Brigham is As this organization appears to be the bur-
+siugular, much every way you can fix him: den of all the testimony, we wish the reader
+it is said that on a certain cecasion in Mi-ozobserve that it can have no bearing what-
+somi, he took a most singular fancy to his ever upon the charges, for the reasons above
+wifes Light-dres-)he winds up by enumerat stated. We now present to the reader the
+ing six or seven pnics, the twelve forming charges, which will be found on page 649,
+the seventh or list. In par. 3, attempting 1 per. 2. as follows:
+amalgamate some of the parties, he tells a mos "Elder Rigdon has not conducted himself
+mahcious falsehood, and that, too, under the like a man of God, nor a councillor to the first
+solemn obligations of a witness, by saying presidency, since he came here from Pitts-
+that the adherants to the Book of Mormon. burgh." As to the 2d part of the charge, we
+Book of Doctrine and Covenants, and will say, had President Rigdon degraded himself
+form a party in contradistinction to the adher so much as to have taken council of that
+ants of President Rigdon, as the first president. welve-headed, would-be presidency, we would
+Par. 4. Brigham commences doing business nost freely have confessed him guilty of the
+for the benefit of L. Wight, J. Emmet, and tirst part or the charge, for what honest man,
+others, which, though rather a wholesale to say nothing of a man of God, would have
+business, may be right for aught I know, butassociated with so desperate a set of men,
+the inference intended in the remark relative the whole question then for consideration is,
+to L. Wight, is false, and he knew it to be so has" President Rigdon conducted himself like
+at the time.
+man of God since his return from Puts-
+I cannot stop to notice all the irrelevanburgh?" Not at Kirtland, not at Missouri,
+matter contained in B. Young's testimony, but but for the last three weeks? Brigham finish-
+the fact that he has travelled months with led his testimony for the present by repeating,
+blood in his shoes is too good to be forgotten." Elder Rigdon has ordained persons, to be
+but what his inveterate sores has to do with prophets, priests and kings." And introduc-
+President Rigdon is more than I can imagine. ed Orson Hyde, who testified to a long rigma-
+Page 748, opened with a virtual admission role of what happened to him in New Haven,
+that President Rigdon is the first president of and elsewhere.
+the church, however this admission is followed 2d itein, That President Rigdon attempted
+by the assertion that President Rigdon had to ensuare the people, and allure their minds
+ordained men to be prophets, priests and kings. by his flowery flowery eloquence, (note) what to do
+Note, if the admission is good for any thing O. H.? Good or evil? According to your
+the ordinations were good and proper, because. own testimony, President Rigdon repeatedly
+1st, the first president had already ordained said, ihat he did not wish to divide or injure
+persons to the same office, as will appear by the people, St. Paul might be damned for the
+Elder Marks' testimony. And, 2d, because same thing if it had happened to be a damna-
+none but a president can ordain a prophet. ble offence.
+As long as the twelve will admit that S. Rig 3d item. Orson Hyde says that the church
+don was the first surviving presiden, so long nas twelve heads; that Joseph appointed.
+we may safely admit the fart of the organiza them. Though this proves nothing against
+tion of the School of the Prophets, but it President Rigdon, yet it proves one of two
+they track out of the admission which, from things-either that Orson Hyde testified false.
+their inconsistency, we may expect, then wely, or that Joseph transgressed the command.
+rest our case on the 85 section of the Book of Dent of God. See Book of Doctrine and Co-
+Doctrine and Covenants:
+venants, sec. 14:
+"And again verily I say unto thy brethren, "And this ye shall know assuredly, that
+Sidney Rigdon and Frederick G. Williams, there is none other appointed unto you to re
+their sins are forgiven them also, and they are cerve commandments and revelations until he
+accounted as equal, with thee in holding the be taken, if he abide in me.
+keys of this last kingdom: as also through "2 But verily, verily I say unto you, that
+your administration the keys of the school of none else shall be appointed unto this gift ex-
+the prophets, which I have commanded to be cept it be through him, for if it be taken from
+organized, that thereby they may be perfected him he shall not have power, except to appoint
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 134
+**Source File:** page_134.json
+---
+
+another in his stead and this shall be a law man of God, and as the president of the church,
+unto you, that ye receive not the teachings of but that the twelve who were present behaved
+any that shall come before. you as revelation revelations like ruffians. The rest of I, Parley P.
+P. Pratt's
+or commandments: and this I give unto you, testimony is made up of burlesque, falsehood
+that you may not be deceived, that you you may and nonesense, about the Maid and her Milk
+know they are not of me. For verily I say Pail, Gladin Bishop, Queen Victoria, &c. ad-
+unto you, that he that is ordained of me shall mitting, most reluctantly, however, that Pre-
+come in at the gate and be ordained, as I have sident Rigdon had declared that he would do
+told you before, to teach those revelations nothing to divide or injure the church. This
+which you have received, and shall receive proves no unrighteousness in President Rigdon,
+through him whom I have appointed." unless, indeed, I, P. P. P. goes by the Irish
+4th item. Orson Hyde further saith, "I rule of contraries, which seems to be the one
+will now give some testimony, which has adopted by the twelve, when referring to the
+been handed to me of what Elder Rigdon has Book of Doctrine and Covenants on the mos
+said," (without giving names) goes on to say tives of President Rigdon. That is, when
+"one of the Rigdon's party said to a brother, President Rigdon says, that he does not want
+&c." in the name of common sense what kind to divide the church or injure the people,-by
+of testimony is this upon which to damra man their (the twelve's) rule lie must be a most
+in time and eternity, to deliver over to the abominable sinner. Here endeth I, Parley P.
+buffetings of Satan? Shame! shame!! Pratt's first lesson.
+5th item. Page 650, par. 4, Timesand Sea- O. Hyde re-appears, and continued his tes-
+sons: We know by the spirit that this was timony in relation to a circumstance which
+in Elder Rigdon's heart." Tis nonsense to occurred 2850 odd years ago, to one of the
+try to shame a blasphemer. greatest adulterers that we have any account
+6th item. "Elder Rigdon threatened to turn of-Exit.
+traitor." Note, to bring iniquity to light is a A. Lyman testifies that what the twelve
+virtuous act, to bring to light a good thing is have said is correct. That they have told
+no less virtuous. And the fact of their fearing their minds, and 'acted upon it. Very impor
+exposure accounts for this same witness's tant testimony if one could believe him. See
+journey to St. Louis, before mentioned. Or-second common sense reason.-Witness fur
+son Hyde proceeds with his testimony aboutther saith, or rather asks a variety of questions
+things which happened in Missouri, some six-a singular position for a witness truly-and
+years before; but in his remarks about things further saith many nonsensical things, too nu-
+which happened in Missouri, it is most sin-merous and too foolish to be edifying to the
+gular that he omitted all mention of certain af-reader. However, as it is a curiosity, the
+fidavits put forth about that time for the speci-freader is respectfully referred to page 654-5 of
+al benefit of the saints-now we ask the rea- the Times and Seasons. He finishes his tes-
+der what has been proven by these two wit-timony with the old story about Kirtland, and
+ness against the character of President Rigdor what a dead man had said...
+as a man of God? We feel that every candid Elder John Taylor. - As Elder Taylor is
+person who examines the evidence, will reply the only witness against President Rigdon,
+nothing, not one thing that can be alleged who seems to be governed by the rales of evi-
+against President Rigdon's character as a man dence, which should govern a witness; his
+of God. But they do prove one thing, xiz. remark in relation to what had been said be-
+that the act of expulsion is void, for the rea-fore is the more singular; we have already
+sons before enumerated. I, Parley P. Prattusaid that no evidence sufficient to ceisure,
+dives at once 15 or 16 years into the past, and much less to condemn the first president, was
+wading with gigantic strides up to the present, adduced upon the trial, and we repeat, epeat, that up
+says, "I, Parley P. Pratt, invited Elder Rig-to the commencement of Elder Taylor's re-
+don to a council at Brother Taylor's, called by marks, the attempt to criminate President
+the twelve, but Elder Rigdon excused himself Rigdon was a perfect burlesque upon testi-
+on account of company," further saith, "thatmony. Elder Taylor first asks a question in
+Elder Rigdon gave an appointment for the relation to President Rigdon's mission to Pitts-
+next Thursday, to transact important business burgh, and answers it himself in the negative.
+for the church," but that seven of the twelve Now, we ask, could Elder Taylor, he living
+thought proper to interrupt the business of the in Nauvoo, be personally acquainted with
+meeting, further saith that Elder Rigdongwhat President Rigdon was doing in Pitts-
+> pledged himself to support the authorities of burgh? Well, ought Taylor to testify to a
+the church, as now organized, and that nefact which he did not know? Gertainly not.
+other busines except the regular prayer meet-Now we do know that this part of Taylor's
+ing should be attended to; but I took the lib-testimony is false. And can prove it false by
+erty to inform the people that no business many witnesses.
+would be attended to except the regular prayer Now, what confidence can any man place
+meeting. So far I, Parley P. Pratt's testi- in the testimony of one, who when under the
+money proves, (if it proves any thing) that solemn responsibility of a witness testifies to
+President Rigdon did conduct himself liko a la fact, the truth of which he could by no pos-
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 135
+**Source File:** page_135.json
+---
+
+sible means know! The assertion that Pre-followers of Mr. Smith, of some six year
+sident Rigdon had ordained to the office of pro- standing, I have been led, without the shadow
+phet, priest, &c. we do not deny; but that of a doubt existing in my mind, to believe
+President Rigdon does not hold that office him-that the ground work of Mormonism, so call-
+self we do deny, and all that is said aboutled, is true as held forth by the elders of this
+priests ordaining elders, &c. is evidently in-church; and I feel that the time has fully
+tended to misslead. Who does not know come, for me as an individual, to reduce my
+that proplets, priestsand kings were ordained belief to practice, but in consequence of the
+under the hands of Brother Loseph? See p. disunion which has taken place, among you
+666. And does not Elder Taylor know that as a people, I find myself placed in rather an
+President Rigdon was called by the God of awkward predicament, out of which, by my
+Heaven, to be equal with Brother Joseph in own wisdom, I am at a loss to know how to
+holding the keys of this last kingdom. See extricate myself; for while each party claims
+Book of Covenants, Sec. 85. If President with an equal degree of tenacity to be the
+Sinith could ordain to these offices cannot legitimate leaders of the church, by what rule
+President Rigdon? But to proceed. Elder shall I be able to judge the matter, except by
+Taylor'says, some people think these things written testimony. One thing howeveris cer-
+small matters, but it was for a transgression tain, one of the two parties must be wrong,
+of this kind that Satan was cistout of heaven. and consequently must fall short of that-rest
+But what did President Rigdon do. Mr. Tay- which remains for the people of God. Now
+lor? Get drunk? No. Steal? No. Com-Sir: with these facts stareing me full in the
+mit adultery? No. What then? For resist-face and having an ardent desire to know the
+ing authority! For resisting authority? Yes, truth, that I may obey it, I shall proceed to
+gentle reader. Here, then is the whole alpha ask a few questions, and to point out some ap-
+and omega of this great ado about not conduct-parent discrepencies, hoping that some one of
+ing like a man of God. The first presidency you your quorum or perhaps Mr. Lyman, may feel
+resisting the authority of the twelve travelling sufficiently interested in the welfare of their
+high councillors, who are to act under his di-species to favour us with a reply through the
+rection,, I have seen many attempts (and Times and Seasons.
+some of them most amusing ones too) to ex- In the above named paper on page. 618 I
+cell in impudence, but I give it up, this is de find the following statement over your own
+cidedly the height of impudence.
+signature, you are now without a Prophet
+J. M. GREIG. present with you-in the flesh to guide you.
+Brighton, Feb. 28, 1845. In connection with this I shall quote from
+P.S. The reader will please to remember DC. page 387. spoken by the mouth of the
+that important circumstance, or rather unim- Prophet Joseph as follows, " I will raise up
+portant, that we take their own report of the unto my people, a man, who shall lead them
+trial, and although many things which trans-like as Moses led the children of Israel for ye
+pired after the trial of President Rigdon, have are the children of Israel &c. again it is record
+been suppressed by them, yet we are willing ed on page 175 of the same book Verily
+that they should be judged by their own ac- Verily, I say unto you, that none else shall
+count of this shameful affair. But in his re-be appointed unto this gift except it be through
+marks about things which passed in Missouri, him;" by reading the first paragraph, you will
+O. Hyde, from some strange cause, forgot to discover that the Lord has reference to a
+mention certain affidavits, made in that state, spokesman for his people, now Str is it not
+for the special benefit of the saints. How for-very certain that either you or the Lord was
+getful some people are. wrong; for either the Lord did not mean what
+he said, or Mr. Young said one thing and
+meant another.
+J. M. G.
+For the Messenger and Advocate.
+TO BRIGHAM YOUNG. In the year 1831 the Lord emphatically de-
+clared, that no one should be appointed unto
+DEAR SIR, Having been informed through the gift of a revelator except through Mr.
+the medium of the Times and Seasons and Smith, and in the year 1834 we hear him say
+other sources, that yourself, in conjunction through the same source, that he would raise
+with your quorun, are the acknowledged lea-up a man unto his people like unto Moses,
+ders of that part of your church, located in and on the 27th day of june 1844, Joseph
+Nauvoo, and a few other places, I would Smith came to his death by violent hands,
+therefore, through this medium, take the lib and on the 15th day of August following Mr.
+erty of propounding a few questions to you, Young comes out in an epistle to the church,
+not only for my own satisfaction, but for the land announces the solemn fact, that this ge-
+benefit of all others, that inay feel to take an peration are without a prophet in the flesh.
+interest in their eternal welfare. I will just Now the pith of your argument to me Sir ap-
+state, that I do not profess to be a follower of pears to be this, that his Satanic Majesty for
+the twelve, neither, do I profess to be a fol once got ahead of the Lord and actually suc-
+Iower of Mr. Rigdon, but this much I do say, ceeded in cheating us out of a prophet, by
+having had an acquaintance with many of the taking Mr. Smith away before he had ordain-
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 136
+**Source File:** page_136.json
+---
+
+ed a man to fill that all important station. Young, because this church has always been
+notwithstanding, the promises made on the led by revelation, and always will. You may
+387. page that he would raise a prophet up ap- find my words written or printed in a book
+pointing also in as strong language, the called Times and Seasons, page 683. But
+source from whence he should receive that or- what now are we to do Mr. Young? The
+dination. I here remark Sir, had you come man that should have taken Joseph's place
+out and honestly told the people, that you were sleeps the sleep of death. Oh, but echoes the
+that prophet, there would not have been so same book, page 431. S. Rigdon has been or-
+great a discrepancy between your own lies inodained to the same office. Stop; not so fast,
+ny and that of the Lord's; but as it now stands stammers friend Young, we acknowledge the
+I shall respectfully solicit Mr. Young to un- ordination of Mr. R. but-but-but. Sidney
+ravel that mystery. would lead the people to destruction. Joseph
+
+Again on the 103rd page book of Cov. 12th said so, wonder, did the Lord know this fact,
+paragraph, the twelve are represented, as be- before he said that Sidney should be accounted
+ing a presiding traveling high council, to offi- as equal with Joseph, in holding the keys of
+ciate in the name of the Lord, under the di- the kingdom; and, Joseph, why did you or-
+rection of the first presidency; but in this dain Mr. R. to be a prophet, seer, and revela-
+there is not one word said about the twelve tor, if you knew he would lead the people to
+having two counsellors, one to be stationed destruction. If Joseph was present with us
+upon their right and the other upon their left, we might hear him say, God commanded me
+find nothing to warrant this new order of things, to ordain him, and who was I, that I should
+in the book of the law of the Lord; and, I resist the will of my maker? Now, sir, I ask
+must confess that it has very much the appear- you in the spirit of candour, laying aside every
+ance of placing six wheels upon a waggon, in personal consideration, do you not believe,
+stead of four. You, however, sir, by your which I really think must be the fact, from
+superior wisdom, may be able to reconcile this you own admission, that God foreseeing that
+new manœuvre of yours in church tactics, to Hyrum would be called upon to pay the
+some ancient order of things, unknown to us debt of nature at the same time with Joseph,
+in the eleventh hour dispensation. In your caused the same ordination to be placed
+remarks, at conference, held on the 6th Oct. upon Mr. R.'s head, so that the full organiza-
+last. See Times and Seasons, page 683. You tion of the kingdom should not be broken up;
+say, did Joseph ordain any man to take his otherwise for what purpose was he ordained?
+place? You answer, he did. Who was it? I also see in a letter written by W. W. Phelps,
+Answer, Hyrum. And again on page 431 of in answer to one written by W. Smith, pub-
+the same paper, we have the following an- lished in a late number of the Times and Sea-
+nunciation, viz.: We have to announce that sons, wherein Mr. P. assays to give a descrip-
+Sidney Rigdon has been ordained a prophet, tion of the interior of the temple at Nauvoo,
+seer, and revelator. Now, in addition to this when completed, speaking of the arrangement
+we have the word of the Lord, spoken by the of the seats, he says, the first seat is to be oc-
+mouth of his servant Joseph. See Doctrine cupied by the first presidency, the second by
+and Covenants, page 330. And again, verily the quorum of the twelve, and so on, enume-
+I say unto thy brethren, Sidney Rigdon and rating the different quorums. Now, sir, I ask
+Frederick G. Williams, their sins are forgiven how can the first presidency occupy their
+them also, and they are accounted as equal places in that house, when there is no first
+with thee in holding the keys of this last king- presidency acknowledged by you in your pre-
+dom, and in the 5th paragraph of the same sent organization? Perhaps Mr. Lyman may
+section there is something said about the be able to unriddle this mystery, as he now
+length of time that they should continue to fill seems to be occupying the right, left, and rear
+this important station; it reads as follows: of the quorum of twelve. Ah, Amasa, you
+And now, verily I say unto you, I give unto have moved one peg down, in my opinion. I
+you a commandment; that you continue in the will point out one more discrepancy and then
+ministry and presidency, and when you have bring my letter to a close. In a late number
+finished the translation of the prophets, you of the New York Prophet, there is a riddle put
+shall from henceforth PRESIDE over the af- forth to the saints by P. P. Pratt, demanding
+fairs of the church and the schools, and after a modest sum of 200 dollars to be made up
+giving some other instructions, concludes by by himself and two others of his brethren in
+saying, and this shall be your business and the ministry. I would ask, how does this
+mission in all your lives, to preside in council accord with the Doctrine and Covenants, page
+and set in order all the affairs of the church 119, where the command is given to take nei-
+and kingdom. We will now take a bird eye ther purse nor scrip. Now Mr. Pratt, had for-
+glance of this part of the subject, as presented gotten or purposely neglected to tell the saints
+before us in the first place: Mr. Young ac- that he owns a little bit the largest private re-
+knowledges if Hyrum Smith had survived sidence, and decidedly the best house in the
+Joseph, he would have stood in Joseph's place. city of Nauvoo, and the writer of this article
+Query-What necessity was there for this? heard him say that it cost him 3000 dollars.
+Oh, the subject is a plain one, says friend What Mr. P. worth 3000 dollars, and not
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 137
+**Source File:** page_137.json
+---
+
+"A church without a Prophet, is not the church for me,
+It has no head to leadeit, in it I would not be.
+New York Prophet.
+
+The delay in the present No. of the paper has arisen fremt the determination to have ready for distribution at conference our new Hymn Book, which is now so far advanced that we feel warranted in saying it will le for sale, neatly bound in fine morocco at 374 cts. single copy, or $30 per hundred.
+
+There is in the revelations of God to the children of men, a period pointed out in the history of Adam's race, designated as a day of righteousness-a reign of peare the Sabbath f the earth of a thousand years duration.
+
+The fact is generally admitted, but the precise means by-which it is to be accomplished, is a subject of doubtful disputation, notwithstanding the prophetic testimony is as clear on he chain of precursory events, as it is with regard to the ultimate issue.
+
+Our design at the present is to notice the important circumstance referred to by the prophets, that a special messenger is to be sent to prepare the way for the coming of the Son of Man; one whose duty it is to set all things in order, and make ready for the reception of that august personage the King of Kings and Lord of Lords. Be it remembered that Jesus of Nazareth is now coming as the lion of the tribe of Judah, to the salvation of Jacob his called, and Israel his chosen, to establish Zion, and to make Jerusalem the praise of the whole earth. No longer the despised Nazarine, but the Lord God Almighty, travelling in the greatness of his strength, to take vengeance on those who know not God, and obey not the gospel of our Lord Jesus Christ.
+
+Isaiah, under the spirit of prophecy, breaks out in the following strain:
+
+"Comfort ye, comfort ye my people, saith your God. Speak ye comfortably to Jeri salem, and cry unto her, that her warfare is accomplished, that her iniquity is pardoned; for he has received of the Lord's hands double for all her sios. The voice of him that crieth in the wilderness, Prepare ye the way of the Lord, make straight in the desert a highway for our God. Every valley shall be exalted, and every mountain and hill shall be made low: and the crooked-shall be made straight, and the rough places plain; and the glory of the Lord shall be revealed, and all flesh shall see it together; for the mouth of the Lord hath spoken it."
+
+willing to spend a little in the cause of inth. Mr. Benson, also one of the individuals referred to in Mr. P.'s riddle, owns a good proper ty in the saine price. This wholesale begui or rather demanding, I must confess, savor very much like taking the ff eee and lettin the porlaubsgo waked. In view of Mr.P. riddle tam led to reflect upon what I hear Mr. Joseph Smith say open the public stand when on a visit to that place, here is Brothe Parley, said Josepli, he will tell you of hi sufferings in the state of Missoni, of his suf. ferings in jail, and how many trials he has en dured, but he don't say how much money-h- accumulated when on his mission to England nor how he came by it. Por Brother Parley. was there not a litt e sulphur wear by abou that tione. Query, don't it look very much like fulfilling the old adage-keep-all you have got, and get all you can. What say you friend Parley?
+
+I close this epistle by repeating, that I ar dently invite an investigation of this subject. for he that wont reason is a bigo-he that car not is a fool, and he that dare not is a coward.
+1-remain yours, &c.
+Pittsburgh,
+
+MESSENGER AND ADVOCATE,
+
+PITTSBURGH, PA. MARCH, 1, 1845.
+
+Postmasters are authorized by law, to frank letters for a third person, containing money, when addressed to an Editor or a publisher of a newspaper.
+
+Will our friends and agents remember this.
+
+"And again the duty of the president of the office of the high pristhood is to preside over the whole church, and to be like unto Moses. Behold, here is wisdom-yea, to be a seer, a revelator, a translator and a prophet; having all the gifts of God which he bestows upon the head of the church." - Book of Cov. $3,42
+
+"We have to announce that Sidney Rigdon has been ordained a Prophet, Seer and Revelator." Times and Seasons Page 431.
+
+"By thy words thou shalt be justified, and by thy words thou shalt be condemned." -
+Mati. 12: 37.
+
+On the 8th of Au ust. 1844, at a special meeting of the church of Jesus Christ of Latter Day Saints, convened at the stand in the eity of Nauvoo, PRESIDENT BRIGHAM YOUNG asked the saints what they wanted. Do you want a guardian, a PROPHET, a spokes nan on what do you want? If you want any of these officers. signify it by raising the right hand. NOT A HAND WAS RAISED. - Times and Seasons, page 637.
+
+"You are now without a prophet present with_you in the flesh to guide you." Brigham Young's Apostolic Epistle, Times and Sea.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 138
+**Source File:** page_138.json
+---
+
+# Malachi, in view of the same event, by constraint of the spirit exclaims:
+
+"Behold I will send my messenger, and he shall prepare the way before me; and the Lord whom ye seek shall suddenly come to his temple, even the messenger of the covenant, whom ye delight in: behold he shall come, saith the Lord of hosts. But who may abide the day of his coming? and who shall stand when he appeareth? for he is like a refiner's fire, and like fullers' soap? And he shall sit as a refiner and purifier of silver; and he shall purify the sons of Levi, and purge them as gold and silver, that they may offer unto the Lord an offering in righteousness. Then shall the offering of Judah and Jerusalem be pleasant unto the Lord, as in the days of old, and as in former years. And I will come near to you to judgment; and I will be a swift witness against the sorcerers, and against the adulterers, and against false swearers, and against those that oppress the hireling in his wages, the widow, and the fatherless, and that turn aside the stranger from his right, and fear not me, saith the Lord of hosts. For I am the Lord, I change not, therefore ye sons of Jacob are not consumed."
+
+We are well aware that these prophecies have respect to the forerunner of the Son of God, in his advent of humiliation; but it must be abundantly obvious, that they have especial reference to that servant, who shall be commissioned to prepare the way for the glorious advent of Israel's King; accompanied with his saintly escort, to take formal possession of the kingdom, which shall extend from sea to sea, and from shore to shore,
+
+To those who are not mere professors in their credence of the work of God of the last days, but really believe the word of the Lord received through Joseph Smith, we shall be able to show not only that such a servant has been sent, but to point out the very individual designated by God himself as such :-
+
+"Behold, verily, verily I say unto my servant Sidney, I have looked upon thee and thy works. I have heard thy prayers and prepared thee for a greater work. Thou art blessed, for thou shalt do great things. Behold thou wast sent forth even as John, to prepare the way before me, and before Elijah which should come, and thou knew it not. Thou did baptize by water unto repentance, but they received not the Holy Ghost; but now I give unto thee a commandment, that thou shalt baptize by water, and they shall receive the Holy Ghost by the laying on of the hands, even as the apostles of old."
+
+It will be observed that the work of the forerunner of the last days, is markedly superior in its character to the mission of John
+
+# the Baptist. He comes, it is true, in the humble capacity of a proclaimer of repentance and baptism. He is first sent to prepare the way before Elijah-having no power to confer the Holy Ghost. That work being accomplished, he is called to administer the Holy Ghost by the laying on of hands, even as the apostles of old; and the Lord declares positively that they to whom he administers shall receive it.
+
+Having acquitted himself acceptably to God in these preliminary stages-he is called to hold the keys of the kingdom of heaven; and preside in council; and set in order all the affairs of this church and kingdom, during the term of his natural life; also to hold the keys of the school of the prophets. (Sect. 85.) In the same year he is called to be a spokesman to the then revelator of the church. (Sect. 95.)
+
+In January, of the year 1841, the Lord promises to this same individual-Sidney Rigdon,.. And he shall lift up his voice again on the mountains, and be A SPOKESMAN BEFORE MY FACE." In April, of the same year, the Lord commands Joseph Smith to ordain him a prophet, seer, and revelator; which ordination was published to the world in the official organ of the church...
+
+The crowning manifestation that God has considered him called and chosen and faithful, is found in the fact, that he has removed every man from the earth, whose authority could in any degree conflict with that of Sidney Rigdon. Above all in the fact that the Lord God has lifted the vail of futurity, and shown unto his servant the things that are coming on the earth; the wars, the distress, and the perplexity of nations-the order of the kingdom of heaven-the advent of Messiah-and the establishment of the rest of God on the earth.
+
+This is not all, the Redeemer of Israel hath sealed these truths upon the hearts of his children, by the power of the Holy Ghost shed forth upon them, so that they can testify that they not only verily believe, but they know of a surety that the testimony which he brings is true, and that God hath sent him. The ordeal through which they have been called to pass, has been a fiery one; they have been called to withstand prophets and apostles; and to hold fast to the testimony of Jesus, in opposition to overwhelming numbers who professed to be saints. The mercy of God has
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 139
+**Source File:** page_139.json
+---
+
+sustained and kept them, and his grace has strong; waxed valiant in fight, stoped the
+been sufficient for their every need. He who mouths of lions; quenched the viglence of fire
+has been with us all our lives long, will never &c. &c.
+forsake us unless we turn aside from the holy The Church of Latter Day Saints might
+commandments committed unto us. have had them three years from the time they
+were first organized, as well as to have labor
+Brethren, how great is our calling! Let us d and groaned under oppession, poverty and
+walk humbly before the Lord, watching con misery; for fourteen, years. But they have
+tinually unto prayer; walking in all the ordi- never been sufficiently united as a people, nor
+nances of the Lord blameless; by an abiding sufficiently united and trustworthy to OBTAIN
+them.
+faith on the Son of God, who loved us and
+gave himself for us, that he may purify us And if they are not careful, the same cause
+unto himself a peculiar people, zealous_of will produce the same effect now. And if it
+does, they will come short of the faith, bless-
+good works. The righteous shall be com- ings, and powers which alone can save them.
+forted, for the Lord hath spoken it. Zion And the Lord will withhold the greater things
+shall rejoice, for this is Zion, the pure in heart, ple that will obey him in all things.
+and the greater powers, till he can find a peo-
+and they shall see God, "The time, yea the It does appear to us that the members, some
+set time to favor Zion has come," and all the of them are slow to comprehend and realize
+their true interests as a people.
+efforts of ungodly men, apostates, or demons,
+can effect nothing against the truth, but will Do you realize my brethren, that the great
+redound to its ultimate triumph.. struggle is now at hand which is to DECIDE
+whether the kingdom of God can come with
+power in your midst, or whether it must be
+withheld till a generation is prepared to re-
+The twelve have been calling incessantly ceive it? If you did you would arise as one
+upon the Mormons, for money and means to man, and take your means and strength and
+build the temple, and support the Priesthood, throw it into Nauvoo, to build the city, the
+Temple, and to employ, support and DEFEND
+(THE TWELVE,) promising them, if they would those who have suffered and bled, and been
+do so, a great endowment, and great keys of murdered, and robbed and driven, and now
+power, when the temple is finished; when in again threatened with extermination.
+truth, they never have received those keys or Yea your YOUNG MEN and your MIDDLE AGED
+would be there with a WEAPON IN ONE
+that endowment themselves-consequently, HAND and a tool in the other, and their pock-
+have no power to confer it upon others, which ets lined with ALL they had, or could com-
+Parley begins to have frankness enough to ac-mand, to buy materials and provision. And
+knowledge. We extract the following on you would SWEAR by the living God, that
+this subject, from the N. Y. Prophet of Feb. Nauvoo and the Saints should be sustained,.
+strengthened and preserved from bloodthirsty
+22, 1845.
+murderers and persecutors, or else be the bury-
+We publish in this number a circular from ing place of more than THIRTY THOUSAND Pat
+the authorities at Nauvoo to which we call riots, and martyrs in the cause of truth and
+the particular attention of our readers. freedom.
+(For the Messenger and Advocate.)
+Boston, Feb, 7, 1845..
+To President S. Rigdon,
+Dear Brother, I take ray pen to inform you
+The fact is, the welfare, aud even the sal-
+vation of the saints abroad, as well as in the
+west, depends on our diligence in building
+up Nauvoo and the temple, and defending
+and protecting the place, the sanctuary, and the
+people there. This may seem strange to some of our wellfare in Boston. We are happy, led
+but so it is. For instance, if Nauvoo is not this suffice; our hopes are glorious. I have
+preserved, built up, and strengthened; and thüs been to the east as far as Portland. Preached
+kept from the power of the enemy who are in Bedford, near Saco, Main, three times last
+seeking our destruction; then the temple will Sabbath, to a large congregation, especially
+not be preserved, completed, and enjoyed by the in the evening. They said it was the best
+saints, and if the Temple is lost by our neglect, preaching they ever heard. Some were dea-
+then there is no Sanctuary, or place on earth cons in the Baptist church, in that place. I
+where Jesus can come and reveal the fulness left a good feeling. God is with us. Brother
+of the ordinances pertianing to the holy priest- Hardy and Brothers Wingate and Hutchings
+hood; and to the powers of heaven on the earth are one. We desire your prayers that we keep
+so as to restore to the Church those powers by humble, and so please God that your heart with
+which the ancients subdued kingdoms, put to ours and all of our dear brethren, may rejoice
+flight the armies of the aliens, broke the bond-together with that joy that is unspeakable and
+age of their oppressors, escaped the edge of full of glory. It appears that those men and
+the sword. Out of weakness were made women that the Lord has chosen from among
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 140
+**Source File:** page_140.json
+---
+
+# 140
+
+them that were called, are they who have ever
+lived peaceably, and Fand done all that. that has been
+done in righteousness, and have not dared to
+Lift up their heads lest the task masters would
+simite us. You, sir, the apostates count
+standing at the head of those they say are
+worthless, But when they get to their spiri
+tual wife zenith, then shall the saving of So
+lomon be verefied:- "Then shall the tighte
+ous man stand in great boldness before the
+face of such as have aflcted him, and mad
+no account of his labors. When they see-it
+they shall be troubled with terrible fear, andia
+shall be amazed at the stringeness of his set
+vation. So far beyond all that they looked for
+And they repenting, and gnawing for anguish
+of spirit, shall say within themselves, Thi
+was he whom we had sometimes in derisio
+and a proverb of reproach. We fools are
+counted his lite madness, and his end to be
+without bonor. How is he numbered among
+the children of God. and his lot is among the
+saints. Therefore we have erred from the
+way of truth, and the light of righteousness
+has not shined unto us, and the sun of righte
+ousness rose not upon us. We wearied our
+selves in the way of wickedness and destruc
+tion: yea, we have gone through deserts
+where there is no day. But as for the way of
+the Lord we have not known it. What has
+pride profited us? or what good hath riches,
+with our vaunting brought us? All these
+things are passed only like a shadow, and as
+a post that hasteth by; and as a ship that
+passeth over the waves of the water, which
+when it is gone by, the trace thereof cannot be
+found, neither the pathway of the keel in the
+waves, &c."
+
+We like to hear from you as often as you can
+send us all the particulars, so we may gain
+wisdom, for our enemies bring all of their guns
+to bear-on-us, but all are bomb proof. God
+Almighty is our strong hold, to which the
+righteous run and are safe. The wicked come
+up against us, but pass by with all its rage
+-over the catract of despair, foaming in all its
+fury, and the smoke of their shame go up for
+a memorial of a fallen people; while the sons
+of God stands on the banks of deliverance and
+with a joy and gratitude to God, that theyshave
+escaped the awful-catract, to which others
+have become a prey. Nickerson, the champi
+on of spiritual wifery, is yet hear, going on
+with his abominable teaching, and influenced
+Brother Clinton's wife to leave him, and two
+little babes with him; my heart aches to see
+such awful work. I we stand saw the bereaved
+family in tears. O, God! when will this
+cease. Brother Clinton is with us, a good
+brother she has been gone a week and over;
+broke up the family. Nickerson told her to
+let her husband go to hell; if he would be a
+Rigdonite he must be a bad man. They al
+ways did live in love before.
+
+Respectfully yours,
+WM. HUTCHING.
+
+St. Louis, Mo. Jan. 13, 1845.
+According to previous announcement, the
+branch of the Church of Jesus Christ of Late
+her Day Saints, in this city, anet on the 12th
+finst. when the following resolutions were
+unanimously adopted.
+
+Res Ivesd, That we believe God to be a wise
+and u changeable being; and that when he
+establishes a system for the salvat on of his
+people, it is like himself unchangeable.
+
+Resolved. That according to the Book of
+Docujne and Covenants, God has established
+ia First Presidency, in his church, one of
+which to act as prophet, seer, and revelator to
+the church.
+
+Resolved. That we hold no communion
+with any church who do not want prophets,
+seers and revelatos; without which they can
+not receive the word of the Lord.
+
+Reso ved, Phat we acknowledge and up
+hold Sidney Rigdon, as he is the only remain
+ing First President of the Church of Latter
+Day Saints-pointed out to us in the revela
+tions given which church was organized af
+ter the pattern of the church in heaven.
+
+Resolved, -That we endeaver, with the as
+sistance of God, to obey all his command
+ments, to live close to him by faith in his Son
+Jesus, that we may enjoy more of his Spirit,
+and be found among the wise virgins, at the
+coming of our Lord.
+
+Resolved, -That the editor of the Messenger
+and Advocate be requested to publish the fore
+going resolutions.
+
+WM. SMALL, President.
+J. M-COARD, Clerk.
+
+Minutes of a meeting held in the Leechburg
+branch, on the 8th day of Dec. A.D. 1844.
+A. H. Nangle was chosen to preside, and
+Noah Metz secretary.
+
+On motion, Ist, Resolved that we recognize.
+no other order than a church governed by a
+first presidency, and we henceforth withdraw
+fellowship from all who adhere to any other
+form of church government.
+
+2d, Resolved, That we recognize Sidney
+Rigdon as the only one of the first presi lency
+now upon earth, of which we have any know
+ledge, or to whom we will adhere, until we
+btain an account of his death or or legal expul
+sion from the church. And we take the Bible,
+Book of Mormon, and Book of Covenants, for
+our rule of faith and practice.
+
+3d, Resolved, That we sustain President
+Sidney Rigdon in the office of first president,
+by our faith and prayers.
+
+4th. Resolved, That a copy of the above be
+sent to the editor of the Messenger and Advo
+cate, for publication, if he sees proper.
+
+A. H. NANGLE, President.
+N. METZ, Secretary
+
+For the Messenger and Advocate.
+MR. EDITOR:-As I had the privilege of see
+Jing a parable that was delivered by Orson
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 141
+**Source File:** page_141.json
+---
+
+141
+
+Hyde, in St. Louis, which will do him in give you his spirit, that you may be led into
+mortal honor is that line of business, or wil all truth, and that you, o e and all iray keep
+show the weakness of the man. As the para the commandments of God and be saved in his
+ble is intended to have reference to the church kingdom is my prayer.
+of Jesus Christ of Latter Day Saints, and the Yours, &c. J. LOGAN..
+similitude being sofalse, I could not but make
+a few remarks on it. He says the order ofth
+United States, and the order of the church ar
+the same, and that when the President dies, We are in the coustant receipt of the most
+the Vice President takes his place, that Ewill cheeri g'intelligence from our old friends, and
+acknowledge. But we will look at the order new ones are continually adding. The exhil-
+of the church; we find in the 3id section of rating reflection is found in the fact t' at the
+Doç. and Cov. 11th paragraph, that of neces Lord has taken his work into his own hand,
+sity there are three presiding officers to pres and is operating on the hearts of the people
+side over the church, one of them being presi without human effort. Thy will, O God, be
+dent over the other two, but the three united lone, as in heavens on earth.
+composed a triumvirate presidentver th
+whole church, we also find in the 12th par.
+of the same section, that the twelve-are
+traveling, presiding high council, to officiat
+In in the name of the Led, under the direction - A BEAUTIFUL PARABLE.
+of the presidency of the church, bold therem St. Lonis, Jan. 13-1845.
+reader. What is the word of the Lord, on the We have been honored. for the last eight or
+subject, why the twelve åre to officiate unde nine days, in this city, with the presence and
+the direction of the presidency, they say tha instruction of Orson Hyde, and as I expect
+two of that quorum are dead, and that they con vou are aware of his proneness to use parables
+the other off now, if that is true. that they have I thought you might be edified by the follow-
+cut the head off, they must stand still, for they ing:- He was speaking on the present condi
+had no authority but to act under the direction tion of the church at Nauvon, and he compared
+of the presidency of the whole church the to the government of the United States, said.
+head, but they say that now they trave no head me when the president of the United States
+for they unitely are the head, and now the lies, the vice-president takes his place; just
+church is organized right, as inuch as to say i so with us. Joseph's dead. we, the vice-pre-
+was organized wrong before. O wisdom!! sident, take his place." You have only to
+wisdom!! If a man fought under Washington, read it to see how appropriate it was to his
+and followed him till he sa saw him die could he case! Would it not have been better to have
+step up and take Washington's sword and still said, "the senate takes the president's place?"
+say he was fighting under him when the Be this would have been tod glaring and the
+(Washington) was dead, would to be selling ther did very well-for-men whare ready 10
+the truth? I say verily nay. We also find i swallow any thing, if one of the twelve says
+the 51st section of Doc. and Cov. 2nd par. it, no matter if it contradicts reason and reve
+speaking to Oliver Cowdery, "but thou shalt lation.
+not write by way of commandment, but by Yours. &c.
+wisdom, and thou shalt not comimand him (Jo JAMES M'COARD.
+seph) who is at thy head and at the head of
+the church, for I (the Lord,) have given him We publish the following letter containing
+the keys of the mysteries, and the revelations, the Truth in relation to that hideous monster, L
+which are sealed, until I shall apponit unte Spiritual Wifery" as taught and practised
+them (the church) another in his (Joseph's) by the apostate Twelve and their followers.
+stead. If God was to appoint one man in Jo We had fain hoped and believed that the
+seph's stead, can twelve men, in truth stand worst features of the beastly incarnation were
+up before God and say we unitedly constitut confined to Nauvoo, but from information of
+that one man? again I say nay. indoubted character, we find the unseemly
+We will now look at the proble, I say if thing has actually pushed its way into every
+the President dies the Vice President takes hole and corner, where it could gain a foot-
+his place, and if he dies the spe ker of the Se hold.
+nate takes his plate, and not the whole of the If the writer intends to identify this system
+members to stand up and say, we unitedly of things, with the doctrines contained in the
+constitute the speaker of the Senate. There book of Mormon, or the bible, he is strangely
+fore I say that the twelve stand in the sam at fault; no shadow of justification can be
+relation to the chirrch as the members of the found in either. The lesson inculcated by
+Senate da to the United States, so near as the those sacred records, teaches us that wrath,
+things of God, and the things of man, will indignation, and anguish, necessarily flow as
+compare; therefore O saints search the words
+of the Lord, that you may become acquainted to the sequel of those abominations.
+with the order of his kingdom;, pray God to
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 142
+**Source File:** page_142.json
+---
+
+# [From the Boston Investigator.]
+MORMONISM—THE “SPIRITUAL WIFE” DOCTRINE
+Mr. Editor,—I return you my sincere thanks for your liberality in offering the use of your columns to any Mormon wishing to reply to any of my communications. In writing against the Mormons I feel no ill will personally towards any of them; neither do I fear their abuse. Let them honorably defend their doctrines; prove, also, if I have made any charges unsustained by evidence; if I have, I will “own up.” It is my firm, honest belief, that Mormonism is calculated to uphold the worst vices of our frail nature and as such is an incubus on society. My object is, to show it in its true colors; and in striving to do so, I shall strictly adhere to what I know to be true, and what can be sustained by a hundred witnesses.
+
+The “spiritual wife” doctrine. I will explain it as taught me by Elder W——e as taught by Joseph Smith, Brigham Young, Elder Adams, William Smith, and the rest of the quorum &c. &c. It is as follows:—Joseph had a revelation from God, that there were a number of spirits to be born into the world before their exaltation in the next; that Christ would not come until all these spirits received or entered their “tabernacle of clay;” that these spirits were hovering around the world and at the doors of bad houses, watching for a chance, however dishonorably, of getting into their tabernacle; that God had provided an honorable way for them to come forth—that was, by the “Elders of Israel” sealing up virtuous women, and as there was no provision made for woman in the scriptures, their only chance of heaven was to be “sealed up” to some Elder for time and eternity, and have a star in his crown forever; that those who were the cause of bringing forth these spirits would receive a reward—the ratio of which reward should be greater or less according to the number they were the means of bringing forth.
+
+This, Mr. Editor, is the substance of the “Mysteries of the Kingdom” in as few words as I can use to explain it. That it is calculated, with a little sophistry, to delude the “faithful” weakminded, is self-evident. They reason thus. That God is no such a being as the scriptures would seem to represent, and the sectarian would believe; that fair woman was made for man, and those seeming wiser—the victim is held under bonds; fear jealousies of the Almighty, represented in the bible, were for the blinding of the Gentiles that they might not indulge their propensities or which God gave them, without his express permission. Thus, if a child steals an apple (for which he has a good appetite) he sins; but if the father gives him the apple, there is fair no sin in eating it. The members of the “spiritual” brotherhood and sisterhood are bound to keep it secret from the world and those of “little faith;” and if found out, to defend each other to the last. They are at liberty to use the grossest slander and falsehood to terrify into silence those who dare oppose them. They all solemnly disavow it in public; but the proof is now so palpable and self-evident, that they must father it. I as one, can solemnly prove before any court of justice, that the doctrine was taught and as for its being most scandalously and unblushingly practised in Boston, Lowell, New York, Philadelphia, and its outrageous doings in the “Holy City” of Nauvoo, I shall prove by unimpeachable witnesses. I challenge them to disprove it, if they can; and as I shall bring such a torrent of proof as will be a caution to the Euclidian of “this day and generation.”
+
+Is this a doctrine to be countenanced by men whom human nature has left with one spark of honesty or common sense? Forbid it, Nature’s God! Whilst I have an arm to raise, a voice to speak, or a pen to write, I will not see my fellow beings swindled, deluded, brow-beat, slandered, abused, by villains under the mask of religion. Why, let me ask, has Parley P. Pratt, charged Elder Adams, in public print, of swindling saints, teaching false doctrines, “sealing people up” to eternal life? (“spiritually,”) &c. &c. Let the saints answer it. Why did Joseph give Elder Adams the “sealing for power,” even to preaching the spiritual wife doctrine publicly? Why did Elder Adams read his “commission” from Joseph in Suffolk Hall, Boston, giving him power and “keys” up above the Twelve? Answer that, and let Elder Adams answer for himself—no quibbling. Why did not the “first Presidency” call Elder Adams to trial and cut him off, as they have sealed and hundreds of others in like circumstances? Is who is not there something more than natural in this, if philosophy could find it out? Yet, which with all this evidence before their eyes, the saints will still uphold this spiritual-wife ignis fatuus. “Oh! shame, where is thy blush?”
+
+The holy hypocrite is the most destructive of serpent that can assail the happiness of the few human family. Under the mantle of Church it is power he can work a greater mischief than all the villainy that parades society at large.—Like the mole, he winds his way unseen even to virtue’s fair citadel; and while you (having charity) think all secure, lays your fair fabric in ruins; but you are nothing the of the world’s exposure, and remorse of conscience, is half-stifled in the promise of a great reward, by the FALSE TEACHINGS of these per-unsanctified caitiffs in the sight of God, than her true and faithful or betrothed husband could give her. Woman! as you value your is fair fame, your peace of mind, and everything the that is dear to you, turn with horror and disgust from the outlines of a religion and the teachings and of men whose actions insult your ears to and understanding. Shun it and them as you
+
+www.LatterDayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 143
+**Source File:** page_143.json
+---
+
+would a draught of poison distilled from the would have destroy every press in the Union,
+deadly night-shade or black hemlock. Ay only such as upheld their doctrines, if they
+more; for one would surely kill you, whilst the could secure the opportunity.
+other would make you drag out a miserable. Away with all mock sympathy say we,
+despaired existence, worse to the feeling heart they have violated the laws of the state-they
+than a thousand deaths."
+have thrown a whole community into anarchy
+And ye men, who boast of the likeness and and confusion-they have abused privileges,
+nature of your God, prove ye are not "Holts which the people of this state in their simpli-
+and fools by ignorance made drunk"; prove, city have extended to them-then let those
+that "God has extended the saints' under privileges be taken from them, and they be
+standing;" that ye can "see as ye are seen. put on an equal with other denominations
+and know as ye are known." Do consult the and sects. We shall refer to this again.
+common sense that nature has given you, and
+turn with a blush from the things ye are-
+jackall to lions of iniquity. Do this, and I
+will feel more than rewarded if I can but save
+one fellow being from the fangs of these de
+testable serpents of bigotry and intolerance.
+- Respectfully yours,
+
+ HENRY ROWE.
+
+(From the Quincy Whig.)
+## MORMON MEETING.
+The Mormons held a meeting at the Court notwithstanding the 400 police. Indeed, this
+House in this city on Monday evening last. police is a protection to thieves, rather is made
+Two of the brethren from Nauvoo spoke and up of thieves in great part, who when out at
+if their speeches were evidence of their chris-night, ostensibly for the protection of property,
+tian feeling and benevolence, Heaven help all can the more successfully perloin and hide it.
+suchas are compelled to fellowship with them. Warsaw Signal.
+
+The object of the meeting and of the exer-
+tions of the two Saints who made themslves
+conspicuous on the occasion, was to create
+sympathy, for the poor -down-trodden, perse-
+cuted Mormons, and if possible to save their
+city charter.
+
+They most positively denied the charges bro't
+against the Saints, of stealing-declared that
+the Mormons were the most heavenly and per-
+fect people on earth, &c. &c.
+
+During the evening, the proceedings of a
+public meeting, held at Nauvoo, were read-
+characterized by the most vindictive and bit-
+ter feeling.
+
+One of the resolutions of this meeting, was
+very abusive of the Warsaw Signal, Alton
+Telegraph and Quincy Whig:-it charged
+those prints, with disseminating the principles
+of mobocracy, and their columns had been,
+and were occupied, by the "pens of murderers"
+to "deafen the cry of innocent blood;" but we
+have not the time and room to follow the pro-
+ceeding through, and show their bitter malice,
+and hatred of every thing saving Mormonism.
+
+This people preach up their benevolence
+and a great liberality towards mankind in gen-
+eral. But after reading their resolutions de-
+nunciatory of the presses, alluded to. what hope
+would there be for the safety of these press-
+es-the Alton Telegraph, Warsaw Signal,
+and the Quincy Whig, were those wretches
+to exercise unlimited sway. The assassin's
+Knife and the incendiary's torch would be
+the order of the day. Where they had the
+power they have destroyed one press already
+under a law of their own creation, and they
+
+## FROM NAUYOO
+A gentleman from Nauvoo, informs us, that
+the great mass of the population of the city is
+in a state bor dering on starvation. There is
+no business going on, and no means of ob-
+taining subsistance only by charitable dona-
+tions from the richer classes. Subscriptions
+are passing thro' the city for the relief of the
+poor, & every day baskets are carried around
+to collect provisions for the starving. Thefts
+from the Rigdonites, are numerous as ever,
+
+## RICH DECIDEDLY,
+Our readers are all aware that the city of Nau-
+voo is divided into two factions; the Rigdon-
+ites and Twelveites-the latter being the
+most numerous and far the greatest scound-
+rels. The Twelveites in order to force the
+Rigdonites into measures, commence a system
+of pilfering, which became so oppressive that
+some of the Rigdonites could no longer stand
+their losses and either left the city or renoun-
+ced their faith. Amongst the latter class, is
+William Marks, who being a man of prop-
+erty, sustained heavy losses by thefts, and on
+account of the unsettled state of his business
+could not leave the city. He, therefore pub-
+lished a note a few weeks since in the Neigh-
+bor, renouncing Rigdon-joining the twelve,
+and exhorted all with whom he had any influ-
+ance to do likewise. A few days after this, all
+his stolen property was returned. His harness,
+he says, was buried while absent. Now we
+call this decidedly rich; but it is of the same
+class of cases, with that reported by Mr. Kee-
+gan, in another column, where a saint's cow
+was stolen by mistake, and an equal amount
+of beef and a hide returned upon finding it out,
+with a note of apology, stating that the thief
+thought it was gentile beef. Warsaw Signal.
+[By what authority the editor intimates that
+those persons in Nauvoo whom he calls Rig-
+donites, are scoundrels we know not, and pre-
+sume that he has none.]
+
+The Pittsburgh Morning Post, of the 10th
+inst., says:-'The New York, Prophet,' a
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 9 | **Page:** 144
+**Source File:** page_144.json
+---
+
+Mormon paper atters some direful threat
+against the democrats because the Legislature of Illinois repealed the Mormon city charter. He promises that the Mormons will alvote with the whigs in 1848, and defeat the democratic canidate for President. If Mr. Clay should be the next whig canidate, we may expect to see many interesting lett r pass herwen hi and his Mormo friends, and we would not be inuch surprised if-tomakeassurance dul sure some of the most arden of the whig leaders should become Mormon Prophets.
+
+Parley P. Pratt prays that he may neve have the spirit of the saints at Pittsburgh (aposta es from the the plurality wife system.) Parley, you put me in mind of a very strong sectarian in New Hartford, N. Y. when he could not reply to Mormonisin, said to the saiat with whom he was conversing, well. "Mr. S. if lam wrong, I hope God will keep me wrong, and dam me for being wrong."-- Your prayer Mr. Pratt, may be answered.
+
+CONFERENCE NOTICE
+After due consideration, and taking a view of the situation of the various branches of the church east, west, north, and south, and the many letters-addressed to us from persons wishing to unite all their efforts with ours to push forward the cause in which we are engaged, and after seeking counsel from Him who never errs, we have come to the conclusion to appoint the general conference, in the city of Pittsburgh, to commence on the 6th of April next. As the 6th comes on Sunday, that day will be devoted to preaching and the business will commence on the 7th at which time we inteid that a full organ zation of the kingdom willntake place. The first Quorum of seventy is now nearly full. We have all the materials necessary to have a full and complete organization as set forth in our preced*ing number of this paper.
+
+We hope that all the friends of the kingdom of God, will give attendance, as the occasion will doubtless be interesting as well as vastly important.
+
+We would also inform our friends, that we have a choice selection of Hymn books now in press, which will be ready for delivery or the above occasiou.
+
+SIDNEY RIGDON.
+
+## POETRY.
+
+### FATHER AND SON.
+
+Sos. It would content me, father, first to hear How the Eternal frained the firinament; Which bodies ler d their influence by fire, Ard which are fill'd with Winter's hearty use; What sign is rainy, and what star is fair; Why by the rules of true proportion The year is still divided into months,
+
+The months to days, the days to certain hours; What fruitful race shall fill the future world; Or for that time shall this round building stand;
+Eawe
+What lawgivers, what kings shall keep in Mens minds with bridle of the eternal law. FATHER. Wade not too far my boy, in waves too deep;
+the fechle eyes of our aspiring thoughts Behold things present, and record them past, But things to come exceed our human reach And are not painted yet in angel's-eyes; power!
+For these submit thy sense, and say-Thou that now art framing of the future world, nowest all to come not by the course of heaven,
+By frail conjecture of interior signs, By monstrous floods, by flights and flocks of birds,
+By bowels of a sacrificed beast, Or by the figures of some hidden art, But by a true and natural presage, Laving the ground and perfect architect Of all our actions now before thine-eyes, From Adam to the end of Adam's seed; O Heaven! protecting weakness with thy strength,
+So. look on me, that I may view thy face, And see these secrets written in thy brow. () Sur! come dart thy rays upon my moon, That now mine eyes, eclipsed to the earth, May brightly be refi ed and shine to heaven; Transform me from this flesh that I may live Before my death regenerate with Thie. O thou great eat God! ravish mine earthly sprite That for all time a more than human skill May fill the faculties of all my sense; That when I think, thy thoughts may be my guide.
+And when I speak I may be made by choice The perfect echo of thy heavenly voice."-- Thus say my son, and thou shalt know it all.
+
+BOOK of Mormon for sale, wholesale and retail, price $1 single copy, $10 per doz: extra binding, Pocket book fashion, for the convenience of travelling Elders, $1.50.
+
+## THE LATTER DAY SAINTS' MESSENGER & ADVOCATE,
+
+IS EDITED BY
+
+SAMUEL BENNETT,
+
+And printed about the first and fifteenth of every month, by
+
+E: ROBINSON.
+(Book, Job and Xylographic Printer.) No. 197 Liberty st. Heart of Wood. Pittsburgh Pa
+TERMS-One Dollar per annum, payable, in all cases in advance. Any person procuring five subscribers, and forwarding us five lollars current money, shall receive one volume gratis. All letters must be addrssed to E. Robinson, Publisher, PosT PAID, or they will not receive attention.

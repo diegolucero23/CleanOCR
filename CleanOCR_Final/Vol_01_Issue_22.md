@@ -1,0 +1,1115 @@
+# The Latter Day Saint's Messenger And Advocate
+## Volume 01, Issue 22
+
+
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 337
+**Source File:** page_337.json
+---
+
+# MESSENGER AND ADVOCATE
+## OF THE CHURCH OF CHRIST.
+
+# TREATIES ON THE CALAMITIES OF THE LAST DAYS.
+### BY S. RIGDON.
+
+To those who take the bible for their teacher, in matters pertaining to the future; the present aspect of the world is as portentous as it well could be. We have no account of there being, at any period of the world's history, so general a display of the displeasure of the Lord, in the same way, as is now passing in the world, throughout the length and breadth of the land. From China to Mexico, there is naught but calamities and judgments prevailing. Earthquakes, pestilence, drougth, civil commotions, and fear and confusion reigning. Fires laying waste towns, villiages, cities, and destroying large tracts of country, in a manner before unknown. We ask as did Isaiah "Is there an evil in the city, and the Lord has not done it?" Those who have read the bible, with attention, and placed confidence in what it said, have been expecting such things, and yearly expecting their arrival, and he can now look and say behold they have come.
+
+John the revelator told the world, seventeen hundred years ago, that at a certain time-it would be announced by an angel, that the hour of God's judgment has come, and that it would be required of men to "fear God and worship him." See Revelations 14th chapter 6th and 7th verses, "And I saw another angel fly in the midst of heaven, having the everlasting gospel to preach unto them that dwell on the earth, and to every nation and kindred, and tongue, and people, saying with a loud voice, Fear God, and give glory to him; for the hour of his judgment is come; and worship him that made heaven, and earth, and the sea, and the fountains of water." It was this annunciation, that was to prepare the way for the downfall of Babylon, and for the resurrection of the dead, and the final triumph of the heavens; as will be seen by comparing the quotation above with the 8 verse "And there followed another angel, saying, Babylon is fallen, is fallen, that great city, because she made all nations drink of the wine of the wrath of her fornication." As also with the 18th chapter of Revelation 1st and 2d verses, "And after these things I saw another angel come down from heaven, having great power; and the earth was lightened with his glory. And he cried mightily with a strong voice, saying, Babylon the great is fallen, is fallen, and is become the habitation of devils, and the hold of every foul spirit, and a cage of every unclean bird." And 19th chapter 1-3 verses "And after these things I heard a great voice of much people in heaven, saying, Alleluia, salvation, and glory, and honor, and power, unto the Lord our God: for true and righteous are his judgments: for he hath judged the great whore, which did corrupt the earth with her fornication, and hath avenged the blood of his servants at her hand. And again they said, Alleluia, and her smoke rose up for ever and ever."
+
+From the above we learn that Babylon was not to fall until an angel had announced it, and that was to be after an angel had brought the everlasting gospel, at which time the hour of God's judgment was to commence. By this we learn that there was a particular period to arrive, which was called the hour of judgments. No subject is more plainly taught, by all the sacred writers, and none upon which there is more said, than that of the judgments of the last days, and as sure as there is truth in either the old or new Testament, there is a day or rather an hour, as John calls it, of judgment, which is called so by way of preeminence, awaiting the world; and one that is not far distant, that will convulse the nations of the world, We are disposed to say a few things about this period, and the relation the present sectarian world bears to it. According to the present condition of the religious world, this day cannot come without laying waste the entire sectarian world. That the destruction of this day, is the result of having corrupted and rejected the true religion of heaven, the scriptures abundantly teach. In the 24th chapter of Isaiah, where we have an account of the effects of this hour of judgment in detail, the reason for it is plainly declared. See the 5th verse, "The earth also is defiled under the inhabitants thereof; because they have transgressed the laws, changed the ordinances, broken the everlasting covenant." The earth is utterly to be laid waste, because it "is defiled under the inhabitants thereof;" and if it be asked how it was that the inhabitants had defiledit, the answer is given in the last part of the verse; "because they have transgressed the laws, changed the ordinances, broken the everlasting covenant." Who has done this? the religious world; for they it were who had the laws and ordinances in trust and to whom the everlasting covenant is given. The heathen world had not the laws, ordinances nor covenant, that they could transgress, change or break. If the earth then is to be utterly laid waste, because the laws of heaven are transgressed. the ordinances changed, and the everlasting covenant broken, it is the religious world that
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 338
+**Source File:** page_338.json
+---
+
+ing destruction on itself. If what John and Protestants are the religions, which have
+in the 6th chapter of Revelations 15th produced that effect. If it is true what Isaiah
+1916th verses, which reads as follows:- and John say, about the hour of God's judg-
+chind the kings of the earth, and the great ment, we have the very religions parties clear-
+an, and the rich men, and the chief captains, ly set forth, whose corruptions are to bring
+And the mighty men, and every bondman, and destruction on the earth, and it must and can
+avery freeman, hid themselves in the dens and be none other, but the so called Catholics and
+in the rocks ofthe mountains; and said to the Protestants. To them belongs the kings of.
+mountains and rocks, Fall on us, and hide us the earth, who have transgressed the laws,
+from the face of him that sitteth on the throne, changed the ordinances, and broken the ever-
+and from the wrath of the Lamb,") is everlasting covenant, or else no such things have
+brought to pass, it will be because the kings been done.
+and nobles, were religious men, and corrupt- The kings and nobles of the earth, who
+ing the true religion, brought destruction and have had the laws, ordinances, and covenants
+ruin on themselves. And again, in Revela of heaven in possession to break, are either of
+tions 19th chapter 17-21 we read as follows: one or the other of the families, and the Lord
+"And I saw an angel standing in the sun; and cannot destroy them, only by disapproving of
+- he cried with a loud voice, saying to all the their religion, and if he disapproves of the
+fowls that fly in the midst of heaven, Come religion of the kings, he does of the people,
+and gather yourselves together unto the sup-and we have the fullest and most uncontrover-
+per of the great God; that ye may eat the table evidence, that the Catholics and Protes-
+flesh of kings, and the flesh of captains, and the tants, are two corrupt families, and are ones
+flesh of mighty men, and the flesh of horses, on which the Lord has declared by the mouth
+and of them that sit on them, and the flesh of of his prophets, that he will bring destruction,
+all men, both free and bond, both small and and the great destruction of the last day; for
+great. And I saw the beast, and the kings of if any such destruction, as is spoken of and so
+the earth, and their armies, gathered together minutely detailed in the sacred scriptures ever
+to make war against him that sat on the horse. lakes place, the matter is forever settled, that
+and against his army. And the beast was ta-both the Protestants and Catholics, will sut-
+ken, and with him the false prophet that fer an entire overthrow. If what the Savior
+wrought miracles before him, with which he says in the 24th chapter of Mattew, is true,
+deceived them that had received the mark of then there is to be a final end to both of them,
+the beast and them that worshiped his image. see the 37th, 38th and 39th verses, where it is
+These both were cast alive into a lake of fire said thus: "But as in the days of Noah were,
+burning with brimstone. And the remnant so shall also the coming of the Son of man
+were slain with the sword of him that sat up-be. For as in the days that were before the
+on the horse, which sword proceeded out of his flood, they were eating and drinking, marrying
+mouth: and all the fowls were filled with and giving in marriage, until the day that
+their flesh." Why are the fowls of heaven Noah entered into the ark, and knew not un-
+called upon to come and feast on the flesh of til the flood came, and took them all away; so
+kings, and the flesh of nobles, and the flesh of shall also the coming of the Son of man be."
+mighty men? it is because they have trans-No such a destruction as this, can take place
+gressed the laws, changed the ordinances, andjand not bring ruin on those two contending
+broken the everlasting covenant; for Isaiah parties.
+says it is because of this, that the earth is to It only needs a very little reflection, to
+be laid waste, and if the earth is laid waste it see the relation which they bear to the threat-
+will be part of the destruction, to destroy the ened destructions of the last days. By whom
+the kings, nobles and mighty men.
+was the religion of heaven corrupted, it could
+Let us inquire who are these kings, nobles, be by none other than the Catholics and Pro
+and mighty men, who are to be destroyed, testants. If the religion of heaven is corrup-
+since they are religious men, and destroyed ted, it is they who have done it, or else the
+for having set aside the institutions of heaven. earth is not to be destroyed, by reason of the
+This is easily determined, they are the kings, laws being transgressed, the ordinances chang-
+nobles and mighty men of the two great fami-ed, and the everlasting covenant being bro-
+lies, Catholic; and Protestants, for the kingsken; and if this is not the case, then there is
+of the earth, and the nobles, and the mighty an end of the bible, for verily the biole thus
+men of the earth, are of one or the other of sayeth. One or the other of them or both is
+these two families, and it is impossible for the "Mystery Babylon," and by them have been
+calamity, here spoken of, ever to take place introduced the doctrines of devils damnable
+only by destroying the two parties, that at heresies &c, there were none other to do it.
+this time compose what is called Christen-The kings of the earth belong to them, and
+dom.
+their religion is the religion of the kings and
+It was so called Christendom, that has nobles of the earth, whose flesh is to be food.
+transgressed the laws, changed the ordinances, for the fowls of heaven, and that because they
+and broken the everlasting covenant, There had corrupted the religion of heaven.
+are none others could do it, and the Catholics All those who read the bible, with any de
+www.Latter Day Truth.org.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 339
+**Source File:** page_339.json
+---
+
+gree of attention, must know one fact, and ligence in our possession, by which we can
+that is that the kings of Europe, are marked do it. That there are calamities threatened
+ont as the objects of the Lord's displeasure, on the countries, where these religions prevail,
+in the last days, and of the number of those and have prevailed for centuries, and to all
+who are to suffer an overthrow, and it is equal-appearance will prevail until the hour of judg
+ly certain, that they are either Protestants or ment, and should they continue till then, their
+Catholics, and it is impossible to overthow end and character cannot be a matter of dis-
+them, unless they have transgressed the laws, pute. That the countries now under the in-
+changed the ordinances, and broken the ever-fluence of their religion, are the countries
+-lasting covenant. And if they have done so, marked out, as the objects of the judgments
+thion indeed the Catholic, and Protestant re are just as certain, as that they were the gov-
+ligion, are false and such as God disapproves. ernments, which sprung up after the dowfall
+All christendom, so called, is made up of of the Roman Empire; and that this is the
+these two families of religion, and if the Lord case none will doubt.
+does as he says, he will come on the world as The consequence then is, that as certain as
+he did in the days of Noah, and cut off the in-those religions continue as they are, and con-
+habitants thereof, then farewell to the so much tinue to spread as they are now doing, so cer-
+boasted Catholocism, and the united Protes-tain they are destined, during the hour of God's
+tantism, for they must be overthrown.
+judgments, to suffer an everlasting overthrow,
+Let the inquirer after truth, lay the map of and that by the God of heaven himself. So
+the world before him, and then examine the then overthrown they must be, for if they con-
+bible, and read the judginents which are to tinue till the hour of God's judgments, which
+fall on the world, in the last days, and he cau-jis to destroy the kings, and nobles of the earth,
+not fail of seeing one fact, that it is the Cath-they must perish in the ruins; and if they do
+olic, and Protestant sects which are to be the not continue till then, some other people must
+subjects of the threatening judgments; for the overthrow their religion before that time.
+very countries to be desolated, are in their Have the advocates of these religions duly
+hands, and under their control, and it is im-considered this? we think they have not, and
+possible that the prophetig judginents could we call upon them to do it. There own wri-
+be executed, and not destroy both Protestany ters, of ancient times as well as those of more
+tism and Catholocism, so called. If there is modern times, have come to the same conclu-
+such a thing ever to take place, as the general sions we have, that both the Protestant and
+overthrow of the kings, and governments of Catholic countries are included in the threat--
+the world, as is declared by the prophetic wri-ened judgements of the last days; indeed no
+ters, then, the question is forever settled, that candid reader of the scriptures can come to any
+both the Catholic and Protestant religions, other conclusion.
+are abominations in the sight of the Lord. It is in this important point of light, that
+These judgments are threatened, because the we must view the advocates and supporters of
+people thus judged have departed from the these religions, as maturing and preparing
+living God; but who are they who have thus themselves for the judgments of God, long
+defiled their inheritances under them? all must since threatened by the holy prophets, their
+admit that the countries inherited by the own writers being judges.
+Chatholics, and Protestants, with their kings If the Catholic and Protestants countries
+and nobles, are the very countries which the are not of those, who are to be desolated in
+Lord by the mouth of the prophets, has threat- the hour of God's judgments, may we not ask,
+ened with destruction, and that, because they what countries are they? and what kings are
+have defiled their inheritances under them, to be made food for the fowls of heaven? we
+had transgressed the laws, changed the ordi-think it will be difficult for any one to answer.
+nances, and broken the everlasting covenant. Indeed, these religions seem to be founded on.
+Who else could it be, all the kings and nobles a strangely false principle, that the threatened
+of Europe belong to them, and are of one or judgments are never to come. Hence with
+the other religion, unless we except the king what-zeal they endeavor to spread their relig
+of Russia. Now if the kings and nobles of ion, and if they believe their religion to be true,
+the earth are to be slain, and become food for who can blame them; but it is a fact, as fairly
+the fowls of heaven, the Catholic and Protes-settled by the sacred writers as any other can
+tant kings are surely to be of the number, and be, that whatever religion or religions are be
+if this is to be done, because the people thus lieved and mantained, by the kings of the
+judged, have transgressed the laws of heaven, earth, at the time of God's judgements, are to
+changed the ordinances, and broken the ever-be overthrown, and that that hour of judg-
+lasting covenant, then, indeed, the Catholic ment is yet to come cannot be doubted, and
+and Protestant religions, are corruptions, and that the day draweth nigh the signs of the
+it is because they exist, that the world is to be times are abundant evidence. For what pur-
+overthrown, and all the judgments of the last pose were the judgments to come? all know,
+days are to be executed. that know anything about it, that it was to
+From this conclusion there seems to be ne prepare the way for him whose right it is to
+escape, and if there is any, we have no intel-reign; and this is to be done, not by establish-
+www.LatterDayTruth.org.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 340
+**Source File:** page_340.json
+---
+
+ing the religion which now has obtained a-they, in their turo, will not escape; for when
+mong the kings of the earth, but by an over the Lord once sets his hand in judgment, he
+throw of both the kings and their religion; for will not cease, until he has utterly laid Baby-
+the earth cannot rest, until there is an over-ton, in all her departments, waste, and shall
+throw of religions and their advocates, and re-have cast her down to rise no more.
+ligions too, which have obtained throughout Let any person only reflect, with candor,
+the length and breadth of the land. and looking at the world as it is, and he will
+Who can carefully and candidly examine have to say, that it is the Catholics and Pro-
+this most important of all subjects, and holtestants that the Lord calla Babylon the
+see, that both Catholics and Protestants, are great." It is the doctrines which they teach,
+destined for an overthrow; we are certain that the sacred writers call doctrines of devils;
+none can, and they must see it, if they only and it is the parties and sects among them,
+gave themselves the trouble to examine. So who are called damnable heresies, on whom
+evident are these facts, that the Lord willcon- the Lord has threatened to execute his severest
+sider them without excuse, when the day judgments. If they are not the authors of
+of their calamity comes, for, he says, he will these damnable heresies, and doctrines of de-
+laugh at their calamity, and mock when their vils, who in the name of all truth is? If they
+fear cometh; because he had called and they are not "Babylon the great" who is it? the
+refused, he stretched out his arm and they answer is and inust be, there is no such thing
+would not obey. Not because they were notas "Babylon." Then indeed, may they take
+apprised of what was coming; but because. ause, warning by the things which are befalling the
+when it was declared unto them, they would Mormons. Why are the Mormons thus scour-
+not hear nor obey. ged? it is because they have transgressed the
+This suggests another thought, that before laws, changed the ordinances, and broken the
+this can take place, there must be some peo-everlasting covenant; for some of the last
+ple sent to those advocates of a corrupt relig-words of him whom they call their prophet,
+ion or religions, to warn thern of what is com- were in the name of the Lord, that if they did
+ing, and they will refuse to hear or obey. The not transgress, they should not be moved olit
+present state of the religious world speaks of their place, but now behold their situation;
+loudly on this subject. There can be noth-why? because of transgression, their own pro-
+ing more certain, than they are the very peo-phet judging between them and their enemies;
+ple, on whom the judgments of God are threat for if they had not transgressed they would
+ened, and they will come on them, and those have been safe in their place; and these his
+who walk in their footsteps, yet, the very words are as applicable to himself, as to any
+character of their religion is such, that they other, for had he not transgressed, he would
+would reject any messenger sent for the pur-yet have been, in his place, and if others had
+pose of warning them, because their religion not followed after his corruptions, they would
+forbids them to receive any revelations from not be in the situation they are this day; but
+heaven, and they would refuse to hear one they refused instructions, and therefore they
+sent, and that of necessity, or else they would are receiving judgment, and will receive it un-
+have to deny their religion. Of them, no til they are wasted and made desolate.
+doubt can remain, but it can at the hour of the So certain as Babylon is to be cast down; so
+Lord's judgment be said, that "I have called certain it is, that the present religious socie.
+and ye refused." for their hearts are set as ties will suffer an overthrow, for "Babylon"
+gainst the Lord in this matter, and are deter-is in their midst. Their religion has been the
+mined to have none of his instructions, yet, religion, since the days of apostacy, and not-
+they might see, if they would, that they are withstanding all their pretentions to the true
+marked out in the scriptures, as among those religion. If they have not built spiritual
+who will feel the hand of the Lord in the day "Babylon," then it will require some sagacity
+of his wrath, which is shortly to be poured to find out who did it. If there is any such
+out; for so sure as the scriptures are true, so thing as false religion, they have it; it would
+sure, they will be cast down in wrath to rise shock all common sense to suppose, that all
+no more, and their kings and their nobles, and the religions they have invented, and are prac-
+mighty men, becoïne food for the fowls of ticing, are according to the will of heaven.-
+Can Methodism, and Calvanism both be the
+As with the Mormons, so shall it be with religion of heaven? if so, the Lord has had no
+them; we long since warned the Mormons of respect either to government or doctrine.
+what was coming on them, and the wrath Paul's saying to Timothy must be useless,
+that awaited them; but they would not hear, and worse than useless, when he says the
+and now the threatened wrath is beginning to time will come when men will not endure
+fall on them, and will not cease, until they sound doctrine." If Calvanism and Method-
+are utterly desolated, and their name be only ism are both of God, two doctrines in direct
+a reproach in the land of the living. So will contradiction, can both be true, and one as
+it be with the Catholics and Protestants, judg. much according to the will of heaven as the
+ment and wrath are awaiting them, and as other. Can Universalianism and Partialism
+sure as the Mormons will not escape, so sure be both true, if so, the Lord has no regard to
+www.Latter DayTruth.org..
+heaven.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 311
+**Source File:** page_341.json
+---
+
+what doctrine is true, but in opposition to this what was the institution that was to produce
+they all profess to believe that the Lord has this effect! It could be none other than the
+respect to doctrine, anil because they think so, Catholic institutions. Who was it that had
+they refuse fellowship with one another, re-influence and power over the kings of the
+fuse to worship in the same house, and forbid earth? the answer is, the Catholics. Who
+their members to hear each other preach, and then could corrupt them? the Catholics surely,
+yet declare that all is right, and the Lord for none others could do it, but those who had
+through them will accomplish all his work in power over them. Of this the Catholics.
+the last days..
+boast, that the kings, the nobles, and the
+The Protestants declare they have as much mighty men of the earth, are of their religion,
+union as the Catholics, this all may be true, or the larger number of them; and these are
+but does that prove that either of them have the the very persons of whom it is said that that their
+oneness of the church of Christ, none will pre-flesh shall be food for the fowls of heaven.-
+tend to say this, if contradictory doctrines and contradictory doctrines and Why food for the fowls of heaven? the answer
+practices, are opposed to the doctrine of Christ, is given, in the scriptures, because they had
+then their religions are opposed to it. If Un-drunk of the wine of the fornication of an har-
+ion is necessary in order to the establishing of lot. What harlot? the Catholics declare, and
+truth and righteousness on the earth, then the that boastingly too, that they are under their
+Catholics and Protestants must finally be cut influence. Surely, then, it is the Catholic in-
+off, and cease to exist. Their religions canstitution that has corrupted the kings of the
+never effect this. Whatever "spiritual Baby-earth, themselves being witness, who is the
+fon" is, it is the progeny of these religions.- great harlot which has corrupted the whole
+It is the natural consequences of them. Itearth.
+
+sprung from them, as naturally as the fruit Whatever the religion or religions of the
+does from the vine. How can the Gatholics kings and nobles of the earth are, it is to be
+expect to redeem the world, when their relig-hurled into ruins; for thus hath the Lord spok-
+ion could not save it from destruction, when en, and that be cause they had been corrupted
+they had the world in their power; both relig-by the great harlot which was to corrupt the
+ious and political: they could not then sus-whole earth, and all that separated from her,
+tain themselves nor the world from corruption; were also to share the same fall with her.
+themselves being witness, and yet they would All were corrupted by her, and all to share
+pretend that their religion is to be the religion, the destruction with her. Another fact is cer-
+by which the world is finally to be delivered tain that, nothing clean could come out of her.
+from corruption.
+John the Revelator-in speaking of these things
+According to the accounts given in the calls upon all the people of God to come out
+scriptures, the world could only be corrupted, of this, Babel, composed of the kings and no-
+by a departure from the true order of heaven, bles of the earth, but this call was to be made
+and the fountain from which the whole sprung after the Lord had sent an angel with the ever-
+must first be corrupt, and in consequence of lasting gospel to be proclaimed to all the na-
+those with whom God had established his true tions, tongues, languages and kindreds of the
+order becoming corrupt, so that his institution earth, and after this all the people of God
+and order of things which he established were were commanded to come out of her (Babylon.)
+deranged, and being so, the true order of heav-Not for Catholics to turn Protestants, or Pro-
+en ceased, and this corrupt institution was the testants to turn Catholics, but both to come
+thing which was to defile the whole earth. If out of "Babylon," and be redeemed by the or-
+the Catholics had not first turned from the liv-der newly instituted by the ministration of an
+ing God, Protestantism, of which they so much angel. This angel could not come to either
+complain, would never have existed. The ex-Catholics or Protestants; for they both deny
+istence of Protestantism was because__the the ministration of angels. Catholics and
+Catholics had corrupted the true religion of Protestants are not the people in whose hands
+heaven, and having done that, the door was the power of salvation was to be deposited,
+opened for every species of invention of men. but another people, to whom an angel had min-
+God had departed from the Catholics or else istered, bringing with him, the everlasting
+Protestantism would never have existed, and gospel, and all that would not come out of
+the religious world would never had been in Babylon should_be partakers both of her
+the situation it is at present. sins and her plagues. Out of what "Bab-
+
+We think no intelligent reader of the bible, ylon?" the Babylon created by the great
+will be disposed to deny this fact. There harlot, composed of all, Catholics and Pro-
+was something, and some people, after the testants, for they all make "Babylon" and
+days of the apostles, to rise, that would corrupt it is only those who follow the voice of the
+all the kings of the earth, and people; all na-angel, that is not "Babylon."
+tions were to drink of the wine of the wrath of Such then being the case, may we not call
+her fornications, and by that means be cor-upon both Catholics and Protestants to be
+rupted, and it was the corruption, thus introdu-ware for there is judgment and indignation
+ced, that was to bring the wrath of heaven on awaiting them if we understand the sayings
+the earth. Now who were this people and of the prophets, for there is no other people
+www.Latter DayTruth.org
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 342
+**Source File:** page_342.json
+---
+
+who can compose "Babylon the great" but We will here offer a few thoughts about sin
+them. To them belong the kings, and no-las it existed in the world.
+bles, and mighty men of the earth, and. According to all the sacred writers sin en-
+the Lord says the great harlot has corrupted tered the world and death by sin, beyond our
+them, and in consequence the fowls should control. Paul says thus in the 5th chapter of
+feed on their flesh. Now who could cor the epistle to the Romans and 12th verse.
+rupt them? the answer is Catholics and Pro-Wherefore as by one man sin entered into
+testants, none other could. the world, and death by sin; and so death
+Thus stands the situation of the world, and passed upon all men for that all have sinned."
+we would call upon all, Catholics and Pro-As also in the 19th verse we have the follow-
+testants, to repent and come out of the "Bab-ing: "For as by one man's disobedience
+ylon" they have made, that they perish not many were made sinners, so by the obedience
+with her, for so sure as the Lord executes his of one shall many be made righteous." By
+threatened judgements, they will be cut off these quotations we learn that sin entered tho
+and as sure as there was or is a harlot, that world by the disobedience of one man, and
+corrupted the earth, so sure she is among and that death was the consequence of sin, and
+with them. that death has passed upon all. Now no
+inan will pretend that man is condemned he-
+# A TREATIES ON CONDEMNATION
+BY S. RIGDON.
+As it is said in the scriptures, that those
+cause he is made subject to death; but there
+is just as much reason to condemn man be-
+cause he is the subject of death as because
+he is the subject of sin; for sin entered the
+who believe not "are condemned," it is a world as much beyond his control as did death,
+matter of importance to inquire into the thing and there is as much propriety in condemning
+called condemnation, and the cause thereof.
+If there is such a thing as men being con
+demned, there must he a cause for it and one
+calculated to produce the effect.
+man because he is the subject of death as be-
+cause he is the subject of sin.
+Sin entered the world before any but one
+man existed, and if there were blame it could
+attach only to one man and not to all. No
+man can come into the world and not be sub-
+There has been and continues to be, much
+said by the various teachers of religion on this
+subject, men are warned and adunonished to
+beware lest they are condemned at last; for ject to sin no more than he can avoid death;
+the scriptures say, "He that believeth not one is as unavoidable as the other and they
+shall be damned," that is, he that believeth not are both an attainder from our progenitors,
+the gospel proclamation; and men are taught and as unavoidable as a bodily infirmity,
+to believe that they are by nature under con- and no man is more to blame for being a sin-
+demnation, and subject to the wrath of God, ner than he is for coming into the world withe
+and if the gospel had not been sent into the a bodily deformity, or than he is for being
+world, the whole world would have been dam subject to death; for sin came by one man and
+ned or condemned. death by that sin, and both death and sin
+passed upon all,
+If we understand the teachings of many it
+not all the religious teachers of the present
+age, as well as ages past, if we are to judge
+of their sentiments by their writings, they
+view the world as under condemnation, by
+reason of sin, and if the gospel had not been
+sent into the world the whole world by reason
+of sin would be damned or condemned; and
+that it is sin which brought condemnation
+We will inquire a little after the situation
+of man supposing the gospel had never come
+into the world. The idea of his being dam-
+ned or condemned, is too gross to the received
+by any reflecting mind. Sin independentły
+of the introduction of the gospel could only
+produce death'in its final result. It was the
+cause of taking all from this world after they
+into the world. It is our intention in what came here. Had the gospel never come into
+we shall say to examine how this matter is.. the world, the result would, have been that
+It is said by the Savior in the 3rd chapter man would have been as though he had not
+of John's, gospel and 19th verse thus "And been. His body and spirit would have beon
+this is the condemnation that light is come separated, his spirit would have gone to the
+into the world, and men loved darkness unseen world and his body return again to
+rather than light, because their deeds were the dust from whence it came, to have dwelt
+avil."
+on this earth no more. This end only could
+have beer his fate; no-blame could have been
+If we are to believe these sayings condem-attached to him. He was of necessity sub-
+nation is because light has come into the jected to sin, and in consequence was subject
+world and not because sin was in the world to death. Condemnation was the conse-
+Sin might have been in the world and quence of guilt, but man was made a sinner
+reigned unto death, but yet not cause condem-and-could not avoid it, and doomed to death
+nation. That sin was the cause of death is and could not help it, and no guilt attached
+every where taught by the sacred writers, but itself or could: guilt only attaches where the
+that it might have existed and yet no person cause of guilt can be avoided. In this in-
+Le condemned we think is equally taught. stance it could not.
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 343
+**Source File:** page_343.json
+---
+
+Hence the Savior says that this is the conveniencies of poverty and knows at the same
+demnation that light has come into the world" time he might have been rich only by his
+that is redemption from death, and sin mustown_neglect, he is then condemned, and he
+first come before condemnation could come; has this to suffer in addition to his poverty;
+for until redemption from sin and death came, and so it is in all cases. Man cannot be con
+there was no guilt uilt attached to either sin ordemned unless some are saved, and he knows
+death, on the part of Adam's posterity. That they are saved, and also knows that he night
+which brings life and immortality brings also have been saved, had he have been wise; and
+condemnation. Hence the Savior says, as knowing and feeling that his condition might
+recorded in the 15th chapter and 22nd verse, have been infinitely better, he upbraids him-
+"If I had not come and spoken unto thein, self forever, and thus comes condemnation.
+they had not had sin: bat now they have no It is impossible for a man to exist in a land
+clofe for their sin."
+where salvation can be obtained if he refuses
+The same as to say if I had not come and or rejects it, but condemnation must follow; for
+spoken to them they would not have been con some will be saved and he will know eternally
+demned but now their sin is wilfull and guilt that he also might have been, had he only
+attaches to it, but had the Savior not have have received the offer made.
+come this would not haye been the case.
+Hence it was that the apostles went forth a
+To this same effect says Paul Romans 5th savor of life unto life or of death unto death;
+chapter and 20th verse "Moreover the law they either saved or condemned the world.-
+entered that the offence might abound." Before they carried the gospel to the world
+Had there been no light man might have or before light came into the world, there was
+- lived under sin, and under.sin he might have neither salvation, nor condemnation, but sin
+died and known nothing else, and when he reigning unto death, and man left as though he
+went into the world of spirits would not have had not have been; but as soon as light enter-
+felt any more condemnation than he does when ed into the world condemnation also followed
+he comes into this world: It would have been it; and now in all lands, where men have it
+the common fate of all; all would have been in their power to be saved, if they are not sav.
+alike; all lived and all died; all were embod-ed they will unavoidably be condemned; for
+ied and all disembodied; all come here alike, however lightly men may be disposed to treat
+and all go away alike, and the same lot ap-the offers of eternal life, there is a period in
+pertained to all without distinction; but the their existence when they will know and have
+introduction of light materially changed the to feel to their sorrow, that they had it in their
+affairs of man. As soon as it was in the pow-power to be saved. This they will know, if
+er of man to better his condition condemnation not in this state of existence, they will in an-
+followed if he did not, and condemnation in other, and cannot avoid it. No man ever had
+this case was as unavoidable as sin and salvation within his reach but he will know
+death in the former case. No man could live he had it, at some period of his existence; and
+to whom light came but if he did not sieze cannot know it if he is not saved, without be-
+upon it, condemned he must be; for the know-ing condemned. He cannot avoid upbraiding
+ledge of the fact would follow as it did the himself for his course in life, when he sees
+rich man in the world of spirits, and that was that he has lost the greatest boon ever offered
+as certain as light came to him here.
+to man, and himself cast off when he might
+No condemnation could exist unless the have been exalted on high.
+person condemned had it in his power to better While the gospel brings life and immortali-
+his condition, this no person could have unless ty to light it also brings condemnation to those
+light had come into the world; and when it who reject it, and it will be found a true saying
+was in the power of man to rise above death He that believeth not shall be damned or
+and triumph over sin, and he did neither, the condemned.
+very fact of his knowing that he might have Let us illustrate our subject by the families
+done so will be a source of sorrow and woas of A. and B. A. had an arch enemy that
+long as he exists, it matters not in what state was too shrewd and cunning for him, whose
+of existence he is.
+object it was to bring A. and his family in
+A person can only feel guilt when he has subjection to himself. He commenced his
+rejected some thing that would have been to operations and succeeded in deceiving A and
+his advantage to have received; and the great his wife and by so doing got their family un...
+er the offered boon, the greater the condemna. der his power. He reduced A and his family
+tion when it is lost, and the greater the sor-to poverty, deprived them of every blessing
+row must be that follows. A man when he both in time and in eternity, brought brought him into
+is poor of necessity, feels no condemnation for deeper degradation shame and reproach and
+his poverty, though he nay receive it as a reduced them to shame and degradation.
+misfortune to be so, and he can only feel this Such, was A's condition that his family
+when he sees others rich and the advantage through all ages must inherit his shame pov
+they have by reason of their riches over him; erty and degradation and no éscape. A's chil-
+for if all were poor he would not feel poverty dren could not inherit any thing from their
+a misfortime, but if a man suffers the incon- father but poverty, shaine and reproach, and
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 344
+**Source File:** page_344.json
+---
+
+he and his family were degraded beneath the went in the family of A, some of them believ-
+families of the land, and no power of escape, ed it, and went to B to be adopted into his
+A's children had this evil entailed on them by family. This made many of the rest mad,
+their parents and as his children could not a- they charged this adopted son of B's as offer-
+void it. It was a great misfortune but as it was ing indignity to their father's family. A's
+intailed on them in consequence of the degra-arch enemy became alarmed, he well know
+dation of their parents they could feel no guilt that if B got A's family, he would lose his
+in consequence of it but bore it as a great power and authority over them; in conse
+but unavoidable misfortune. Thus the fam-quence he stirred up as many of A's family as
+ily of A was lingering out their existence; he could, and they attacked him who was
+his family was large and himself degraded. once their brother in great violence and great
+Bwas a man of great wealth, and over-fury, being stirred to great wrath by A's arch
+whelming influence, but had no children. Jenemy who had full power over them, they
+He was in advance of all the families of the commenced abusing him, defaming his char-
+earth, to him they all bowed with reverence acter, circulating all manner of falsehoods a
+and acknowledged his superiority. His gainst him, trying to keep the he rest of the fami
+wealth was inexhaustable he could enrichen a ly from being adopted into B's family.
+world. His wisdom was far above the wis- A's enemy whom he supposed to be his
+dow of A's enemy. B looked upon A and friend, invented all kinds of stratagems_to de-
+his family in their degradation, and understood ceive A's family, in order to hold his influence
+their fall much better than they understood it over them. He stirred as many of A's fami
+themselves and he felt disposed to raise them ly as he could to exert all their power and in-
+from their deep degradation, but this he could fluence to destroy B's messenger to them.-
+not do as long as they remained under the rela-He was called an impostor, a liar, a false pro-
+tion they sustanied to A as their father and phet. They pursued him with violence.
+head of the family; for so long as A remained wrath, and indignation. A's enemy finding..
+at the head of the family, his enemy would he was like to be defeated, for he well knew
+keep him in subjection to himself with all his that as many of A's family, as were adopted
+family. B proposed to remedy the evil by into the family of B would be delivered from
+adopting the family of Aas his chidren, and under his power. He put all his ingenuity to
+making them his family and his children, and the stretch to invent schemes to avoid this.-
+thereby become the head of the family himself. He at last had recourse to a cunning device,
+B according to his plan makes application he admitted that it was a great blessing to be
+to A to let him adopt his children as his own. in B's family, and had a cunning plan to de-
+He called upon A's family to break the rela-ceive by imitating a law of adoption of his
+tion they sustain to their father A, as head of own, and sent his messengers every where a-
+the family, and be adopted as his children, mong A's family to adopt them into B's fami-
+giving A and his wife the same privilege. ly, and multitudes of A's family was in this
+As soon as the proclamation was made by manner deceived.
+B, one of A's sons availed himself of the pro Now B had an unchanging law of adoption
+posed blessings and went and was adopted ac- and none could be adopted into his family on-
+cording to the plan of adoption devised by Bly on one principle, and they who did not sub-
+and become B's son, breaking the relation be mit to this law, were not made heirs of B's
+tween-him and A his father, and became the inheritence. A's enemy well knew this, and
+son of B, as effectually as he had been the son knowing this he attempted to deceive A's fam-
+of A. A's authority over him ceased, and ily by inventing systems of adoption of his
+he now became B's heir instead of A's. Noown, and sending-messengers of his own to
+sooner-was this done than he found his circum-do it.
+stances greatly changed, he became heir to all B, in order to have any adopted into his fami--
+B's riches and honor, wealth and influence, ly, had it done by messengers of his ownchoos-
+All who now insulted him felt the wrath of ing to whom he communicated continually
+B. B considered his honor was identified and to whom he gave instructions daily that
+with the honor of his son, and commenced they might not err. Many of B's messengers
+teaching, instructing, and refining him and had gone forth to confer the blessings of Bon
+making this his son like himself. He no A's family; in the course of their administra-
+sooner found himself sharer in B's wealth hon-tion they had written many letters to the a
+or and fame, than he immediately repared to dopted family, giving them instructions and
+the house of A his first father, and made proc-setting forth the way and manner by which
+lamation to the rest of his father's family, de- B adopted members into his family. A's
+claring unto them that in A they must suffer enemy availed himself of these writings
+poverty, shame, and disgrace forever, but in which he got into possession and putting
+B they could have wealth, honor, fame, power them into the hands of his own messengers
+and eternal life, and exhorted and admonished sent them forth to adopt A's family into B's,
+them to be adopted into the family of B, telling but he found there was one difficulty to over-
+them of the blessing he had obtained by being come; for when his messengers had as they
+in B. The proclamation made great excite said adopted of A's family into B's, B held
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 345
+**Source File:** page_345.json
+---
+
+# MESSENGER AND ADVOCATE.
+
+PITTSBURGH, PA.
+
+Presidents S. Rigdon and S. James together with Elders James Blakeslee and J. M. Cole have left for Philadelphia, to be in attendance at the conference on the 6th inst.
+
+May the Lord go with them, and his spirit attend all their assemblings together, and much good be the result of this conference, is our sincire desire.
+
+In this No. will be found some extracts giving a condensed account of the great difficulties in the west, which we notice for the satisfaction of our readers who do not obtain the regular news of the day. We give them as they came to us in the various papers froin which we make the extracts. We should have given more copious extracts from the Nauvoo papers, had the editors been disposed to have exchanged with us, but as they do not we are compelled to look to other sources for news on this painful subject.
+
+## TO OUR SUBSCRIBERS.
+
+To our subscribers who have not paid their subscription, (of whom we regret to say there are several,) we would just remark, that it would be a matter of great accommodation to us, if they will be so kind as to remit us their small dues soon, as we are under the necessity of making arrangements for winter, which is fast hastening upon us also we have some few debts to pay which must be canceled without fail: therefore, it would be very gratifying for our friends to send us that which justly belongs to us, which if they should do would greatly relieve us, and save us much anxiety. When you sit down to envelop $1 to send us for this volume, which by the by, is decidedly too small a sum, you may take a little pains and inclose another dollar for the 2d vol. that is, if you should wish to take it, as it will save you postage of another letter soon; as we have come to the conclusion not to send the 2d volume to any except the pay is received in advance, that being decidedly the safest, best, and most satisfactory way of conducting the business of a paper. And the satisfaction of reading a paper which is paid for is so extremely gratifying, that we sometinies marvel that any person can be found, who will deprive themselves of such a laxury.
+
+no communication with them as he did with those whom his own messengers adopted.- A's enemy had recourse to a wily stratagem to overcome this difficulty by declaring that as B had confirmed the truth of his proposals to A's family by his manifest communications, and having done this, it was not necessary that B should bestow them any more, and that they had ceased.
+
+On this principle he succeeded to deceive multitudes, of A's family, and the messengers that A's enemy had thus instructed went forth proclaiming against B's messengers, declaring they had the power to adopt children into the family of B, and that B had ceased to confer his gifts on his adopted children, that B had proven he had power to do so, and having done this it was sufficient, and multitudes by this device of A's enemy were deceived.
+
+Great confusion reigned in A's family, but the time hastened to a close when B was to put his children into possession of the promised inheritence in full, and in order to do this he had to cast down A's enemy with all his followers; he commenced his work of preparing for the crowning of his children, and he east down A's enemy, taking away his power, exposing his deception, and destroying all power out of his hands. No sooner was the work done and A's enemy with all his followers cast down, and B's family put in possession of their rights as his children, than the eyes of the rest of A's family were opened in deep dismay and horror; they then saw what they had lost, they did not upbraid themselves because they were A's children naturaly and thereby doomed to shame, but their great sorrow was they had refused to be adopted into the family of B when he made the kind proposal, they saw their case desperate. Those who had been adopted they knew were reigning in great power, and great glory; and they were not only suffering the common shame of the family, but had to endure the mortification of knowing that they also might have been reigning as did their brethren, if they had only been adopted into the family of B, but now it was lost, forever lost, and there were weeping, wailing, and guashing of teeth among them, and all this because B had placed it within their power to become members of his family and heir with him all his glory.
+
+"This is the condemnation that light has come into the world, and men loved darkness rather than light, because their deeds were evil," and not because they were sinners by Adam.
+
+"He that believeth and is baptized, shall be saved, but he that believeth not shall be damned," not because they were sinners in Adam, but because they believed not on the only begotten son of God.
+
+The solemn pledge the Scriptures give The wicked die: the righteous live
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 316
+**Source File:** page_346.json
+---
+
+# REFLECTIONS ON THE DUTY OF MAN.
+
+Ye have heard that it hath been said, Thou shalt love thy neighbour, and hate thine enemy. But I say unto you, Love your enemies, bless them that curse you, do good to them that hate you, and pray for them which despitefully use you and persecute you; That ye may be the children of your Father which is in heaven: for he maketh his sun to rise on the evil and on the good, and sendeth rain on the just and on the unjust. For if ye love them which love you, what reward have ye? do not even the publicans the same? And if ye salute your brethren only, what do ye more than others, do not even the publicans so? Be ye therefore perfect. even as your Father-winch is in heaven is perfect. Matthew 5:43-48.
+
+All believers in the scriptures of divine truth will readily acknowledge that Jesus Christ, the saviour of the world, whose words we all have quoted above, was a personage who perfectly understood the principles by which the children of men should be governed in order to become the children of their father which is in heaven." How few there are of those who profess to be the followers of the meek and lowly Jesus, yes we may say how few of those even who have been legally adopted into the church and kingdom of the Son of God, who duly consider the importance of the injunctions made by our Savior, in the words of our text.
+
+When we consider the character of the person delivering those remarkable sayings, the circumstances under which they were delivered, and the persons to whom they were addressed, and that they contain eternal-principles which affect all mankind, we are led to marvel greatly at the apparent little or no attention paid to them by the professing christian world, who claim to be the Lord's disciples, and consequently the children of God. We learn in the first verses of this fifth chapter, that Jesus, "seeing the multitude, went up into a mountain; and when he was set, his disciples came unto him and he opened his mouth and taught THEM." Here we find our Savior addressing himself to his disciples, who had been willing to take up their cross and follow him, and must, necessarily, have obeyed the gospel of the kingdom which he had been preaching to the world. Among the many glorious and ennobling principles set forth in these instructions, to the disciples, are these words: "ye have heard that it hath been said, thou shalt love thy neighbor, and hate thine enemy: But I say unto you, love your enemies, bless them that curse you, do good to them that hate you, and pray for them which dispitefuly use you and persecute you:"
+
+And why this strict requirement, so different from the usages and custoins of the world, -and-even the law of Moses, under which the disciples had been raised and tutored! In the
+
+145th verse we find the answer and the reason why such requirements were made; "That ye may be the children of your Father which is in heaven:"
+
+Is it actually necessary to be governed by such principles as these, after we enter into the new and everlasting covenant by the door, even that of faith, repentance, baptism for the remission of sins, and received the imposition of hands for the reception of the Holy Spirit,are these things ye' to be observed in order to become the children of God? So it appears from the sayings of our Savior on this occasion; for he, says, "But I say unto you," [disciples] do these things "that you may be the children of your father which is in heaver."
+
+Here is a principle set forth worthy the attention of all professing christians. How pleasant and desirable a society governed by them. How different from the order of things which prevail throughout the world. Yet we all who attain to the exalted privilege of becoming heirs of God, and joint heirs with Jesus Christ, must let these things be the governing principles of their action, that they may be assimilated into his likeness, and be prepared for his society when he comes to make up his jewels. It is upon these principles that the heavens are governed, and the earth is permitted to stand; for if God was like man, who can never rest or feel satisfied while his enemy has a name or a place among the land of the living, how long since would the heavens have been as brass over our heads, and the earth as iron under our feet, and man would have withered and passed away like the flower of the morning before the scorching rays of the noon-day sun? "But I say unto you, love your enemies, bless them that curse you, do good to them that hate you, and pray for them which dispitefully use you and persecute you; That ye may be the children of your Father which is in heaven: for he maketh his sun to rise on the evil and on the good, and sendeth rain on the just and on the unjust."
+
+All people, who profess faith in the Lord Jesus Christ, admit that he came to open a way and an effectual door, whereby man can, through an obedience to his will, be exalted to the right hand of his "Father which is in heaven;" and that our Savior, in making manifest this way of life, was a pattern for us in all things, not only in deed, but in word also; that the principles which he came to set develop, were not only important and necessary, but were fraught with eternal consequences; and that man is placed here in a probationary state, where he can obey those principles, and learn those lessons which are necessary to be learned and practised, to prepare him for that glory which is to be revealed at the coming of the Son of man.
+
+This then being the case, and these things being required by the Captain of our salvation, it follows of necessity, that without an observance of those principles, and living in obedi
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 347
+**Source File:** page_347.json
+---
+
+ence thereto, we cannot become the children which should be like a girdle round the earth,
+of the Most High, in the true sense of the leaving me not an eyelet hole to escape.
+word; for if we are his children, then, most But here I am, no thought of fight, a desper-
+assuredly we will be governed by, and observe ate foe to vice and error; truth and light for
+the laws of his household, that thereby, wenty supporters, banded around by brethren, a-
+may be entitled to his spirit; and Paul haslike resolved to uphold in righteouss each oth-
+informed us that was many as are led by the er and the church, despite usurpers, who,
+spirit of God, they are the Sons of God." in human strength and hellish wickedness, de-
+And if children, then heirs, heirs of God, tain for a short season the power to rule,
+and joint heirs with Christ: if so be that we which only serfs consent to. With this slight
+suffer with him, that we may be glorified to-notice I bid them farewell, trusting that the
+gether."
+God of mercy will tear the veil of darkness
+The object then, in becoming the children of which now envelops them, and that they will
+God, being to make us partakers, equally with restore back to heaven'sappointed, that which
+Jesüs Christ, in the glories of eternal life, can belongs not to them.
+it be presumed for a moment that we can al All that know me not, learn, I battle for the
+tain to that glory, and treat lightly, or disre cause of Christ and the poor. Come out ye
+gard those principles which it was necessary that are honest, whose credulity alone is your
+for him to observe in order to obtain that high fault, and sustain the right, fearless of might;
+and exalted privilege? (for he says himself. Sidney is the lawful commander of the ship,
+"I came not to do my own will, but the will of onder whose careful observations and recon-
+of him who hath sent me," which clearly ings will reach the haven of bliss, which is
+shows that whatever he done or taught was now officered and maned by men of God's
+agreable to the will of God, and consequently selection, provisioned by the gospel of the
+the law of heaven.). We think not. Letus, Lord Jesus Christ. And you may now see
+therefore, fellow travellers to the unseen far in the wake of that glorious Barge, a light.
+world, examine carefully_and see if those passing the noon-day-sun, and brighter glows
+principles which are required to govern us in the way as she onward speeds. Courage then
+order to constitute us heirs of God, are dwel-ye children of the Lamb of God. Be patient,
+ling in our bosoms, and we actuated thereby; humble ready to forgive, slow to anger, re-
+if so happy are we: Knowing that if the spirit nounce iniquity, practice virtue, return good
+of him that raised up Jesus from the dead for evil, be dilligent in all things that are god-
+dwell in us, he that raised up Christ from the ly, regard neither the sneers nor threats of
+dead will also quicken our mortal bodies, and your adversaries, for your heavenly Father if-
+we shall have a part in the first resurrection, they repent not, in his own good time, will
+upon whom the second death hath no power. blast them with his hot displeasure.
+
+Now all that know me, with a brother's
+voice to you I call, confess yourselves freely
+unto God, become a member of the church of
+## BROTHER ROBINSON.
+I feel it my duty, on dess to prepare what little of time remains of
+the eve of my departure, as Lam, to the shores this fast waning hour; that our Savior may
+of my father land, to make known to you, that find a people blameless and acceptable, whom
+I have steped from the world, into the sacred he may pronounce worthy to reign with him.
+enclosures of the church of Christ: how won- Be steadfast in the Lord; employ every op
+drous are the workings of the Holy Spirit, portunity both by example and advice to con
+with its unseen cords of love, that gently vince your neighbor; be harmless in your re-
+binds and draws those who are willing to marks to those who do not understand the
+come into the presence of truth and light. scriptures as ye know them; be dilligent and
+On Sunday last having been providentially ready at all times to instruct them, for I feel
+detained, by the non sailing of the Packet I persuaded that there are myriads yet to be sa
+had taken passage in, I attended a meeting in ved. Do not lose your reward, for they that
+company-with-brother Braidwood, at the resi win souls to Christ, they will be as stars in
+dence of brother Williams; the afternoon meet the crowns of your rejoicing, be patient un-
+ingy was divinely spirited, by a number of der all preplexities, and when the storms of
+short exhortations of the brethren and sisters. the world's wicked elements howl furiously
+I was constrained by the spirit of God to around, lift your hearts to God, be united as the
+touch upon the connection I once had with the children of his adoption, be as one man with
+Mormon church, and my expulsion therefrom, the spirit of God dwelling with all, and th
+for which essential service, if frequent heart-time is close at hand, when a city you shall
+felt acknowledgement will be received as gen, have, made with hands, the light of which
+wine tender, they have been rendered. "All's shall relume this benighted world, a home for
+well that ends well." Now I harbor not a the fatherless-and the widow and the saints of
+thought of ill against that formidable body God, under whose mild laws shall dwell
+who in their potency dealt out their anathe peace and justice, a degree of resemblance
+mas of excommunication, the punishment of nearer than the world has as yet seen, as
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 348
+**Source File:** page_348.json
+---
+
+promised in the millenium. Then, when ye and the boat to the Lord in the name of Jesus
+go forth, ye shall be credited for the sake of Christ my master, and after resting awhile I
+that city and its people. The honest curious found myself quite comfortable.
+will listen and receive the gospel of our Lord Wednesday 10th at 11 o'clock, A. M. we
+Jesus Christ; and ye shall become the city of found ourselves at Montrose apposite Nauvoo
+Zion in heavenly holiness, and strength, at the head of the rapid's, where we had to
+where a delightsome people wait the coming light over, the river being very low. Here
+of our blessed Lord...
+we were detained about half a day, but as I
+It would be a source of much pleasure to had a chill that day I was prevented from vis-
+me, could I attend your conference at Phila-iting any of my old acquaintances in that
+delphia, but circumstances are such, that I place. Several of our passengers visited
+shall be on the mighty waters of the Lord, Nauvoo and the Temple, they said nothing
+where his natural works may be seen instead was done inside the Temple, not even the floors
+of hearing and feeling the good things that layed as yet. From this place, after lighting
+will be said and done at you coming confer over the rapids, we proceeded to St. Louis, af-
+ence; which may God, in a special manner, ter being detained some on sand bars, where
+bless-all who can attend or make circumstan we arrived, Friday 11th at 2 o'clock P. M.-
+ces bend to so important a gathering, I trust My health improving some, thank the Lord.
+will do so. May God bless and preserve the Here I engaged a passage on board the new
+whole church of his new and last creation, is steam boat Vesta, for Cincinnati O. at $6
+the prayer of your humble brother newly a- Cabin passage, Capt. Cob. Isaw none of
+dopted into the family of God. the brethren in St. Louis, not being able to
+
+THOMAS A. LYNE. walk about much.
+
+For the Messenger and Advocate Saturday 13th at 12 o'clock noon we left
+Pittsburgh Sept. 27th-1845. St. Louis for Cincinnati, and arrived at the
+
+PRESIDENT E.. ROBINSON, foot of the falls of the Ohio river, 2 miles be-
+low Louisville, Thursday 18th in the morning,
+Dear Brother: I now and at 2 o'clock P. M. we arrived at Louis-
+seat myself to spend a few minutes in writ-ville Ky. Here I left the Vesta and took pas-
+ing to-you, to inform you how I have prosper-sage on the packet steamer, Susquhanna for
+ed since I last wrote you from West Buffalo, Cincinnati, at $2, and at 5 o'clock P. M. left
+1.T. August 21st '45. I informed you in that for the latter place, where we arrived, Friday
+letter that it was quite sickly in our part of the 19th at 11 o'clock A. M. Here I visited sev-
+country, which was even the case, but my fain-eral of the brethren, and friends. who were
+ily suffered more from sickness for a few days glad to see me, and I assure you I was glad
+after that, than they had before, and it seemed to meet them. I had a good visit with them
+as though Satan was determined to hedge up at during my stay in Cincinnati. Sunday 21st
+my way, to prevent me from going east to our on board the Steam boat Rhode Island, at $5,
+October conference: but I continued to cry the river being very low; and on Thursday
+unto the Lord, to rebuke the destroyer from 25th at 5 o'clock P. M. arrived at Pittisburgh,
+our habitation, and restore iny family to in tolerable-good health, and in good spirits.
+health, and open out my way that I might fill I did not attempt to preach on my way
+my mission according to previous appointment; round to this place, my heal health being so impair-
+and suffice it to say, that after a few days of ed. I have great reason to thank the Lord for
+severe illness of all my family, I was attack-his preserving care over me, while traveling
+ted myself, with a nervous affection in my on those waters, which the Lord has said, the
+teeth and head, and suffered much for several destroyer rideth upon in these last days.-
+days, and finaly it eventuated in the chills Since my arrival in Pittsburgh, I have visited
+and fever. But I still cryed unto the Lord, President S Rigdon and family, who were
+believing he would finaly hear and answer well and in good spirts, and who received mo
+my supplication, which he did, and I feel to with warm hearts; the church in Pittsburgh
+render thanks to his most holy name, that are in a prosperous condition and the Lord is
+have the privilege of informing you, that on still adding to their numbers. I have made
+the 9th of the present month it being Tuesday several visits among the brethren since my ar-
+at 11 o'clock A. M. I left my family in toler-rival, and am happy to say, I find them in the
+able good health and spirits, under the imme-enjoyment of the spirit of the Lord, and love
+diate care of our highly esteemed and well be-abounds towards each other. This is as it
+loved brother elder H. Whitlock, and suroun- should be; and may the Lord bless them more
+ded with a beloved band of brethren and sis-and more is my prayer to God in their behalf.
+ters, in Christ, whom 1 love in truth, and went I expect to leave this place next Tuesday for
+on board the steam boat Archer, for St. Louis Philadelphia, in company with President S.
+Mo. at $5 cabin passage, as I was not able to Rigdon, President S. James, and elder J. M.
+stand it on deck, and after entering my state Cole, to attend the conference commencing
+room, I kneeled before God our heavenly Fath- Oct. 6th. 1846
+er, and in solemn prayer dedicated myself As, it regards my future prospects they are
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 349
+**Source File:** page_349.json
+---
+
+flattering, knowing as I do that the Lord is crown of righteousness to wear for ever and
+with us, and if we continue faithful in our place lever. And I pray that each of us, that entered
+he will never forsake us, but will continue to into that covenant, may be steadfast, unmove.
+spread his kingdom abroad in the earth until able, and abound in the work of the Lord, that
+it shall have proved the deliverer, and joy of it may be said of us, "you have been faithful
+the whole earth, and bring the redemption of over a few things, I will make you ruler over
+the purchased posssion. many things." &c.
+I remain ever your Brother
+In hope of the rest of God,
+H. HERRINGSHAW.
+JAMES BLAKESLEE.
+
+Sing Sing, Weschester Co. N. Y.
+BROTHER ROBINSON,
+From the Pittsburgh Commercial Journal.
+MORMON OUTRAGE.
+DEAR SIR: A few days
+ago I visited the city of New York, where I
+met with brother McLellin. It gave me joy
+to learn the work of the Lord was rolling on
+with such rapidity as it is; my prayer is, that
+the kingdom of God may roll on with Majesty
+and power, until the kingdoins of this world
+become the subjects and kingdoms of our God
+and-his Christ, Amen.
+The correspondent of the St. Louis Repub-
+lican, writing from Warsaw, gives the follow
+ing account of serions outbeaks between the
+Mormons and their opponents in Hancock
+county:
+WARSAW Sept. 11, 1845.
+10 o'clock, AM
+Brother McLellin informed me you had
+heard in Pittsburgh that I had become disaf
+fected, which report caused you to have sor
+row of heart. Dear Brother I am happy to
+inform you, the report was without founda
+tion in truth; and am sorry you should have
+some ground for fearing lest I had become
+weary in well doing, by my not writing.
+Pardon me for my long silence, at the same
+time rest assured I am your Brother and Ter
+low laborer in the church and kingdoms
+MESSRS. EDITORS: On Tuesday morning
+last, 9th inst., an attack was made on a
+school house in Rocky Run Precinct, by some
+persons unknown, but supposed to be Mormons
+in which there was at the time of attack a
+convention of anti-Mormons, or old settlers
+of the County. The doors and windows of
+the house were completely riddled by the
+shots fired by the assilants. The attacking
+party approached under cover of the woods
+and bushes and fired one round and fled.
+No person was injured, but many were, I
+presume much frightened at this sudden and
+unexpected assault. The old settlers in that
+section of the county armed themselves for
+defence, and if they are backed by their
+friends in other parts of the country, blood
+will flow. By, a messenger just in, who
+came to purchase lead, powder, flints, &c. I
+learn that four buildings were burned down
+last night, and one man shot, and very badly
+wounded, but not mortaly. Yesterday thir
+teen wagons, loaded with furniture, were
+seen wending their way to the city of Re
+fuge, (Nauvoo.)
+Christ, which has been organized according
+to the will of Heaven; and I feel this day as
+determined a will to help roll on the hingdom,
+in all righteousness, as I did at the conference
+in Pittsburgh, until the time of the end.
+Since I left you I have baptized seventeen,
+many are enquiring after the truth and are de
+sirous to read the Messenger and Advecate.-
+: I enclose $5 for it.
+From the Cincinnati Gazetle.
+TERRIBLE EXCITEMENT.
+Truth is onward; it proves mighty and will
+prevail. The Branch of the church in New
+York city is at present very much united;
+the spirit of the Lord is indeed with them.-
+But I need not say more at present, as brother
+MeLellin will write you all the particulars.-
+Give my love to President S. Rigdon and fam
+ily; in fact all the saints, for are we not one?
+I remain your Brother in covenant of the
+church and kingdom of Christ, to bring in the
+redemption of the purchased possession and
+rest of God: this I will do, by the help of the
+Lord, that I, with the faithful may be crown
+ed, when the sons of God shall receive their
+By a letter in the St. Louis Republican
+from the Editor, and from the Warsaw Signal,
+we have accounts from the seat of war, up
+to Wednesday morning Sept. 17. The ex
+citement is tremendious, and blood has been
+shed. In Morley's settlement, near Lima,
+from fifty to sixty houses were destroyed
+MR. HEAD, the Clerk of Hancock county.
+has fled from Carthage to Quincy, with the
+public records. Gen. Williams, is encamp
+ed, with a number of men, anti-Mormons,
+about six miles from Warsaw.
+The letter of the editor of the Republican,
+writing from Warsaw, says.
+Yesterday, a deplorable circumstance on
+cured about seven miles from here, which I
+believe will form the element for a much
+wider difficulty than any thing which has ve
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 350
+**Source File:** page_350.json
+---
+
+transpired. The story, as well as I can gath. though they have been basely treated, and
+er it in the confusion of reports, follows. shot at, as can be proved, have been quiet,
+It is said, that on Sunday or Monday three not retaliating even in self-defence, seeking
+men entered Carthage, and enquired for Mr. peace at all hazards."
+BACKENSTOS, the Sheriff, who is a Jack Mor- The same paper says, that writs against
+mon, and very obnoxious to the anti Mormons, the "twelve" and some others, upon the
+Mr. Backenstos made his escape. Yester-charge of "treason," have been issued in that
+day, Mr. FRANKLIN A. WORREL, a merchant county.
+of Carthage, and a Lieutenant in the Car
+thage Greys, was-out, with twelve or fourteen
+other persons, when they came up with Back
+enstos and a number of Mormons, at a place
+From the Morning Chronicle, Oct. 1st.
+## THE MORMON DIFFICULTIES.
+EVACUATION OF WARSAW
+called Prentices' Shanty. The Mormons By the arrival of the steamer Boreas, at St.
+beckoned to Morrel and his party to keep Louis, on the 22d ult., the papers of that city
+away, but they either did not understand the have the latest intelligence of the Mormon
+signal, or disregarded it. On their approach, war. By the New Era we learn that on the
+two guns were fired. A ball from one enter-20th-ult., the Mormons, numbering between
+ed Worrell's breast, killing him almost in 500 and 800, under, the command of sheriff
+stantly. The corpse is now in the town. Backenstos and E. A. Bedell, Post-master
+The other ball entered the cap of the man by at Warsaw, marched into that place in
+his side. As you may suppose, this has ad triumph. Alf the citizens who had taken an
+ded fuel to the flames, and this morning lactive part, or in any way sanctioned the late
+find a majority of the citizens here preparing outrages, had previously left for the opposite
+to go out, and nothing is talked of buta gen-side of the river, so there was but an empty
+eral battle, and the driving of the Mormons victory. Backenstos, after maching his
+from the county.
+troops through the principal streets, and
+Numbers of people, especially women and making some pretence to search for offenders
+children, are leaving the countyas fast as they finally drew them up in solid phlanx on the
+can get away. Thus far the Mormons have bank of the river, and in full view of the fugi-
+fled in every instance, making little or no re-tives from his vengeance on the opposite side;
+sistance; but they cannot fler much further, he made them go through the various modes
+and they must either stand and fight, shortly, of exercise, no doubt to impress the refugees
+or leave the county.
+with a proper respect for his importance in
+Alarm and excitement pervade all classes, future; when tired of displaying his military
+and terror is depicted on the countenance of preparations, and after satisfyng himself that
+all the families I have yet seen. This week, none of the house burners and mobocrats were
+I believe, must bring matters to an issue in the city, he placed a strong force on guard.
+From the apparent concert with which the and withdrew with the main portion of his
+anti-Mormons are acting their simultaneous army to an encampment about two miles dis-
+attacks the deep and deadly hatred which tant. The Morinon soldiers had full and
+they entertain to the Mormons-the fact that quiet possesiou of the town when the Boreas
+the Mormons from all the settlements out of left.
+Nauvoo are being driven into the city-I Everything is said to be quiet in Hancock
+judge a fight must come off this week, which county at this time, the Mormons having pos-
+will probably give a predominency to one par-session of the three pricipal towns, Carthage
+ty or the other.
+Augusta and Warsaw; but the prevalent opin.
+The above letter, says the Republican em-ion is, that it is but a delusive calm before
+bodies nearly all the news which we have from the ontbreak of a terrible storm.
+the disturbed district. It is stated in the In a few days weshall hear that Backenstos
+Nauvoo Neighbor, that accounts had been and the Mormons have gone home or that a
+received there of the destruction of forty-general outbreak has taken plaće.
+four houses, and out-houses-in-Green_Plains
+and Lima districts. The Neighbor insists, From the Pittsburgh Gazette, Sept 29,
+that the shots fired upon the anti-Mormons at
+One of the editors of the St. Louis Repub-
+the meeting on Tuesday, were fired by their lican, who is at the seat of the War, has been
+own party, and that the Mormons knew no- endeavoring to effect a compromise in some
+thing of the occurrence until the next day. A way between the parties.
+partial list of the houses destroyed is publish- Between 250 and 400 Mormons were out
+ed in the Nauvoo paper and it is added: in arms under Backenstos, the Sheriff. The
+"All that we shall remark on the above, is editor concludes his letter thus:
+that Col. Williams is at the head. We had "My own belief is, that, although the Mor-
+for sometime heard a rumor that the mob mons have now in the field the strongest par-
+were preparing for further outrages; but were ty, and have excited considerable fears in the
+really in hopes, as our people had given no ranks of the Anties, that the latter will yet
+provocation whatever, that law and order rally, and carry the warfare further than it
+would govern the old citizens. Our people, has yet been carried, They will, if it is re
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 501
+**Source File:** page_351.json
+---
+
+# ANOTHER BRUTAL MURDER
+
+newed, attempt to avenge the deaths of Wor-zens of that county, and that a committee of
+rel and McBratney. Symptoms of trouble five be appointed to visit Nauvoo with the
+were manifesting themselves at Keokuk, I. proceedings of the meeting, and ascertain
+T., when I left. The citizens of the town from that people, as to what are their future.
+ship had resolved that the Mormons should intentions as to leaving the State. The res-
+not live in their township, and they had sent olutions also disapprove of the burning of
+a petition_to the Governor requesting him to Mormon dwellings, and pronounced such acts
+have all removed."
+unlawful, &c.
+
+Backenstos has issued a third proclamation. While the committee were out, several
+The work on the Temple and Hotel is suspended. gentlemen spoke. After Mr. Warren, O.
+By the following it will be seen that another H. Bowning, Esq. made a spirit-stirring
+murder has been committed:
+speech, and advocated immediate measures
+in aid of the old citizens of Hancock.
+
+From the Warsaw Signal, Extra, Sept. 18th.
+ANOTHER BRUTAL MURDER. We are call- He was followed by A. Jonas, Esq. in a
+ed on to record another murder, of a most most pointed and able speech.
+brutal character, committed by the Mormons The next called out was 1. N. Morris,
+on yesterday. About 12 o'clock, a party of Esq. His speech was a scorching one,
+ten men were riding across the prairie, near land created great applause. We have said
+Bear Creek, where they fell in with the many hard things of this man, but can forget
+Sheriff's Mormon posse. The latter immedi- a great deal, after his excellent speech of
+ately fired on them, without provocation, and Monday evening. He, like Mr. Jonas, said
+wounded a horse and one of the men. They if one party or the other were compelled to
+then gave chase, and overtook one of the favor of the anti-Mormons remaining. [Tre-
+leave Hancock, he for one, was decidedly in
+party, a young Irishman, named Samuel Me- mendions applause!]
+Bratney, a teamster in the employ of Gould At this point of the proceedings, a letter
+& Mellen, shot him, and after he was down was handed the chairman from a gentleman
+stabbed him with a sword in several places, of Carthage, dated on the same day, giving
+and out his throat and head in a most revolting an account of Backenstos' proceedings at
+manner. They then left him in the open Carthage. From this letter it appears that
+prairie, taking his horse with them. Backenstos marched into Carthage, at the
+
+From the Quincy Whig Sept, 24,- head of 300 Mormons on the day previous,
+POSTSCRIPT. and stationed a Mormon guard at the doors of
+Disturbance in Hancock-The Public Meeling the principle dwellings, and sent into the vi.
+of Monday evening. A Committee of 1000 cinity of Carthage, and took men from their
+We-have just returned from one of the most families, and drove them at the point of
+interesting public meetings, we have attended the bayonet into the Court House, where he
+for years. It did our soul good to see the un- selected such as he wished to detain, and with
+-animity which prevailed--and the determined whom he had had previous difficulties; event-
+stand taken by our people in favor of the ually he discharged them all but one, after
+suffering citizens of Hancock. The meeting showing them his power.
+was called to take into consideration the re- Mr. B. M. Prentiss, who had just return-
+cent murders and other outrageous proceed-ed front Carthage was called out, and he gave
+ings in Hancock. A. Williams, Esq., was a detail of matters as he saw and learned
+called to the chair-and Wm. H. Benneson, at Carthage. He fully corroborated the state-
+Esq., appointed secretary. ments in the letter just read, and gave an in-
+C. A. warren, Esq, addressed the meet- teresting detail for which we have not the
+nig. He was truly eloquent and startling, in room this week. He went to Carthage under
+his remarks, and the old citizens of Hancock, the impression that the Mormons were not so
+received full justice at his hands. He advo- much at fault, and returns a thorough anti-
+cated the proposition, that a committee of one Mormon.
+thousand from this county visit Hancock, and After Mr. Prentiss, O. C. Skinner, Esq.
+bring the Mormons to terms. of Carthage, made some interesting statements,
+Previous to this, however, a committee of showing the outrages of which the Mormons
+5, consisting of Messrs. I. N. Morris, H. had been guilty.
+Asbury, A. Pearson, T. Kelly, Maj. J. H. Andrew Johnson, Esq. was called out, and
+Holton, and John B. Schwindler, were ap- spoke to the point for a few minutes. He was
+pointed to draft a preamble and resolution ex- of the opinion that if we do not assist the old
+pressive of the views of the meeting. The citizens now, we shall have to do it hereafter,
+preamble and resolutions reported by this and if there is not something done soon, the
+committee will appear in our next, they are scenes-in Hancock will be enacted at our
+strong and to the point. The preamble re- own doors. We echo the sentiment decid
+cites the wrongs and outrages which the Mor-edly.
+mons have brought upon Hancock and the Geo. C. Dixion, Esq. was called out, and
+resolution, in substance declare, that the Mor- took the anti-Mormon side of the question, in a
+enons cannot live in peace with the old citi- strong and sensible speech. He was for imme
+
+---
+## METADATA: The Latter Day Saint's Messenger And Advocate
+**Volume:** 1 | **Issue:** 22 | **Page:** 353
+**Source File:** page_352.json
+---
+
+# PROSPECTUS
+FOR THE SECOND VOLUME OF THE
+MESSENGER & ADVOCATE
+OF THE
+CHURCH OF CHRIST.
+
+As the first volume of the MESSENGER AND ADVOCATE is drawing to a close, we deem it advisable to give our patrons and friends an early notice of our intention to continue its publication.
+
+The comencement of this paper was under circumstances very peculiar and trying. We were under the painful necessity of lifting our pens and voices against an apostacy the most daring, and of opposing doctrines the most revolting, demoralizing, and destructive, that ever mortals were called upon to witness; especially in a civilized community; and we think it exceedingly doutbful if the history of the most barbarous or heathen nations can show a parallel; we mean the private teachings and practices of the leaders at Nauvoo.
+
+To save the church of Christ from an entire ruin and overthrow, required an effort worthy of the high and exalted end to be obtained. This effort we felt willing to make, agreeably to the requirements of our heavenly Father. knowing that with his aid and blessings this glorious object could be accomplished; and we have the unspeakable privilege of seeing that our labours have not been fruitless or-vain, but have been attended with abundant success, through the goodness, and under the guidance of him who hath said, "though heaven and earth pass away, not one jot or title of my word shall fail."
+
+To show the true state of the church, and give the full account of its re-organization, and the establishment of the kingdom of God, and also set forth the doctrines of the kingdom
+
+---
+
+diate action. He was very upon the Executive of the State for the indifferent manner in which he administers the laws. The applause with which his speech was received, shows that a spirit is aroused among our people, which will not be quieted until the backs of the Mormons are turned upon Illinois.
+
+Finally, an amendment proposed by. A. Johnson, Esq. to the resolutions, which gave power to the chairman to call another meeting so soon as the coinmittee of five shall return from Nauvoo, was adopted together with the resolutions, by an unanimous vote.
+
+The proposition for ONE THOUSAND to visit Hancock meets with universal approbation.
+
+Public sentiment is decidedly against the Mormons-They Must Go and Backenstos feel the full force of law for killing Worrel!! Our best Lawyers-pronounce it an act of murder-for which the sheriff had not the shadow of law.
+
+---
+
+lin detail, as they are contained in the scriptures, we knew would require a paper to be published oftener than once a month, therefore we concluded to publish the first volume semi monthly, which we have done at a reduced price-much lower in fact than wo could afford to do in justice to ourselves-it has been attended with a vast amount of labor in preparing the matter, which is almost entirely original, and will compose when completed, a work of 384 closely printed octavo pages the expense also has been heavy upon a few irdividuals, which however has been borne with cheerfulness, knowing the importance of the work to be accomplished.
+
+The great object for publishing this periodical being in a great measure obtained-the church of Christ being re-organized upon its original, and only sure foundation-and the kingdom of heaven established, and rolling forth with success and prosperity-wo have come to the conclusion to publish the second volume orce a month only; which will very materially lessen the expenses, and relieve us from a heavy burthen.
+
+The Messenger and Advocate, as heretovote, will continuer to give the progress of the cause of trath threnghout the world-it will contain essays upon the glorious plan of salvation-and will also be a medium through which the Elders of the Church of Christ can communicate their feelings and success in the ministry. No pain's will be spared, on our part, to make the Messenger an interesting and useful sheet, such an one as the wants of the saints demand; and we entertain no fears hat we shall be suffered to pass unrewarded for our toils.
+
+TERMS:-One Dollar per annum, payable, in all cases in advance; as we cannot send the paper to any except the pay accompany the order. Any person procuring five new subscribers, and forwarding us five dollars current money, shall receive one volume gratis. All letters must be addressed to the publisher, Post Paid, to receive attention.
+
+E. ROBINSON.
+
+---
+
+FOR SALE at this Office, several copies of the Book of Mormon. Price $10 per doz. $1-single copy.
+
+ALSO A large supply of Hymn Books, new collection, neatly bound in fancy coloured morocco: Price, $30. per hundred; 37 cents single.
+
+---
+
+JUST received, and for sale at this office, a few copies Book of Doctrine and Covenants. Price, $1,25 per copy.
+
+MESSENGER & ADVOCATE,
+OF THE CHURCH OF CHRIST,
+Is printed about the first and fifteenth of every month, by
+E. ROBINSON,
+(Book, Job and Xylographic Printer,) No. 197 Liberty st. Head of Wood, Pittsburgh Pa.
