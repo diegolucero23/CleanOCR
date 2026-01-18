@@ -16,8 +16,8 @@ PDF_SOURCE = os.getenv("PDF_SOURCE")
 
 # --- DIRECTORIES ---
 INPUT_IMAGE_FOLDER = "output_images"
-OCR_JSON_FOLDER = "ocr_json"
-FINAL_MARKDOWN_FOLDER = "CleanOCR_Final"
+OCR_JSON_FOLDER = "ocr_jsonv2"
+FINAL_MARKDOWN_FOLDER = "CleanOCR_Finalv2"
 LOG_FILE = "failed_pages.log"
 
 # --- CONFIG ---

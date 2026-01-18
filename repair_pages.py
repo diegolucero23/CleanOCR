@@ -1,75 +1,80 @@
 import os
 import time
-import json
+import PIL.Image
 from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
-import PIL.Image
+import config
+import prompts
 
-# --- CONFIGURATION ---
-API_KEY = "***REMOVED-GOOGLE-API-KEY***" # <--- PASTE KEY HERE
+def repair_from_log():
+    # 1. Check if the log file exists
+    if not os.path.exists(config.LOG_FILE):
+        print(f"No log file found at '{config.LOG_FILE}'. Nothing to repair.")
+        return
 
-# The specific files that failed
-TARGET_FILES = ["page_004.png", "page_064.png", "page_110.png", "page_207.png", "page_295.png", "page_335.png"]
+    # 2. Read the failed files
+    with open(config.LOG_FILE, "r") as f:
+        lines = f.readlines()
 
-INPUT_FOLDER = "output_images"
-OUTPUT_FOLDER = "ocr_json"
-MODEL_NAME = "gemini-2.0-flash" # Switching to 1.5 for stability on retry
-
-# --- SETUP ---
-client = genai.Client(api_key=API_KEY)
-
-PROMPT_TEXT = """
-You are a data ingestion engine for a Vector Database.
-Analyze this document image.
-
-1. **Metadata Extraction**: Identify Volume, Issue, Date, and Page Number.
-2. **Text Extraction**: 
-   - Transcribe the text in **reading order**. 
-   - Use standard Markdown headers (#, ##).
-   - Ignore running headers/footers in the main text body.
-
-Return strictly this JSON structure:
-{
-    "metadata": {
-        "volume": "string or null",
-        "issue": "string or null",
-        "date": "string or null",
-        "page_number": "string or null"
-    },
-    "layout_type": "string",
-    "markdown_content": "string"
-}
-"""
-
-def repair():
-    print(f"Repairing {len(TARGET_FILES)} failed pages...")
+    # Filter out empty lines and parse filenames
+    # The log format is: filename|reason
+    targets = []
+    for line in lines:
+        if "|" in line:
+            targets.append(line.split("|")[0].strip())
     
-    for filename in TARGET_FILES:
-        img_path = os.path.join(INPUT_FOLDER, filename)
-        json_filename = filename.replace(".png", ".json")
-        json_path = os.path.join(OUTPUT_FOLDER, json_filename)
+    # Remove duplicates
+    targets = sorted(list(set(targets)))
+
+    if not targets:
+        print("Log file is empty or malformed.")
+        return
+
+    print(f"--- REPAIR MODE ---")
+    print(f"Found {len(targets)} failed pages in log.")
+    print(f"Targeting: {targets}")
+
+    client = genai.Client(api_key=config.GOOGLE_API_KEY)
+
+    # 3. Process only the targets
+    for filename in targets:
+        img_path = os.path.join(config.INPUT_IMAGE_FOLDER, filename)
         
+        # Calculate JSON path
+        json_filename = filename.replace(os.path.splitext(filename)[1], ".json")
+        json_path = os.path.join(config.OCR_JSON_FOLDER, json_filename)
+
         print(f"Retrying {filename}...", end="", flush=True)
 
         if not os.path.exists(img_path):
-            print(" Image not found!")
+            print(" Source image missing! Skipping.")
             continue
 
         try:
             img = PIL.Image.open(img_path)
+            
+            # Use the shared prompt
             response = client.models.generate_content(
-                model=MODEL_NAME,
-                contents=[PROMPT_TEXT, img],
-                config=types.GenerateContentConfig(temperature=0.2, response_mime_type="application/json")
+                model=config.MODEL_NAME,
+                contents=[prompts.OCR_PROMPT, img], 
+                config=types.GenerateContentConfig(
+                    temperature=0.1, 
+                    response_mime_type="application/json"
+                )
             )
+            
             with open(json_path, "w", encoding="utf-8") as f:
                 f.write(response.text)
-            print(" Fixed.")
-            time.sleep(4) # Short pause
+            
+            print(" FIXED.")
+            time.sleep(5) # Be gentle on retry
             
         except Exception as e:
             print(f" Failed again: {e}")
 
+    print("\nRepair run complete. Check your folders.")
+    # Optional: You could clear the log file here if you wanted.
+
 if __name__ == "__main__":
-    repair()
+    repair_from_log()

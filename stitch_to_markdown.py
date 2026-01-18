@@ -1,14 +1,18 @@
 import os
 import json
 import re
+import config  # <--- NEW: Import your central config
 
 # --- CONFIGURATION ---
-INPUT_FOLDER = "ocr_json"
-OUTPUT_FOLDER = "CleanOCR_Final"
+# We now pull these paths from config.py to ensure consistency across the app
+INPUT_FOLDER = config.OCR_JSON_FOLDER
+OUTPUT_FOLDER = config.FINAL_MARKDOWN_FOLDER
 PUBLICATION_TITLE = "The Latter Day Saint's Messenger And Advocate"
 TOTAL_EXPECTED_PAGES = 384
-# The specific pages you are worried about
 REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]
+
+# NEW: A threshold for what constitutes a "suspicious" jump in volume numbers
+MAX_VOL_JUMP = 2 
 
 def normalize_number(text):
     """Converts 'Vol 1', 'I', 'No. 3' into a simple integer."""
@@ -44,13 +48,11 @@ def audit_files(files):
         p = get_page_from_filename(f)
         if p: found_nums.add(p)
 
-    # A. Check for Missing Pages (1 to 384)
     expected = set(range(1, TOTAL_EXPECTED_PAGES + 1))
     missing = sorted(list(expected - found_nums))
     
     if missing:
-        print(f"[!] CRITICAL: Missing {len(missing)} source files:")
-        # Print ranges to save space if many are missing, or list if few
+        print(f"[!] CRITICAL: Missing {len(missing)} source files.")
         if len(missing) < 15:
             print(f"    Missing Pages: {missing}")
         else:
@@ -58,11 +60,9 @@ def audit_files(files):
     else:
         print("[OK] All 384 page numbers found.")
 
-    # B. Check Repair Targets specifically
     print("\n[?] TARGET CHECK:")
     all_targets_ok = True
     for target_base in REPAIR_TARGETS:
-        # We expect the file to be named "page_004.json" etc.
         target_file = f"{target_base}.json"
         if target_file in found_filenames:
             print(f"    [FOUND] {target_base}")
@@ -71,9 +71,8 @@ def audit_files(files):
             all_targets_ok = False
             
     if not all_targets_ok:
-        print("\n!!! STOPPING: Please fix missing targets before stitching (or comment out this stop).")
-        # remove the input() below if you want to force it to run anyway
-        input("Press Enter to continue stitching anyway, or Ctrl+C to abort...")
+        print("\n!!! STOPPING: Fix missing targets before stitching.")
+        input("Press Enter to continue anyway, or Ctrl+C to abort...")
     else:
         print("\n[OK] Targets verified. Proceeding to stitch.\n")
 
@@ -92,7 +91,7 @@ def main():
 
     print("--- 2. STITCHING FILES ---")
 
-    # Initialize State (Default to Vol 1, Issue 1)
+    # Initialize State
     current_vol = 1
     current_issue = 1
     
@@ -115,15 +114,25 @@ def main():
         v_norm = normalize_number(meta.get("volume"))
         i_norm = normalize_number(meta.get("issue"))
 
-        if v_norm is not None: current_vol = v_norm
+        # --- NEW LOGIC START: Sanity Check for Volume Jump ---
+        if v_norm is not None:
+            # If the volume jumps by more than 2 (e.g. 1 to 5), warn us.
+            if v_norm > current_vol + MAX_VOL_JUMP:
+                print(f"⚠️  [WARNING] Suspicious Volume Jump detected in {filename}:")
+                print(f"    Previous Volume: {current_vol} -> New Volume: {v_norm}")
+                print(f"    (Keeping previous volume {current_vol} to be safe. Check file manually!)")
+                # We do NOT update current_vol here to prevent the hallucination from spreading
+            else:
+                # If the jump is small (normal), update the volume
+                current_vol = v_norm
+        # --- NEW LOGIC END ---
+
         if i_norm is not None: current_issue = i_norm
             
-        # Get Page Number (Filename fallback is critical for your repaired files)
         p_num = meta.get("page_number")
         if not p_num:
             p_num = get_page_from_filename(filename)
 
-        # Create Issue Key
         file_key = f"Vol_{current_vol:02d}_Issue_{current_issue:02d}"
 
         if file_key not in content_map:

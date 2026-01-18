@@ -1,104 +1,90 @@
 import os
 import time
-import json
 from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
 import PIL.Image
+import config
+import prompts
 
 # --- CONFIGURATION ---
-API_KEY = "***REMOVED-GOOGLE-API-KEY***"  # <--- PASTE KEY HERE
-
-INPUT_FOLDER = "output_images"
-OUTPUT_FOLDER = "ocr_json"
-MODEL_NAME = "gemini-2.0-flash"
-
-# Standard wait between successful requests
 DELAY_SECONDS = 10 
 
-# --- SETUP ---
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(api_key=config.GOOGLE_API_KEY)
 
-PROMPT_TEXT = """
-You are a data ingestion engine for a Vector Database.
-Analyze this document image.
-
-1. **Metadata Extraction**: Identify Volume, Issue, Date, and Page Number.
-2. **Text Extraction**: 
-   - Transcribe the text in **reading order** (e.g., Column 1, then Column 2). 
-   - **DO NOT** attempt to visually reproduce columns with spacing or vertical bars.
-   - Use standard Markdown headers (#, ##) for titles.
-   - Ignore running headers and footers (page numbers, issue titles) in the main text body.
-
-Return strictly this JSON structure:
-{
-    "metadata": {
-        "volume": "string or null",
-        "issue": "string or null",
-        "date": "string or null",
-        "page_number": "string or null"
-    },
-    "layout_type": "string",
-    "markdown_content": "string"
-}
-"""
+def log_failure(filename, reason):
+    """Writes failed files to a log for the repair script."""
+    with open(config.LOG_FILE, "a") as f:
+        f.write(f"{filename}|{reason}\n")
 
 def process_images():
-    if not os.path.exists(OUTPUT_FOLDER):
-        os.makedirs(OUTPUT_FOLDER)
+    # Create the folder if it doesn't exist
+    if not os.path.exists(config.OCR_JSON_FOLDER):
+        os.makedirs(config.OCR_JSON_FOLDER)
 
-    files = sorted([f for f in os.listdir(INPUT_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
-
-    print(f"Targeting Python 3.11 Environment (New SDK)")
+    # Filter for images
+    files = sorted([f for f in os.listdir(config.INPUT_IMAGE_FOLDER) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+    
+    print(f"--- DEBUG INFO ---")
+    print(f"Looking for images in: {config.INPUT_IMAGE_FOLDER}")
+    print(f"Saving JSON output to: {config.OCR_JSON_FOLDER}")
     print(f"Found {len(files)} images to process.")
+    print(f"------------------")
+
+    if len(files) == 0:
+        print("No images found! Check your 'output_images' folder.")
+        return
 
     for i, filename in enumerate(files):
-        img_path = os.path.join(INPUT_FOLDER, filename)
+        img_path = os.path.join(config.INPUT_IMAGE_FOLDER, filename)
+        
+        # THIS IS THE CRITICAL LINE: It must use config.OCR_JSON_FOLDER
         json_filename = filename.replace(os.path.splitext(filename)[1], ".json")
-        json_path = os.path.join(OUTPUT_FOLDER, json_filename)
+        json_path = os.path.join(config.OCR_JSON_FOLDER, json_filename)
 
+        # Check if file exists
         if os.path.exists(json_path):
-            print(f"[{i+1}/{len(files)}] Skipping {filename} (already done).")
+            # If you want to see what is being skipped, uncomment the next line:
+            # print(f"Skipping {filename} (File exists in {config.OCR_JSON_FOLDER})")
             continue
 
         print(f"[{i+1}/{len(files)}] Processing {filename}...", end="", flush=True)
 
-        # RETRY LOOP: Keeps trying until success or non-recoverable error
+        # RETRY LOOP
         while True:
             try:
                 img = PIL.Image.open(img_path)
                 
+                # Make the API Call
                 response = client.models.generate_content(
-                    model=MODEL_NAME,
-                    contents=[PROMPT_TEXT, img],
+                    model=config.MODEL_NAME,
+                    contents=[prompts.OCR_PROMPT, img],
                     config=types.GenerateContentConfig(
                         temperature=0.1,
                         response_mime_type="application/json"
                     )
                 )
                 
+                # Save the file
                 with open(json_path, "w", encoding="utf-8") as f:
                     f.write(response.text)
                 
                 print(" Success.")
                 time.sleep(DELAY_SECONDS)
-                break # Break retry loop on success
+                break 
 
             except ClientError as e:
-                # Check if it is a 429 (Rate Limit) error
                 if e.code == 429 or "RESOURCE_EXHAUSTED" in str(e):
-                    print(f"\n   [!] Rate Limit Hit. Pausing for 60 seconds to refill quota...", end="", flush=True)
+                    print(f" [Rate Limit] Pausing 60s...", end="", flush=True)
                     time.sleep(60)
-                    print(" Retrying...")
-                    continue # Retry the loop
+                    continue
                 else:
-                    # Some other API error (like 400 or 500)
-                    print(f" FAILED (API Error): {e}")
-                    break # Move to next file
-            
+                    print(f" FAILED (API): {e}")
+                    log_failure(filename, str(e))
+                    break
             except Exception as e:
-                # Local error (file not found, etc)
-                print(f" FAILED (Local Error): {e}")
+                print(f" FAILED (Local): {e}")
+                log_failure(filename, str(e))
                 break
 
 if __name__ == "__main__":
