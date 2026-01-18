@@ -13,6 +13,10 @@ env/
 ocr_json/
 CleanOCR_Final/
 output_images/
+final_markdown_volumes/
+ocr_jsonv2/
+CleanOCR_Finalv2/
+output_imagesv2/
 
 # Ignore the stitched markdown files just in case they are outside the folder
 *.md
