@@ -1,7 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+celery
+redis
 google-genai
 pillow
 pdf2image
 python-dotenv
-fastapi
-uvicorn
-python-multipart

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # 1. The Message Broker
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+# 2. The Web Server (FastAPI)
+  web:
+    build: .
+    command: uvicorn server:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - POPPLER_PATH=None
+    # --- ADD THIS SECTION ---
+    env_file:
+      - .env
+    # ------------------------
+    depends_on:
+      - redis
+
+  # 3. The Background Worker (Celery)
+  worker:
+    build: .
+    # This command starts the celery worker process
+    command: celery -A worker.celery_app worker --loglevel=info
+    volumes:
+      - .:/app  # Maps the folder so it can see the uploaded PDF
+    environment:
+      - POPPLER_PATH=None
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY} # Passes key from your local .env
+    env_file:
+      - .env
+    depends_on:
+      - redis
