@@ -11,7 +11,15 @@ if not GOOGLE_API_KEY:
     sys.exit("Error: GOOGLE_API_KEY not found in .env file.")
 
 # --- PATHS ---
-POPPLER_PATH = os.getenv("POPPLER_PATH")
+# Determine OS: 'nt' is Windows, 'posix' is Linux/Mac
+if os.name == 'nt':
+    # On Windows, we need the specific path from .env
+    POPPLER_PATH = os.getenv("POPPLER_PATH")
+else:
+    # On Linux (Docker), Poppler is installed in the system PATH.
+    # Passing None tells pdf2image to look for it automatically.
+    POPPLER_PATH = None 
+
 PDF_SOURCE = os.getenv("PDF_SOURCE")
 
 # --- DIRECTORIES ---
