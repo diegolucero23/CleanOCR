@@ -3,9 +3,12 @@ from pdf2image import convert_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
 import config # <--- NEW IMPORT
 
-def convert_pdf_in_chunks(chunk_size=10):
+def convert_pdf_in_chunks(pdf_path=None,chunk_size=10):
     output_folder = config.INPUT_IMAGE_FOLDER
-    pdf_path = config.PDF_SOURCE
+
+    # Use the argument if provided, otherwise fall back to .env (for testing)
+    if pdf_path is None:
+        pdf_path = config.PDF_SOURCE
     
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)

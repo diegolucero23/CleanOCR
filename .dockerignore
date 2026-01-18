@@ -1,0 +1,34 @@
+# Ignore python cache
+__pycache__/
+*.pyc
+
+# Ignore environment variables
+.env
+.venv
+env/
+venv/
+.git/
+
+# --- PROJECT SPECIFIC IGNORES ---
+
+# Ignore the heavy output folders
+ocr_json/
+CleanOCR_Final/
+output_images/
+final_markdown_volumes/
+ocr_json*/
+CleanOCR_Final*/
+output_images*/
+
+# Ignore PDF files
+*.pdf
+
+# Ignore the stitched markdown files just in case they are outside the folder
+*.md
+!README.md  <-- This tells git "Ignore all .md files EXCEPT Readme.md"
+
+# Ignore the raw images if you have them in a folder
+raw_images/
+*.png
+*.jpg
+*.jpeg
