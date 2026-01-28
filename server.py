@@ -7,6 +7,7 @@ import json
 import magic
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pythonjsonlogger import jsonlogger
 from redis import Redis
 from worker import run_ocr_pipeline
@@ -26,6 +27,14 @@ logger.addHandler(logHandler)
 logger.setLevel(logging.INFO)
 
 app = FastAPI(title="CleanOCR API")
+
+# Mount upload directory for static access (PDF Viewer)
+# Check directory existence again to be safe
+UPLOAD_DIR = "uploads"
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
+
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 # Setup Redis connection for checking cache
 # Using the same URL as worker.py (defaulting to localhost for local dev if not in docker)
