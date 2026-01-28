@@ -23,8 +23,10 @@ else:
 PDF_SOURCE = os.getenv("PDF_SOURCE")
 
 # --- DIRECTORIES ---
-INPUT_IMAGE_FOLDER = "output_images"
-OCR_JSON_FOLDER = "ocr_jsonv2"
+# Allow override for experiments (e.g. "experiment_images")
+INPUT_IMAGE_FOLDER = os.getenv("OVERRIDE_IMAGE_FOLDER", "output_images")
+# Allow override for experiment results
+OCR_JSON_FOLDER = os.getenv("OVERRIDE_OCR_JSON_FOLDER", "ocr_jsonv2")
 FINAL_MARKDOWN_FOLDER = "CleanOCR_Finalv2"
 LOG_FILE = "failed_pages.log"
 
