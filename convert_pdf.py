@@ -2,6 +2,7 @@ import os
 from pdf2image import convert_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
 import config # <--- NEW IMPORT
+import image_utils # <--- NEW IMPORT
 
 def convert_pdf_in_chunks(pdf_path=None,chunk_size=10):
     output_folder = config.INPUT_IMAGE_FOLDER
@@ -39,8 +40,11 @@ def convert_pdf_in_chunks(pdf_path=None,chunk_size=10):
             if not pages: break
 
             for page in pages:
+                # Apply Deskew and Padding
+                processed_page = image_utils.preprocess_image(page)
+                
                 filename = f"page_{page_counter:03}.png"
-                page.save(os.path.join(output_folder, filename), "PNG")
+                processed_page.save(os.path.join(output_folder, filename), "PNG")
                 page_counter += 1
             
             if len(pages) < chunk_size: break

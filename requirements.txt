@@ -7,3 +7,7 @@ google-genai
 pillow
 pdf2image
 python-dotenv
+opencv-python-headless
+numpy
+python-magic
+python-json-logger

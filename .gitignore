@@ -1,32 +1,36 @@
-# Ignore python cache
+# Secrets
+.env
+.env.*
+
+# System / IDE
 __pycache__/
 *.pyc
+.DS_Store
+.vscode/
+.idea/
 
-# Ignore environment variables
-.env
-.venv
-env/
-
-# --- PROJECT SPECIFIC IGNORES ---
-
-# Ignore the heavy output folders
-ocr_json/
-CleanOCR_Final/
+# Application Data & Temporary Files
+uploads/
 output_images/
-final_markdown_volumes/
+ocr_json/
 ocr_jsonv2/
+final_markdown_volumes/
+CleanOCR_Final/
 CleanOCR_Finalv2/
-output_imagesv2/
 
-# Ignore PDF files
+# Experiments & Tests
+experiment_images/
+experiment_results/
+test_images/
 *.pdf
 
 # Ignore the stitched markdown files just in case they are outside the folder
 *.md
 !README.md  <-- This tells git "Ignore all .md files EXCEPT Readme.md"
+*.log
 
-# Ignore the raw images if you have them in a folder
-raw_images/
-*.png
-*.jpg
-*.jpeg
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local

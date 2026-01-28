@@ -5,6 +5,7 @@ FROM python:3.11-slim
 # We also clean up the apt cache to keep the image small
 RUN apt-get update && apt-get install -y \
     poppler-utils \
+    libmagic1 \
     && rm -rf /var/lib/apt/lists/*
 
 # 3. Set the working directory inside the container
