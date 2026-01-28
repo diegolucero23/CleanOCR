@@ -26,7 +26,13 @@ test_images/
 
 # Ignore the stitched markdown files just in case they are outside the folder
 *.md
-!README.md  <-- This tells git "Ignore all .md files EXCEPT Readme.md"
+!README.md
+!AGENTS.md
+!Context.md
+!Retrospective.md
+!pie_in_the_sky.md
+!implementation_plan.md
+!walkthrough.md
 *.log
 
 # Frontend
