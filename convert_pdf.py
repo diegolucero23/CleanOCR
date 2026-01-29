@@ -4,12 +4,13 @@ from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
 import config # <--- NEW IMPORT
 import image_utils # <--- NEW IMPORT
 
-def convert_pdf_in_chunks(pdf_path=None,chunk_size=10):
-    output_folder = config.INPUT_IMAGE_FOLDER
-
-    # Use the argument if provided, otherwise fall back to .env (for testing)
+def convert_pdf_in_chunks(pdf_path, output_folder, chunk_size=10):
+    # output_folder passed as arg
+    
+    # Check if pdf_path is valid
     if pdf_path is None:
-        pdf_path = config.PDF_SOURCE
+        print("Error: PDF Path is None")
+        return
     
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -56,4 +57,7 @@ def convert_pdf_in_chunks(pdf_path=None,chunk_size=10):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    convert_pdf_in_chunks()
+    if config.PDF_SOURCE:
+        convert_pdf_in_chunks(config.PDF_SOURCE, config.INPUT_IMAGE_FOLDER)
+    else:
+        print("Please configure PDF_SOURCE in .env for standalone mode.")

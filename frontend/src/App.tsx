@@ -1,105 +1,92 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
-import { uploadFile, pollJobStatus, type JobResponse } from './lib/api';
-import { LayoutDashboard, History } from 'lucide-react';
+import { uploadFile, pollJobStatus } from './lib/api';
+import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
+import { OnboardingSteps } from './components/OnboardingSteps';
+import { EmptyState } from './components/EmptyState';
+import { LayoutDashboard, History, Trash2 } from 'lucide-react';
+import { MetadataModal, type MetadataForm } from './components/MetadataModal';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Mock History Data
-const MOCK_HISTORY = [
-  { job_id: 'mock-1', filename: 'invoice_jan_2025.pdf', status: 'completed', progress: 100 },
-  { job_id: 'mock-2', filename: 'scanned_contract.pdf', status: 'completed', progress: 100 },
-] as const;
-
-// Combined type for UI state
-interface Job extends Omit<JobResponse, 'status'> {
-  filename: string;
-  progress: number;
-  status: 'queued' | 'processing' | 'completed' | 'failed';
-  message?: string;
-}
-
 function App() {
-  const [activeJob, setActiveJob] = useState<Job | null>(null);
-  const [showDiff, setShowDiff] = useState(false);
-  const [history, setHistory] = useState<Job[]>([...MOCK_HISTORY]);
+  const { history, addOrUpdateJob, clearHistory } = useJobPersistence();
+  const [selectedJob, setSelectedJob] = useState<PersistedJob | null>(null);
+  const [metadataFile, setMetadataFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
 
-  // Polling Hook
+  // Derived State: The "Active" job is the most recent one if it's still processing
+  const activeJob = useMemo(() => {
+    return history.find(j => ['queued', 'processing'].includes(j.status)) || null;
+  }, [history]);
+
+  // Polling Effect: Recover ANY job that is stuck in 'queued' or 'processing'
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval>;
+    // Find all incomplete jobs
+    const incompleteJobs = history.filter(j => ['queued', 'processing'].includes(j.status));
 
-    if (activeJob && ['queued', 'processing'].includes(activeJob.status)) {
-      interval = setInterval(async () => {
+    if (incompleteJobs.length === 0) return;
+
+    // Create a poller for each (though usually just 1)
+    const timers = incompleteJobs.map(job => {
+      return setInterval(async () => {
         try {
-          const status = await pollJobStatus(activeJob.job_id);
+          const result = await pollJobStatus(job.id);
 
-          setActiveJob(prev => {
-            if (!prev) return null;
-
-            // Merge current state with API updates
-            const newState = {
-              ...prev,
-              status: status.status as Job['status'],
-              progress: status.progress || 0,
-              message: status.message || prev.message
-            };
-
-            return newState;
-          });
-
-          // Check if done to stop polling early interaction-wise
-          if (status.status === 'completed' || status.status === 'failed') {
-            clearInterval(interval);
-            // Add to history
-            setHistory(prev => {
-              // Avoid duplicates if possible
-              if (prev.some(j => j.job_id === activeJob.job_id)) return prev;
-              // Create completed job object
-              const completedJob = {
-                ...activeJob,
-                status: status.status as Job['status'],
-                progress: status.status === 'completed' ? 100 : status.progress || 0,
-                message: status.message
-              };
-              return [completedJob, ...prev];
+          // Only update if changed significantly or finished
+          if (result.status !== job.status || result.progress !== job.progress) {
+            addOrUpdateJob({
+              ...job,
+              status: result.status as JobStatus,
+              progress: result.progress || 0,
+              resultMessage: result.message,
+              markdown: result.markdown
             });
           }
-
-        } catch (error) {
-          console.error("Polling failed", error);
+        } catch (err) {
+          console.error(`Status check failed for ${job.id}`, err);
+          // If it's a 404/500 repeatedly, we might want to fail it.
+          // For now, let it retry indefinitely or until user clears.
         }
-      }, 1000); // Poll every 1s
-    }
+      }, 1000);
+    });
 
-    return () => clearInterval(interval);
-  }, [activeJob?.status, activeJob?.job_id]);
+    return () => timers.forEach(clearInterval);
+  }, [history, addOrUpdateJob]);
+  // Note: history dependency might cause re-creation of intervals on every progress update.
+  // Ideally we use a ref or a more granular approach, but for <5 active jobs this is fine.
+  // The 'addOrUpdateJob' is stable.
 
-  const handleUpload = async (file: File) => {
+  const handleFileSelect = (file: File) => {
+    setMetadataFile(file); // Triggers Modal
+  };
+
+  const handleProcess = async (file: File, meta?: MetadataForm, skip = false) => {
+    setMetadataFile(null); // Close Modal
+    setIsUploading(true);
+
     try {
-      // Optimistic UI
-      const newJob: Job = {
-        job_id: 'pending...',
-        filename: file.name,
+      // 1. Upload
+      const response = await uploadFile(file, meta, skip);
+
+      // 2. Add Job
+      const realJob: PersistedJob = {
+        id: response.job_id,
+        uploaded_filename: file.name,
         status: 'queued',
         progress: 0,
-        message: 'Uploading...'
+        timestamp: Date.now(),
+        resultMessage: 'Upload complete. Waiting for worker...'
       };
-      setActiveJob(newJob);
 
-      const response = await uploadFile(file);
-
-      // Update with real ID - this triggers the Polling Effect
-      setActiveJob(prev => prev ? {
-        ...prev,
-        job_id: response.job_id,
-        status: 'queued',
-        message: 'Upload complete. Waiting for worker...'
-      } : null);
+      addOrUpdateJob(realJob);
 
     } catch (error) {
       console.error(error);
-      setActiveJob(prev => prev ? { ...prev, status: 'failed', message: 'Upload failed' } : null);
+      alert("Upload Failed");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -115,9 +102,13 @@ function App() {
             <h1 className="text-xl font-bold tracking-tight">CleanOCR <span className="text-primary">Console</span></h1>
           </div>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <span>v1.1.0</span>
+            <span>v1.2.0 (Resilient)</span>
             <div className="w-px h-4 bg-border" />
-            <span>Connected</span>
+            {history.length > 0 && (
+              <button onClick={clearHistory} className="flex items-center gap-1 hover:text-destructive transition-colors">
+                <Trash2 className="w-4 h-4" /> Clear History
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -125,13 +116,15 @@ function App() {
       <main className="container mx-auto px-4 py-8 space-y-12">
 
         {/* Hero / Upload Section */}
-        <section className="space-y-8">
-          <div className="text-center space-y-2">
+        <section className="flex flex-col items-center space-y-8">
+          <div className="text-center space-y-2 mb-4">
             <h2 className="text-3xl font-bold">New Extraction Job</h2>
-            <p className="text-muted-foreground">Upload a PDF to extract clean Markdown with high accuracy.</p>
+            <p className="text-muted-foreground">Upload a PDF. Your jobs are saved automatically.</p>
           </div>
 
-          <UploadZone onFileSelect={handleUpload} isUploading={activeJob?.status === 'processing' || activeJob?.status === 'queued'} />
+          <OnboardingSteps />
+
+          <UploadZone onFileSelect={handleFileSelect} isUploading={isUploading} />
 
           {/* Active Job Status */}
           <AnimatePresence>
@@ -143,9 +136,12 @@ function App() {
                 className="max-w-xl mx-auto"
               >
                 <JobCard
-                  {...activeJob}
-                  job_id={activeJob.job_id}
-                  onClick={() => activeJob.status === 'completed' && setShowDiff(true)}
+                  job_id={activeJob.id}
+                  filename={activeJob.uploaded_filename}
+                  status={activeJob.status}
+                  progress={activeJob.progress}
+                  message={activeJob.resultMessage}
+                  onClick={() => activeJob.status === 'completed' && setSelectedJob(activeJob)}
                 />
               </motion.div>
             )}
@@ -156,29 +152,53 @@ function App() {
         <section className="max-w-4xl mx-auto space-y-6">
           <div className="flex items-center gap-2 pb-4 border-b">
             <History className="w-5 h-5 text-muted-foreground" />
-            <h2 className="text-lg font-semibold">Recent Jobs</h2>
+            <h2 className="text-lg font-semibold">Recent Jobs ({history.length})</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {history.map((job, i) => (
-              <JobCard
-                key={job.job_id || i}
-                {...job}
-                job_id={job.job_id}
-                onClick={() => job.status === 'completed' && setShowDiff(true)}
-              />
-            ))}
-          </div>
+          <AnimatePresence mode="popLayout">
+            {history.length === 0 ? (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <EmptyState />
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {history.map((job) => (
+                  <JobCard
+                    key={job.id}
+                    job_id={job.id}
+                    filename={job.uploaded_filename}
+                    status={job.status}
+                    progress={job.progress}
+                    message={job.resultMessage}
+                    onClick={() => job.status === 'completed' && setSelectedJob(job)}
+                  />
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
         </section>
 
       </main>
 
       {/* Modals */}
       <AnimatePresence>
-        {showDiff && (
-          <DiffViewer onClose={() => setShowDiff(false)} />
+        {selectedJob && (
+          <DiffViewer
+            job_id={selectedJob.id}
+            markdown={selectedJob.markdown}
+            onClose={() => setSelectedJob(null)}
+          />
         )}
       </AnimatePresence>
+
+      {/* Metadata Modal */}
+      <MetadataModal
+        isOpen={!!metadataFile}
+        filename={metadataFile?.name || ''}
+        onClose={() => setMetadataFile(null)}
+        onConfirm={(data) => handleProcess(metadataFile!, data)}
+        onSkip={() => handleProcess(metadataFile!, undefined, true)}
+      />
     </div>
   );
 }

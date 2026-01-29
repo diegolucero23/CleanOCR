@@ -13,6 +13,7 @@ venv/
 
 # Ignore the heavy output folders
 ocr_json/
+workspaces/
 CleanOCR_Final/
 output_images/
 final_markdown_volumes/

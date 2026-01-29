@@ -13,11 +13,28 @@ export interface JobResponse {
     task_id?: string;
     message?: string;
     progress?: number;
+    markdown?: string;
 }
 
-export const uploadFile = async (file: File): Promise<JobResponse> => {
+interface UploadMetadata {
+    title: string;
+    volume?: string;
+    issue?: string;
+    date?: string;
+}
+
+export const uploadFile = async (file: File, metadata?: UploadMetadata, skipMetadata = false): Promise<JobResponse> => {
     const formData = new FormData();
     formData.append('file', file);
+
+    if (skipMetadata) {
+        formData.append('skip_metadata', 'true');
+    } else if (metadata) {
+        formData.append('title', metadata.title);
+        if (metadata.volume) formData.append('volume', metadata.volume);
+        if (metadata.issue) formData.append('issue', metadata.issue);
+        if (metadata.date) formData.append('date', metadata.date);
+    }
 
     const response = await API.post('/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
