@@ -12,11 +12,9 @@
 *   **Infra:** Docker.
 
 ## Active Status
-*   **Phase:** Phase 11 (Citation Metadata) & Phase 12 (Commit Prep) Complete.
-*   **Status:** Stable Release Candidate.
-*   **Next:** Feature Freeze & Commit.
-*   **Status:** Stable, Sandboxed, & User-Friendly.
-*   **Next:** Maintenance or Cloud Deployment.
+*   **Phase:** RedTeam Safety Infrastructure Setup.
+*   **Status:** Testing Infrastructure (Verification Phase).
+*   **Next:** Adversarial Testing (Subject to Safety Check Pass).
 
 ## Recent Decisions
 *   **2026-01-27:** Adopted `AGENTS.md` "Operating System".
@@ -29,10 +27,8 @@
 *   **2026-01-28:** **Frontend:** Integrated `react-pdf` for Side-by-Side verification.
 *   **2026-01-28:** **Scalability:** Refactored `batch_ocr.py` to use `ThreadPoolExecutor` (4x Concurrency).
 *   **2026-01-28:** **Reliability:** Removed hardcoded sleeps in favor of Exponential Backoff.
-
 *   **2026-01-28:** **Tooling:** Added `test_upload.py` for CLI-based end-to-end verification.
 *   **2026-01-28:** **Job Isolation:** Implemented directory wiping in `worker.py` to prevent data pollution between jobs.
-
 *   **2026-01-29:** **Resilience:** Implemented Client-Side Persistence (`localStorage`) to recover job history on reload.
 *   **2026-01-29:** **UX:** Added "Onboarding Steps" and "Empty States" to Frontend.
 *   **2026-01-29:** **Architecture (Critical):** Implemented **Job Sandboxing** (`workspaces/{job_id}/`) to ensure strict isolation for concurrent jobs. Removed global folder wiping.
@@ -42,6 +38,7 @@
     *   **Frontend:** Modal Driven Input.
     *   **Worker:** Persists metadata to `workspaces/{job_id}/metadata.json`.
 *   **2026-01-29:** **Protocol:** Updated Source Control Ignores (`workspaces/` and logs) to prepare for Main Branch merge.
+*   **2026-01-29:** **RedTeam Infra:** Established `docker-compose.redteam.yml` for isolated stress testing. Mock mode implemented.
 
 ## Next Objectives
 1.  **Phase 13: Adversarial Validation (@RedTeam):**
