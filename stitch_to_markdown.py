@@ -256,6 +256,13 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
         p_num = meta.get("page_number")
         if not p_num:
             p_num = get_page_from_filename(filename)
+        
+        # Zero-Pad Page Number (001, 002...) for Sorting
+        try:
+            if p_num is not None:
+                p_num = f"{int(p_num):03d}"
+        except (ValueError, TypeError):
+             pass # Keep as is if it's not a number (e.g. "Cover")
 
         # --- ISSUE HEADER INJECTION ---
         # Check if the Issue has changed since the last page
