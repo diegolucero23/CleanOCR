@@ -8,6 +8,7 @@ import uuid
 
 BASE_URL = "http://localhost:8000"
 
+
 def flush_redis():
     print("🧹 Flushing Redis Cache...")
     try:
@@ -103,8 +104,11 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--flush", action="store_true", help="Flush Redis cache before starting")
     parser.add_argument("--file", help="Path to PDF file to upload")
     parser.add_argument("--dummy", action="store_true", help="Use a generated dummy PDF")
+    parser.add_argument("--port", type=int, default=8000, help="Target port (default: 8000)")
     
     args = parser.parse_args()
+    
+    BASE_URL = f"http://localhost:{args.port}"
     
     if args.flush:
         flush_redis()
