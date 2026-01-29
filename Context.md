@@ -44,5 +44,7 @@
 *   **2026-01-29:** **Protocol:** Updated Source Control Ignores (`workspaces/` and logs) to prepare for Main Branch merge.
 
 ## Next Objectives
-1.  Implement GitHub Actions (CI/CD).
-2.  Deploy to Cloud (AWS/GCP).
+1.  **Phase 13: Adversarial Validation (@RedTeam):**
+    *   **Hypothesis:** The system is fragile under edge-case loads.
+    *   **Goal:** "Break" the app (Load, Malformed Input, Network Chaos) to identify weaknesses before users do.
+2.  **Shelved:** Cloud Deployment (Pending Business Requirements).

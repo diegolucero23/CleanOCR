@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # 1. The Message Broker (Isolated)
+  redis:
+    image: redis:alpine
+    ports:
+      - "6380:6379"
+    deploy:
+      resources:
+        limits:
+          memory: 256M # Hard Limit: Redis cannot eat your RAM
+
+  # 2. The Web Server (Isolated & Capped)
+  web:
+    build: .
+    command: uvicorn server:app --host 0.0.0.0 --port 8000
+    volumes:
+      # SAFETY 1: Mount source code as Read-Only (:ro) so RedTeam can't delete it
+      - .:/app:ro
+      # SAFETY 2: Give a specific sandbox for writes (logs/outputs)
+      - ./tests/redteam_artifacts:/app/output
+    ports:
+      - "8001:8000"
+    environment:
+      - POPPLER_PATH=None
+      - REDIS_URL=redis://redis:6379/0
+      # SAFETY 3: Explicitly disable or Mock expensive APIs
+      - GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE
+      - MODE=REDTEAM
+    env_file:
+      - .env.redteam # SAFETY 4: Separate config file
+    depends_on:
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50' # Limit to 50% of one CPU core
+          memory: 512M # Hard limit 512MB RAM
+
+  # 3. The Background Worker (Isolated & Capped)
+  worker:
+    build: .
+    command: celery -A worker.celery_app worker --loglevel=info
+    volumes:
+      - .:/app:ro # Read-Only Source
+      - ./tests/redteam_artifacts:/app/output # Sandbox Writes
+    environment:
+      - POPPLER_PATH=None
+      - GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE
+      - REDIS_URL=redis://redis:6379/0
+    env_file:
+      - .env.redteam
+    depends_on:
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M

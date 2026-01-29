@@ -35,7 +35,15 @@ def repair_from_log():
     print(f"Found {len(targets)} failed pages in log.")
     print(f"Targeting: {targets}")
 
-    client = genai.Client(api_key=config.GOOGLE_API_KEY)
+    print(f"Targeting: {targets}")
+
+    # Mock Mode Check
+    MOCK_MODE = config.GOOGLE_API_KEY.startswith("MOCK_KEY")
+    if MOCK_MODE:
+        print("⚠️  MOCK MODE ENABLED: No API calls will be made.")
+        client = None
+    else:
+        client = genai.Client(api_key=config.GOOGLE_API_KEY)
 
     # 3. Process only the targets
     for filename in targets:
@@ -55,17 +63,26 @@ def repair_from_log():
             img = PIL.Image.open(img_path)
             
             # Use the shared prompt
-            response = client.models.generate_content(
-                model=config.MODEL_NAME,
-                contents=[prompts.OCR_PROMPT, img], 
-                config=types.GenerateContentConfig(
-                    temperature=0.1, 
-                    response_mime_type="application/json"
+            if MOCK_MODE:
+                print(" [MOCK FIX] ", end="")
+                time.sleep(0.5)
+                response_text = json.dumps({
+                    "markdown_content": f"# Repaired Mock Page {filename}\n\n[REPAIRED DATA]",
+                    "metadata": {"confidence": 1.0}
+                })
+            else:
+                response = client.models.generate_content(
+                    model=config.MODEL_NAME,
+                    contents=[prompts.OCR_PROMPT, img], 
+                    config=types.GenerateContentConfig(
+                        temperature=0.1, 
+                        response_mime_type="application/json"
+                    )
                 )
-            )
+                response_text = response.text
             
             with open(json_path, "w", encoding="utf-8") as f:
-                f.write(response.text)
+                f.write(response_text)
             
             print(" FIXED.")
             time.sleep(5) # Be gentle on retry
