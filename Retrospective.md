@@ -112,6 +112,12 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 *   **Rule Added:** (@Architect) When changing the argument list of a shared task/function between microservices, YOU MUST update the consumer (Server) AND the provider (Worker) effectively simultaneously.
 
 
+### 2026-01-29 - Page Sorting Disarray (Lexicographical vs Numerical)
+*   **Incident:** Pages sorted as 1, 10, 100, 11... instead of 1, 2, 3... in the final output.
+*   **Root Cause:** The system relied on string sorting for metadata/filenames without zero-padding.
+*   **Action Taken:** Updated `stitch_to_markdown.py` to zero-pad page numbers in the header (e.g., `Page: 001`).
+*   **Rule Added:** (@Architect) Sequential IDs that will be stored as strings or filenames MUST be zero-padded to support lexicographical sorting (e.g., `001`, `002`).
+
 ## 6. Project Health Check
 *   **Code Quality:** High (Typed, Linted).
 *   **Resilience:** High (Persistence + Sandboxing).

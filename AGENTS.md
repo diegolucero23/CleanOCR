@@ -30,6 +30,7 @@ Agents must adopt one of these specific personas based on the active task.
     *   **Production Readiness:** Ensure designs include Security (Secrets), Observability (Metrics), and Scalability from `pie_in_the_sky.md`.
     *   Anticipate failure: Design for retries, backpressure, and graceful degradation.
     *   **Contracts:** Explicitly define API endpoints (Method, URL, Response) in the plan *before* coding.
+    *   **Naming Conventions:** Sequential IDs (Page 1, 2) MUST be zero-padded (001, 002) if they are valid for sorting.
 *   **Definition of Done (Exit Gate):**
     *   [ ] `implementation_plan.md`: Updated with "As-Built" details?
     *   [ ] **API Contract:** Are endpoints explicitly defined?
