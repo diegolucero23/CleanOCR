@@ -8,7 +8,7 @@ import config  # <--- NEW: Import your central config
 INPUT_FOLDER = config.OCR_JSON_FOLDER
 OUTPUT_FOLDER = config.FINAL_MARKDOWN_FOLDER
 PUBLICATION_TITLE = "The Latter Day Saint's Messenger And Advocate"
-TOTAL_EXPECTED_PAGES = 384
+
 REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]
 
 # NEW: A threshold for what constitutes a "suspicious" jump in volume numbers
@@ -48,17 +48,24 @@ def audit_files(files):
         p = get_page_from_filename(f)
         if p: found_nums.add(p)
 
-    expected = set(range(1, TOTAL_EXPECTED_PAGES + 1))
+    if not found_nums:
+        print("[!] No page numbers found in filenames.")
+        return
+
+    max_page = max(found_nums)
+    expected = set(range(1, max_page + 1))
     missing = sorted(list(expected - found_nums))
     
+    print(f"Detected {len(found_nums)} pages (Max Page detected: {max_page})")
+    
     if missing:
-        print(f"[!] CRITICAL: Missing {len(missing)} source files.")
+        print(f"[!] WARNING: Missing {len(missing)} source files within range 1-{max_page}.")
         if len(missing) < 15:
             print(f"    Missing Pages: {missing}")
         else:
             print(f"    Missing Pages: {missing[:10]} ... and {len(missing)-10} others.")
     else:
-        print("[OK] All 384 page numbers found.")
+        print(f"[OK] All {max_page} pages found in sequence.")
 
     print("\n[?] TARGET CHECK:")
     all_targets_ok = True
@@ -71,42 +78,165 @@ def audit_files(files):
             all_targets_ok = False
             
     if not all_targets_ok:
-        print("\n!!! STOPPING: Fix missing targets before stitching.")
-        input("Press Enter to continue anyway, or Ctrl+C to abort...")
+        print("\n[!] WARNING: Missing target pages. Proceeding anyway (Generic Mode).")
     else:
         print("\n[OK] Targets verified. Proceeding to stitch.\n")
 
-def main():
-    if not os.path.exists(OUTPUT_FOLDER):
-        os.makedirs(OUTPUT_FOLDER)
+# ... (Imports remain)
+
+# ... (Helpers remain)
+
+def stitch_markdown(input_folder, output_folder, metadata_file=None):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
     # Sort naturally (1, 2, ... 10)
     files = sorted(
-        [f for f in os.listdir(INPUT_FOLDER) if f.endswith(".json")],
+        [f for f in os.listdir(input_folder) if f.endswith(".json")],
         key=lambda x: int(re.search(r'\d+', x).group()) if re.search(r'\d+', x) else 0
     )
     
     # RUN THE AUDIT
     audit_files(files)
 
-    print("--- 2. STITCHING FILES ---")
+    print("--- 2. STITCHING FILES (COMBINED) ---")
+    
+    # ... (Rest of logic needs access to INPUT_FOLDER, so we must replace that global usage too)
 
     # Initialize State
     current_vol = 1
     current_issue = 1
+    last_vol_issue_key = None # (Vol, Issue) tuple
     
-    content_map = {} 
-    ordered_keys = []
+    all_pages_content = []
+
+    # --- 0. LOAD METADATA ---
+    pub_title = PUBLICATION_TITLE
+    citation_block = None
+
+    if metadata_file and os.path.exists(metadata_file):
+        try:
+            with open(metadata_file, "r", encoding="utf-8") as f:
+                meta_json = json.load(f)
+                
+                # Check for Opt-Out
+                if str(meta_json.get("skip_metadata", "")).lower() == "true":
+                    print("[INFO] Metadata skipped by user opt-out.")
+                    pub_title = meta_json.get("original_filename", "Extracted Document")
+                else:
+                    # Extract fields
+                    user_title = meta_json.get("title")
+                    user_date = meta_json.get("date")
+                    user_vol = meta_json.get("volume")
+                    user_iss = meta_json.get("issue")
+                    
+                    if user_title: pub_title = user_title
+                    
+                    # Generate YAML Frontmatter
+                    frontmatter = (
+                        "---\n"
+                        f"title: \"{pub_title}\"\n"
+                        f"date: \"{user_date or ''}\"\n"
+                        f"volume: \"{user_vol or ''}\"\n"
+                        f"issue: \"{user_iss or ''}\"\n"
+                        "generated_by: \"CleanOCR\"\n"
+                        "---\n\n"
+                    )
+                    all_pages_content.append(frontmatter)
+
+                    # Generate Citation Block
+                    citation_block = (
+                        "> [!CITATION]\n"
+                        f"> **Source:** {pub_title}"
+                    )
+                    if user_date: citation_block += f" | **Date:** {user_date}"
+                    if user_vol: citation_block += f" | **Vol:** {user_vol}"
+                    if user_iss: citation_block += f" | **Iss:** {user_iss}"
+                    citation_block += "\n\n"
+
+        except Exception as e:
+            print(f"[WARN] Failed to load metadata: {e}")
+
+    # Add Main Title
+    all_pages_content.append(f"# {pub_title}\n\n")
+    if citation_block:
+        all_pages_content.append(citation_block)
 
     for filename in files:
-        file_path = os.path.join(INPUT_FOLDER, filename)
+        file_path = os.path.join(input_folder, filename) # <--- LOCAL
         
         with open(file_path, "r", encoding="utf-8") as f:
+            raw_content = f.read()
             try:
-                data = json.load(f)
+                # 1. Try Standard Load with strict=False (allows newlines in string)
+                data = json.loads(raw_content, strict=False)
             except json.JSONDecodeError:
-                print(f"[ERROR] Corrupt JSON file skipped: {filename}")
-                continue
+                try:
+                    # 2. Try Truncating Loop (Finding last '}')
+                    # Many times the model adds "--- OCR End ---"
+                    last_brace = raw_content.rfind('}')
+                    if last_brace == -1: raise ValueError("No closing brace")
+                    
+                    clean_content = raw_content[:last_brace+1]
+                    data = json.loads(clean_content, strict=False)
+                    print(f"[RECOVERED] Truncated output repair used for {filename}")
+
+                except (json.JSONDecodeError, ValueError):
+                    try:
+                         # 3. Try to escape bad backslashes
+                         # This fixes "Invalid \escape" errors
+                         clean_content = raw_content.replace('\\', '\\\\')
+                         # But wait, this double escapes valid escapes like \n.
+                         # A better approach is usually regex extraction if JSON fails.
+                         raise ValueError("Escaping too risky")
+                    except:
+                        pass
+                        
+                    # 4. Fallback: REGEX EXTRACTION (Last Resort)
+                    print(f"[FALLBACK] Using Regex Extraction for {filename}")
+                    
+                    key_marker = '"markdown_content"'
+                    start_idx = raw_content.find(key_marker)
+                    
+                    if start_idx != -1:
+                        # Find the first quote after the key
+                        val_start = raw_content.find('"', start_idx + len(key_marker))
+                        if val_start != -1:
+                            val_start += 1 # Move inside the quote
+                            
+                            # Find the last quote in the file
+                            val_end = raw_content.rfind('"')
+                            
+                            if val_end > val_start:
+                                extracted_text = raw_content[val_start:val_end]
+                                # Manually unescape
+                                extracted_text = extracted_text.replace('\\n', '\n').replace('\\"', '"').replace('\\\\', '\\')
+                                
+                                data = {"markdown_content": extracted_text, "metadata": {}}
+                                match = True
+                            else:
+                                match = None
+                        else:
+                            match = None
+                    else:
+                        match = None
+
+                    if match:
+                        extracted_text = data["markdown_content"] # Placeholder to satisfy logic flow
+                        
+                        # Try to snag metadata too
+                        vol_match = re.search(r'"volume"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                        iss_match = re.search(r'"issue"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                        pg_match  = re.search(r'"page_number"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                        
+                        data["metadata"] = {
+                            "volume": vol_match.group(1) if vol_match else None,
+                            "issue": iss_match.group(1) if iss_match else None,
+                            "page_number": pg_match.group(1) if pg_match else None
+                        }
+                    else:
+                        print(f"[ERROR] All repair methods failed for: {filename}")
+                        continue
 
         meta = data.get("metadata", {})
         
@@ -114,18 +244,12 @@ def main():
         v_norm = normalize_number(meta.get("volume"))
         i_norm = normalize_number(meta.get("issue"))
 
-        # --- NEW LOGIC START: Sanity Check for Volume Jump ---
+        # Sanity Check for Volume Jump
         if v_norm is not None:
-            # If the volume jumps by more than 2 (e.g. 1 to 5), warn us.
             if v_norm > current_vol + MAX_VOL_JUMP:
-                print(f"⚠️  [WARNING] Suspicious Volume Jump detected in {filename}:")
-                print(f"    Previous Volume: {current_vol} -> New Volume: {v_norm}")
-                print(f"    (Keeping previous volume {current_vol} to be safe. Check file manually!)")
-                # We do NOT update current_vol here to prevent the hallucination from spreading
+                print(f"⚠️  [WARNING] Suspicious Volume Jump detected in {filename}: {current_vol} -> {v_norm}")
             else:
-                # If the jump is small (normal), update the volume
                 current_vol = v_norm
-        # --- NEW LOGIC END ---
 
         if i_norm is not None: current_issue = i_norm
             
@@ -133,37 +257,39 @@ def main():
         if not p_num:
             p_num = get_page_from_filename(filename)
 
-        file_key = f"Vol_{current_vol:02d}_Issue_{current_issue:02d}"
+        # --- ISSUE HEADER INJECTION ---
+        # Check if the Issue has changed since the last page
+        current_key = (current_vol, current_issue)
+        
+        if current_key != last_vol_issue_key:
+            # Issue Boundary logic! Insert a big header.
+            issue_header = f"\n\n# Volume {current_vol}, Issue {current_issue}\n\n"
+            all_pages_content.append(issue_header)
+            last_vol_issue_key = current_key
 
-        if file_key not in content_map:
-            content_map[file_key] = []
-            ordered_keys.append(file_key)
-
-        # --- BUILD CONTENT ---
+        # --- BUILD PAGE CONTENT ---
         page_text = data.get("markdown_content") or data.get("full_text") or ""
         
-        header = (
-            f"\n\n---"
-            f"\n## METADATA: {PUBLICATION_TITLE}"
+        # Page Separator / Metadata Block
+        page_header = (
+            f"\n\n----------"
+            f"\n## METADATA: {pub_title}"
             f"\n**Volume:** {current_vol} | **Issue:** {current_issue} | **Page:** {p_num}"
             f"\n**Source File:** {filename}"
             f"\n---\n\n"
         )
 
-        content_map[file_key].append(header + page_text)
+        all_pages_content.append(page_header + page_text)
 
-    # --- WRITE OUTPUT ---
-    print(f"Writing {len(ordered_keys)} Issue files to '{OUTPUT_FOLDER}/'...")
-    for key in ordered_keys:
-        out_path = os.path.join(OUTPUT_FOLDER, f"{key}.md")
-        pages = content_map[key]
-        with open(out_path, "w", encoding="utf-8") as f:
-            vol_str = key.split('_')[1]
-            iss_str = key.split('_')[3]
-            f.write(f"# {PUBLICATION_TITLE}\n## Volume {vol_str}, Issue {iss_str}\n\n")
-            f.write("".join(pages))
+    # --- WRITE SINGLE OUTPUT ---
+    # We call it 'full_extracted_content.md' so it's easy to find
+    out_path = os.path.join(output_folder, "full_extracted_content.md") # <--- LOCAL
+    print(f"Writing {len(files)} pages to {out_path}...")
+    
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write("".join(all_pages_content))
             
     print("Done.")
 
 if __name__ == "__main__":
-    main()
+    stitch_markdown(config.OCR_JSON_FOLDER, config.FINAL_MARKDOWN_FOLDER)

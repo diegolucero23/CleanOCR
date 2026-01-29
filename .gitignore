@@ -11,6 +11,7 @@ __pycache__/
 
 # Application Data & Temporary Files
 uploads/
+workspaces/
 output_images/
 ocr_json/
 ocr_jsonv2/
@@ -34,6 +35,9 @@ test_images/
 !implementation_plan.md
 !walkthrough.md
 *.log
+error_log.txt
+debug_log.txt
+test_upload.pdf
 
 # Frontend
 frontend/node_modules/

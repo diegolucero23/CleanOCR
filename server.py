@@ -5,7 +5,7 @@ import hashlib
 import logging
 import json
 import magic
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pythonjsonlogger import jsonlogger
@@ -65,57 +65,76 @@ def validate_file_type(file_path):
     return True
 
 @app.post("/upload")
-async def upload_pdf(file: UploadFile = File(...)):
+async def upload_pdf(
+    file: UploadFile = File(...),
+    title: str | None = Form(None),
+    volume: str | None = Form(None),
+    issue: str | None = Form(None),
+    date: str | None = Form(None),
+    skip_metadata: bool = Form(False)
+):
     job_id = str(uuid.uuid4())
     logger.info("Received upload request", extra={"job_id": job_id, "uploaded_filename": file.filename})
-    
-    filename = f"{job_id}.pdf"
-    file_path = os.path.join(UPLOAD_DIR, filename)
-    
-    # Save file temporarily
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    
-    # --- 2. Input Sanitization ---
-    if not validate_file_type(file_path):
-        os.remove(file_path) # Cleanup
-        raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
 
-    # --- 3. Smart Caching ---
-    file_hash = calculate_sha256(file_path)
-    logger.info(f"File hash calculated: {file_hash}", extra={"job_id": job_id})
-    
-    cached_job_id = redis_client.get(f"cache:{file_hash}")
-    
-    if cached_job_id:
-        cached_job_id = cached_job_id.decode('utf-8')
-        logger.info("Cache hit! Returning existing job.", extra={"new_job_id": job_id, "cached_job_id": cached_job_id})
-        # If cache hit, we can either return the old job_id or just say "it's done"
-        # For this implementation, we return the cached job ID so the user can query it.
-        # We also delete the newly uploaded file since we don't need it.
-        os.remove(file_path)
-        return {
-            "status": "cached",
-            "job_id": cached_job_id,
-            "message": "Duplicate file detected. Returning cached result."
-        }
-
-    # If new, proceed
-    # Force Task ID = Job ID so we can query status easily later
-    task = run_ocr_pipeline.apply_async(args=[job_id, file_path, file_hash], task_id=job_id)
-    
-    # 3b. Set Cache Immediately (Debounce/Dedupe)
-    # We set it here so that subsequent immediate uploads of the same file
-    # hit the cache, even if the worker is still processing.
-    # We set a TTL of 24 hours to avoid stale locks forever if something crashes hard.
-    redis_client.set(f"cache:{file_hash}", job_id, ex=86400)
-    
-    return {
-        "status": "queued",
-        "job_id": job_id,
-        "task_id": task.id,
-        "message": "File uploaded. Processing started in background."
+    # Bundle Metadata
+    metadata = {
+        "title": title,
+        "volume": volume,
+        "issue": issue,
+        "date": date,
+        "skip_metadata": skip_metadata,
+        "original_filename": file.filename
     }
+
+    try:
+        filename = f"{job_id}.pdf"
+        file_path = os.path.join(UPLOAD_DIR, filename)
+        
+        # Save file temporarily
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+            
+        print("DEBUG: File saved.")
+    
+        # --- 2. Input Sanitization ---
+        if not validate_file_type(file_path):
+            os.remove(file_path) # Cleanup
+            raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
+
+        # --- 3. Smart Caching ---
+        file_hash = calculate_sha256(file_path)
+        logger.info(f"File hash calculated: {file_hash}", extra={"job_id": job_id})
+        
+        cached_job_id = redis_client.get(f"cache:{file_hash}")
+        
+        if cached_job_id:
+            cached_job_id = cached_job_id.decode('utf-8')
+            logger.info("Cache hit! Returning existing job.", extra={"new_job_id": job_id, "cached_job_id": cached_job_id})
+            os.remove(file_path)
+            return {
+                "status": "cached",
+                "job_id": cached_job_id,
+                "message": "Duplicate file detected. Returning cached result."
+            }
+
+        # If new, proceed
+        # Force Task ID = Job ID so we can query status easily later
+        # 4. Pass Metadata to Worker
+        task = run_ocr_pipeline.apply_async(args=[job_id, file_path, file_hash, metadata], task_id=job_id)
+        
+        # 3b. Set Cache Immediately (Debounce/Dedupe)
+        redis_client.set(f"cache:{file_hash}", job_id, ex=86400)
+        
+        return {
+            "status": "queued",
+            "job_id": job_id,
+            "task_id": task.id,
+            "message": "File uploaded. Processing started in background."
+        }
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise e
 
 @app.get("/status/{job_id}")
 async def get_status(job_id: str):
@@ -149,6 +168,11 @@ async def get_status(job_id: str):
         response["status"] = "completed"
         response["progress"] = 100
         response["message"] = "Processing complete."
+        
+        # FIX: Extract the actual return value from the worker
+        result = task_result.result
+        if isinstance(result, dict):
+            response["markdown"] = result.get("markdown")
         
     elif task_result.state == 'FAILURE':
         response["status"] = "failed"

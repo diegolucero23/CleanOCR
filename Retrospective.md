@@ -60,3 +60,61 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 *   **Verification:** Verified that `pdfjs.GlobalWorkerOptions.workerSrc` pointing to `unpkg` (CDN) is the most robust zero-config method for Vite, avoiding complex build-step copying.
 *   **Rule Added:** (@Engineer) Use CDN for `pdf.worker` in prototypes; move to local asset copy for strict offline requirements.
 
+### 2026-01-28 - Server "Silent Success" (Missing Payload)
+*   **Incident:** APIs returned "Success" but frontend showed "No Content".
+*   **Root Cause:** `server.py` checked job status but failed to extract the `markdown` payload from the Celery result backend. It assumed completion meant success without forwarding the data.
+*   **Action Taken:** Patched `server.py` to explicitly unpack `task_result.result.get('markdown')`.
+
+### 2026-01-28 - Frontend "White Screen" (Refactor Error)
+*   **Incident:** `App.tsx` failed to load after a refactor.
+*   **Root Cause:** Accidental deletion of core logic (`useEffect`, `handleUpload`) while trying to hide a variable.
+*   **Lesson:** Always verify `git diff` or file content before applying large replacement chunks. Be careful with "Delete" instructions.
+
+### 2026-01-28 - The "10-Second" Bottleneck (Optimization)
+*   **Incident:** Processing 40 pages took 9+ minutes.
+*   **Root Cause:** `batch_ocr.py` had a hardcoded `time.sleep(10)` per page.
+*   **Action Taken:** Refactored to `ThreadPoolExecutor` (4 workers) + Exponential Backoff. Reduced time to <3 minutes.
+
+### 2026-01-28 - Frontend Page Sync Failure (Delimiter Mismatch)
+*   **What went wrong:** The frontend's "Sync Page" feature failed to show any content for pages > 1.
+*   **Root Cause:**
+    1.  **Backend:** Output used a 3-dash `---` separator, which conflicted with local markdown HRs. Changed to 10-dash `----------`.
+    2.  **Frontend:** The parser in `DiffViewer.tsx` was splitting by `\n` and looking for metadata on the same line, but the new backend output put metadata on the *next* line.
+*   **Action Taken:** Updated `stitch_to_markdown.py` to use `----------`. Updated `DiffViewer.tsx` to regex-split by `/\n-{10,}\s*\n/`.
+*   **Rule Added:** (@Architect) Define explicit separator constants in a shared config or contract when splitting document chunks.
+
+### 2026-01-28 - Small PDF Processing Failure
+*   **What went wrong:** Uploading a 16-page PDF failed/warned "Missing 368 source files".
+*   **Root Cause:** `stitch_to_markdown.py` had a hardcoded `TOTAL_EXPECTED_PAGES = 384`.
+*   **Action Taken:** Updated script to dynamically detect the maximum page number from the file list.
+*   **Lesson:** Avoid magic numbers in data processing; verify actual input bounds.
+
+### 2026-01-28 - OCR Layout Hallucination (Single vs Multi Column)
+*   **What went wrong:** Page 2 text was out of order (Sidebar "Exhibit A" read before main text).
+*   **Root Cause:** Gemini 2.0 hallucinated a "Two Column" layout for a single-column page with a header, causing it to read the "Right Column" (Header) too early.
+*   **Action Taken:** Updated `prompts.py` with:
+    1.  Explicit "Do not hallucinate columns" instruction.
+    2.  Strict "Reading Order" rules (Top-to-Bottom for Single, Left-to-Right for Multi).
+### 2026-01-29 - Content Mismatch (Tool Failure)
+*   **Incident:** `App.tsx` update failed because the tool couldn't find the target string.
+*   **Root Cause:** The `view_file` output was slightly stale or the replace block was too large/imprecise.
+*   **Action Taken:** Used smaller, more targeted edits.
+*   **Rule Added:** (@Engineer) When replacing large blocks, verify the *exact* context first, or break it into smaller guaranteed chunks.
+
+### 2026-01-29 - Job Pollution (Critical Architecture Flaw)
+*   **Incident:** Discovery that `worker.py` deleted the *entire* `output_images` folder at the start of every job.
+*   **Impact:** Concurrent users would have deleted each other's data.
+*   **Action Taken:** Implemented **Sandboxing** (Phase 9). Moved to `workspaces/{job_id}/`.
+### 2026-01-29 - Worker Signature Mismatch (Invisible 500 Error)
+*   **Incident:** `test_upload.py` and UI uploads failed with "Internal Server Error" immediately.
+*   **Root Cause:** The `worker.py` definition of the Celery task (`run_ocr_pipeline`) accepted 3 arguments, but the `server.py` was updated to send 4 (adding `metadata`). This caused a `TypeError` at the moment of task dispatch, which was swallowed or obscured by noise in the logs.
+*   **Action Taken:** Updated `worker.py` to match the signature.
+*   **Rule Added:** (@Architect) When changing the argument list of a shared task/function between microservices, YOU MUST update the consumer (Server) AND the provider (Worker) effectively simultaneously.
+
+
+## 6. Project Health Check
+*   **Code Quality:** High (Typed, Linted).
+*   **Resilience:** High (Persistence + Sandboxing).
+*   **UX:** High (One-Click Launcher + Visual Guides).
+*   **Architecture:** Validated V1.0 Architecture.
+

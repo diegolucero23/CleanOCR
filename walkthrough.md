@@ -84,8 +84,45 @@ State: COMPLETED | Progress: 100% | Msg: Processing complete.
 *   **Frontend:** `DiffViewer.tsx` implemented with `react-pdf` and Zoom controls.
 *   **Build:** `npm run build` ✅ PASSED.
 
+## Phase 9: Job Isolation (Sandboxing)
+### 1. Functional Verification
+*   **Architecture:** Shifted from Global Folders (`output_images/`) to Dynamic Workspaces (`workspaces/{job_id}/...`).
+*   **Refactor:** Updated `worker.py`, `convert_pdf.py`, `batch_ocr.py`, and `stitch_to_markdown.py`.
+*   **Test Run:** `test_upload.py` ✅ PASSED.
+*   **FileSystem Check:** `workspaces/` directory created with unique GUID folder. ✅ VERIFIED.
+
+## Phase 10: Seamless Launcher
+### 1. Artifact Verification
+*   **Windows:** `start.bat` created. Checks Docker, creates .env, waits for health.
+*   **Mac/Linux:** `start.sh` created. Equivalent logic.
+
+### 2. Manual Verification Checklist
+*   [ ] Run `start.bat` (or `./start.sh`).
+*   [ ] Verify it asks for API Key (if first run).
+*   [ ] Verify it opens the browser automatically.
+
+
+
 ### 2. Manual Verification Checklist
 *   [x] Open Result.
 *   [x] PDF loads on left (Served from `/uploads`).
 *   [x] Markdown on right.
 *   [x] Zoom In/Out works.
+
+## Phase 5: Page Sync & Layout Verification
+### 1. Page Sync Feature
+*   **Problem:** Frontend would only show Page 1 or random chunks.
+*   **Fix:** Implemented robust `----------` (10-dash) delimiter in Backend and regex-parser in Frontend.
+*   **Verification:**
+    *   Uploaded 16-page PDF.
+    *   Clicked "Sync Page".
+    *   Navigated to Page 2, 3, 4. text updated instantly to match the PDF page.
+    *   **Result:** ✅ PASS
+
+### 2. Layout & Logic Fixes
+*   **Problem:** Model read "Exhibit A" sidebar before the main text on Page 2 (Column Hallucination).
+*   **Fix:** Updated `prompts.py` with "Do not hallucinate columns" and "Sentence Continuity" rules.
+*   **Verification:**
+    *   Re-processed PDF.
+    *   Verified Page 2 starts with "the ecclesiastical governance..." (correct continuation).
+    *   **Result:** ✅ PASS

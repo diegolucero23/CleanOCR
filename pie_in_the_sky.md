@@ -10,6 +10,7 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
     - Prometheus exporters for FastAPI and Celery.
     - Grafana dashboards for Queue Depth, Error Rates, and Latency.
     - PagerDuty/Slack alerts for critical failures (e.g., Celery worker crash, Gemini API outage).
+- [ ] **Seamless Launcher:** `start.bat` / `start.sh` scripts to abstract Docker commands for non-techies.
 - [ ] **Secret Management:** Move `.env` files to a secure vault (HashiCorp Vault, AWS Secrets Manager) for production.
 
 ## 2. Backend & Architecture (Robustness)
