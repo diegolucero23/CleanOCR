@@ -1,35 +1,24 @@
-# Ignore python cache
+# Git/IDE
+.git/
+.vscode/
+.idea/
+.env
+.env.*
+
+# Python
 __pycache__/
 *.pyc
 
-# Ignore environment variables
-.env
-.venv
-env/
-venv/
-.git/
-
-# --- PROJECT SPECIFIC IGNORES ---
-
-# Ignore the heavy output folders
-ocr_json/
+# Data
+uploads/
 workspaces/
-CleanOCR_Final/
 output_images/
+ocr_json/
 final_markdown_volumes/
-ocr_json*/
-CleanOCR_Final*/
-output_images*/
 
-# Ignore PDF files
-*.pdf
+# RedTeam / Testing Artifacts (SENSITIVE)
+tests/redteam_artifacts/
+tests/verify_factory.py
 
-# Ignore the stitched markdown files just in case they are outside the folder
-*.md
-!README.md  <-- This tells git "Ignore all .md files EXCEPT Readme.md"
-
-# Ignore the raw images if you have them in a folder
-raw_images/
-*.png
-*.jpg
-*.jpeg
+# Keep generic tests if needed, or exclude all
+tests/

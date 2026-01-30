@@ -12,18 +12,11 @@ import prompts
 
 # --- CONFIGURATION ---
 # --- CONFIGURATION ---
+# --- CONFIGURATION ---
 MAX_WORKERS = 4  # Concurrency limit (Safe for free tier/paid tier mix)
 BASE_DELAY = 1   # Minimum seconds between requests
 ERROR_LOG_LOCK = threading.Lock()
 
-# Mock Mode Check
-MOCK_MODE = config.GOOGLE_API_KEY.startswith("MOCK_KEY")
-
-if not MOCK_MODE:
-    client = genai.Client(api_key=config.GOOGLE_API_KEY)
-else:
-    client = None
-    print("⚠️  MOCK MODE ENABLED: No API calls will be made.")
 
 def log_failure(filename, reason):
     """Writes failed files to a log for the repair script (Thread-Safe)."""
@@ -50,33 +43,17 @@ def process_single_image(args):
         try:
             print(f"[{index+1}/{total_files}] Processing {filename} ({retry_count+1}/{max_retries})...", flush=True)
             
-            # API Call (or Mock)
-            if MOCK_MODE:
-                print(f"⚠️  [MOCK] Skipping Google API for {filename}", flush=True)
-                # 1. Simulate Latency (Network/Processing)
-                time.sleep(1.5)
-                
-                # 2. Return Mock Data (matching app structure)
-                response_text = json.dumps({
-                    "markdown_content": f"# Mock Page {index + 1}\n\n**[REDTEAM MOCK DATA]**\n\nThis content was generated in MOCK MODE to prevent billing.\n\n## Section {index}\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    "metadata": {
-                        "volume": "1", 
-                        "issue": "1", 
-                        "page_number": str(index + 1),
-                        "confidence": 0.99
-                    }
-                })
-            else:
-                img = PIL.Image.open(img_path)
-                response = client.models.generate_content(
-                    model=config.MODEL_NAME,
-                    contents=[prompts.OCR_PROMPT, img],
-                    config=types.GenerateContentConfig(
+            # OCR Provider Factory
+            from services.ocr_factory import get_provider
+            provider = get_provider(config.GOOGLE_API_KEY)
+            
+            response_text = provider.generate_content(
+                contents=[prompts.OCR_PROMPT, PIL.Image.open(img_path)],
+                config=types.GenerateContentConfig(
                         temperature=0.1,
                         response_mime_type="application/json"
-                    )
                 )
-                response_text = response.text
+            )
             
             # Save Output
             with open(json_path, "w", encoding="utf-8") as f:

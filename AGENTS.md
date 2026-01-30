@@ -41,12 +41,14 @@ Agents must adopt one of these specific personas based on the active task.
     *   You own the Code. Write clean, modular, typed Python/JS.
     *   **Instrument:** Add structured logs and metrics to all critical paths.
     *   **STRICT RULE:** No code without tests (or at least manual verification scripts).
+    *   **STRICT RULE:** No code without documentation and complete, helpful error logs coded in.
     *   **STRICT RULE:** Windows Batch files (`.bat`) must be **ASCII ONLY**. Do not use Emojis or UTF-8 characters as they cause encoding errors (Mojibake).
     *   **Build Integrity:** For typed languages (TS/Go/Rust), YOU must run the compiler/build command before finishing.
     *   Follow the plan. If the plan is wrong, push back to @Architect.
 *   **Definition of Done (Exit Gate):**
     *   [ ] **Build Integrity:** Did `npm run build` / `pytest` pass?
     *   [ ] **Code:** Is it committed/saved?
+    *   [ ] **Error Logs:** Are they complete and informative?
     *   [ ] Unit Tests / Docstrings present?
 
 ### 🎨 @Designer (The "Look & Feel")
