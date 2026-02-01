@@ -21,4 +21,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # 7. Default command: Run the interactive menu
-CMD ["python", "main.py"]
+CMD ["python", "-m", "app.main"]

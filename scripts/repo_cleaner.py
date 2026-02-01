@@ -13,9 +13,8 @@ import os
 # Folders to completely ignore
 IGNORE_FOLDERS = {
     'output', 'temp', 'venv', 'env', '.git', '__pycache__', 
-    'build', 'dist', '.idea', '.vscode', 'CleanOCR_Final', 
-    'final_markdown_volumes', 'ocr_json', 'output_images',
-
+    'build', 'dist', '.idea', '.vscode', '_archive',
+    'output_images',
 }
 
 # File extensions to ignore (specifically excluding the PDFs and images)

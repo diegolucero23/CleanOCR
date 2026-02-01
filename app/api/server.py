@@ -4,13 +4,17 @@ import uuid
 import hashlib
 import logging
 import json
-import magic
+try:
+    import magic
+except ImportError:
+    magic = None
+    print("WARNING: python-magic not found. File type validation will be limited.")
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pythonjsonlogger import jsonlogger
 from redis import Redis
-from worker import run_ocr_pipeline
+from app.workers.celery_worker import run_ocr_pipeline
 from celery.result import AsyncResult
 from dotenv import load_dotenv
 
@@ -57,6 +61,9 @@ def validate_file_type(file_path):
     Uses python-magic to verify the file is actually a PDF,
     not just named .pdf.
     """
+    if magic is None:
+        return file_path.lower().endswith(".pdf")
+        
     mime = magic.Magic(mime=True)
     file_type = mime.from_file(file_path)
     if file_type != "application/pdf":
@@ -171,6 +178,7 @@ async def get_status(job_id: str):
         
         # FIX: Extract the actual return value from the worker
         result = task_result.result
+        
         if isinstance(result, dict):
             response["markdown"] = result.get("markdown")
         

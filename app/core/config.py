@@ -3,7 +3,9 @@ import sys
 from dotenv import load_dotenv
 
 # Load the .env file
-load_dotenv()
+# Root is 3 levels up from app/core/config.py
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv(os.path.join(BASE_DIR, ".env"), override=True)
 
 # --- API KEYS ---
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")

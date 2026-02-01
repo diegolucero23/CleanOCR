@@ -18,6 +18,7 @@ ocr_jsonv2/
 final_markdown_volumes/
 CleanOCR_Final/
 CleanOCR_Finalv2/
+_archive/
 
 # Experiments & Tests
 experiment_images/

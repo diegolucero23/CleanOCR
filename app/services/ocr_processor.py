@@ -7,8 +7,8 @@ from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
 import PIL.Image
-import config
-import prompts
+from app.core import config
+from app.core import prompts
 
 # --- CONFIGURATION ---
 # --- CONFIGURATION ---
@@ -44,7 +44,7 @@ def process_single_image(args):
             print(f"[{index+1}/{total_files}] Processing {filename} ({retry_count+1}/{max_retries})...", flush=True)
             
             # OCR Provider Factory
-            from services.ocr_factory import get_provider
+            from app.services.ocr_factory import get_provider
             provider = get_provider(config.GOOGLE_API_KEY)
             
             response_text = provider.generate_content(
@@ -98,15 +98,24 @@ def process_images(input_folder, output_folder):
 
     if len(files) == 0:
         print("No images found.")
-        return
+        return {"total": 0, "success": 0, "failed": 0}
 
     # Prepare Args - Must pass folders now
     tasks = [(f, len(files), i, input_folder, output_folder) for i, f in enumerate(files)]
 
     # Run Parallel
+    success_count = 0
+    failure_count = 0
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         for result in executor.map(process_single_image, tasks):
             print(result)
+            if "Success" in result:
+                success_count += 1
+            else:
+                failure_count += 1
+                
+    return {"total": len(files), "success": success_count, "failed": failure_count}
 
 if __name__ == "__main__":
     process_images(config.INPUT_IMAGE_FOLDER, config.OCR_JSON_FOLDER)

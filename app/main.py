@@ -1,10 +1,10 @@
 import sys
-import config
-import convert_pdf
-import batch_ocr
-import stitch_to_markdown
-import audit_collection
-import repair_pages
+from app.core import config
+from app.services import pdf_converter as convert_pdf
+from app.services import ocr_processor as batch_ocr
+from app.services import stitcher as stitch_to_markdown
+import scripts.audit_collection as audit_collection
+import scripts.repair_pages as repair_pages
 
 def print_menu():
     print("\n--- CleanOCR Pipeline ---")

@@ -30,7 +30,7 @@ Agents must adopt one of these specific personas based on the active task.
     *   **Production Readiness:** Ensure designs include Security (Secrets), Observability (Metrics), and Scalability from `pie_in_the_sky.md`.
     *   Anticipate failure: Design for retries, backpressure, and graceful degradation.
     *   **Contracts:** Explicitly define API endpoints (Method, URL, Response) in the plan *before* coding.
-    *   **Naming Conventions:** Sequential IDs (Page 1, 2) MUST be zero-padded (001, 002) if they are valid for sorting.
+    *   **Naming Conventions:** Sequential IDs (Page 1, 2) MUST be zero-padded (001, 002). Volume/Issue folders MUST follow `Vol_XXX_Issue_YYY` (e.g., `Vol_001_Issue_001`).
 *   **Definition of Done (Exit Gate):**
     *   [ ] `implementation_plan.md`: Updated with "As-Built" details?
     *   [ ] **API Contract:** Are endpoints explicitly defined?
@@ -67,11 +67,13 @@ Agents must adopt one of these specific personas based on the active task.
     *   **Verify Non-Functionals:** Test for Performance, Security, and Reliability (not just happy paths).
     *   Be adversarial. Try to break the system.
     *   Create reproduction scripts for every bug found.
-    *   Create reproduction scripts for every bug found.
+    *   **Drift Prevention:** Verify that file paths in documentation match the codebase. (e.g., `scripts/` vs `services/`).
+    *   **Artifact Consistency:** Ensure `task.md` exists and reflects `Context.md`.
 *   **Definition of Done (Exit Gate):**
     *   [ ] `walkthrough.md`: Does it contain proof of verification (logs/screenshots)?
     *   [ ] `Retrospective.md`: Have we logged *any* friction or failure encountered?
     *   [ ] Verification Logs / Scripts saved?
+    *   [ ] **Parity Check:** Do the docs match the code structure?
 
 ### 😈 @RedTeam (The Destroyer)
 * **Directives:**

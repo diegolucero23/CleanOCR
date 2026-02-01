@@ -1,7 +1,8 @@
 import os
 import json
 import re
-import config  # <--- NEW: Import your central config
+import shutil
+from app.core import config
 
 # --- CONFIGURATION ---
 # We now pull these paths from config.py to ensure consistency across the app
@@ -36,6 +37,79 @@ def get_page_from_filename(filename):
     match = re.search(r'page_(\d+)', filename)
     if match: return int(match.group(1))
     return None
+
+def load_and_repair_json(file_path):
+    """
+    Robustly loads JSON from a file, attempting multiple repair strategies:
+    1. Standard JSON load (strict=False)
+    2. Truncated output repair (finding last '}')
+    3. Python string escaping (risky, skipped mostly)
+    4. Regex extraction of 'markdown_content' and metadata (Last Resort)
+    """
+    filename = os.path.basename(file_path)
+    with open(file_path, "r", encoding="utf-8") as f:
+        raw_content = f.read()
+
+    try:
+        # 1. Try Standard Load with strict=False (allows newlines in string)
+        return json.loads(raw_content, strict=False)
+    except json.JSONDecodeError:
+        try:
+            # 2. Try Truncating Loop (Finding last '}')
+            # Many times the model adds "--- OCR End ---"
+            last_brace = raw_content.rfind('}')
+            if last_brace == -1: raise ValueError("No closing brace")
+            
+            clean_content = raw_content[:last_brace+1]
+            data = json.loads(clean_content, strict=False)
+            print(f"[RECOVERED] Truncated output repair used for {filename}")
+            return data
+
+        except (json.JSONDecodeError, ValueError):
+            # 3. Skip risky escaping for now as noted in original code
+            
+            # 4. Fallback: REGEX EXTRACTION (Last Resort)
+            print(f"[FALLBACK] Using Regex Extraction for {filename}")
+            
+            key_marker = '"markdown_content"'
+            start_idx = raw_content.find(key_marker)
+            
+            # Initialize data structure
+            data = {"markdown_content": "", "metadata": {}}
+            match_found = False
+            
+            if start_idx != -1:
+                # Find the first quote after the key
+                val_start = raw_content.find('"', start_idx + len(key_marker))
+                if val_start != -1:
+                    val_start += 1 # Move inside the quote
+                    
+                    # Find the last quote in the file
+                    val_end = raw_content.rfind('"')
+                    
+                    if val_end > val_start:
+                        extracted_text = raw_content[val_start:val_end]
+                        # Manually unescape
+                        extracted_text = extracted_text.replace('\\n', '\\n').replace('\\"', '"').replace('\\\\', '\\')
+                        
+                        data["markdown_content"] = extracted_text
+                        match_found = True
+
+            if match_found:
+                # Try to snag metadata too
+                vol_match = re.search(r'"volume"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                iss_match = re.search(r'"issue"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                pg_match  = re.search(r'"page_number"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
+                
+                data["metadata"] = {
+                    "volume": vol_match.group(1) if vol_match else None,
+                    "issue": iss_match.group(1) if iss_match else None,
+                    "page_number": pg_match.group(1) if pg_match else None
+                }
+                return data
+            else:
+                print(f"[ERROR] All repair methods failed for: {filename}")
+                return None
 
 def audit_files(files):
     """Performs a pre-stitch audit to find missing pages."""
@@ -165,78 +239,10 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
     for filename in files:
         file_path = os.path.join(input_folder, filename) # <--- LOCAL
         
-        with open(file_path, "r", encoding="utf-8") as f:
-            raw_content = f.read()
-            try:
-                # 1. Try Standard Load with strict=False (allows newlines in string)
-                data = json.loads(raw_content, strict=False)
-            except json.JSONDecodeError:
-                try:
-                    # 2. Try Truncating Loop (Finding last '}')
-                    # Many times the model adds "--- OCR End ---"
-                    last_brace = raw_content.rfind('}')
-                    if last_brace == -1: raise ValueError("No closing brace")
-                    
-                    clean_content = raw_content[:last_brace+1]
-                    data = json.loads(clean_content, strict=False)
-                    print(f"[RECOVERED] Truncated output repair used for {filename}")
-
-                except (json.JSONDecodeError, ValueError):
-                    try:
-                         # 3. Try to escape bad backslashes
-                         # This fixes "Invalid \escape" errors
-                         clean_content = raw_content.replace('\\', '\\\\')
-                         # But wait, this double escapes valid escapes like \n.
-                         # A better approach is usually regex extraction if JSON fails.
-                         raise ValueError("Escaping too risky")
-                    except:
-                        pass
-                        
-                    # 4. Fallback: REGEX EXTRACTION (Last Resort)
-                    print(f"[FALLBACK] Using Regex Extraction for {filename}")
-                    
-                    key_marker = '"markdown_content"'
-                    start_idx = raw_content.find(key_marker)
-                    
-                    if start_idx != -1:
-                        # Find the first quote after the key
-                        val_start = raw_content.find('"', start_idx + len(key_marker))
-                        if val_start != -1:
-                            val_start += 1 # Move inside the quote
-                            
-                            # Find the last quote in the file
-                            val_end = raw_content.rfind('"')
-                            
-                            if val_end > val_start:
-                                extracted_text = raw_content[val_start:val_end]
-                                # Manually unescape
-                                extracted_text = extracted_text.replace('\\n', '\n').replace('\\"', '"').replace('\\\\', '\\')
-                                
-                                data = {"markdown_content": extracted_text, "metadata": {}}
-                                match = True
-                            else:
-                                match = None
-                        else:
-                            match = None
-                    else:
-                        match = None
-
-                    if match:
-                        extracted_text = data["markdown_content"] # Placeholder to satisfy logic flow
-                        
-                        # Try to snag metadata too
-                        vol_match = re.search(r'"volume"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
-                        iss_match = re.search(r'"issue"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
-                        pg_match  = re.search(r'"page_number"\s*:\s*(?:null|"?([^"]+)"?)', raw_content)
-                        
-                        data["metadata"] = {
-                            "volume": vol_match.group(1) if vol_match else None,
-                            "issue": iss_match.group(1) if iss_match else None,
-                            "page_number": pg_match.group(1) if pg_match else None
-                        }
-                    else:
-                        print(f"[ERROR] All repair methods failed for: {filename}")
-                        continue
+        # USE ROBUST LOADER
+        data = load_and_repair_json(file_path)
+        if not data:
+            continue
 
         meta = data.get("metadata", {})
         
@@ -288,14 +294,99 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
 
         all_pages_content.append(page_header + page_text)
 
-    # --- WRITE SINGLE OUTPUT ---
-    # We call it 'full_extracted_content.md' so it's easy to find
-    out_path = os.path.join(output_folder, "full_extracted_content.md") # <--- LOCAL
-    print(f"Writing {len(files)} pages to {out_path}...")
+    # --- 3. WRITE OUTPUTS ---
     
+    # A. Write Full Concatenated File
+    out_path = os.path.join(output_folder, "full_extracted_content.md")
+    print(f"Writing {len(files)} pages to {out_path}...")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("".join(all_pages_content))
+
+    # B. Write Issue-Based Separated Files (The New Standard)
+    issues_dir = os.path.join(output_folder, "issues")
+    
+    # Idempotency: Clean slate
+    if os.path.exists(issues_dir):
+        shutil.rmtree(issues_dir)
+    os.makedirs(issues_dir)
+    
+    print(f"Writing Issue-based folders to {issues_dir}...")
+    
+    # We need to replay the logic to group by issue, but we didn't save the state 100% perfectly in the loop above
+    # except in the string buffer.
+    # Ideally, we should have stored a list of dicts. 
+    # Let's do a quick re-parse of the files respecting the Forward Fill logic again to be safe and clean.
+    
+    # Reset State for Pass 2
+    current_vol = 1
+    current_issue = 1
+    
+    # Buffer to hold markdown content per issue
+    # Key: "Vol_001_Issue_001" -> List of strings (page content)
+    issue_buffers = {}
+    
+    for filename in files:
+        file_path = os.path.join(input_folder, filename)
+        data = load_and_repair_json(file_path)
+        if not data: continue
+        
+        meta = data.get("metadata", {})
+        
+        # --- RE-APPLY FORWARD FILL LOGIC ---
+        v_norm = normalize_number(meta.get("volume"))
+        i_norm = normalize_number(meta.get("issue"))
+
+        if v_norm is not None:
+             if v_norm > current_vol + MAX_VOL_JUMP:
+                 print(f"⚠️  [WARNING] Suspicious Volume Jump detected in {filename}: {current_vol} -> {v_norm}")
+             else:
+                 current_vol = v_norm
+
+        if i_norm is not None: current_issue = i_norm
             
+        p_num = meta.get("page_number")
+        if not p_num: p_num = get_page_from_filename(filename)
+        
+        # Formulate Folder Name
+        if current_vol is None or current_issue is None:
+            folder_name = "Unassigned"
+        else:
+            folder_name = f"Vol_{int(current_vol):03d}_Issue_{int(current_issue):03d}"
+            
+        # Create Folder Structure
+        issue_path = os.path.join(issues_dir, folder_name)
+        pages_subpath = os.path.join(issue_path, "pages")
+        
+        if not os.path.exists(pages_subpath):
+            os.makedirs(pages_subpath)
+            
+        # Write Page MD
+        raw_text = data.get("markdown_content") or data.get("full_text") or ""
+        page_filename = filename.replace(".json", ".md")
+        with open(os.path.join(pages_subpath, page_filename), "w", encoding="utf-8") as f:
+            f.write(raw_text)
+            
+        # Write Page JSON (Copy/Dump)
+        with open(os.path.join(pages_subpath, filename), "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+            
+        # Append to Issue Buffer
+        if folder_name not in issue_buffers:
+            issue_buffers[folder_name] = []
+            # Add Title for the new file
+            issue_buffers[folder_name].append(f"# {folder_name.replace('_', ' ')}\n\n")
+            
+        # Add Page Header for context in the Issue file
+        p_str = f"{int(p_num):03d}" if p_num and str(p_num).isdigit() else str(p_num)
+        issue_buffers[folder_name].append(f"\n\n## Page {p_str}\n\n")
+        issue_buffers[folder_name].append(raw_text)
+
+    # Write Volume/Issue Summaries
+    for folder_name, content_list in issue_buffers.items():
+        issue_md_path = os.path.join(issues_dir, folder_name, f"{folder_name}.md")
+        with open(issue_md_path, "w", encoding="utf-8") as f:
+            f.write("".join(content_list))
+
     print("Done.")
 
 if __name__ == "__main__":

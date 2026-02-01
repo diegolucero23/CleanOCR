@@ -27,14 +27,27 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
 - [ ] **Confidence Scoring:** Parse model logprobs (if available) or ask the model to self-evaluate confidence to flag pages for human review.
 - [ ] **Cost Control:** Implement hard limits on daily API spend.
 - [x] **Smart Caching:** Compute SHA-256 hashes of input images. Check DB for existing results before calling AI.
+- [ ] **Type Safety:** Enforce strict type hinting (mypy) across the entire codebase.
 
 ## 4. Frontend & UX (The "Wow" Factor)
 - [x] **Real-Time Feedback:** Replace polling with WebSockets or Server-Sent Events (SSE) for live progress bars. *(Implemented via Smart Polling)*
 - [x] **"Diff" View:** A split-screen interface showing the original PDF page next to the extracted Markdown for easy verification.
 - [x] **Drag & Drop Zone:** smooth, animated upload area with file validation warnings.
+- [ ] **Issue Explorer:** A dedicated UI for browsing the new `output/issues/` folder structure (Volume/Issue navigation).
+- [ ] **Dark Mode:** specific toggle and consistent theme application.
 - [ ] **Human-in-the-Loop Interface:** A specific UI for reviewing and correcting "low confidence" pages flagged by the backend.
 
 ## 5. Data & Storage (Persistence)
 - [ ] **Cloud Storage:** Migrate from local `uploads/` to S3/GCS buckets with lifecycle policies (auto-delete after 30 days).
 - [ ] **Relational Database:** Introduce PostgreSQL for structured data (User accounts, Job history, Billing) instead of relying solely on Redis/Files modules.
 - [ ] **Data Retention Policy:** Automated cleanup scripts for old artifacts to manage storage costs.
+
+## 6. Consolidation & Refactoring (Clean Code)
+- [ ] **Package Structure:** Move root scripts (`batch_ocr.py`, `convert_pdf.py`, `worker.py`) into a proper `app/` or `core/` package to reduce root clutter.
+- [ ] **Script Modernization:** Move legacy debug scripts (`debug_ocr.py`, `stitch_debug.py`) into `scripts/debug/` or `tests/legacy/`.
+- [ ] **Unified Config:** Audit codebase to ensure `config.py` is the *single* source of truth (remove local constants).
+
+## 7. Documentation & Manuals (Knowledge Base)
+- [ ] **Deployment Manual:** Create `manual/deployment.md` for Docker/Cloud deployment steps.
+- [ ] **Troubleshooting Guide:** Create `manual/troubleshooting.md` for common errors (Redis connection, API quotas).
+- [ ] **Architecture Decision Records (ADR):** Document key decisions (Gemini, Celery, React) in `docs/adr/`.

@@ -1,8 +1,8 @@
 import os
 from pdf2image import convert_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
-import config # <--- NEW IMPORT
-import image_utils # <--- NEW IMPORT
+from app.core import config # <--- NEW IMPORT
+from app.core import image_utils # <--- NEW IMPORT
 
 def convert_pdf_in_chunks(pdf_path, output_folder, chunk_size=10):
     # output_folder passed as arg

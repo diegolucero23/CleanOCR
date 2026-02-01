@@ -5,13 +5,13 @@ import logging
 from celery import Celery
 import json
 from pythonjsonlogger import jsonlogger
-import config
+from app.core import config
 
 # Import your actual processing logic
-import convert_pdf
-import batch_ocr
-import stitch_to_markdown
-import audit_collection
+from app.services import pdf_converter as convert_pdf
+from app.services import ocr_processor as batch_ocr
+from app.services import stitcher as stitch_to_markdown
+# import audit_collection # Audit collection moved to scripts, disabled for now
 
 # --- 1. Structured Logging Setup ---
 logger = logging.getLogger("cleanocr_worker")
@@ -70,7 +70,12 @@ def run_ocr_pipeline(self, job_id: str, pdf_path: str, file_hash: str = None, me
         logger.info("Step 2: Running Gemini OCR...", extra={"job_id": job_id})
         self.update_state(state='PROCESSING', meta={'progress': 30, 'message': 'Running OCR on images...'})
         # Pass dynamic input and output folders
-        batch_ocr.process_images(input_images_dir, ocr_json_dir)
+        stats = batch_ocr.process_images(input_images_dir, ocr_json_dir)
+        
+        if stats and stats["success"] == 0 and stats["total"] > 0:
+            raise RuntimeError(f"OCR Failed: 0/{stats['total']} pages processed successfully.")
+        
+        logger.info(f"OCR Stats: {stats}", extra={"job_id": job_id})
         
         # PHASE 3: STITCH
         logger.info("Step 3: Stitching Markdown...", extra={"job_id": job_id})

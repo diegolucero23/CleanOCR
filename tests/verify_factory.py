@@ -6,8 +6,8 @@ from unittest.mock import patch
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from services.ocr_factory import get_provider
-from services.google_vision import GoogleVisionProvider
+from app.services.ocr_factory import get_provider
+from app.services.google_vision import GoogleVisionProvider
 from tests.redteam_artifacts.mock_vision import RedTeamMockProvider
 
 class TestOCRFactory(unittest.TestCase):
