@@ -124,3 +124,22 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 *   **UX:** High (One-Click Launcher + Visual Guides).
 *   **Architecture:** Validated V1.0 Architecture.
 
+
+### 2026-01-31 - JSON Escape Failure in Stitcher
+*   **Incident:** `stitch_to_markdown.py` failed to export `page_027.md` (Separated File).
+*   **Error:** `Invalid \escape: line 9 column 2141`.
+*   **Root Cause:** The new "Separated File" loop used a strict `json.loads`, whereas the main stitching loop had a robust fallback mechanism (Regex extraction) that wasn't reused.
+*   **Action Taken:** Documented failure. Refactored `stitch_to_markdown.py` to use a shared `load_and_repair_json` function (2026-02-01).
+*   **Resolution:** Confirmed 1:1 parity and recovery of `page_027.md`.
+
+### 2026-02-01 - Silent OCR Failure (Config Drift)
+*   **Incident:** OCR Worker reported success but produced 0 pages of markdown, leading to a broken frontend.
+*   **Root Cause:**
+    1.  **Config Drift:** `services/google_vision.py` had a hardcoded model name (`gemini-2.0-flash-exp`) which was deprecated/deleted by Google, causing 404s. It ignored the correct `gemini-2.0-flash` setting in `.env`.
+    2.  **Silent Failure:** `worker.py` and `batch_ocr.py` caught exceptions but didn't fail the job if *all* pages failed.
+*   **Action Taken:**
+    1.  Updated `services/google_vision.py` to use `config.MODEL_NAME`.
+    2.  Updated `config.py` to enforce `.env` loading (`override=True`).
+    3.  Hardened `batch_ocr.py` to return success/failure stats.
+    4.  Hardened `worker.py` to raise an Exception if 0 pages are successfully processed.
+*   **Rule Added:** (@Engineer) Hardcoded configuration values (except defaults) are forbidden. Always use `config.py`.

@@ -1,3 +1,12 @@
-page_161.png|write() argument must be str, not None
-page_235.png|500 INTERNAL. {'error': {'code': 500, 'message': 'Internal error encountered.', 'status': 'INTERNAL'}}
-page_001.png|name 'json' is not defined
+page_001.png|name 'Any' is not defined
+page_004.png|name 'Any' is not defined
+page_003.png|name 'Any' is not defined
+page_002.png|name 'Any' is not defined
+page_005.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
+page_006.png|name 'Any' is not defined
+page_007.png|name 'Any' is not defined
+page_008.png|name 'Any' is not defined
+page_009.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
+page_010.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
+page_011.png|name 'Any' is not defined
+page_012.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
