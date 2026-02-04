@@ -72,27 +72,28 @@ API Documentation at: **http://localhost:8000/docs**
     *   `JobCard`: Live polling of job status (`GET /status/{id}`).
     *   `DiffViewer`: `react-pdf` integration for split-screen audit.
 
-### Backend (`/`)
+### Backend (`/app`)
 *   **Stack:** Python 3.11, FastAPI, Celery, Redis.
 *   **Key Files:**
-    *   `server.py`: API Gateway + Static File Serving (`/uploads`).
-    *   `worker.py`: Background OCR pipeline (Burst -> OCR -> Stitch).
+    *   `app/api/server.py`: API Gateway + Static File Serving.
+    *   `app/workers/celery_worker.py`: Background OCR pipeline configuration.
+    *   `app/services/`: Core logic (PDF conversion, OCR processing, Markdown stitching).
 
 ---
 
 ## 🧪 Verification
 
-To verify the installation, you can run the included scripts:
+To verify the installation, you can run the included scripts from the `scripts/` directory:
 ```bash
 # Verify API & Worker Lifecycle
-python verify_status_api.py
+python scripts/verify_status_api.py
 
 # Verify Static File Serving
-python verify_static.py
+python scripts/verify_static.py
 
 # Advanced Test CLI (Support Cache Flushing)
-# Usage: python test_upload.py [--flush] [--dummy] [--file path/to/pdf]
-python test_upload.py --flush --dummy
+# Usage: python scripts/test_upload.py [--flush] [--dummy] [--file path/to/pdf]
+python scripts/test_upload.py --flush --dummy
 ```
 
 ---
