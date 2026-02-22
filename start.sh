@@ -59,6 +59,12 @@ until curl -s http://localhost:8000/docs > /dev/null; do
     sleep 2
 done
 
+# 4.5 Start Frontend
+echo ""
+echo "[5/5] Starting Frontend Server..."
+cd frontend && npm install && npm run dev &
+cd ..
+
 echo ""
 echo -e "${GREEN}🚀 CleanOCR is Ready!${NC}"
 echo "Opening browser..."

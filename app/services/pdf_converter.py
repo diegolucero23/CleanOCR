@@ -1,60 +1,74 @@
 import os
-from pdf2image import convert_from_path
+import concurrent.futures
+from pdf2image import convert_from_path, pdfinfo_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
-from app.core import config # <--- NEW IMPORT
-from app.core import image_utils # <--- NEW IMPORT
+from app.core import config
+from app.core import image_utils
+
+def process_pdf_chunk(pdf_path, output_folder, start_page, end_page, poppler_path):
+    print(f"Processing pages {start_page} to {end_page}...")
+    try:
+        pages = convert_from_path(
+            pdf_path, 
+            dpi=300, 
+            first_page=start_page, 
+            last_page=end_page,
+            poppler_path=poppler_path
+        )
+    except PDFPageCountError:
+        return []
+
+    processed_files = []
+    for i, page in enumerate(pages):
+        processed_page = image_utils.preprocess_image(page)
+        page_num = start_page + i
+        filename = f"page_{page_num:03}.png"
+        filepath = os.path.join(output_folder, filename)
+        processed_page.save(filepath, "PNG")
+        processed_files.append(filepath)
+    return processed_files
 
 def convert_pdf_in_chunks(pdf_path, output_folder, chunk_size=10):
-    # output_folder passed as arg
-    
-    # Check if pdf_path is valid
     if pdf_path is None:
         print("Error: PDF Path is None")
-        return
+        return []
     
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
     if not os.path.exists(pdf_path):
         print(f"Error: PDF not found at {pdf_path}")
-        return
+        return []
 
     try:
-        page_counter = 1
-        current_page = 1
         print(f"Converting '{pdf_path}'...")
-
-        while True:
-            print(f"Processing pages {current_page} to {current_page + chunk_size - 1}...")
-            try:
-                pages = convert_from_path(
-                    pdf_path, 
-                    dpi=300, 
-                    first_page=current_page, 
-                    last_page=current_page + chunk_size - 1,
-                    poppler_path=config.POPPLER_PATH # <--- Config
-                )
-            except PDFPageCountError:
-                if current_page > 1: break
-                else: raise
-
-            if not pages: break
-
-            for page in pages:
-                # Apply Deskew and Padding
-                processed_page = image_utils.preprocess_image(page)
-                
-                filename = f"page_{page_counter:03}.png"
-                processed_page.save(os.path.join(output_folder, filename), "PNG")
-                page_counter += 1
+        # Get total pages
+        info = pdfinfo_from_path(pdf_path, poppler_path=config.POPPLER_PATH)
+        total_pages = info["Pages"]
+        
+        chunks = []
+        for start_page in range(1, total_pages + 1, chunk_size):
+            end_page = min(start_page + chunk_size - 1, total_pages)
+            chunks.append((start_page, end_page))
             
-            if len(pages) < chunk_size: break
-            current_page += chunk_size
-            
+        generated_files = []
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = [
+                executor.submit(process_pdf_chunk, pdf_path, output_folder, start, end, config.POPPLER_PATH)
+                for start, end in chunks
+            ]
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    generated_files.extend(future.result())
+                except Exception as exc:
+                    print(f"Chunk generation generated an exception: {exc}")
+                    
         print(f"Done! Saved to '{output_folder}'.")
+        return generated_files
 
     except Exception as e:
         print(f"Error: {e}")
+        return []
 
 if __name__ == "__main__":
     if config.PDF_SOURCE:

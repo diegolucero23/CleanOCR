@@ -2,6 +2,7 @@ import os
 import json
 import re
 import shutil
+from google import genai
 from app.core import config
 
 # --- CONFIGURATION ---
@@ -156,9 +157,40 @@ def audit_files(files):
     else:
         print("\n[OK] Targets verified. Proceeding to stitch.\n")
 
-# ... (Imports remain)
-
 # ... (Helpers remain)
+
+def verify_boundary_text(prev_end_text, next_start_text):
+    """
+    Two-Pass Verification Step:
+    Sends the boundary text between two pages to an LLM to resolve hyphenation
+    splits and sentence breaks.
+    """
+    if not config.GOOGLE_API_KEY or config.GOOGLE_API_KEY.startswith("MOCK"):
+        # Mock mode fallback
+        return prev_end_text + next_start_text
+
+    try:
+        client = genai.Client(api_key=config.GOOGLE_API_KEY)
+        
+        prompt = (
+            "You are an expert OCR editor. The following two text blocks are from "
+            "consecutive pages of a scanned historical document. They may be split across "
+            "a hyphen or mid-sentence.\n\n"
+            "Block 1 (End of Page N-1):\n---\n" + prev_end_text + "\n---\n\n"
+            "Block 2 (Start of Page N):\n---\n" + next_start_text + "\n---\n\n"
+            "Please merge these two blocks into a single continuous text string, fixing "
+            "any hyphenation splits or awkward line breaks at the boundary. "
+            "Do not alter the spelling of historical words. Return ONLY the merged text."
+        )
+        
+        response = client.models.generate_content(
+            model=getattr(config, "MODEL_NAME", "gemini-2.0-flash"),
+            contents=prompt,
+        )
+        return response.text.strip()
+    except Exception as e:
+        print(f"LLM Verification failed: {e}")
+        return prev_end_text + next_start_text
 
 def stitch_markdown(input_folder, output_folder, metadata_file=None):
     if not os.path.exists(output_folder):
@@ -246,6 +278,32 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
 
         meta = data.get("metadata", {})
         
+        # --- BUILD PAGE CONTENT ---
+        page_text = data.get("markdown_content") or data.get("full_text") or ""
+        
+        # TWO-PASS VERIFICATION (Context-Aware Boundary Stitching)
+        # If we have previous content, let's look at the boundary
+        if len(all_pages_content) > 1 and page_text.strip():
+            # Get the very last block of text we appended (excluding headers)
+            # A rough heuristic: the last 150 words of the previous page, and first 150 of this page
+            prev_block = all_pages_content[-1]
+            words_prev = prev_block.split()
+            words_next = page_text.split()
+            
+            if len(words_prev) > 0 and len(words_next) > 0:
+                prev_sample = " ".join(words_prev[-150:])
+                next_sample = " ".join(words_next[:150])
+                
+                # Check for obvious hyphenation
+                if prev_sample.endswith("-"):
+                    print(f"[*] Hyphenation detected at boundary of {filename}. Running LLM Verification...")
+                    verified_boundary = verify_boundary_text(prev_sample, next_sample)
+                    
+                    # We inject the LLM's opinion of the boundary into a blockquote for review
+                    # (In a fully mature system we'd parse this back into the actual text, 
+                    # but for now we append it as a unified crossing block to prevent dataloss)
+                    all_pages_content.append(f"\n\n> **[LLM Boundary Fix]**\n> {verified_boundary}\n\n")
+
         # --- METADATA & FORWARD FILL ---
         v_norm = normalize_number(meta.get("volume"))
         i_norm = normalize_number(meta.get("issue"))
@@ -259,16 +317,17 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
 
         if i_norm is not None: current_issue = i_norm
             
-        p_num = meta.get("page_number")
-        if not p_num:
-            p_num = get_page_from_filename(filename)
+        # The UI DiffViewer requires a strict 1:1 mapping to the physical PDF page
+        phys_num = get_page_from_filename(filename)
         
-        # Zero-Pad Page Number (001, 002...) for Sorting
+        # Zero-Pad Physical Page Number (001, 002...) for Sorting and UI Sync
         try:
-            if p_num is not None:
-                p_num = f"{int(p_num):03d}"
+            if phys_num is not None:
+                p_num = f"{int(phys_num):03d}"
+            else:
+                p_num = "000"
         except (ValueError, TypeError):
-             pass # Keep as is if it's not a number (e.g. "Cover")
+             p_num = str(phys_num) # Keep as is if it's not a number
 
         # --- ISSUE HEADER INJECTION ---
         # Check if the Issue has changed since the last page
@@ -280,9 +339,6 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
             all_pages_content.append(issue_header)
             last_vol_issue_key = current_key
 
-        # --- BUILD PAGE CONTENT ---
-        page_text = data.get("markdown_content") or data.get("full_text") or ""
-        
         # Page Separator / Metadata Block
         page_header = (
             f"\n\n----------"
@@ -344,8 +400,8 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
 
         if i_norm is not None: current_issue = i_norm
             
-        p_num = meta.get("page_number")
-        if not p_num: p_num = get_page_from_filename(filename)
+        phys_num = get_page_from_filename(filename)
+        p_num = f"{int(phys_num):03d}" if phys_num is not None else "000"
         
         # Formulate Folder Name
         if current_vol is None or current_issue is None:

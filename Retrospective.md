@@ -143,3 +143,55 @@ This file serves as the project's long-term memory for mistakes, lessons learned
     3.  Hardened `batch_ocr.py` to return success/failure stats.
     4.  Hardened `worker.py` to raise an Exception if 0 pages are successfully processed.
 *   **Rule Added:** (@Engineer) Hardcoded configuration values (except defaults) are forbidden. Always use `config.py`.
+
+### 2026-02-20 - Architecture Conflict: Concurrency vs Context-Awareness
+*   **What went wrong:** PM proposed Pipeline Concurrency (parallel OCR) and Context-Aware Prompting (Page N requires Page N-1's output) simultaneously.
+*   **Root Cause:** Failure to recognize that cross-page dependencies force sequential execution, negating the benefits of concurrency.
+*   **Action Taken:** @QA revised the implementation plan to perform OCR purely concurrently, and moved Context-Aware boundary checking to a Two-Pass Verification step during Stitching.
+*   **Rule Added:** (@Architect / @QA) Always evaluate feature proposals for execution blocking/dependencies. If a feature requires sequential data flow, it cannot be placed in a concurrent pipeline phase without creating a bottleneck.
+
+### 2026-02-20 - Pytest Hangs on Windows with ProcessPoolExecutor
+*   **What went wrong:** During TDD execution for concurrent PDF bursting, `pytest` consistently hung without failing or passing when testing methods involving `concurrent.futures.ProcessPoolExecutor`.
+*   **Root Cause:** Windows handles multiprocessing and process pools differently than POSIX systems, often requiring `__name__ == '__main__'` guards even in test environments. Alternatively, deep mocking is required as Celery and Executor thread pools can deadlock the `pytest` runner.
+*   **Action Taken:** Extensive context-manager mocking was implemented in `test_concurrency.py`. A note was added to `walkthrough.md` regarding test environment limitations on Windows.
+*   **Rule Added:** (@Engineer & @QA) Be highly suspicious of test cases involving true multiprocessing or Celery workers hanging on Windows. Invest in deeper mocking (`patching` the executor context manager itself `__enter__`) rather than fighting the local runner.
+
+### 2026-02-20 - UI Failing to Load on Start
+*   **What went wrong:** The user reported they couldn't load the UI at `http://localhost:5173`. `start.bat` launched the browser but didn't actually start the Vite frontend.
+*   **Root Cause:** The `docker-compose.yml` only provisions the `web` API, `worker`, and `redis`. The frontend development server was strictly omitted from "Zero-Code" scripts.
+*   **Action Taken:** Standardized `start.bat` and `start.sh` to spin up a background node process (`npm run dev`) just before opening the URL.
+*   **Rule Added:** (@Engineer) Always verify that launcher scripts encompass all tiers of the application, including development servers, if no production build step is enforced.
+
+### 2026-02-20 - UI Missing "Issue 2" Transcriptions
+*   **What went wrong:** When a 32-page PDF uploaded contained Issue 1 (Pages 1-16) and Issue 2 (Pages 1-16), the UI DiffViewer falsely claimed page 17+ had "no content extracted". 
+*   **Root Cause:** The `stitcher.py` was generating **Page:** headers using the LLM-extracted *Printed Page Number* instead of the physical PDF sequence number. When Issue 2 began, the LLM extracted "Page 1". The UI's regex parser mapped chunk 17 to `pageMap[1]`, overwriting Issue 1, and leaving `pageMap[17]` empty.
+*   **Action Taken:** Hard-modified `stitcher.py` to always generate the `**Page:**` Markdown tag based on the physical file sequence (`page_017.json` -> `017`) rather than the document's printed layout.
+*   **Rule Added:** (@Engineer & @QA) Be meticulous with 1:1 mapping definitions. Frontend UI synchronizations must rely on deterministic mechanical data (e.g. physical file iteration) rather than stochastic LLM extractions.
+
+### 2026-02-20 - Pipeline Crash with ProcessPoolExecutor (Celery)
+*   **What went wrong:** Uploading the PDF via the UI caused an immediate "Pipeline failed" error. Worker logs showed: `AssertionError: daemonic processes are not allowed to have children`.
+*   **Root Cause:** Celery worker processes are daemonic by default. They strictly forbid spawning sub-processes (like `concurrent.futures.ProcessPoolExecutor`) to prevent orphaned children on crash.
+*   **Action Taken:** Replaced `ProcessPoolExecutor` with `ThreadPoolExecutor` in `pdf_converter.py`. Because `pdf2image` delegates to the external `poppler` utility, it inherently bypasses the Python GIL, making multithreading just as effective for this IO-bound subprocess task.
+*   **Rule Added:** (@Engineer & @Arch) Never use Process-based concurrency (`ProcessPoolExecutor`, `multiprocessing`) *inside* a Celery Task. Use `ThreadPoolExecutor` (if GIL is released) or Celery's native primitives (like `group` or `chord`).
+
+### 2026-02-20 - Adding Front-Facing Job Stats (TDD Unit Test Mocking)
+*   **What went wrong:** TDD tests failed because `mock_redis.set.assert_any_call` didn't match the `ex=86400` arguments used in the implementation, and `unittest.mock.mock_open` failed due to a missing `import unittest`.
+*   **Root Cause:** Incomplete mocking and syntax in `test_stats.py` during TDD implementation phase.
+*   **Action Taken:** Added `import unittest` and updated assertions to precisely match the production target code `ex=86400` parameter.
+*   **Rule Added:** (@QA / @Engineer) When using `unittest.mock` for TDD, ensure assertions explicitly match all keyword arguments used in the actual service module, and verify all basic imports like `unittest`.
+
+### 2026-02-21 - Telemetry Placement (UX Bias)
+*   **What went wrong:** The user didn't notice the newly added job stats (processing time, complexity) because they were only placed on the `JobCard` dashboard list.
+*   **Root Cause:** Users naturally tunnel-vision directly into the `DiffViewer` detail modal the second a job finishes, bypassing the dashboard entirely.
+*   **Action Taken:** Cloned the stat badge rendering logic directly into the `DiffViewer.tsx` header toolbar so they are actively visible during document review.
+*   **Rule Added:** (@Design / @PM) If a metric or feature is important enough to query, ensure it is surfaced at the final point of user focus (the detail view), rather than exclusively on the aggregate overview (the list view).
+
+### 2026-02-21 - Race Condition in Terminal States (Missing Stats)
+*   **What went wrong:** The user uploaded a file, but the frontend only displayed the `file_size` statistic, entirely omitting the `processing_time` and `complexity` metrics, despite the backend implementation being correct.
+*   **Root Cause:** Two compounding issues:
+    1.  **State Race Condition:** `celery_worker.py` committed `status="completed"` to Redis *before* committing the terminal timestamp `end_time`. The frontend was polling rapidly (1/sec), caught the `completed` flag exactly in between writes, extracted the payload (which lacked processing time), and promptly permanently halted its polling loop.
+    2.  **Stale Containers:** The user was running the API backend via `docker-compose`. We implemented Phase 15 code changes, but background Celery processes do not natively auto-reload when Python files modify, meaning the worker was executing the old function signature without the `end_time` logic!
+*   **Action Taken:**
+    1. Re-ordered the backend code: The terminal state (`status="completed"`) must strictly be the absolute final line of execution.
+    2. Executed `docker-compose restart worker` and `web` to force the Docker containers to pick up the updated source code.
+*   **Rule Added:** (@Eng / @Arch) When tracking distributed state flows, ALWAYS commit context parameters and payload values *before* invoking the terminal exit flag. Furthermore, whenever patching backend logic on local-dev systems utilizing Docker networks, force a container restart to clear stale worker memory pools!

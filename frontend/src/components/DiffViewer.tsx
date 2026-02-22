@@ -22,6 +22,9 @@ const SimpleButton = ({ children, onClick, className, disabled }: any) => (
 interface DiffViewerProps {
     job_id?: string;
     markdown?: string;
+    file_size?: number;
+    processing_time?: number;
+    complexity?: number;
     onClose: () => void;
 }
 
@@ -58,7 +61,7 @@ const parseMarkdownByPage = (md: string): Record<number, string> => {
     return pages;
 };
 
-export function DiffViewer({ job_id, markdown, onClose }: DiffViewerProps) {
+export function DiffViewer({ job_id, markdown, file_size, processing_time, complexity, onClose }: DiffViewerProps) {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [numPages, setNumPages] = useState<number>(0);
     const [pageNumber, setPageNumber] = useState<number>(1);
@@ -97,6 +100,24 @@ export function DiffViewer({ job_id, markdown, onClose }: DiffViewerProps) {
                     <span className="text-sm text-muted-foreground font-mono">
                         {job_id ? `ID: ${job_id.substring(0, 8)}...` : 'Preview'}
                     </span>
+
+                    <div className="hidden md:flex items-center gap-2 ml-4">
+                        {file_size && (
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground border">
+                                {(file_size / (1024 * 1024)).toFixed(1)} MB
+                            </span>
+                        )}
+                        {processing_time && (
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground border">
+                                {processing_time > 60 ? `${Math.floor(processing_time / 60)}m ${Math.floor(processing_time % 60)}s` : `${Math.floor(processing_time)}s`}
+                            </span>
+                        )}
+                        {complexity && (
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${complexity < 4 ? "bg-green-500/10 text-green-600 border-green-500/20" : complexity < 7 ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20" : "bg-red-500/10 text-red-600 border-red-500/20"}`}>
+                                Complexity: {complexity.toFixed(1)}
+                            </span>
+                        )}
+                    </div>
 
                     {/* Sync Toggle */}
                     <div className="flex items-center gap-2 bg-muted/50 p-1 rounded-lg border ml-4">

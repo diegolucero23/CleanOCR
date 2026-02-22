@@ -126,3 +126,27 @@ State: COMPLETED | Progress: 100% | Msg: Processing complete.
     *   Re-processed PDF.
     *   Verified Page 2 starts with "the ecclesiastical governance..." (correct continuation).
     *   **Result:** ✅ PASS
+
+## Phase 14: Concurrency & Accuracy Verification
+### 1. Page Sync & DiffViewer 1:1 Mapping Fix
+*   **Problem:** The UI DiffViewer claimed "No parsed content found" after physical page 16 when reading a 2-issue PDF, because the LLM extracted "Page 1" for the start of the second issue, overwriting the first issue in the frontend's React state.
+*   **Fix:** Hard-modified `stitcher.py` to guarantee 1:1 mechanical synchronization by using the physical file sequence (`get_page_from_filename`) to generate the `**Page:**` Markdown tag, intentionally ignoring the LLM-extracted printed page number.
+*   **Verification:**
+    *   Flipping to page 17+ now correctly displays the markdown side-by-side with the physical PDF.
+    *   **Result:** ✅ PASS
+
+### 2. Pipeline Concurrency & ThreadPoolExecutor Fix
+*   **Problem:** PDF ingestion was slow. Attempting to use `ProcessPoolExecutor` inside Celery caused an `AssertionError` regarding daemonic processes.
+*   **Fix:** Re-architected pipeline to use Celery Chords for distributing individual pages to workers, and swapped PDF bursting to `ThreadPoolExecutor` to safely bypass process limits while releasing the GIL.
+*   **Verification:**
+    *   Processed a 32-page 41MB PDF. Observed concurrent ingestion without deadlocks. Smart Polling updated effectively.
+    *   **Result:** ✅ PASS
+
+## Phase 15: Front-Facing Diagnostic Stats
+### 1. Verification of Metric Badges
+*   **Problem:** Users and agents lacked telemetry on how long jobs were taking and how file properties influenced that.
+*   **Fix:** Added caching of `upload_time`, `file_size`, and `end_time` across the backend. Surfaced these via the GET status endpoint alongside a `complexity` heuristic. Frontend now displays these metrics in conditional badges on job completion.
+*   **Verification:**
+    *   Test suites in `tests/test_stats.py` verify Redis storage and calculation. ✅ PASSED.
+    *   Frontend `npm run build` completes successfully handling new types. ✅ PASSED.
+    *   **Result:** ✅ PASS

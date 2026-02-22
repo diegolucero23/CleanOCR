@@ -23,3 +23,6 @@ tests/verify_factory.py
 
 # Keep generic tests if needed, or exclude all
 tests/
+
+# Input Data ZIP
+"THE LATTER DAY SAINTS' MESSENGER AND ADVOCATE - Vols 1-24 - Broken OCR-pages.zip"

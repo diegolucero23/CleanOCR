@@ -13,6 +13,10 @@ export interface PersistedJob {
     timestamp: number;       // Date.now() when created
     markdown?: string;       // The final output (cached locally)
     resultMessage?: string;  // Details from backend
+    upload_time?: number;
+    file_size?: number;
+    processing_time?: number;
+    complexity?: number;
 }
 
 interface StorageSchema {
