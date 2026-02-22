@@ -4,6 +4,7 @@ import uuid
 import hashlib
 import logging
 import json
+import time
 try:
     import magic
 except ImportError:
@@ -17,6 +18,7 @@ from redis import Redis
 from app.workers.celery_worker import run_ocr_pipeline
 from celery.result import AsyncResult
 from dotenv import load_dotenv
+from app.core import config
 
 load_dotenv()
 
@@ -34,20 +36,14 @@ app = FastAPI(title="CleanOCR API")
 
 # Mount upload directory for static access (PDF Viewer)
 # Check directory existence again to be safe
-UPLOAD_DIR = "uploads"
-if not os.path.exists(UPLOAD_DIR):
-    os.makedirs(UPLOAD_DIR)
+if not os.path.exists(config.UPLOAD_DIR):
+    os.makedirs(config.UPLOAD_DIR)
 
-app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+app.mount("/uploads", StaticFiles(directory=config.UPLOAD_DIR), name="uploads")
 
 # Setup Redis connection for checking cache
 # Using the same URL as worker.py (defaulting to localhost for local dev if not in docker)
-redis_url = os.getenv("REDIS_URL", "redis://redis:6379/0")
-redis_client = Redis.from_url(redis_url)
-
-UPLOAD_DIR = "uploads"
-if not os.path.exists(UPLOAD_DIR):
-    os.makedirs(UPLOAD_DIR)
+redis_client = Redis.from_url(config.REDIS_URL)
 
 def calculate_sha256(file_path):
     sha256_hash = hashlib.sha256()
@@ -95,7 +91,7 @@ async def upload_pdf(
 
     try:
         filename = f"{job_id}.pdf"
-        file_path = os.path.join(UPLOAD_DIR, filename)
+        file_path = os.path.join(config.UPLOAD_DIR, filename)
         
         # Save file temporarily
         with open(file_path, "wb") as buffer:
@@ -108,6 +104,9 @@ async def upload_pdf(
             os.remove(file_path) # Cleanup
             raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
 
+        file_size = os.path.getsize(file_path)
+        upload_time = time.time()
+
         # --- 3. Smart Caching ---
         file_hash = calculate_sha256(file_path)
         logger.info(f"File hash calculated: {file_hash}", extra={"job_id": job_id})
@@ -116,13 +115,22 @@ async def upload_pdf(
         
         if cached_job_id:
             cached_job_id = cached_job_id.decode('utf-8')
-            logger.info("Cache hit! Returning existing job.", extra={"new_job_id": job_id, "cached_job_id": cached_job_id})
-            os.remove(file_path)
-            return {
-                "status": "cached",
-                "job_id": cached_job_id,
-                "message": "Duplicate file detected. Returning cached result."
-            }
+            
+            # Check if the cached job actually succeeded or is still running
+            cached_status_bytes = redis_client.get(f"cache:{cached_job_id}:status")
+            cached_status = cached_status_bytes.decode('utf-8') if cached_status_bytes else None
+
+            if cached_status != "failed":
+                logger.info("Cache hit! Returning existing job.", extra={"new_job_id": job_id, "cached_job_id": cached_job_id})
+                os.remove(file_path)
+                return {
+                    "status": "cached",
+                    "job_id": cached_job_id,
+                    "message": "Duplicate file detected. Returning cached result."
+                }
+            else:
+                logger.info("Cache hit on a FAILED job. Ignoring cache and re-processing.", extra={"job_id": job_id})
+                # Proceed to process as a new job
 
         # If new, proceed
         # Force Task ID = Job ID so we can query status easily later
@@ -131,6 +139,10 @@ async def upload_pdf(
         
         # 3b. Set Cache Immediately (Debounce/Dedupe)
         redis_client.set(f"cache:{file_hash}", job_id, ex=86400)
+        
+        # 3c. Persist Upload Stats
+        redis_client.set(f"cache:{job_id}:upload_time", upload_time, ex=86400)
+        redis_client.set(f"cache:{job_id}:file_size", file_size, ex=86400)
         
         return {
             "status": "queued",
@@ -146,44 +158,82 @@ async def upload_pdf(
 @app.get("/status/{job_id}")
 async def get_status(job_id: str):
     """
-    Fetch the status of a specific job from Celery/Redis.
+    Fetch the status of a specific job from Redis State Tracking.
     """
-    # 1. Check if it's in our "Smart Cache" (Completed)
-    # We might not have the hash, so we rely on Celery's Result Backend.
-    
-    task_result = AsyncResult(job_id)
-    
     response = {
         "job_id": job_id,
-        "status": task_result.status.lower(), # pending, processing, success, failure
+        "status": "queued",
         "progress": 0,
-        "message": "Initializing..."
+        "message": "Waiting for worker..."
     }
-
-    if task_result.state == 'PENDING':
-        response["status"] = "queued"
-        response["message"] = "Waiting for worker..."
     
-    elif task_result.state == 'PROCESSING':
-        # Custom state we added in worker.py
-        response["status"] = "processing"
-        info = task_result.info or {}
-        response["progress"] = info.get("progress", 0)
-        response["message"] = info.get("message", "Processing...")
+    status_bytes = redis_client.get(f"cache:{job_id}:status")
+    if not status_bytes:
+        # Fallback to Celery to handle raw queue/failure scenarios before processing starts
+        task_result = AsyncResult(job_id)
+        if task_result.state == 'FAILURE':
+            response["status"] = "failed"
+            response["message"] = str(task_result.info)
+        return response
         
-    elif task_result.state == 'SUCCESS':
-        response["status"] = "completed"
+    status = status_bytes.decode('utf-8')
+    response["status"] = status
+    
+    if status == "processing":
+        total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+        comp_bytes = redis_client.get(f"cache:{job_id}:completed_pages")
+        
+        total = int(total_bytes) if total_bytes else 0
+        comp = int(comp_bytes) if comp_bytes else 0
+        
+        if total > 0:
+            response["progress"] = int((comp / total) * 100)
+            response["message"] = f"Processed {comp} of {total} images..."
+        else:
+            response["progress"] = 10
+            response["message"] = "Converting PDF to images..."
+            
+    elif status == "completed":
         response["progress"] = 100
         response["message"] = "Processing complete."
         
-        # FIX: Extract the actual return value from the worker
-        result = task_result.result
+        # Read final markdown file (Frontend expects 'markdown' key)
+        job_workspace = os.path.join(config.WORKSPACES_DIR, job_id)
+        full_content_file = os.path.join(job_workspace, "output", 'full_extracted_content.md')
         
-        if isinstance(result, dict):
-            response["markdown"] = result.get("markdown")
-        
-    elif task_result.state == 'FAILURE':
-        response["status"] = "failed"
-        response["message"] = str(task_result.info) # Exception info
+        if os.path.exists(full_content_file):
+            with open(full_content_file, 'r', encoding='utf-8') as f:
+                response["markdown"] = f.read()
+        else:
+            response["message"] = "Completed, but full_extracted_content.md not found."
+            
+        # Calculate Stats
+        try:
+            upload_time_bytes = redis_client.get(f"cache:{job_id}:upload_time")
+            end_time_bytes = redis_client.get(f"cache:{job_id}:end_time")
+            file_size_bytes = redis_client.get(f"cache:{job_id}:file_size")
+            total_pages_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+            
+            if upload_time_bytes:
+                response["upload_time"] = float(upload_time_bytes)
+            if file_size_bytes:
+                file_size = int(file_size_bytes)
+                response["file_size"] = file_size
+                
+                if upload_time_bytes and end_time_bytes:
+                    up_time = float(upload_time_bytes)
+                    end_time = float(end_time_bytes)
+                    proc_time = end_time - up_time
+                    response["processing_time"] = round(proc_time, 2)
+                    
+                    pages = int(total_pages_bytes) if total_pages_bytes else 1
+                    mb_size = file_size / (1024 * 1024)
+                    complexity = (mb_size * 0.2) + (pages * 0.1) + (proc_time * 0.05)
+                    response["complexity"] = min(10.0, round(complexity, 1))
+        except Exception as e:
+            logger.error("Failed to compile stats", extra={"error": str(e)})
+            
+    elif status == "failed":
+        response["message"] = "Pipeline failed or encountered an error."
         
     return response

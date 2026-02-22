@@ -4,7 +4,7 @@ import PIL.Image
 from google import genai
 from google.genai import types
 from google.genai.errors import ClientError
-import config
+from app.core import config
 import prompts
 
 def repair_from_log():

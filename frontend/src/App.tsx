@@ -41,7 +41,11 @@ function App() {
               status: result.status as JobStatus,
               progress: result.progress || 0,
               resultMessage: result.message,
-              markdown: result.markdown
+              markdown: result.markdown,
+              upload_time: result.upload_time,
+              file_size: result.file_size,
+              processing_time: result.processing_time,
+              complexity: result.complexity
             });
           }
         } catch (err) {
@@ -141,6 +145,9 @@ function App() {
                   status={activeJob.status}
                   progress={activeJob.progress}
                   message={activeJob.resultMessage}
+                  file_size={activeJob.file_size}
+                  processing_time={activeJob.processing_time}
+                  complexity={activeJob.complexity}
                   onClick={() => activeJob.status === 'completed' && setSelectedJob(activeJob)}
                 />
               </motion.div>
@@ -170,6 +177,9 @@ function App() {
                     status={job.status}
                     progress={job.progress}
                     message={job.resultMessage}
+                    file_size={job.file_size}
+                    processing_time={job.processing_time}
+                    complexity={job.complexity}
                     onClick={() => job.status === 'completed' && setSelectedJob(job)}
                   />
                 ))}
@@ -186,6 +196,9 @@ function App() {
           <DiffViewer
             job_id={selectedJob.id}
             markdown={selectedJob.markdown}
+            file_size={selectedJob.file_size}
+            processing_time={selectedJob.processing_time}
+            complexity={selectedJob.complexity}
             onClose={() => setSelectedJob(null)}
           />
         )}

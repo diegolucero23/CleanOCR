@@ -9,11 +9,15 @@ It features a modern **React Console**, a scalable **FastAPI/Celery Backend**, a
 ## 🚀 Features
 
 *   **⚡ Real-Time Dashboard:** Watch pages process live (Queued -> Processing -> Completed).
+*   **📊 Diagnostic Telemetry:** View job performance metrics including upload size, processing duration, and an at-a-glance complexity score.
 *   **👁️ Side-by-Side Verification:** Integrated PDF Viewer + Markdown Diff Tool with Zoom controls.
+*   **🚀 Accelerated Ingestion:** Concurrent PDF Bursting via hardware-accelerated thread pools natively releasing the GIL.
+*   **🧠 Context-Aware Stitching:** Two-Pass Verification automatically detects hyphenation breaks across pages and seamlessly merges them using LLMs.
 *   **🛡️ Enterprise-Grade Backend:**
+    *   **Streamed Pipeline:** Celery Chords (Producer-Consumer) stream OCR tasks in parallel rather than blocking.
     *   **Input Sanitization:** Blocks malware/fake files via `libmagic`.
     *   **Smart Caching:** SHA-256 deduplication (Process once, serve forever).
-    *   **Async Processing:** Celery + Redis for reliable background jobs.
+    *   **Robust State Tracking:** Atomic Redis counters accurately calculate pipeline progress across disparate worker nodes.
     *   **Structured Logging:** JSON logs ready for Datadog/ELK.
     *   **Resilience:** Browser-local job history persistence (don't lose jobs on refresh).
     *   **Isolation:** Per-job sandboxed workspaces (`workspaces/{guid}`) for safe concurrency.
@@ -91,6 +95,17 @@ python scripts/verify_status_api.py
 # Verify Static File Serving
 python scripts/verify_static.py
 
+## 🧹 Troubleshooting & Clearing Cache
+
+CleanOCR uses a **Smart Caching** system to deduplicate uploads and save AI processing costs. If you need to re-process a file that was already uploaded (for example, to test new OCR logic or if a job failed), you must clear the Redis cache first.
+
+**To clear the cache manually via terminal:**
+```bash
+docker-compose exec redis redis-cli FLUSHALL
+```
+
+Alternatively, you can use the test scripts to flush it:
+```bash
 # Advanced Test CLI (Support Cache Flushing)
 # Usage: python scripts/test_upload.py [--flush] [--dummy] [--file path/to/pdf]
 python scripts/test_upload.py --flush --dummy

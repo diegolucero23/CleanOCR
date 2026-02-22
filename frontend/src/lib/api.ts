@@ -14,6 +14,10 @@ export interface JobResponse {
     message?: string;
     progress?: number;
     markdown?: string;
+    upload_time?: number;
+    file_size?: number;
+    processing_time?: number;
+    complexity?: number;
 }
 
 interface UploadMetadata {

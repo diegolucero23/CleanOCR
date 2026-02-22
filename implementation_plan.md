@@ -1,103 +1,54 @@
-# implementation_plan.md - RedTeam Safety Infrastructure
+# Implementation Plan: Front-Facing Job Stats
 
 **Status:** 🏗️ Draft
-**Author:** @Architect
-**Target:** `CleanOCR-Enterprise` Security Layer
+**Author:** @Architect & @PM
+**Target:** CleanOCR Console UI & API
 
 ## 1. Executive Summary
-We are establishing a "Live Fire Range" for the `@RedTeam` agent. This requires a dedicated infrastructure configuration that physically restricts the agent's ability to consume funds (Wallet Safety) or crash the host machine (Resource Safety).
+We will instrument the backend pipeline to capture critical diagnostic and performance metrics (Upload Time, Processing Time, File Size, Complexity Score) and expose them to the frontend. This will provide users and agents with observable telemetry on job performance.
 
-**Core Philosophy:** "Trust, but Verify." We do not trust the agent to be careful; we constrain the environment so it *cannot* be dangerous.
+## 2. Architecture & Data Flow
 
-## 2. System Architecture Changes
+### A. Metrics Definition
+1. **Upload Time:** The absolute timestamp when the file upload was completed by the API and queued for processing.
+2. **File Size:** The size of the incoming PDF (in bytes/MB).
+3. **Processing Time:** The elapsed time (in seconds) from `Upload Time` until the `stitch_markdown_task` completes.
+4. **Complexity Score:** A calculated, user-friendly metric (0.0 to 10.0) intended to help diagnose processing bottlenecks.
+   * *Proposed Formula:* `min(10.0, (File_MB * 0.2) + (Total_Pages * 0.1) + (Processing_Time_Seconds * 0.05))`
 
-### A. The Container Strategy (Hard Isolation)
-We will create a parallel deployment specifically for stress testing. This prevents "configuration drift" in the main `docker-compose.yml` while allowing extreme settings for the RedTeam.
+### B. Backend Flow (FastAPI & Redis)
+*   **`app/api/server.py` (`POST /upload`):**
+    *   Compute `.pdf` file size upon temp save (`os.path.getsize()`).
+    *   Record current timestamp `upload_time = time.time()`.
+    *   Persist to Redis: `cache:{job_id}:upload_time` and `cache:{job_id}:file_size`.
+*   **`app/workers/celery_worker.py` (`stitch_markdown_task`):**
+    *   Once stitching is complete, record `end_time = time.time()`.
+    *   Persist to Redis: `cache:{job_id}:end_time`.
+*   **`app/api/server.py` (`GET /status/{job_id}`):**
+    *   Read `upload_time` and `file_size` from Redis.
+    *   If `status == "completed"`, read `end_time`.
+    *   Calculate `processing_time = end_time - upload_time`.
+    *   Calculate `complexity_score` using the formula.
+    *   Attach all metrics to the `JobResponse` payload.
 
-| Feature | Production (`docker-compose.yml`) | RedTeam (`docker-compose.redteam.yml`) |
-| :--- | :--- | :--- |
-| **Port (Web)** | `8000` | `8001` (Avoids conflict) |
-| **Port (Redis)** | `6379` | `6380` (Avoids pollution) |
-| **Source Code** | Read/Write (Development) | **Read-Only** (`:ro`) |
-| **Google API** | Live Credentials | **Mocked** (`MOCK_KEY_DO_NOT_CHARGE`) |
-| **CPU Limit** | Unbounded | **0.5 CPUs** (Hard cap) |
-| **RAM Limit** | Unbounded | **512MB** (Hard cap) |
+### C. Frontend Flow (React & TS)
+*   **`frontend/src/lib/api.ts`:**
+    *   Update `JobResponse` signature to include: `upload_time (number)`, `file_size (number)`, `processing_time? (number)`, `complexity? (number)`.
+*   **`frontend/src/hooks/useJobPersistence.ts`:**
+    *   Update `PersistedJob` to store these new metrics locally.
+*   **`frontend/src/components/JobCard.tsx` / `DiffViewer.tsx`:**
+    *   Create a visually elegant, "glassmorphic" sub-component or badge row for stats.
+    *   Format data appropriately: Filesize to `MB`, processing time to `mm:ss`.
+    *   Complexity Score should use standard UI color scaling (e.g., Green/Yellow/Red text depending on the 0-10 intensity).
 
-### B. The Mocking Layer (Logical Isolation)
-We will inject a shim into the OCR service. Instead of relying on an external mocking library (which adds dependency bloat), we will implement a "Mode Switch" directly in the service logic.
+## 3. Implementation Steps (@Engineer)
 
-* **Trigger:** `GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE"`
-* **Behavior:**
-    1.  Log warning: `⚠️ MOCK MODE DETECTED`.
-    2.  `time.sleep(1.5)`: **Crucial.** Simulates network latency to stress-test Redis queue handling. Instant returns would not accurately test the worker logic.
-    3.  Return static JSON payload compliant with the `google.cloud.vision` schema.
+1. **Update API Types:** Update TS definitions in frontend first (TDD approach).
+2. **Instrument Redis:** Add `redis_client.set()` calls mapped to job states in `server.py` and `celery_worker.py`.
+3. **Build Response Payload:** Implement calculating logic directly inside the `/status` route.
+4. **UI Integration:** Design and mount the stat badges in `JobCard.tsx` and ensure local history respects the new properties.
 
-## 3. Component Design Specs
-
-### 3.1. Infrastructure: `docker-compose.redteam.yml`
-* **Services:** `redis`, `web`, `worker`.
-* **Network:** Default bridge network (isolated from prod network).
-* **Volumes:**
-    * Root: `./:/app:ro` (Prevents `rm -rf /` from working on source code).
-    * Sandbox: `./tests/redteam_artifacts:/app/output` (The **only** writeable zone).
-* **Directives:**
-    * Use `deploy.resources.limits` to enforce 512MB RAM cap. Docker will `OOMKill` the container if RedTeam leaks memory, saving the Host OS.
-
-### 3.2. Configuration: `.env.redteam`
-A distinct environment file loaded *only* by the RedTeam compose file.
-
-```ini
-# Security Interlocks
-MODE=REDTEAM
-LOG_LEVEL=DEBUG
-
-# The Kill Switch - If this is missing, the app should fail safe
-GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE
-
-# Mocked 3rd Party Services (Future Proofing)
-STRIPE_KEY=mock_stripe
-SMTP_PASSWORD=mock_smtp
-```
-
-### 3.3. Application Logic: `services/ocr.py` (or `worker.py`)
-We need a unified entry point for OCR that checks the environment.
-
-**Pseudocode Flow:**
-```python
-def process_document(doc):
-    if config.GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE":
-        # 1. Latency Simulation (Stress the Queue)
-        sleep(1.5)
-        # 2. Return Schema-Compliant Mock
-        return MockObject(text="MOCK OCR RESULT", confidence=0.99)
-    else:
-        # Real Execution
-        return google_vision_client.detect_text(doc)
-```
-
-## 4. Verification Plan (The "Exit Gate")
-
-Before declaring this task complete, `@QA` must verify the following scenarios manually:
-
-### Test Case A: The "Wallet Saver"
-1.  Start RedTeam container: `docker-compose -f docker-compose.redteam.yml --env-file .env.redteam up`
-2.  Trigger a job via API.
-3.  **Verify:** Logs show `⚠️ MOCK MODE DETECTED`.
-4.  **Verify:** Google Cloud Console shows **0** requests.
-
-### Test Case B: The "Filesystem Shield"
-1.  Exec into worker: `docker exec -it <container_id> /bin/bash`
-2.  Attempt: `rm server.py`
-3.  **Verify:** System returns `Read-only file system`.
-4.  Attempt: `touch /app/output/test.log`
-5.  **Verify:** Success (Sandbox is writeable).
-
-### Test Case C: The "Resource Ceiling"
-1.  (Optional) Run a Python script inside the container to consume RAM.
-2.  **Verify:** Container crashes/restarts at ~512MB usage. Host machine remains responsive.
-
-## 5. Next Steps for @Engineer
-1.  Create `tests/redteam_artifacts/` and add `.gitignore`.
-2.  Create `.env.redteam`.
-3.  Create `docker-compose.redteam.yml` using the specs above.
-4.  Modify the Python OCR service to handle the Mock Key.
+## 4. Verification Plan (@QA)
+* [ ] **Parity Check:** Upload a small vs huge PDF. Verify `complexity` scales appropriately.
+* [ ] **Mock Test:** Under mocked API mode, ensure `processing_time` reflects the expected sleep overhead accurately.
+* [ ] **Refresh Resilience:** Confirm that reloading the React app does not wipe the stats of previously completed jobs in `localStorage`.

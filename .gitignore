@@ -40,6 +40,9 @@ error_log.txt
 debug_log.txt
 test_upload.pdf
 
+# Input Data ZIP
+"THE LATTER DAY SAINTS' MESSENGER AND ADVOCATE - Vols 1-24 - Broken OCR-pages.zip"
+
 # Frontend
 frontend/node_modules/
 frontend/dist/

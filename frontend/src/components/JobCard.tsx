@@ -12,10 +12,13 @@ interface JobCardProps {
     status: JobCardStatus;
     progress: number;
     message?: string;
+    file_size?: number;
+    processing_time?: number;
+    complexity?: number;
     onClick?: () => void;
 }
 
-export function JobCard({ job_id, filename, status, progress, message, onClick }: JobCardProps) {
+export function JobCard({ job_id, filename, status, progress, message, file_size, processing_time, complexity, onClick }: JobCardProps) {
     return (
         <motion.div
             layout
@@ -71,6 +74,31 @@ export function JobCard({ job_id, filename, status, progress, message, onClick }
                         )}>
                             {message || status}
                         </p>
+                    )}
+
+                    {status === "completed" && (
+                        <div className="flex gap-2 mt-2 flex-wrap">
+                            {file_size && (
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-secondary text-secondary-foreground border">
+                                    {(file_size / (1024 * 1024)).toFixed(1)} MB
+                                </span>
+                            )}
+                            {processing_time && (
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-secondary text-secondary-foreground border">
+                                    {processing_time > 60 ? `${Math.floor(processing_time / 60)}m ${Math.floor(processing_time % 60)}s` : `${Math.floor(processing_time)}s`}
+                                </span>
+                            )}
+                            {complexity && (
+                                <span className={cn(
+                                    "px-2 py-0.5 rounded-full text-[10px] font-medium border",
+                                    complexity < 4 ? "bg-green-500/10 text-green-600 border-green-500/20" :
+                                        complexity < 7 ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/20" :
+                                            "bg-red-500/10 text-red-600 border-red-500/20"
+                                )}>
+                                    Complexity: {complexity.toFixed(1)}
+                                </span>
+                            )}
+                        </div>
                     )}
                 </div>
             </Card>

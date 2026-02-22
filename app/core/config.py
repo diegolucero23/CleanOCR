@@ -35,3 +35,5 @@ LOG_FILE = "failed_pages.log"
 
 # --- CONFIG ---
 MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.0-flash")
+REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
+UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
