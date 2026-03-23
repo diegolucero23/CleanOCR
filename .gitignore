@@ -30,6 +30,7 @@ test_images/
 *.md
 !README.md
 !AGENTS.md
+!ARCHITECTURE.md
 !Context.md
 !Retrospective.md
 !pie_in_the_sky.md

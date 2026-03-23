@@ -155,6 +155,7 @@ Agents must adopt one of these specific personas based on the active task.
 ## 6. Operational Standards
 
 ### Required Artifacts
+*   **`ARCHITECTURE.md`**: Technical map of the system — read this first when starting any task.
 *   **`task.md`**: Current progress (PM).
 *   **`Context.md`**: Current state/decisions (PM).
 *   **`Retrospective.md`**: Lessons learned (All).
