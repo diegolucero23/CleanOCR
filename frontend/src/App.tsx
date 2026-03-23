@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
-import { uploadFile, pollJobStatus } from './lib/api';
+import { uploadFile, subscribeToJobStatus } from './lib/api';
 import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
 import { OnboardingSteps } from './components/OnboardingSteps';
 import { EmptyState } from './components/EmptyState';
@@ -21,23 +21,36 @@ function App() {
     return history.find(j => ['queued', 'processing'].includes(j.status)) || null;
   }, [history]);
 
-  // Polling Effect: Recover ANY job that is stuck in 'queued' or 'processing'
+  // SSE Effect: open one EventSource per active job; reuse existing connections
+  // across re-renders so we never needlessly reconnect.
+  const activeStreams = useRef<Map<string, () => void>>(new Map());
+
   useEffect(() => {
-    // Find all incomplete jobs
-    const incompleteJobs = history.filter(j => ['queued', 'processing'].includes(j.status));
+    const incompleteIds = new Set(
+      history
+        .filter(j => ['queued', 'processing'].includes(j.status))
+        .map(j => j.id)
+    );
 
-    if (incompleteJobs.length === 0) return;
+    // Close streams for jobs that are no longer active
+    activeStreams.current.forEach((close, jobId) => {
+      if (!incompleteIds.has(jobId)) {
+        close();
+        activeStreams.current.delete(jobId);
+      }
+    });
 
-    // Create a poller for each (though usually just 1)
-    const timers = incompleteJobs.map(job => {
-      return setInterval(async () => {
-        try {
-          const result = await pollJobStatus(job.id);
-
-          // Only update if changed significantly or finished
-          if (result.status !== job.status || result.progress !== job.progress) {
+    // Open streams for newly discovered active jobs
+    history
+      .filter(j => incompleteIds.has(j.id) && !activeStreams.current.has(j.id))
+      .forEach(job => {
+        const close = subscribeToJobStatus(
+          job.id,
+          (result) => {
             addOrUpdateJob({
-              ...job,
+              id: job.id,
+              uploaded_filename: job.uploaded_filename,
+              timestamp: job.timestamp,
               status: result.status as JobStatus,
               progress: result.progress || 0,
               resultMessage: result.message,
@@ -45,22 +58,23 @@ function App() {
               upload_time: result.upload_time,
               file_size: result.file_size,
               processing_time: result.processing_time,
-              complexity: result.complexity
+              complexity: result.complexity,
             });
-          }
-        } catch (err) {
-          console.error(`Status check failed for ${job.id}`, err);
-          // If it's a 404/500 repeatedly, we might want to fail it.
-          // For now, let it retry indefinitely or until user clears.
-        }
-      }, 1000);
-    });
+            if (result.status === 'completed' || result.status === 'failed') {
+              activeStreams.current.delete(job.id);
+            }
+          },
+          (err) => console.error(`SSE error for ${job.id}`, err),
+        );
+        activeStreams.current.set(job.id, close);
+      });
 
-    return () => timers.forEach(clearInterval);
+    // On unmount close all open streams
+    return () => {
+      activeStreams.current.forEach(close => close());
+      activeStreams.current.clear();
+    };
   }, [history, addOrUpdateJob]);
-  // Note: history dependency might cause re-creation of intervals on every progress update.
-  // Ideally we use a ref or a more granular approach, but for <5 active jobs this is fine.
-  // The 'addOrUpdateJob' is stable.
 
   const handleFileSelect = (file: File) => {
     setMetadataFile(file); // Triggers Modal

@@ -1,17 +1,18 @@
+import asyncio
+import json
+import logging
 import os
 import shutil
+import time
 import uuid
 import hashlib
-import logging
-import json
-import time
 try:
     import magic
 except ImportError:
     magic = None
     print("WARNING: python-magic not found. File type validation will be limited.")
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pythonjsonlogger import jsonlogger
 from redis import Redis
@@ -155,85 +156,131 @@ async def upload_pdf(
         traceback.print_exc()
         raise e
 
-@app.get("/status/{job_id}")
-async def get_status(job_id: str):
-    """
-    Fetch the status of a specific job from Redis State Tracking.
-    """
+def _build_status_payload(job_id: str) -> dict:
+    """Build the status response dict for a given job_id from Redis state."""
     response = {
         "job_id": job_id,
         "status": "queued",
         "progress": 0,
         "message": "Waiting for worker..."
     }
-    
+
     status_bytes = redis_client.get(f"cache:{job_id}:status")
     if not status_bytes:
-        # Fallback to Celery to handle raw queue/failure scenarios before processing starts
         task_result = AsyncResult(job_id)
         if task_result.state == 'FAILURE':
             response["status"] = "failed"
             response["message"] = str(task_result.info)
         return response
-        
+
     status = status_bytes.decode('utf-8')
     response["status"] = status
-    
+
     if status == "processing":
         total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
         comp_bytes = redis_client.get(f"cache:{job_id}:completed_pages")
-        
+
         total = int(total_bytes) if total_bytes else 0
         comp = int(comp_bytes) if comp_bytes else 0
-        
+
         if total > 0:
             response["progress"] = int((comp / total) * 100)
             response["message"] = f"Processed {comp} of {total} images..."
         else:
             response["progress"] = 10
             response["message"] = "Converting PDF to images..."
-            
+
     elif status == "completed":
         response["progress"] = 100
         response["message"] = "Processing complete."
-        
-        # Read final markdown file (Frontend expects 'markdown' key)
+
         job_workspace = os.path.join(config.WORKSPACES_DIR, job_id)
-        full_content_file = os.path.join(job_workspace, "output", 'full_extracted_content.md')
-        
+        full_content_file = os.path.join(job_workspace, "output", "full_extracted_content.md")
+
         if os.path.exists(full_content_file):
-            with open(full_content_file, 'r', encoding='utf-8') as f:
+            with open(full_content_file, "r", encoding="utf-8") as f:
                 response["markdown"] = f.read()
         else:
             response["message"] = "Completed, but full_extracted_content.md not found."
-            
-        # Calculate Stats
+
         try:
             upload_time_bytes = redis_client.get(f"cache:{job_id}:upload_time")
             end_time_bytes = redis_client.get(f"cache:{job_id}:end_time")
             file_size_bytes = redis_client.get(f"cache:{job_id}:file_size")
             total_pages_bytes = redis_client.get(f"cache:{job_id}:total_pages")
-            
+
             if upload_time_bytes:
                 response["upload_time"] = float(upload_time_bytes)
             if file_size_bytes:
                 file_size = int(file_size_bytes)
                 response["file_size"] = file_size
-                
+
                 if upload_time_bytes and end_time_bytes:
                     up_time = float(upload_time_bytes)
                     end_time = float(end_time_bytes)
                     proc_time = end_time - up_time
                     response["processing_time"] = round(proc_time, 2)
-                    
+
                     pages = int(total_pages_bytes) if total_pages_bytes else 1
                     mb_size = file_size / (1024 * 1024)
                     complexity = (mb_size * 0.2) + (pages * 0.1) + (proc_time * 0.05)
                     response["complexity"] = min(10.0, round(complexity, 1))
         except Exception as e:
             logger.error("Failed to compile stats", extra={"error": str(e)})
-            
+
     elif status == "failed":
         response["message"] = "Pipeline failed or encountered an error."
-        
+
     return response
+
+
+@app.get("/status/{job_id}")
+async def get_status(job_id: str):
+    """Fetch the status of a specific job from Redis State Tracking."""
+    return _build_status_payload(job_id)
+
+
+@app.get("/stream/{job_id}")
+async def stream_job_status(job_id: str):
+    """
+    SSE endpoint: pushes a JSON event whenever job state changes.
+    Closes automatically when the job reaches a terminal state
+    (completed or failed). Sends a heartbeat comment every 15 s to
+    keep the connection alive through proxies.
+    """
+    async def event_generator():
+        last_snapshot: dict | None = None
+        last_heartbeat = asyncio.get_event_loop().time()
+        HEARTBEAT_INTERVAL = 15  # seconds
+        POLL_INTERVAL = 0.5      # seconds
+
+        while True:
+            payload = _build_status_payload(job_id)
+            status = payload.get("status")
+
+            # Emit an event only when something meaningful changed.
+            # For terminal states always emit so the client can close.
+            snapshot_key = (status, payload.get("progress"), payload.get("markdown") is not None)
+            if snapshot_key != last_snapshot or status in ("completed", "failed"):
+                last_snapshot = snapshot_key
+                yield f"data: {json.dumps(payload)}\n\n"
+
+            if status in ("completed", "failed"):
+                break
+
+            # Heartbeat: a SSE comment keeps the connection alive
+            now = asyncio.get_event_loop().time()
+            if now - last_heartbeat >= HEARTBEAT_INTERVAL:
+                yield ": heartbeat\n\n"
+                last_heartbeat = now
+
+            await asyncio.sleep(POLL_INTERVAL)
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",  # disable Nginx buffering
+        },
+    )
