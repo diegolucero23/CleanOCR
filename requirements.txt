@@ -12,3 +12,6 @@ numpy
 python-magic
 python-magic-bin; sys_platform == 'win32'
 python-json-logger
+pyyaml
+pytest
+kombu
