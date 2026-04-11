@@ -37,3 +37,8 @@ LOG_FILE = "failed_pages.log"
 MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.0-flash")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
+
+# --- CLEANUP ---
+# How many hours to retain completed/failed job workspaces before deletion.
+# Set to 0 to disable automatic cleanup.
+WORKSPACE_TTL_HOURS = int(os.getenv("WORKSPACE_TTL_HOURS", "24"))
