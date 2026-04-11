@@ -18,11 +18,18 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
 - [ ] **Dead Letter Queues (DLQ):** Configure Celery to send permanently failed tasks to a separate queue for manual inspection.
 - [ ] **Rate Limiting:** Implement Token Bucket algorithms (via Redis) to prevent API abuse and manage Gemini API quotas.
 - [ ] **Circuit Breakers:** Wrap external calls (Gemini API) in circuit breakers to fail fast during outages and prevent cascading failures.
-- [ ] **Circuit Breakers:** Wrap external calls (Gemini API) in circuit breakers to fail fast during outages and prevent cascading failures.
 - [ ] **Idempotency Keys:** Ensure that resubmitting the same file/request doesn't trigger duplicate processing costs.
 - [x] **Input Sanitization:** "Trust No One." Validate magic numbers of uploaded files (not just extensions) to prevent malware uploads.
 - [x] **Pipeline Concurrency (Celery/Redis):** Transition from sequential blocking (`Burst -> OCR -> Stitch`) to a streamed Producer-Consumer pipeline. As soon as a single page is rendered to PNG, it is dispatched to a Celery worker pool for immediate OCR, drastically reducing total job turnaround time.
 - [x] **Concurrent PDF Bursting:** Refactor `pdf_converter.py` to use `ThreadPoolExecutor`, bursting multiple chunks of the PDF into images simultaneously.
+- [x] **Workspace Cleanup:** TTL-based periodic Celery Beat task to delete stale job workspaces, uploaded PDFs, and Redis keys. Configurable via `WORKSPACE_TTL_HOURS` env var.
+- [ ] **Authentication & Authorization:** Add JWT tokens or API keys to `/upload` and `/status` endpoints. Without auth, any user can read any job's results and upload arbitrary files.
+- [ ] **Metadata Input Validation:** Add a Pydantic schema to validate `title`, `volume`, `issue`, `date` fields on upload — currently unvalidated, risking malformed YAML frontmatter.
+- [ ] **Structured Error Responses:** `/upload` currently swallows inner exceptions and returns a generic 500. Log full tracebacks and return structured error JSON with a `code` field.
+- [ ] **Dynamic Worker Concurrency:** `MAX_WORKERS=4` is hardcoded in `ocr_processor.py`. Auto-detect via `os.cpu_count()` and expose as a config value so it scales with the host machine.
+- [ ] **Remove Hardcoded Repair Targets:** `REPAIR_TARGETS` in `stitcher.py` is a hardcoded list of page names specific to one dataset. Replace with a config-driven or fully-generic approach.
+- [ ] **Conditional Image Preprocessing:** Deskew adds ~30% overhead on already-clean scans. Add a config flag (or auto-detect scan quality) to skip preprocessing when it isn't needed.
+- [ ] **LLM Response Schema Validation:** Replace the 4-layer regex fallback in `stitcher.py::load_and_repair_json()` with strict response schema validation + retry-on-parse-failure to reduce brittleness.
 
 ## 3. Core Logic & AI (Accuracy & Cost)
 - [ ] **Prompt Experimentation Framework:** automated A/B testing for system prompts to optimize for accuracy vs token cost.
@@ -35,23 +42,32 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
 
 ## 4. Frontend & UX (The "Wow" Factor)
 - [x] **Real-Time Feedback:** Replace polling with WebSockets or Server-Sent Events (SSE) for live progress bars. *(Implemented via Smart Polling)*
+- [ ] **True Real-Time Push:** Current 1-second polling loop runs unconditionally for all jobs. Replace with Server-Sent Events (SSE) or WebSockets to eliminate wasted connections and enable instant push updates.
 - [x] **"Diff" View:** A split-screen interface showing the original PDF page next to the extracted Markdown for easy verification.
 - [x] **Drag & Drop Zone:** smooth, animated upload area with file validation warnings.
 - [ ] **Issue Explorer:** A dedicated UI for browsing the new `output/issues/` folder structure (Volume/Issue navigation).
 - [ ] **Dark Mode:** specific toggle and consistent theme application.
 - [ ] **Human-in-the-Loop Interface:** A specific UI for reviewing and correcting "low confidence" pages flagged by the backend.
+- [ ] **Job History Pagination:** `localStorage` job history is unbounded — UI slows noticeably with 100+ jobs. Cap at the last 50 entries or implement pagination/archival.
 
 ## 5. Data & Storage (Persistence)
 - [ ] **Cloud Storage:** Migrate from local `uploads/` to S3/GCS buckets with lifecycle policies (auto-delete after 30 days).
-- [ ] **Relational Database:** Introduce PostgreSQL for structured data (User accounts, Job history, Billing) instead of relying solely on Redis/Files modules.
-- [ ] **Data Retention Policy:** Automated cleanup scripts for old artifacts to manage storage costs.
+- [ ] **Relational Database:** Introduce PostgreSQL for structured data (User accounts, Job history, Billing) instead of relying solely on Redis/Files modules. Currently, all job metadata is volatile (Redis) or client-side only (`localStorage`) — a Redis restart wipes all job history.
+- [x] **Data Retention Policy:** TTL-based Celery Beat cleanup task for workspaces, uploads, and Redis keys (`WORKSPACE_TTL_HOURS`).
+- [ ] **Full-Text Search:** No ability to search across extracted documents. Add Elasticsearch or SQLite FTS5 integration for searchable document libraries.
 
 ## 6. Consolidation & Refactoring (Clean Code)
 - [x] **Package Structure:** Move root scripts (`batch_ocr.py`, `convert_pdf.py`, `worker.py`) into a proper `app/` or `core/` package to reduce root clutter.
 - [x] **Script Modernization:** Move legacy debug scripts (`debug_ocr.py`, `stitch_debug.py`) into `scripts/debug/` or `tests/legacy/`.
 - [x] **Unified Config:** Audit codebase to ensure `config.py` is the *single* source of truth (remove local constants).
 
-## 7. Documentation & Manuals (Knowledge Base)
+## 7. Testing (Confidence at Scale)
+- [ ] **Load Testing:** No tests for concurrent uploads or high-volume PDFs. Add `pytest-asyncio` scenarios with 50+ simultaneous jobs to find Celery queue limits and Redis memory ceilings.
+- [ ] **Negative / Adversarial Tests:** No coverage for corrupted PDFs, empty files, invalid metadata, or simulated network failures. Untested error paths risk silent crashes in production.
+- [ ] **Richer Mock Provider:** `RedTeamMockProvider` returns static fixtures. Generate realistic, dynamic OCR responses keyed to page content so mock-mode tests better reflect real API behavior.
+
+## 8. Documentation & Manuals (Knowledge Base)
 - [ ] **Deployment Manual:** Create `manual/deployment.md` for Docker/Cloud deployment steps.
 - [ ] **Troubleshooting Guide:** Create `manual/troubleshooting.md` for common errors (Redis connection, API quotas).
 - [ ] **Architecture Decision Records (ADR):** Document key decisions (Gemini, Celery, React) in `docs/adr/`.
+- [ ] **Inline Docstrings:** Complex logic (Two-Pass Verification, Celery Chord orchestration, JSON repair) has minimal comments. Add docstrings so future maintainers understand intent without reverse-engineering.

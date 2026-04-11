@@ -1,8 +1,9 @@
 import os
-print("🔥🔥🔥 WORKER MODULE LOADING 🔥🔥🔥")
+import shutil
 import time
 import logging
 from celery import Celery, chord
+from celery.schedules import crontab
 import json
 import redis
 from pythonjsonlogger import jsonlogger
@@ -115,3 +116,93 @@ def run_ocr_pipeline(self, job_id: str, pdf_path: str, file_hash: str = None, me
         redis_client = redis.Redis.from_url(celery_app.conf.broker_url)
         redis_client.set(f"cache:{job_id}:status", "failed")
         raise e
+
+
+@celery_app.task(name="cleanup_old_workspaces")
+def cleanup_old_workspaces():
+    """
+    Periodic task: delete workspaces and uploaded PDFs for jobs older than
+    WORKSPACE_TTL_HOURS. Uses the upload_time stored in Redis; falls back to
+    filesystem mtime if the Redis key has already expired.
+    Skips cleanup entirely when WORKSPACE_TTL_HOURS is 0.
+    """
+    ttl_hours = config.WORKSPACE_TTL_HOURS
+    if ttl_hours <= 0:
+        return {"skipped": True, "reason": "WORKSPACE_TTL_HOURS=0"}
+
+    ttl_seconds = ttl_hours * 3600
+    now = time.time()
+    cutoff = now - ttl_seconds
+
+    rc = redis.Redis.from_url(celery_app.conf.broker_url)
+
+    workspaces_root = config.WORKSPACES_DIR
+    upload_dir = config.UPLOAD_DIR
+
+    removed_workspaces = []
+    removed_uploads = []
+    errors = []
+
+    if not os.path.isdir(workspaces_root):
+        return {"removed_workspaces": [], "removed_uploads": [], "errors": []}
+
+    for job_id in os.listdir(workspaces_root):
+        workspace_path = os.path.join(workspaces_root, job_id)
+        if not os.path.isdir(workspace_path):
+            continue
+
+        # Determine job age: prefer Redis upload_time, fall back to dir mtime
+        upload_time_bytes = rc.get(f"cache:{job_id}:upload_time")
+        if upload_time_bytes:
+            job_start = float(upload_time_bytes)
+        else:
+            job_start = os.path.getmtime(workspace_path)
+
+        if job_start > cutoff:
+            continue  # Too recent — keep it
+
+        # Delete workspace directory
+        try:
+            shutil.rmtree(workspace_path)
+            removed_workspaces.append(job_id)
+        except Exception as exc:
+            errors.append({"job_id": job_id, "path": workspace_path, "error": str(exc)})
+            continue
+
+        # Delete uploaded PDF (if still present)
+        pdf_path = os.path.join(upload_dir, f"{job_id}.pdf")
+        if os.path.exists(pdf_path):
+            try:
+                os.remove(pdf_path)
+                removed_uploads.append(job_id)
+            except Exception as exc:
+                errors.append({"job_id": job_id, "path": pdf_path, "error": str(exc)})
+
+        # Remove Redis keys for this job
+        redis_keys = rc.keys(f"cache:{job_id}:*")
+        if redis_keys:
+            rc.delete(*redis_keys)
+
+    logger.info(
+        "Workspace cleanup complete",
+        extra={
+            "removed_workspaces": len(removed_workspaces),
+            "removed_uploads": len(removed_uploads),
+            "errors": len(errors),
+            "ttl_hours": ttl_hours,
+        },
+    )
+    return {
+        "removed_workspaces": removed_workspaces,
+        "removed_uploads": removed_uploads,
+        "errors": errors,
+    }
+
+
+# Celery Beat schedule: run cleanup every hour
+celery_app.conf.beat_schedule = {
+    "cleanup-old-workspaces": {
+        "task": "cleanup_old_workspaces",
+        "schedule": crontab(minute=0),  # top of every hour
+    },
+}
