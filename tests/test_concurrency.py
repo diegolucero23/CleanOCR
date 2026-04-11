@@ -11,19 +11,26 @@ def test_convert_pdf_uses_process_pool_executor():
     dummy_pdf_path = "dummy.pdf"
     dummy_output_folder = "dummy_output"
     
+    # as_completed must also be patched: the real implementation blocks on a Queue
+    # waiting for Future completion signals that never arrive when Futures are mocked.
+    mock_future = MagicMock()
+    mock_future.result.return_value = []  # each chunk returns an empty file list
+
     with patch('app.services.pdf_converter.os.path.exists', return_value=True), \
          patch('app.services.pdf_converter.os.makedirs'), \
          patch('app.services.pdf_converter.pdfinfo_from_path', return_value={'Pages': 4}), \
          patch('app.services.pdf_converter.concurrent.futures.ThreadPoolExecutor') as mock_executor, \
+         patch('app.services.pdf_converter.concurrent.futures.as_completed', return_value=[mock_future, mock_future]), \
          patch('app.services.pdf_converter.convert_from_path', return_value=[MagicMock(), MagicMock()]):
-         
+
         # Mock the executor context manager
         mock_instance = MagicMock()
         mock_executor.return_value.__enter__.return_value = mock_instance
-        
+        mock_instance.submit.return_value = mock_future
+
         # We need to simulate the execution of the function
         pdf_converter.convert_pdf_in_chunks(dummy_pdf_path, dummy_output_folder, chunk_size=2)
-        
+
         # Assert that the ProcessPoolExecutor was actually used
         mock_executor.assert_called()
 
