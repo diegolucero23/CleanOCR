@@ -1,0 +1,81 @@
+:root {
+  /* Canvas & Surfaces */
+  --canvas: #0d0d0f;
+  --s1: #131416;
+  --s2: #1a1b1e;
+  --s3: #222428;
+  --s4: #2a2c31;
+
+  /* Text */
+  --t1: #f2f0eb;
+  --t2: #c8c4bb;
+  --t3: #8a8680;
+  --t4: #5c5855;
+
+  /* Gold accent */
+  --gold: #c8a96e;
+  --gold-hov: #dfc08a;
+  --gold-dim: #a08754;
+  --gold-tint: rgba(200, 169, 110, 0.08);
+  --gold-bord: rgba(200, 169, 110, 0.20);
+
+  /* Borders */
+  --bord-d: rgba(255, 255, 255, 0.06);
+  --bord-s: rgba(255, 255, 255, 0.09);
+  --bord-m: rgba(255, 255, 255, 0.14);
+
+  /* Status */
+  --ok: #4a9e6b;
+  --warn: #c8a040;
+  --err: #9e4a4a;
+
+  /* Shadows */
+  --shad-card: 0 2px 8px rgba(0,0,0,.45), 0 0 0 1px var(--bord-d);
+  --shad-over: 0 8px 32px rgba(0,0,0,.6), 0 0 0 1px var(--bord-s);
+
+  /* Typography */
+  --font-mono: 'Space Mono', monospace;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-ed: 'DM Serif Display', Georgia, serif;
+  --font-hand: 'Kalam', cursive;
+
+  /* Layout dimensions */
+  --topbar-h: 48px;
+  --titleband-h: 52px;
+  --filmstrip-h: 96px;
+  --rail-w: 260px;
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--t1);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--s4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--t4); }
