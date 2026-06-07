@@ -184,7 +184,7 @@ def verify_boundary_text(prev_end_text, next_start_text):
         )
         
         response = client.models.generate_content(
-            model=getattr(config, "MODEL_NAME", "gemini-2.0-flash"),
+            model=getattr(config, "MODEL_NAME", "gemini-2.5-flash-lite"),
             contents=prompt,
         )
         return response.text.strip()
