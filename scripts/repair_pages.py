@@ -1,10 +1,10 @@
+import json
 import os
 import time
 import PIL.Image
-from google import genai
 from google.genai import types
-from google.genai.errors import ClientError
 from app.core import config
+from app.services.ocr_factory import get_provider
 import prompts
 
 def repair_from_log():
@@ -23,7 +23,7 @@ def repair_from_log():
     for line in lines:
         if "|" in line:
             targets.append(line.split("|")[0].strip())
-    
+
     # Remove duplicates
     targets = sorted(list(set(targets)))
 
@@ -35,20 +35,16 @@ def repair_from_log():
     print(f"Found {len(targets)} failed pages in log.")
     print(f"Targeting: {targets}")
 
-    print(f"Targeting: {targets}")
-
-    # Mock Mode Check
     MOCK_MODE = config.GOOGLE_API_KEY.startswith("MOCK_KEY")
     if MOCK_MODE:
         print("⚠️  MOCK MODE ENABLED: No API calls will be made.")
-        client = None
-    else:
-        client = genai.Client(api_key=config.GOOGLE_API_KEY)
+
+    provider = get_provider(config.GOOGLE_API_KEY)
 
     # 3. Process only the targets
     for filename in targets:
         img_path = os.path.join(config.INPUT_IMAGE_FOLDER, filename)
-        
+
         # Calculate JSON path
         json_filename = filename.replace(os.path.splitext(filename)[1], ".json")
         json_path = os.path.join(config.OCR_JSON_FOLDER, json_filename)
@@ -61,8 +57,7 @@ def repair_from_log():
 
         try:
             img = PIL.Image.open(img_path)
-            
-            # Use the shared prompt
+
             if MOCK_MODE:
                 print(" [MOCK FIX] ", end="")
                 time.sleep(0.5)
@@ -71,27 +66,24 @@ def repair_from_log():
                     "metadata": {"confidence": 1.0}
                 })
             else:
-                response = client.models.generate_content(
-                    model=config.MODEL_NAME,
-                    contents=[prompts.OCR_PROMPT, img], 
+                response_text = provider.generate_content(
+                    contents=[prompts.OCR_PROMPT, img],
                     config=types.GenerateContentConfig(
-                        temperature=0.1, 
+                        temperature=0.1,
                         response_mime_type="application/json"
                     )
                 )
-                response_text = response.text
-            
+
             with open(json_path, "w", encoding="utf-8") as f:
-                f.write(response_text)
-            
+                f.write(response_text or "")
+
             print(" FIXED.")
-            time.sleep(5) # Be gentle on retry
-            
+            time.sleep(5)  # Be gentle on retry
+
         except Exception as e:
             print(f" Failed again: {e}")
 
     print("\nRepair run complete. Check your folders.")
-    # Optional: You could clear the log file here if you wanted.
 
 if __name__ == "__main__":
     repair_from_log()

@@ -2,8 +2,9 @@ import os
 import json
 import re
 import shutil
-from google import genai
+from google.genai import types
 from app.core import config
+from app.services.ocr_factory import get_provider
 
 # --- CONFIGURATION ---
 # We now pull these paths from config.py to ensure consistency across the app
@@ -166,12 +167,10 @@ def verify_boundary_text(prev_end_text, next_start_text):
     splits and sentence breaks.
     """
     if not config.GOOGLE_API_KEY or config.GOOGLE_API_KEY.startswith("MOCK"):
-        # Mock mode fallback
         return prev_end_text + next_start_text
 
     try:
-        client = genai.Client(api_key=config.GOOGLE_API_KEY)
-        
+        provider = get_provider(config.GOOGLE_API_KEY)
         prompt = (
             "You are an expert OCR editor. The following two text blocks are from "
             "consecutive pages of a scanned historical document. They may be split across "
@@ -182,12 +181,11 @@ def verify_boundary_text(prev_end_text, next_start_text):
             "any hyphenation splits or awkward line breaks at the boundary. "
             "Do not alter the spelling of historical words. Return ONLY the merged text."
         )
-        
-        response = client.models.generate_content(
-            model=getattr(config, "MODEL_NAME", "gemini-2.5-flash-lite"),
-            contents=prompt,
+        result = provider.generate_content(
+            contents=[prompt],
+            config=types.GenerateContentConfig(temperature=0.0),
         )
-        return response.text.strip()
+        return (result or "").strip() or prev_end_text + next_start_text
     except Exception as e:
         print(f"LLM Verification failed: {e}")
         return prev_end_text + next_start_text
