@@ -7,9 +7,16 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 load_dotenv(os.path.join(BASE_DIR, ".env"), override=True)
 
+# --- TIER (must be read before API key guard) ---
+# "standard" | "pro" | "local"
+# "local" uses Surya + Gemma on the user's machine (no Google API needed).
+OCR_TIER = os.getenv("OCR_TIER", "standard")
+# Gemma model to use for the local tier (any HuggingFace hub id).
+LOCAL_GEMMA_MODEL = os.getenv("LOCAL_GEMMA_MODEL", "google/gemma-4-E4B-it")
+
 # --- API KEYS ---
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-if not GOOGLE_API_KEY:
+if not GOOGLE_API_KEY and OCR_TIER != "local":
     sys.exit("Error: GOOGLE_API_KEY not found in .env file.")
 
 # --- PATHS ---
@@ -34,8 +41,6 @@ FINAL_MARKDOWN_FOLDER = "CleanOCR_Finalv2"
 LOG_FILE = "failed_pages.log"
 
 # --- CONFIG ---
-# Active tier: "standard" uses MODEL_NAME, "pro" uses PRO_MODEL_NAME.
-OCR_TIER = os.getenv("OCR_TIER", "standard")
 # Primary model (standard tier). Gemini 2.0 Flash was shut down June 1, 2026.
 MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash-lite")
 # Upgraded model for pro-tier users (selected when OCR_TIER=pro).
