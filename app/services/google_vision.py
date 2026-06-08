@@ -7,14 +7,21 @@ from app.core import config as app_config
 
 logger = logging.getLogger(__name__)
 
-# HTTP status codes and message fragments that indicate a model is gone/invalid.
-_MODEL_UNAVAILABLE_CODES = {404, 400}
+# Only 404 reliably signals a missing/deprecated model.
+# 400 (INVALID_ARGUMENT) covers too many unrelated failures (bad prompt,
+# oversized image, content policy) and must not trigger a model fallback.
 _MODEL_UNAVAILABLE_PHRASES = ("not found", "deprecated", "invalid model", "model is not supported")
 
 
 def _is_model_unavailable(e: ClientError) -> bool:
-    msg = str(e).lower()
-    return e.code in _MODEL_UNAVAILABLE_CODES and any(p in msg for p in _MODEL_UNAVAILABLE_PHRASES)
+    return e.code == 404 and any(p in str(e).lower() for p in _MODEL_UNAVAILABLE_PHRASES)
+
+
+def _active_model() -> str:
+    """Select model name based on OCR_TIER env var."""
+    if app_config.OCR_TIER == "pro":
+        return app_config.PRO_MODEL_NAME
+    return app_config.MODEL_NAME
 
 
 class GoogleVisionProvider(OCRProvider):
@@ -22,7 +29,7 @@ class GoogleVisionProvider(OCRProvider):
         self.client = genai.Client(api_key=api_key)
 
     def generate_content(self, contents: list, config: Any) -> str:
-        model_name = app_config.MODEL_NAME
+        model_name = _active_model()
         try:
             return self._call(model_name, contents, config)
         except ClientError as e:
@@ -30,9 +37,16 @@ class GoogleVisionProvider(OCRProvider):
             if _is_model_unavailable(e) and model_name != fallback:
                 logger.warning(
                     "Model '%s' unavailable (%s). Falling back to '%s'.",
-                    model_name, e, fallback
+                    model_name, e, fallback,
                 )
-                return self._call(fallback, contents, config)
+                try:
+                    return self._call(fallback, contents, config)
+                except ClientError as fe:
+                    logger.error(
+                        "Fallback model '%s' also failed (%s). Original model was '%s'.",
+                        fallback, fe, model_name,
+                    )
+                    raise fe
             raise
 
     def _call(self, model_name: str, contents: list, config: Any) -> str:
