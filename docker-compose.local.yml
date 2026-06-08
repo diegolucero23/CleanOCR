@@ -1,0 +1,54 @@
+# Self-hosted tier override.
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up
+#
+# Requirements:
+#   - NVIDIA GPU with >= 8 GB VRAM (for gemma-4-E4B-it)
+#   - nvidia-container-toolkit installed on the host
+#   - No GOOGLE_API_KEY needed; omit it from .env or set OCR_TIER=local
+
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      - OCR_TIER=local
+      - LOCAL_GEMMA_MODEL=${LOCAL_GEMMA_MODEL:-google/gemma-4-E4B-it}
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+    volumes:
+      - .:/app
+      - huggingface_cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    command: celery -A app.workers.celery_worker.celery_app worker --loglevel=info --concurrency=1
+    environment:
+      - OCR_TIER=local
+      - LOCAL_GEMMA_MODEL=${LOCAL_GEMMA_MODEL:-google/gemma-4-E4B-it}
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+    volumes:
+      - .:/app
+      - huggingface_cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  huggingface_cache:
