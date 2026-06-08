@@ -1,271 +1,139 @@
 # CleanOCR — Session Handoff Context
-**Date:** 2026-06-07  
-**Branch:** `claude/surya-ocr-gemma-analysis-Ndw1z`  
-**Status:** Changes committed & pushed. Next session picks up from here.
+**Date:** 2026-06-08  
+**Branch:** `claude/handoff-context-review-RSsh8`  
+**Status:** Changes committed & pushed. All 42 tests passing. Next session picks up from here.
 
 ---
 
 ## 1. What Was Done This Session
 
-### Critical Bug Fixed
-**Gemini 2.0 Flash was shut down by Google on June 1, 2026.** The codebase was pointing to a dead model. Fixed across all locations:
+### Self-Hosted Tier Implemented
+Full `OCR_TIER=local` pipeline built. No Google API key required.
 
 | File | Change |
 |------|--------|
-| `app/core/config.py` | `MODEL_NAME` default → `gemini-2.5-flash-lite`; added `PRO_MODEL_NAME` and `FALLBACK_MODEL_NAME` |
-| `app/services/google_vision.py` | Full rewrite: added `_is_model_unavailable()` + automatic fallback on 400/404 errors |
-| `app/services/stitcher.py` | Hardcoded `gemini-2.0-flash` fallback → `gemini-2.5-flash-lite` |
-| `ARCHITECTURE.md` | Updated config table with 3 new model env vars |
+| `app/services/surya_provider.py` | New `SuryaOCRProvider` — lazy Surya OCR, reading-order assembly, regex metadata, Gemma structuring with regex fallback |
+| `app/services/gemma_provider.py` | New `GemmaTextProvider` — lazy transformers pipeline, module-level singleton |
+| `app/services/ocr_factory.py` | Added `tier` param; routes `tier="local"` → `SuryaOCRProvider` |
+| `app/core/config.py` | `OCR_TIER` and `LOCAL_GEMMA_MODEL` defined before the API key guard; guard is now conditional (`OCR_TIER != "local"`) |
+| `app/services/stitcher.py` | `verify_boundary_text` checks `OCR_TIER`; uses `SuryaOCRProvider` (Gemma) for two-pass stitching on local tier |
+| `requirements-local.txt` | `surya-ocr`, `transformers>=4.47`, `torch`, `accelerate` |
+| `docker-compose.local.yml` | Compose override: GPU passthrough, shared HuggingFace model-cache volume |
+| `Dockerfile.local` | CUDA 12.1 image with base + local requirements |
 
-### Research Completed
-Spent the session doing deep research on the OCR model landscape (June 2026). All findings documented in sections 2–5 below. No further research is needed before implementation begins.
+### Environment Errors Diagnosed and Fixed
+
+Three errors surfaced during test-run investigation. All resolved.
+
+| # | Symptom | Root Cause | Fix Applied |
+|---|---------|-----------|-------------|
+| 1 | `ModuleNotFoundError: No module named '_cffi_backend'` → cascade: `cryptography` → `google-auth` → `google-genai` all fail to import | System `_cffi_backend.so` is compiled for Python 3.12; container runs Python 3.11. `cffi` was not listed in `requirements.txt` so pip never installed it. | Added `cffi` to `requirements.txt` |
+| 2 | `ModuleNotFoundError: cv2`, `fastapi`, etc. in bare container | These packages ARE in `requirements.txt` but were not installed in the test container session. CI runs `pip install -r requirements.txt` and works correctly. | No code change needed — pure environment setup; documented below |
+| 3 | `AttributeError: module 'app.services.stitcher' has no attribute 'genai'` in `test_two_pass_verification.py` | Test patched `app.services.stitcher.genai.Client` — valid when `verify_boundary_text` called `genai.Client()` directly. After refactor to `get_provider()`, `stitcher.py` no longer imports `genai` at all. Stale mock path. | Updated test to patch `app.services.stitcher.get_provider` instead — cleaner boundary |
+
+**Test result after fixes:** 42 passed, 0 failed.
 
 ---
 
 ## 2. Gemini Model Landscape (June 2026)
+*(Carried forward from previous session — no changes needed)*
 
-### Deprecation Timeline
-- `gemini-2.0-flash` → **DEAD as of June 1, 2026**
-- `gemini-2.5-flash` → **Shuts down October 16, 2026** (do NOT use as a long-term target)
-- `gemini-3.x` family → Current generation, no deprecation announced
+| Model | Input $/1M | Output $/1M | OCR Arena ELO | Deprecation |
+|-------|-----------|-------------|--------------|-------------|
+| ~~Gemini 2.0 Flash~~ | ~~$0.10~~ | ~~$0.40~~ | — | **DEAD Jun 1** |
+| **Gemini 2.5 Flash Lite** | **$0.10** | **$0.40** | — | Oct 16, 2026 |
+| Gemini 2.5 Flash | $0.30 | $2.50 | #8 (ELO 1595) | Oct 16, 2026 |
+| Gemini 2.5 Pro | $1.25 | $10.00 | #7 (ELO 1636) | TBD |
+| **Gemini 3.1 Flash Lite** | **$0.25** | **$1.50** | — | None |
+| Gemini 3 Flash | $0.50 | $3.00 | **#1 (ELO 1759)** | None |
+| Gemini 3.1 Pro | $2.00 | $12.00 | — | None |
 
-### Full OCR Accuracy + Pricing Table
-
-| Model | Input $/1M | Output $/1M | OCR Arena ELO | socOCRbench | IDP Leaderboard | Deprecation |
-|-------|-----------|-------------|--------------|-------------|-----------------|-------------|
-| ~~Gemini 2.0 Flash~~ | ~~$0.10~~ | ~~$0.40~~ | — | — | — | **DEAD Jun 1** |
-| **Gemini 2.5 Flash Lite** | **$0.10** | **$0.40** | — | — | — | Oct 16, 2026 |
-| Gemini 2.5 Flash | $0.30 | $2.50 | #8 (ELO 1595) | — | — | Oct 16, 2026 |
-| Gemini 2.5 Pro | $1.25 | $10.00 | #7 (ELO 1636) | — | — | TBD |
-| **Gemini 3.1 Flash Lite** | **$0.25** | **$1.50** | — | 0.6546 | **#1** | None |
-| Gemini 3 Flash | $0.50 | $3.00 | **#1 (ELO 1759)** | — | — | None |
-| Gemini 3.1 Pro | $2.00 | $12.00 | — | **#1 (0.5965)** | — | None |
-| Gemini 3.5 Flash | $1.50 | $9.00 | — | — | — | None |
-
-**Key insight:** Gemini 2.5 Flash Lite = same price as the old 2.0 Flash. Gemini 3.1 Flash Lite tops document-specific benchmarks at only 2.5x the old price. The 2.5 *Thinking* variants have documented OCR regression — avoid for this use case.
-
-**Batch API discount:** 50% off all models for 24-hour processing — relevant for bulk archive jobs.
-
-### Current Config After This Session
+**Current config defaults:**
 ```
-MODEL_NAME=gemini-2.5-flash-lite          # Standard tier (primary)
-PRO_MODEL_NAME=gemini-3.1-flash-lite      # Pro tier
-FALLBACK_MODEL_NAME=gemini-2.5-flash-lite # Auto-fallback if active model is unavailable
+MODEL_NAME=gemini-2.5-flash-lite          # standard tier
+PRO_MODEL_NAME=gemini-3.1-flash-lite      # pro tier
+FALLBACK_MODEL_NAME=gemini-2.5-flash      # auto-fallback on 404
+LOCAL_GEMMA_MODEL=google/gemma-4-E4B-it   # local tier
 ```
 
 ---
 
-## 3. Open-Weight / Local Model Landscape (June 2026)
+## 3. Four-Tier Model Architecture
+*(Decided last session — implementation status updated)*
 
-### Surya OCR (datalab-to/surya)
-| Spec | Value |
-|------|-------|
-| Parameters | 650M |
-| olmOCR Benchmark | 83.3% (top under 3B params) |
-| Speed | 5 pages/second on RTX 5090 |
-| Runtime | CPU, GPU, Apple MPS |
-| Languages | 91 |
-| Capabilities | Layout detection, reading order, handwriting, math, tables, image captions |
-| Output | Structured JSON (RAG-ready) |
-| License | Apache 2.0 (code) / OpenRAIL-M (model) |
-| GitHub | `github.com/datalab-to/surya` |
-
-**What Surya does NOT do:** metadata extraction (volume/issue/date/page), structured JSON in CleanOCR's schema, two-pass stitching LLM step.
-
-### Gemma 4 (Google, open-weight)
-| Variant | Active Params | VRAM (fp16) | Speed (image OCR) | Use Case |
-|---------|--------------|-------------|-------------------|----------|
-| E4B (MoE) | ~2.3B | ~6-8GB | ~37s/image (full vision) | Self-hosted / edge |
-| 12B | 12B | ~24GB | — | Mid-range GPU server |
-| 27B | 27B | ~54GB | — | Production private cloud |
-
-**Critical distinction:** The 37s/image benchmark is for full multimodal image-to-text. If Gemma 4 only processes **already-extracted text** (from Surya), it is dramatically faster — seconds per page for text-only inference. This is the key to making the local stack viable.
-
-**No published benchmark** exists comparing Gemma 4 OCR accuracy to any Gemini API model (as of June 2026). Anyone claiming equivalence is speculating.
-
-### TranslateGemma (Google, open-weight)
-| Spec | Value |
-|------|-------|
-| Released | January 15, 2026 |
-| Built on | Gemma 3, fine-tuned for translation |
-| Variants | 4B (mobile), 12B (consumer laptop), 27B (H100) |
-| Languages | 55 |
-| Purpose | Text-to-text translation (NOT OCR) |
-| Error reduction | 23.5% vs Gemma 3 27B baseline (WMT24++ benchmark) |
-| HuggingFace | `google/translategemma-*` |
-
-**For CleanOCR's primary use case (19th-century English newspapers): TranslateGemma adds nothing.** It is only relevant as an optional post-OCR step for multilingual document support. Defer to a future feature.
+| Tier | Backend | Status |
+|------|---------|--------|
+| **Free** | Gemini 2.5 Flash Lite (API) | ✅ Done |
+| **Pro** | Gemini 3.1 Flash Lite (API) | ✅ Done (env var `OCR_TIER=pro`) |
+| **Private Cloud** | Gemma 4 27B on CleanOCR GPU infra | ❌ Phase 2 / post-revenue |
+| **Self-Hosted** | Surya + Gemma 4 E4B (user's machine) | ✅ Done (`OCR_TIER=local`) |
 
 ---
 
-## 4. Decided Product Tier Architecture
-
-### Business Model Decision
-Cloud-hosted is primary (speed + accuracy = main deliverable). Self-hosted is a secondary privacy-first feature for paying customers. The privacy story is valuable but infrastructure-heavy — it is a Phase 2/Series A feature, not day-1.
-
-### Four-Tier Model
-
-| Tier | Backend | Data Privacy | Speed | Accuracy | Target User |
-|------|---------|-------------|-------|----------|-------------|
-| **Free** | Gemini 2.5 Flash Lite (API) | Google sees data (disclosed) | Fast | ~95% | Hobbyists, students, trial |
-| **Pro** | Gemini 3.1 Flash Lite (API) | Google sees data (disclosed) | Fast | Best-in-class on doc benchmarks | Researchers, small institutions |
-| **Private Cloud** | Gemma 4 27B on CleanOCR's own GPU servers | Data never leaves CleanOCR infra | Fast (batched) | ~90% (unverified) | Enterprises, legal, GDPR, regulated industries |
-| **Self-Hosted** | Surya + Gemma 4 E4B (user's machine) | Full sovereignty | Slower | ~83% | Historians, air-gapped environments |
-
-### Disclosure Requirement
-All tiers must clearly disclose where data goes. Gemini API tiers: "Your documents are processed by Google's API. See Google's data policy." Private Cloud / Self-Hosted: "Your documents never leave [CleanOCR / your machine]."
-
----
-
-## 5. Self-Hosted Tier — Implementation Plan (NEXT SESSION FOCUS)
-
-This is what the next conversation should implement. The API tier fix is already done.
-
-### Architecture: Surya + Gemma 4 E4B
+## 4. Repo State at Handoff
 
 ```
-[PDF Upload]
-    ↓
-[pdf_converter.py] → PNG pages (unchanged)
-    ↓
-[image_utils.py] → deskew + pad (unchanged)
-    ↓
-[SuryaOCRProvider] → raw text + layout boxes  ← NEW
-    ↓
-[GemmaStructuringProvider] → structured JSON   ← NEW (text-only, fast)
-    (metadata, markdown_content, layout_type)
-    ↓
-[stitcher.py] → final Markdown (unchanged, but two-pass LLM step
-                uses GemmaStructuringProvider instead of Gemini)
-```
-
-### Files to Create
-
-#### 1. `app/services/surya_provider.py`
-- Implements `OCRProvider`
-- Loads `surya-ocr` package at init (lazy load to avoid slowing API tier startup)
-- Input: `PIL.Image` (same as current)
-- Output: must produce same JSON schema as Gemini:
-  ```json
-  {
-    "metadata": {"volume": null, "issue": null, "date": null, "page_number": null},
-    "layout_type": "multi-column",
-    "markdown_content": "..."
-  }
-  ```
-- Surya gives layout boxes + text. Adapter needed to assemble into markdown reading order.
-- Metadata fields: **populate via regex heuristics** (look for Vol./Issue/Date patterns in extracted text) or leave null.
-
-#### 2. `app/services/gemma_provider.py`
-- Implements `OCRProvider` but operates on text-only input (not images)
-- Uses `transformers` + `torch` to load Gemma 4 E4B locally
-- Lazy loads model on first use (not at startup)
-- Input: raw text from Surya → structured JSON output
-- Replaces the image→JSON step; Surya handles image→text
-- Also used for two-pass stitching LLM call (replaces Gemini in `stitcher.py`)
-
-#### 3. Updates to `app/services/ocr_factory.py`
-```python
-def get_provider(api_key: str, tier: str = "standard"):
-    if str(api_key).startswith("MOCK_KEY"):
-        ...  # unchanged
-    if tier == "local":
-        return SuryaOCRProvider()   # new
-    return GoogleVisionProvider(api_key)   # unchanged
-```
-
-#### 4. Updates to `app/core/config.py`
-```python
-OCR_TIER = os.getenv("OCR_TIER", "standard")  # "standard" | "pro" | "local"
-LOCAL_GEMMA_MODEL = os.getenv("LOCAL_GEMMA_MODEL", "google/gemma-4-E4B-it")
-```
-
-#### 5. Updates to `requirements.txt`
-```
-# Add under a [local] extras comment — only needed for self-hosted tier
-surya-ocr
-transformers
-torch
-accelerate
-```
-Consider splitting into `requirements.txt` (base) and `requirements-local.txt` (local tier extras) to avoid bloating the cloud Docker image.
-
-#### 6. Updates to `Dockerfile` and `docker-compose.yml`
-- Add a `docker-compose.local.yml` override for self-hosted
-- Local image needs: `surya-ocr`, `torch`, `transformers`, GPU passthrough (`deploy: resources: reservations: devices`)
-- Standard cloud image stays lean (no torch, no surya)
-
-### Known Limitations to Document for Users
-- Self-hosted OCR accuracy: ~83% vs ~95%+ for API tiers (Surya benchmark)
-- Metadata extraction (volume/issue/date): heuristic only, may miss fields
-- Two-pass stitching: uses Gemma 4 E4B instead of Gemini — quality unverified
-- Concurrency: limited by local hardware; `MAX_WORKERS` should default to 1-2 for CPU-only
-- Speed: Surya is fast; Gemma 4 text structuring adds seconds per page
-- No rate limits or quotas — only hardware is the ceiling
-
-### Open Questions for Next Session
-1. Should `SuryaOCRProvider` call a separate `GemmaStructuringProvider` internally, or should `ocr_factory.py` compose them?
-2. Should the two-pass stitching LLM step be disabled for self-hosted (to avoid Gemma 4 latency) or kept?
-3. Lazy model loading vs. warmup at startup — warmup gives better first-request latency but slows Docker startup.
-4. Should `requirements-local.txt` be separate, or use pip extras (`pip install cleanocr[local]`)?
-
----
-
-## 6. Private Cloud Tier — Notes (Future Phase)
-
-Do NOT implement now. Document for planning purposes only.
-
-### Concept
-CleanOCR hosts Gemma 4 27B on its own GPU infrastructure. Customers get cloud convenience + no Google data exposure. Priced as an enterprise/GDPR tier.
-
-### Infrastructure Required
-- 2× NVIDIA A100 80GB or 1× H100 per instance
-- vLLM or TGI (Text Generation Inference) for batched serving
-- Surya still handles OCR layer (CPU-capable, doesn't need GPU)
-- Gemma 4 27B serves the structuring + stitching LLM role
-- Same Celery architecture routes to local vLLM endpoint instead of Gemini API
-
-### Cost Reality
-- A100 80GB on cloud: ~$3-4/hr (Lambda Labs, CoreWeave, RunPod)
-- Shared across concurrent customers via request batching
-- GPU needs to stay loaded = 24/7 cost even at zero load
-- This is a Series A / post-revenue feature, not MVP
-
-### Shortcut Option
-Instead of self-managing GPU infra, route "private cloud" customers through a third-party private inference provider (Together.ai, Fireworks.ai, Anyscale) that already hosts Gemma 4 27B. Customer data stays off Google but you avoid GPU ops overhead.
-
----
-
-## 7. pie_in_the_sky.md — Items This Session Informs
-
-These backlog items are now clarified by this session's research and should be updated:
-
-- **Section 3 (Core Logic & AI):** Add new item: "Multi-tier model architecture (Free/Pro/Private Cloud/Self-Hosted)" — strategy decided, implementation pending.
-- **Section 2 (Backend):** Add: "OCR_TIER env var routing in ocr_factory.py" — needed for self-hosted.
-- **Section 1 (Infrastructure):** Add: "Separate Docker Compose override for self-hosted tier (GPU passthrough, local model deps)."
-- **Section 5 (Data & Storage):** Note: self-hosted tier has no cloud storage — workspaces are local only.
-
----
-
-## 8. Repo State at Handoff
-
-```
-Branch:  claude/surya-ocr-gemma-analysis-Ndw1z
-Commit:  b7f7e72  "Migrate from deprecated Gemini 2.0 Flash to 2.5 Flash Lite with model fallback"
-Clean:   yes (nothing uncommitted)
-Tests:   not re-run this session (model name change only; no logic changed in test paths)
+Branch:  claude/handoff-context-review-RSsh8
+Commit:  (see git log — two commits this session)
+Clean:   yes
+Tests:   42 passed, 0 failed
 ```
 
 ### What Works Right Now
-- Full Gemini API pipeline: `gemini-2.5-flash-lite` (primary), `gemini-3.1-flash-lite` (pro via env var)
-- Automatic model fallback in `google_vision.py` on 400/404 deprecation errors
-- All existing tests, Celery orchestration, Redis caching, SSE streaming unchanged
+- Full Gemini API pipeline: standard (2.5 Flash Lite) and pro (3.1 Flash Lite) tiers
+- Automatic model fallback in `google_vision.py` on 404 deprecation errors
+- Self-hosted tier: `OCR_TIER=local` routes to `SuryaOCRProvider` — no API key required
+- GPU-enabled Docker override: `docker-compose.local.yml` + `Dockerfile.local`
+- All 42 tests green, including the two-pass verification test with corrected mock
 
 ### What Does Not Exist Yet
-- `SuryaOCRProvider` (self-hosted OCR)
-- `GemmaStructuringProvider` (self-hosted structuring)
-- `OCR_TIER` routing in `ocr_factory.py`
-- `docker-compose.local.yml`
-- `requirements-local.txt`
-- Any frontend tier selection UI
-- User authentication / tier enforcement (still on backlog)
+- Frontend tier-selection UI (user can't choose tier from the web UI)
+- User authentication / tier enforcement (still backlog)
+- Private Cloud tier (Gemma 4 27B on CleanOCR infra) — deferred to Phase 2
+- End-to-end test with a real Surya + Gemma installation (local tier code is complete but untested against actual models — only installable in a GPU environment)
+
+---
+
+## 5. Open Questions for Next Session
+
+1. **Deprecation runway on 2.5 Flash Lite** — it shuts down October 16, 2026 (~4 months). Should we proactively migrate the default model to a Gemini 3.x model now, or wait and let the fallback handle it? Gemini 3.1 Flash Lite is already available and is the top IDP leaderboard model.
+
+2. **Frontend tier selection** — the four tiers are backend-complete but invisible to users. Should the next session add a tier selector to the upload UI, or is tier still admin-configured via env var only?
+
+3. **Gemma model download UX** — `google/gemma-4-E4B-it` requires a HuggingFace token and ~6-8 GB of disk. First run silently downloads the model (can take minutes). Should the local tier startup emit a clear progress message, or should we add a `python -m app.local_setup` pre-download script?
+
+4. **Two-pass stitching on local tier** — currently falls back to simple concatenation if Gemma is not loaded (e.g. CPU-only user who hasn't downloaded the model). Should this be a warning or a hard fail? The concatenation fallback silently reduces quality.
+
+5. **`starlette` deprecation warning** — tests emit `StarletteDeprecationWarning: Using httpx with starlette.testclient is deprecated; install httpx2 instead`. Low urgency but will become an error in a future starlette version. Fix: `pip install httpx2` and update `requirements.txt`.
+
+---
+
+## 6. Known Limitations of Self-Hosted Tier (for user docs)
+
+- Accuracy: ~83% (Surya olmOCR benchmark) vs ~95%+ for Gemini API tiers
+- Metadata extraction (volume/issue/date): regex heuristics only — may miss fields
+- Two-pass stitching: uses Gemma 4 E4B for text — quality unverified vs Gemini
+- Concurrency: `MAX_WORKERS` should be set to 1-2 for CPU-only setups; `docker-compose.local.yml` already sets `--concurrency=1`
+- First request latency: models lazy-load on first use; subsequent requests are fast
+- No rate limits or quotas — hardware is the ceiling
+
+---
+
+## 7. Environment Setup Notes (for bare containers / fresh clones)
+
+```bash
+# 1. Install all Python deps including cffi (now explicit in requirements.txt)
+pip install -r requirements.txt
+
+# 2. For local/self-hosted tier only:
+pip install -r requirements-local.txt
+
+# 3. Set environment
+export GOOGLE_API_KEY=your-key   # not needed when OCR_TIER=local
+export OCR_TIER=standard         # standard | pro | local
+
+# 4. Run tests
+pytest tests/ -v
+```
+
+**Why `cffi` is now explicit:** The Ubuntu system package `python3-cryptography` ships `_cffi_backend.cpython-312-x86_64-linux-gnu.so` (Python 3.12 only). When running Python 3.11, `cffi` must be pip-installed. `google-auth` depends on `cryptography` which depends on `cffi`; without it, importing `google-genai` panics with a pyo3 rust exception.

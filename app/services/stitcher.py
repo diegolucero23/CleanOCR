@@ -166,11 +166,18 @@ def verify_boundary_text(prev_end_text, next_start_text):
     Sends the boundary text between two pages to an LLM to resolve hyphenation
     splits and sentence breaks.
     """
-    if not config.GOOGLE_API_KEY or config.GOOGLE_API_KEY.startswith("MOCK"):
+    if config.OCR_TIER == "local":
+        # Local tier: use SuryaOCRProvider which routes text-only calls to Gemma.
+        try:
+            provider = get_provider(None, tier="local")
+        except ImportError:
+            return prev_end_text + next_start_text
+    elif not config.GOOGLE_API_KEY or config.GOOGLE_API_KEY.startswith("MOCK"):
         return prev_end_text + next_start_text
+    else:
+        provider = get_provider(config.GOOGLE_API_KEY)
 
     try:
-        provider = get_provider(config.GOOGLE_API_KEY)
         prompt = (
             "You are an expert OCR editor. The following two text blocks are from "
             "consecutive pages of a scanned historical document. They may be split across "
