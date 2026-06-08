@@ -94,17 +94,19 @@ Tests:   42 passed, 0 failed
 
 ---
 
-## 5. Open Questions for Next Session
+## 5. Resolved Decisions (2026-06-08)
 
-1. **Deprecation runway on 2.5 Flash Lite** — it shuts down October 16, 2026 (~4 months). Should we proactively migrate the default model to a Gemini 3.x model now, or wait and let the fallback handle it? Gemini 3.1 Flash Lite is already available and is the top IDP leaderboard model.
+Previously open questions — all answered, ready to implement.
 
-2. **Frontend tier selection** — the four tiers are backend-complete but invisible to users. Should the next session add a tier selector to the upload UI, or is tier still admin-configured via env var only?
+1. **Deprecation runway on 2.5 Flash Lite** — **DECISION: Keep `gemini-2.5-flash-lite` as default.** It is intentionally the cheapest, fastest, and most accurate model for OCR. Do not migrate. The existing `FALLBACK_MODEL_NAME` handles the Oct 16 deadline automatically if needed.
 
-3. **Gemma model download UX** — `google/gemma-4-E4B-it` requires a HuggingFace token and ~6-8 GB of disk. First run silently downloads the model (can take minutes). Should the local tier startup emit a clear progress message, or should we add a `python -m app.local_setup` pre-download script?
+2. **Frontend tier selection** — **DECISION: Add tier selector to the upload UI.** Backend is complete; surface it in MetadataModal so users can choose Free / Pro / Local. Env var admin override stays. Target: Phase 2.
 
-4. **Two-pass stitching on local tier** — currently falls back to simple concatenation if Gemma is not loaded (e.g. CPU-only user who hasn't downloaded the model). Should this be a warning or a hard fail? The concatenation fallback silently reduces quality.
+3. **Gemma model download UX** — **DECISION: Add `python -m app.local_setup` pre-download script.** Silent multi-GB downloads on first request are unacceptable. Script should download the model, verify it, and exit cleanly. Target: Phase 0.
 
-5. **`starlette` deprecation warning** — tests emit `StarletteDeprecationWarning: Using httpx with starlette.testclient is deprecated; install httpx2 instead`. Low urgency but will become an error in a future starlette version. Fix: `pip install httpx2` and update `requirements.txt`.
+4. **Two-pass stitching fallback on local tier** — **DECISION: Warning + graceful degradation.** When Gemma is not loaded, log a clear warning, surface `"two_pass_available": false` in the `/status` response, and continue with concatenation. Do not hard-fail. Target: Phase 0.
+
+5. **`starlette` / `httpx` deprecation warning** — **DECISION: Fix it.** Add `httpx2` to `requirements.txt`. Target: Phase 0.
 
 ---
 
@@ -137,3 +139,60 @@ pytest tests/ -v
 ```
 
 **Why `cffi` is now explicit:** The Ubuntu system package `python3-cryptography` ships `_cffi_backend.cpython-312-x86_64-linux-gnu.so` (Python 3.12 only). When running Python 3.11, `cffi` must be pip-installed. `google-auth` depends on `cryptography` which depends on `cffi`; without it, importing `google-genai` panics with a pyo3 rust exception.
+
+---
+
+## 8. Development Roadmap
+
+### Phase 0 — Quick Wins (next session)
+All items are small, touch different files, no dependencies between them.
+
+- [ ] Add `httpx2` to `requirements.txt`; verify all 42 tests still pass
+- [ ] Add `python -m app.local_setup` — pre-download Gemma model, print progress, exit cleanly
+- [ ] Emit `"two_pass_available": false` in `/status` response when Gemma is not loaded; log warning
+- [ ] Update this file to reflect completed items
+
+**HITL gate:** None required — all changes are additive and easily reverted.
+
+### Phase 1 — Test Coverage (1–2 sessions)
+Fill the three highest-risk gaps before any new feature work. Regressions here corrupt output silently.
+
+- [ ] `tests/test_stitcher_json_repair.py` — 4 repair strategies, hallucination detection, Roman numeral normalization, YAML frontmatter shape  *(spawn isolated sub-agent — stitcher.py is 454 lines)*
+- [ ] `tests/test_ocr_retry.py` — 429 backoff sequence, max-retries exhaustion, failed-page logging
+- [ ] `tests/test_upload_api.py` — cache hit path, invalid MIME rejection, metadata edge cases
+- [ ] `tests/test_google_vision.py` — model fallback chain (404 → retry → all fail)
+- [ ] Add `httpx2` to `requirements.txt` if not done in Phase 0
+- [ ] Move `REPAIR_TARGETS` from `stitcher.py` hardcode to `config.py`
+
+**HITL gate:** Human reviews assertions in `test_stitcher_json_repair.py` before merge — these define the correctness contract for the most complex logic in the codebase.
+
+**Multi-agent note:** `test_stitcher_json_repair.py` and `test_ocr_retry.py` touch different modules and can be written by parallel sub-agents in the same session.
+
+### Phase 2 — Feature Hardening (2–3 sessions)
+Prerequisites for any public-facing use. Auth before Postgres; Postgres before tier UI.
+
+- [ ] **Auth** — JWT or API key on `/upload` and `/status`; job ownership enforcement  *(HITL: human approves auth model before implementation)*
+- [ ] **Postgres** — persistent job history (replaces volatile Redis + localStorage as source of truth)  *(HITL: human approves schema before migration)*
+- [ ] **Frontend tier selector** — Free / Pro / Local picker in MetadataModal; passes `tier` field to `POST /upload`
+- [ ] **Metadata validation** — Pydantic schema for `title`, `volume`, `issue`, `date`; structured 422 errors
+
+### Phase 3 — Observability (1–2 sessions)
+- [ ] Prometheus exporters for FastAPI + Celery
+- [ ] Grafana dashboard: Queue Depth, OCR Error Rate, Latency P95
+- [ ] Alerting: worker crash, Gemini error rate > 5%, DLQ depth > 10
+- [ ] Rate limiting on `/upload` via Redis token bucket
+- [ ] Circuit breaker on Gemini API calls
+
+### Phase 4 — Scale & Enterprise (ongoing)
+- [ ] Private Cloud tier (Gemma 4 27B on CleanOCR GPU infra) — blocked on revenue
+- [ ] Cloud storage (S3/GCS for `uploads/` + `workspaces/`)
+- [ ] IaC (Terraform)
+- [ ] Load testing (50+ concurrent jobs)
+- [ ] Confidence scoring + HITL review queue in frontend
+- [ ] Full-text search across extracted documents
+
+### Session Strategy
+- One phase = one session maximum. Split if scope grows.
+- HANDOFF_CONTEXT.md must be updated and committed before any session ends.
+- When a source file is >200 lines, spawn an isolated sub-agent rather than loading it into the main context.
+- HITL gates listed above are non-negotiable human review points before merge.
