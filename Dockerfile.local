@@ -1,0 +1,33 @@
+# Self-hosted tier image.
+# Extends the base image with GPU-enabled PyTorch, Surya OCR, and Gemma.
+#
+# Uses the CUDA 12.1 base so torch can see the GPU.
+# CPU-only users can replace the FROM line with python:3.11-slim and remove
+# the CUDA references — everything will still work, just slower.
+
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3-pip \
+    python3.11-dev \
+    poppler-utils \
+    libmagic1 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/python3.11 /usr/bin/python
+
+WORKDIR /app
+
+# Install base dependencies first (better layer caching)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install local-tier extras
+COPY requirements-local.txt .
+RUN pip install --no-cache-dir -r requirements-local.txt
+
+COPY . .
+
+CMD ["python", "-m", "app.main"]
