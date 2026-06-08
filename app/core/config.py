@@ -34,7 +34,15 @@ FINAL_MARKDOWN_FOLDER = "CleanOCR_Finalv2"
 LOG_FILE = "failed_pages.log"
 
 # --- CONFIG ---
-MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.0-flash")
+# Active tier: "standard" uses MODEL_NAME, "pro" uses PRO_MODEL_NAME.
+OCR_TIER = os.getenv("OCR_TIER", "standard")
+# Primary model (standard tier). Gemini 2.0 Flash was shut down June 1, 2026.
+MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash-lite")
+# Upgraded model for pro-tier users (selected when OCR_TIER=pro).
+PRO_MODEL_NAME = os.getenv("PRO_MODEL_NAME", "gemini-3.1-flash-lite")
+# Fallback if the active model is unavailable. Must differ from MODEL_NAME
+# for the fallback to engage; defaults to the heavier non-lite variant.
+FALLBACK_MODEL_NAME = os.getenv("FALLBACK_MODEL_NAME", "gemini-2.5-flash")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
 

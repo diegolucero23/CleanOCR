@@ -222,7 +222,10 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 |----------|---------|-------------|
 | `GOOGLE_API_KEY` | *(required)* | Gemini API key. Set to `MOCK_KEY_DO_NOT_CHARGE` to activate mock mode |
 | `REDIS_URL` | `redis://redis:6379/0` | Celery broker + backend URL |
-| `MODEL_NAME` | `gemini-2.0-flash` | Gemini model identifier |
+| `OCR_TIER` | `standard` | `standard` uses `MODEL_NAME`; `pro` uses `PRO_MODEL_NAME`. |
+| `MODEL_NAME` | `gemini-2.5-flash-lite` | Model used for standard tier. |
+| `PRO_MODEL_NAME` | `gemini-3.1-flash-lite` | Model used when `OCR_TIER=pro`. |
+| `FALLBACK_MODEL_NAME` | `gemini-2.5-flash` | Auto-fallback on 404 (deprecated/missing model). Must differ from the active model to engage. |
 | `WORKSPACES_DIR` | `workspaces` | Root directory for per-job sandboxes |
 | `UPLOAD_DIR` | `uploads` | Where raw PDFs are stored |
 | `WORKSPACE_TTL_HOURS` | `24` | Hours before a job workspace is deleted by cleanup task. `0` disables cleanup |

@@ -36,6 +36,7 @@ test_images/
 !pie_in_the_sky.md
 !implementation_plan.md
 !walkthrough.md
+!HANDOFF_CONTEXT.md
 *.log
 error_log.txt
 debug_log.txt
