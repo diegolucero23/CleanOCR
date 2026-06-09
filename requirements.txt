@@ -18,3 +18,4 @@ kombu
 # google-auth → cryptography → _cffi_backend requires cffi on Python 3.11;
 # the system package is compiled for 3.12 and is not usable here.
 cffi
+httpx2

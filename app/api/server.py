@@ -14,7 +14,7 @@ except ImportError:
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from pythonjsonlogger import jsonlogger
+from pythonjsonlogger import json as jsonlogger
 from redis import Redis
 from app.workers.celery_worker import run_ocr_pipeline
 from celery.result import AsyncResult
@@ -232,6 +232,24 @@ def _build_status_payload(job_id: str) -> dict:
         response["message"] = "Pipeline failed or encountered an error."
 
     return response
+
+
+@app.get("/system-status")
+async def system_status():
+    """Return tier configuration and Gemma availability for the local tier."""
+    from app.services.gemma_provider import is_gemma_loaded
+    tier = config.OCR_TIER
+    gemma_ready = is_gemma_loaded()
+    if tier == "local" and not gemma_ready:
+        logger.warning(
+            "OCR_TIER=local but Gemma model is not loaded. "
+            "Run 'python -m app.local_setup' to pre-download the model."
+        )
+    return {
+        "tier": tier,
+        "two_pass_available": tier == "local" and gemma_ready,
+        "gemma_model": config.LOCAL_GEMMA_MODEL if tier == "local" else None,
+    }
 
 
 @app.get("/status/{job_id}")
