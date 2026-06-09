@@ -1,7 +1,7 @@
 # CleanOCR — Session Handoff Context
 **Date:** 2026-06-08  
-**Branch:** `claude/handoff-context-review-RSsh8`  
-**Status:** Changes committed & pushed. All 42 tests passing. Next session picks up from here.
+**Branch:** `main`  
+**Status:** Phase 0 complete. All 42 tests passing. Next session: Phase 1 test coverage.
 
 ---
 
@@ -147,10 +147,10 @@ pytest tests/ -v
 ### Phase 0 — Quick Wins (next session)
 All items are small, touch different files, no dependencies between them.
 
-- [ ] Add `httpx2` to `requirements.txt`; verify all 42 tests still pass
-- [ ] Add `python -m app.local_setup` — pre-download Gemma model, print progress, exit cleanly
-- [ ] Emit `"two_pass_available": false` in `/status` response when Gemma is not loaded; log warning
-- [ ] Update this file to reflect completed items
+- [x] Add `httpx` to `requirements.txt`; verify all 42 tests still pass
+- [x] Add `python -m app.local_setup` — pre-download Gemma model, print progress, exit cleanly (`app/local_setup.py`)
+- [x] Emit `"two_pass_available": false` in `GET /system-status`; `is_gemma_loaded()` helper in `gemma_provider.py`; logs WARNING if `OCR_TIER=local` but model not loaded
+- [x] Update this file to reflect completed items
 
 **HITL gate:** None required — all changes are additive and easily reverted.
 

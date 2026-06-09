@@ -7,6 +7,11 @@ logger = logging.getLogger(__name__)
 _instance: Optional["GemmaTextProvider"] = None
 
 
+def is_gemma_loaded() -> bool:
+    """Return True if the Gemma singleton is instantiated and the model pipeline is loaded."""
+    return _instance is not None and _instance._pipeline is not None
+
+
 def get_gemma_provider() -> "GemmaTextProvider":
     """Return a module-level singleton so the model is loaded at most once."""
     global _instance

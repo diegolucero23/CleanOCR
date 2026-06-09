@@ -8,7 +8,7 @@ from celery import Celery, chord
 from celery.schedules import crontab
 from celery.signals import task_failure
 from kombu import Queue
-from pythonjsonlogger import jsonlogger
+from pythonjsonlogger import json as jsonlogger
 from app.core import config
 
 # Import processing logic
