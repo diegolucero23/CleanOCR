@@ -1,6 +1,6 @@
 # CleanOCR: Cloud-Native Historical Text Extraction
 
-**CleanOCR** is a production-hardened platform for extracting high-fidelity text from complex historical documents (19th-century newspapers) using **Google Gemini 2.0 Flash Vision**.
+**CleanOCR** is a production-hardened platform for extracting high-fidelity text from complex historical documents (19th-century newspapers) using **Google Gemini Vision** (2.5 Flash Lite / 3.1 Flash Lite).
 
 It features a modern **React Console**, a scalable **FastAPI/Celery Backend**, and real-time processing capabilities.
 
@@ -51,19 +51,33 @@ For engineers who want full control.
 
 ### 1. Prerequisites
 *   **Docker & Docker Compose**
+*   **Node.js 18+** (for the frontend dev server)
 *   **Google GenAI API Key** (Set in `.env`)
 
-### 2. Run the Stack
+### 2. Start the Backend (Docker)
 ```bash
 # 1. Clone & Setup Secrets
 cp .env.example .env
 # (Edit .env with your API Key)
 
-# 2. Launch (Builds everything)
+# 2. Launch API + Worker + Redis
 docker-compose up --build
 ```
-Access the console at: **http://localhost:5173**
-API Documentation at: **http://localhost:8000/docs**
+API live at: **http://localhost:8000**  
+API docs at: **http://localhost:8000/docs**
+
+### 3. Start the Frontend (Vite dev server)
+
+The React frontend runs **outside Docker** as a local Vite dev server:
+
+```bash
+cd frontend
+npm install      # first time only
+npm run dev
+```
+Frontend live at: **http://localhost:5173**
+
+> The frontend proxies API calls to `localhost:8000`, so the Docker backend must be running first.
 
 ---
 
