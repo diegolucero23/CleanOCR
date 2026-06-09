@@ -10,3 +10,22 @@ page_009.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (
 page_010.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
 page_011.png|name 'Any' is not defined
 page_012.png|cannot import name 'get_provider' from 'app.services.ocr_factory' (/app/app/services/ocr_factory.py)
+page_031.png|[SSL: UNEXPECTED_EOF_WHILE_READING] unexpected eof while reading (_ssl.c:2590)
+page_011.png|Max Retries Exceeded
+page_015.png|Max Retries Exceeded
+page_027.png|Max Retries Exceeded
+page_029.png|Max Retries Exceeded
+page_025.png|Max Retries Exceeded
+page_030.png|Max Retries Exceeded
+page_024.png|Max Retries Exceeded
+page_022.png|Max Retries Exceeded
+page_028.png|Max Retries Exceeded
+page_011.png|Max Retries Exceeded
+page_019.png|Max Retries Exceeded
+page_020.png|Max Retries Exceeded
+page_010.png|Max Retries Exceeded
+page_022.png|Max Retries Exceeded
+page_026.png|Max Retries Exceeded
+page_027.png|Max Retries Exceeded
+page_014.png|Max Retries Exceeded
+page_030.png|Max Retries Exceeded

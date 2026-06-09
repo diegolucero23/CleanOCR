@@ -32,6 +32,7 @@
 
 ### Test File
 **Filename:** `BetterUp_AI 1.0 Pilots and Passengers (1).pdf`  
+**Original Job ID:** 7c7bd0a8-8d28-4176-8542-a60b54fb4884  
 **Location:** User's `Downloads/` folder  
 **Size:** 47.2 MB  
 **Pages:** 33  
@@ -59,7 +60,7 @@ These are confirmed production gaps discovered during the live test. All are can
 ### Gap 1 — Embedded-Text PDFs Run Full OCR Pipeline Unnecessarily
 PDFs exported from PowerPoint, Word, or slide editors have perfectly good embedded/selectable text. CleanOCR always rasterizes to 300 DPI images and sends them to Gemini Vision regardless, wasting 18+ minutes and significant API cost on a file that could be extracted in seconds.
 
-**Fix:** Add a pre-flight check using `pypdf` or `pdfminer.six` before the PDF burst step. If >80% of pages have extractable text, bypass OCR entirely and write per-page JSON directly. Surface `"text_native": true` in the job status payload.  
+**Fix:** Prompt user, ask if they want to run full OCR or extract text directly. If they choose direct extraction, add a pre-flight check using `pypdf` or `pdfminer.six` before the PDF burst step. If >80% of pages have extractable text, bypass OCR entirely and write per-page JSON directly. Surface `"text_native": true` in the job status payload.  
 **Target:** Phase 1 or Phase 2.
 
 ### Gap 2 — Silent OCR Failure in `ocr_page_task`
