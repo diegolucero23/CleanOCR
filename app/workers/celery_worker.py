@@ -116,7 +116,7 @@ def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, o
     After max_retries, the task_failure signal fires and the job is DLQ'd.
     """
     try:
-        batch_ocr.process_single_image((img_filename, 1, 0, input_images_dir, ocr_json_dir))
+        batch_ocr.process_single_image((img_filename, 1, 0, input_images_dir, ocr_json_dir, job_id))
 
         r = redis.Redis.from_url(celery_app.conf.broker_url)
         r.incr(f"cache:{job_id}:completed_pages")

@@ -98,3 +98,7 @@ STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
 # How many hours to retain completed/failed job workspaces before deletion.
 # Set to 0 to disable automatic cleanup.
 WORKSPACE_TTL_HOURS = int(os.getenv("WORKSPACE_TTL_HOURS", "24"))
+
+# --- REPAIR TARGETS ---
+# Pages that are known to need manual OCR repair (used by stitcher audit + repair script).
+REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]

@@ -19,11 +19,17 @@ def repair_from_log():
         lines = f.readlines()
 
     # Filter out empty lines and parse filenames
-    # The log format is: filename|reason
+    # New log format: job_id|ISO-timestamp|filename|reason
+    # Legacy format:  filename|reason  (2 fields — kept for backward compat)
     targets = []
     for line in lines:
-        if "|" in line:
-            targets.append(line.split("|")[0].strip())
+        parts = line.split("|")
+        if len(parts) >= 4:
+            # New format: job_id|timestamp|filename|reason
+            targets.append(parts[2].strip())
+        elif len(parts) == 2:
+            # Legacy format: filename|reason
+            targets.append(parts[0].strip())
 
     # Remove duplicates
     targets = sorted(list(set(targets)))

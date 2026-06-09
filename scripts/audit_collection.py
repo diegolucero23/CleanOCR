@@ -1,12 +1,14 @@
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from app.core import config
 
 # --- CONFIGURATION ---
 MARKDOWN_FOLDER = "CleanOCR_Final"  # Where your stitched files are
 TOTAL_EXPECTED_PAGES = 384
 MIN_PAGE_CHARS = 200  # Threshold: pages with fewer chars than this are flagged as "Low Content"
-# The files that failed previously (to specifically verify them)
-REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]
+REPAIR_TARGETS = config.REPAIR_TARGETS
 
 def main():
     print("--- STARTING DATA INTEGRITY AUDIT (FIXED) ---\n")
