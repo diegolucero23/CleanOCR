@@ -38,6 +38,7 @@ test_images/
 !walkthrough.md
 !HANDOFF_CONTEXT.md
 !SECURITY_AUDIT.md
+!.claude/skills/**/SKILL.md
 *.log
 error_log.txt
 debug_log.txt

@@ -2,10 +2,11 @@ version: '3.8'
 
 services:
   # 1. The Message Broker
+  # No published ports: web and worker reach it via the compose network
+  # ("redis:6379"). Publishing it would expose an unauthenticated Redis —
+  # and the Celery task queue — to the host/LAN.
   redis:
     image: redis:alpine
-    ports:
-      - "6379:6379"
 
 # 2. The Web Server (FastAPI)
   web:
@@ -14,7 +15,10 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      # Loopback-only: the API has no authentication, so it must not be
+      # reachable from the network. Change to "8000:8000" only behind a
+      # reverse proxy that adds auth.
+      - "127.0.0.1:8000:8000"
     environment:
       - POPPLER_PATH=None
     # --- ADD THIS SECTION ---

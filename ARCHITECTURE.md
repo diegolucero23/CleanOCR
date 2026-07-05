@@ -229,6 +229,8 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | `WORKSPACES_DIR` | `workspaces` | Root directory for per-job sandboxes |
 | `UPLOAD_DIR` | `uploads` | Where raw PDFs are stored |
 | `WORKSPACE_TTL_HOURS` | `24` | Hours before a job workspace is deleted by cleanup task. `0` disables cleanup |
+| `MAX_UPLOAD_MB` | `100` | Reject uploads larger than this (streamed size cap on `/upload`) |
+| `MAX_PDF_PAGES` | `500` | Reject PDFs with more pages than this before any OCR is dispatched |
 | `POPPLER_PATH` | `None` (Linux) | Path to Poppler binaries; only needed on Windows |
 | `OVERRIDE_IMAGE_FOLDER` | `output_images` | Experiment override for image output dir |
 | `OVERRIDE_OCR_JSON_FOLDER` | `ocr_jsonv2` | Experiment override for OCR JSON dir |

@@ -1,14 +1,18 @@
 # Self-hosted tier dependencies (OCR_TIER=local).
 # Install alongside the base requirements:
-#   pip install -r requirements.txt -r requirements-local.txt
+#   pip install -r requirements.txt -r requirements-local.txt -c constraints.txt
 #
 # GPU recommended. CPU-only works but is slow.
 # Minimum VRAM for google/gemma-4-E4B-it: ~6-8 GB (fp16).
+#
+# Exact pins (resolved together on Python 3.11). transformers is kept on the
+# 4.x series the code was written against; verify gemma_provider.py's
+# pipeline() kwargs before moving to transformers 5.x.
 
 # --- OCR ---
-surya-ocr
+surya-ocr==0.20.0
 
 # --- Local LLM (Gemma structuring + boundary stitching) ---
-transformers>=4.47.0
-accelerate>=0.34.0
-torch>=2.3.0
+transformers==4.57.6
+accelerate==1.14.0
+torch==2.12.1
