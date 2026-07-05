@@ -37,6 +37,7 @@ Designed for usage without touching the command line.
 *   Double-click **`start.bat`** (Windows) or **`start.sh`** (Mac/Linux).
 *   *First Run:* It will create a `.env` file and ask you to paste your Google API Key.
 *   Open `.env` with Notepad, paste your key (`GOOGLE_API_KEY=AI...`), and save.
+*   🔒 Restrict the key to the Generative Language API only, and never commit `.env` — see [SECURITY.md](SECURITY.md) for key scoping, secret scanning, and the built-in API spend caps.
 
 **3. Launch**
 *   Double-click **`start.bat`** again.

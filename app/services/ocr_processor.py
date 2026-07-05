@@ -9,6 +9,8 @@ from google.genai.errors import ClientError
 import PIL.Image
 from app.core import config
 from app.core import prompts
+from app.core.cost_guard import BudgetExceededError
+from app.core.secrets import redact
 
 # --- CONFIGURATION ---
 # --- CONFIGURATION ---
@@ -68,11 +70,16 @@ def process_single_image(args):
                 time.sleep(wait_time)
                 retry_count += 1
             else:
-                log_failure(filename, str(e))
-                return f"[{index+1}/{total_files}] ❌ Failed (API): {filename} - {e}"
-        except Exception as e:
+                log_failure(filename, redact(e))
+                return f"[{index+1}/{total_files}] ❌ Failed (API): {filename} - {redact(e)}"
+        except BudgetExceededError as e:
+            # Spend cap hit: fail the page immediately — retrying would only
+            # burn the backoff budget, the cap won't reset mid-run.
             log_failure(filename, str(e))
-            return f"[{index+1}/{total_files}] ❌ Failed (Local): {filename} - {e}"
+            return f"[{index+1}/{total_files}] ❌ Failed (Budget): {filename} - {e}"
+        except Exception as e:
+            log_failure(filename, redact(e))
+            return f"[{index+1}/{total_files}] ❌ Failed (Local): {filename} - {redact(e)}"
             
     log_failure(filename, "Max Retries Exceeded")
     return f"[{index+1}/{total_files}] ❌ Failed (Max Retries): {filename}"

@@ -11,6 +11,29 @@ name: CI/CD Pipeline
 
 jobs:
   # ---------------------------------------------------------------------------
+  # secret-scan — fail the build if any commit contains key-shaped strings.
+  # Backstop for the local pre-commit gitleaks hook (.pre-commit-config.yaml);
+  # allowlist for mocks and the revoked-key history lives in .gitleaks.toml.
+  # ---------------------------------------------------------------------------
+  secret-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        env:
+          GITLEAKS_VERSION: "8.24.3"
+        run: |
+          curl -sSfL -o gitleaks.tar.gz \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          tar -xzf gitleaks.tar.gz gitleaks
+          ./gitleaks git --redact --verbose --exit-code 1 .
+
+  # ---------------------------------------------------------------------------
   # test — run the full pytest suite against a live Redis service
   # ---------------------------------------------------------------------------
   test:

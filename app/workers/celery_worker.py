@@ -10,6 +10,7 @@ from celery.signals import task_failure
 from kombu import Queue
 from pythonjsonlogger import json as jsonlogger
 from app.core import config
+from app.core.secrets import SecretRedactingFilter, redact
 
 # Import processing logic
 from app.services import pdf_converter as convert_pdf
@@ -25,6 +26,7 @@ formatter = jsonlogger.JsonFormatter(
     "%(timestamp)s %(level)s %(message)s %(module)s %(funcName)s"
 )
 logHandler.setFormatter(formatter)
+logHandler.addFilter(SecretRedactingFilter())
 logger.addHandler(logHandler)
 logger.setLevel(logging.INFO)
 
@@ -77,7 +79,7 @@ def on_task_failure(sender, task_id, exception, args, kwargs, traceback, einfo, 
         "task_id": task_id,
         "task_name": task_name,
         "exception_type": type(exception).__name__,
-        "exception_message": str(exception),
+        "exception_message": redact(exception),
         "args": list(args) if args else [],
         "kwargs": kwargs or {},
         "failed_at": time.time(),
@@ -96,7 +98,7 @@ def on_task_failure(sender, task_id, exception, args, kwargs, traceback, einfo, 
         extra={
             "task_id": task_id,
             "task_name": task_name,
-            "exception": str(exception),
+            "exception": redact(exception),
         },
     )
 
@@ -210,7 +212,7 @@ def run_ocr_pipeline(self, job_id: str, pdf_path: str, file_hash: str = None, me
         return {"status": "dispatched", "job_id": job_id}
 
     except Exception as e:
-        logger.error("Job failed", extra={"job_id": job_id, "error": str(e)}, exc_info=True)
+        logger.error("Job failed", extra={"job_id": job_id, "error": redact(e)}, exc_info=True)
         r = redis.Redis.from_url(celery_app.conf.broker_url)
         r.set(f"cache:{job_id}:status", "failed")
         raise e

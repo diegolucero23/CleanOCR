@@ -1,6 +1,10 @@
 # Secrets
 .env
 .env.*
+# Tracked exceptions: the template (placeholders only) and the redteam
+# config (mock values only — MOCK_KEY_DO_NOT_CHARGE). Real keys go in .env.
+!.env.example
+!.env.redteam
 
 # System / IDE
 __pycache__/
@@ -38,6 +42,7 @@ test_images/
 !walkthrough.md
 !HANDOFF_CONTEXT.md
 !SECURITY_AUDIT.md
+!SECURITY.md
 !.claude/skills/**/SKILL.md
 *.log
 error_log.txt

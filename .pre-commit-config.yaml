@@ -1,0 +1,13 @@
+# Blocks commits containing key-shaped strings (Google API keys, tokens,
+# private keys, ...) before they ever reach git history.
+#
+# One-time setup per clone:
+#   pip install pre-commit && pre-commit install
+#
+# CI runs the same scan (secret-scan job in .github/workflows/ci.yml) as a
+# backstop for clones without the hook installed. Config: .gitleaks.toml
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
