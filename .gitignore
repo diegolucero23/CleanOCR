@@ -37,6 +37,7 @@ test_images/
 !implementation_plan.md
 !walkthrough.md
 !HANDOFF_CONTEXT.md
+!SECURITY_AUDIT.md
 *.log
 error_log.txt
 debug_log.txt
