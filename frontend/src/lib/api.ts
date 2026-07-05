@@ -7,6 +7,23 @@ const API = axios.create({
     }
 });
 
+export interface IngestionLimits {
+    max_upload_mb: number;
+    max_pdf_pages: number;
+    max_page_pixels: number;
+    render_dpi: number;
+    accepted_types: string[];
+    stream_base_budget_seconds: number;
+    stream_page_budget_seconds: number;
+}
+
+export interface JobExpectations {
+    page_count: number;
+    estimated_max_processing_seconds: number;
+    stream_timeout_seconds: number;
+    limits: IngestionLimits;
+}
+
 export interface JobResponse {
     status: string;
     job_id: string;
@@ -18,6 +35,7 @@ export interface JobResponse {
     file_size?: number;
     processing_time?: number;
     complexity?: number;
+    expectations?: JobExpectations;
 }
 
 interface UploadMetadata {
@@ -52,12 +70,24 @@ export const pollJobStatus = async (jobId: string): Promise<JobResponse> => {
 };
 
 /**
+ * Fetch the server's ingestion limits (max upload size, page count,
+ * page dimensions) and streaming budgets, so the UI can disclose them
+ * before the user picks a file. Matches GET /limits on the backend.
+ */
+export const fetchLimits = async (): Promise<IngestionLimits> => {
+    const response = await API.get<IngestionLimits>('/limits');
+    return response.data;
+};
+
+/**
  * Subscribe to live job status updates via SSE.
  * Returns a cleanup function that closes the connection.
  *
  * The stream closes automatically on the server side when the job
- * reaches a terminal state (completed / failed), but the cleanup
- * function should still be called on unmount.
+ * reaches a terminal state (completed / failed) or when the stream's
+ * time budget expires (status 'stream_timeout' — the job itself may
+ * still be running; the caller should fall back to /status polling).
+ * The cleanup function should still be called on unmount.
  */
 export const subscribeToJobStatus = (
     jobId: string,
@@ -70,7 +100,7 @@ export const subscribeToJobStatus = (
         try {
             const data: JobResponse = JSON.parse(event.data);
             onUpdate(data);
-            if (data.status === 'completed' || data.status === 'failed') {
+            if (data.status === 'completed' || data.status === 'failed' || data.status === 'stream_timeout') {
                 source.close();
             }
         } catch (e) {

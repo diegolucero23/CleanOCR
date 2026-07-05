@@ -15,10 +15,26 @@ interface JobCardProps {
     file_size?: number;
     processing_time?: number;
     complexity?: number;
+    page_count?: number;
+    expected_seconds?: number;
     onClick?: () => void;
 }
 
-export function JobCard({ job_id, filename, status, progress, message, file_size, processing_time, complexity, onClick }: JobCardProps) {
+function formatDuration(seconds: number): string {
+    if (seconds >= 3600) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.round((seconds % 3600) / 60);
+        return m > 0 ? `${h}h ${m}m` : `${h}h`;
+    }
+    if (seconds >= 60) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.round(seconds % 60);
+        return s > 0 ? `${m}m ${s}s` : `${m}m`;
+    }
+    return `${Math.round(seconds)}s`;
+}
+
+export function JobCard({ job_id, filename, status, progress, message, file_size, processing_time, complexity, page_count, expected_seconds, onClick }: JobCardProps) {
     return (
         <motion.div
             layout
@@ -74,6 +90,23 @@ export function JobCard({ job_id, filename, status, progress, message, file_size
                         )}>
                             {message || status}
                         </p>
+                    )}
+
+                    {/* Expectations disclosed at upload: shown while the job
+                        is live so the user knows the worst-case wait. */}
+                    {(status === "queued" || status === "processing") && (page_count || expected_seconds) && (
+                        <div className="flex gap-2 mt-2 flex-wrap">
+                            {page_count != null && (
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-secondary text-secondary-foreground border">
+                                    {page_count} {page_count === 1 ? "page" : "pages"}
+                                </span>
+                            )}
+                            {expected_seconds != null && (
+                                <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-secondary text-secondary-foreground border">
+                                    est. ≤ {formatDuration(expected_seconds)}
+                                </span>
+                            )}
+                        </div>
                     )}
 
                     {status === "completed" && (

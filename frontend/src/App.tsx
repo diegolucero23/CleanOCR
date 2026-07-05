@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
-import { uploadFile, subscribeToJobStatus } from './lib/api';
+import { uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, type IngestionLimits } from './lib/api';
 import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
 import { OnboardingSteps } from './components/OnboardingSteps';
 import { EmptyState } from './components/EmptyState';
@@ -15,6 +15,16 @@ function App() {
   const [selectedJob, setSelectedJob] = useState<PersistedJob | null>(null);
   const [metadataFile, setMetadataFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [limits, setLimits] = useState<IngestionLimits | null>(null);
+
+  // Fetch server-disclosed ingestion limits once, so the upload UI shows
+  // the caps the backend actually enforces (older backends without
+  // /limits just leave the generic copy in place).
+  useEffect(() => {
+    fetchLimits()
+      .then(setLimits)
+      .catch((e) => console.warn('Could not fetch ingestion limits:', e));
+  }, []);
 
   // Derived State: The "Active" job is the most recent one if it's still processing
   const activeJob = useMemo(() => {
@@ -24,11 +34,15 @@ function App() {
   // SSE Effect: open one EventSource per active job; reuse existing connections
   // across re-renders so we never needlessly reconnect.
   const activeStreams = useRef<Map<string, () => void>>(new Map());
+  // Jobs whose live stream hit the server's time budget: we fall back to
+  // showing the last polled state instead of re-opening a stream, otherwise
+  // a very slow job would reconnect in a loop forever.
+  const timedOutStreams = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     const incompleteIds = new Set(
       history
-        .filter(j => ['queued', 'processing'].includes(j.status))
+        .filter(j => ['queued', 'processing'].includes(j.status) && !timedOutStreams.current.has(j.id))
         .map(j => j.id)
     );
 
@@ -47,6 +61,30 @@ function App() {
         const close = subscribeToJobStatus(
           job.id,
           (result) => {
+            if (result.status === 'stream_timeout') {
+              // The live view expired (job may still be running). Do one
+              // final /status poll so the card shows the latest real state,
+              // and don't re-open a stream for this job.
+              timedOutStreams.current.add(job.id);
+              activeStreams.current.delete(job.id);
+              pollJobStatus(job.id)
+                .then((latest) => {
+                  const stillRunning = ['queued', 'processing'].includes(latest.status);
+                  addOrUpdateJob({
+                    ...job,
+                    status: latest.status as JobStatus,
+                    progress: latest.progress || job.progress,
+                    resultMessage: stillRunning
+                      ? 'Live view expired — the job is still running in the background. Refresh the page to check on it.'
+                      : latest.message,
+                    markdown: latest.markdown,
+                    processing_time: latest.processing_time,
+                    complexity: latest.complexity,
+                  });
+                })
+                .catch((e) => console.warn(`Post-timeout status poll failed for ${job.id}`, e));
+              return;
+            }
             addOrUpdateJob({
               id: job.id,
               uploaded_filename: job.uploaded_filename,
@@ -69,12 +107,20 @@ function App() {
         activeStreams.current.set(job.id, close);
       });
 
-    // On unmount close all open streams
+  }, [history, addOrUpdateJob]);
+
+  // On unmount close all open streams. This must NOT be the cleanup of the
+  // effect above: that cleanup runs on every history update, which would
+  // close and reopen every SSE connection each time an event arrives —
+  // defeating connection reuse and resetting the server's per-stream time
+  // budget on every reconnect.
+  useEffect(() => {
     return () => {
       activeStreams.current.forEach(close => close());
       activeStreams.current.clear();
     };
-  }, [history, addOrUpdateJob]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFileSelect = (file: File) => {
     setMetadataFile(file); // Triggers Modal
@@ -88,14 +134,17 @@ function App() {
       // 1. Upload
       const response = await uploadFile(file, meta, skip);
 
-      // 2. Add Job
+      // 2. Add Job (carry the server-disclosed expectations so the card
+      // can show page count and the worst-case processing budget)
       const realJob: PersistedJob = {
         id: response.job_id,
         uploaded_filename: file.name,
         status: 'queued',
         progress: 0,
         timestamp: Date.now(),
-        resultMessage: 'Upload complete. Waiting for worker...'
+        resultMessage: 'Upload complete. Waiting for worker...',
+        page_count: response.expectations?.page_count,
+        expected_seconds: response.expectations?.stream_timeout_seconds,
       };
 
       addOrUpdateJob(realJob);
@@ -142,7 +191,7 @@ function App() {
 
           <OnboardingSteps />
 
-          <UploadZone onFileSelect={handleFileSelect} isUploading={isUploading} />
+          <UploadZone onFileSelect={handleFileSelect} isUploading={isUploading} limits={limits} />
 
           {/* Active Job Status */}
           <AnimatePresence>
@@ -162,6 +211,8 @@ function App() {
                   file_size={activeJob.file_size}
                   processing_time={activeJob.processing_time}
                   complexity={activeJob.complexity}
+                  page_count={activeJob.page_count}
+                  expected_seconds={activeJob.expected_seconds}
                   onClick={() => activeJob.status === 'completed' && setSelectedJob(activeJob)}
                 />
               </motion.div>
@@ -194,6 +245,8 @@ function App() {
                     file_size={job.file_size}
                     processing_time={job.processing_time}
                     complexity={job.complexity}
+                    page_count={job.page_count}
+                    expected_seconds={job.expected_seconds}
                     onClick={() => job.status === 'completed' && setSelectedJob(job)}
                   />
                 ))}
