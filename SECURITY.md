@@ -39,10 +39,10 @@ accounts, GitHub/Slack/Stripe tokens, private keys, …) from entering history:
    [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs gitleaks over
    the full git history on every push/PR and fails the build on a hit.
 
-Shared config: [`.gitleaks.toml`](.gitleaks.toml). It allowlists the known
-mock/dummy values and the five January 2026 commits containing the **old,
-revoked** key (see §5) — nothing else. If gitleaks blocks your commit, the
-fix is to move the value into `.env`, not to extend the allowlist.
+Shared config: [`.gitleaks.toml`](.gitleaks.toml). It allowlists only the
+known mock/dummy values — the full git history scans clean (see §5), so any
+gitleaks hit is a **new** leak. If gitleaks blocks your commit, the fix is
+to move the value into `.env`, not to extend the allowlist.
 
 ## 3. Key scoping (do this in the Google console)
 
@@ -89,11 +89,23 @@ to that surface:
 
 ## 5. Known historical exposure & rotation procedure
 
-**Status:** an old Gemini key was hardcoded in scripts committed January 2026
-(commits `07548ef`, `dc79b51`, `bd036d4`, `c72b6ba`; removed in `2d2467a`).
-It is still retrievable from git history in every clone. The owner confirmed
-it was **revoked and replaced** (SECURITY_AUDIT.md, remediation #1). The
-current key has never been committed.
+**Status: fully remediated.** An old Gemini key was hardcoded in scripts
+committed January 2026. It was **revoked and replaced** (SECURITY_AUDIT.md,
+remediation #1), and in July 2026 the repository history was **rewritten to
+purge it** — the leaking commits no longer exist on the remote, all commit
+SHAs from that era changed, and a full-history gitleaks scan is clean with
+no commit allowlist. The current key has never been committed.
+
+Consequences of the rewrite:
+
+- **Clones made before July 2026 are stale and still contain the old key
+  in their object store.** Do not fetch/merge across the rewrite — delete
+  the stale clone and `git clone` fresh (or `git fetch origin && git
+  checkout -B main origin/main && git reflog expire --expire=now --all &&
+  git gc --prune=now`).
+- The old key itself remains permanently compromised regardless of the
+  rewrite (it lived in public history and in old clones) — its revocation,
+  not the rewrite, is what made it safe.
 
 If any key is ever exposed again:
 

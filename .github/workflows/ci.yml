@@ -13,7 +13,8 @@ jobs:
   # ---------------------------------------------------------------------------
   # secret-scan — fail the build if any commit contains key-shaped strings.
   # Backstop for the local pre-commit gitleaks hook (.pre-commit-config.yaml);
-  # allowlist for mocks and the revoked-key history lives in .gitleaks.toml.
+  # the mock-value allowlist lives in .gitleaks.toml. History was rewritten
+  # in July 2026 to purge an old revoked key, so full-history scans are clean.
   # ---------------------------------------------------------------------------
   secret-scan:
     runs-on: ubuntu-latest

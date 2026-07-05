@@ -9,6 +9,10 @@ title = "CleanOCR secret scanning"
 # GCP service accounts, GitHub/Slack/Stripe tokens, private keys, etc.)
 useDefault = true
 
+# Note: no commit allowlist is needed. The January 2026 leak of the old
+# (revoked) Gemini key was purged by a full history rewrite in July 2026 —
+# the entire git history scans clean. Any gitleaks hit is a NEW leak: move
+# the value into .env, do not extend this allowlist.
 [allowlist]
 description = "Known non-secret placeholder/mock values used by CI and redteam mode"
 regexes = [
@@ -22,15 +26,4 @@ paths = [
   # Audit report references the historical leak by fingerprint only.
   '''SECURITY_AUDIT\.md''',
   '''frontend/package-lock\.json''',
-]
-# The January 2026 leak of the OLD Gemini key (revoked 2026, see SECURITY.md
-# and SECURITY_AUDIT.md finding #1). These commits are immutable history;
-# allowlisting them keeps full-history scans green without weakening
-# detection of any NEW key that might be committed.
-commits = [
-  "07548ef2f726c3f973dd4bf7dc1f33eab60e9a09",
-  "dc79b5114890f279cf4de41768d802b254c0c180",
-  "bd036d4a33f3e7d794abe32ecea555fa2f1eea28",
-  "c72b6ba9139e29e440014edab8e6c1cbcc0fa3e6",
-  "2d2467a0f4cdf59dc820392f6ed0de054f8accf2",
 ]
