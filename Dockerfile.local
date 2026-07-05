@@ -21,12 +21,12 @@ RUN ln -s /usr/bin/python3.11 /usr/bin/python
 WORKDIR /app
 
 # Install base dependencies first (better layer caching)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt constraints.txt ./
+RUN pip install --no-cache-dir -r requirements.txt -c constraints.txt
 
 # Install local-tier extras
 COPY requirements-local.txt .
-RUN pip install --no-cache-dir -r requirements-local.txt
+RUN pip install --no-cache-dir -r requirements-local.txt -c constraints.txt
 
 COPY . .
 

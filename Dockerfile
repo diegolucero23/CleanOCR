@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # 4. Copy requirements first (to cache dependencies)
-COPY requirements.txt .
+COPY requirements.txt constraints.txt ./
 
-# 5. Install Python libraries
-RUN pip install --no-cache-dir -r requirements.txt
+# 5. Install Python libraries (constraints.txt locks all transitive versions)
+RUN pip install --no-cache-dir -r requirements.txt -c constraints.txt
 
 # 6. Copy the rest of the application code
 COPY . .

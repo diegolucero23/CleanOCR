@@ -2,7 +2,6 @@ import asyncio
 import json
 import logging
 import os
-import shutil
 import time
 import uuid
 import hashlib
@@ -60,13 +59,40 @@ def validate_file_type(file_path):
     """
     if magic is None:
         return file_path.lower().endswith(".pdf")
-        
+
     mime = magic.Magic(mime=True)
     file_type = mime.from_file(file_path)
     if file_type != "application/pdf":
         logger.warning(f"Invalid file type failed validation: {file_type}", extra={"file_path": file_path})
         return False
     return True
+
+def get_pdf_page_count(file_path):
+    """Return the PDF's page count via poppler, or None if it can't be read."""
+    try:
+        from pdf2image import pdfinfo_from_path
+        info = pdfinfo_from_path(file_path, poppler_path=config.POPPLER_PATH)
+        return int(info["Pages"])
+    except Exception as e:
+        logger.warning(f"Could not read PDF page count: {e}", extra={"file_path": file_path})
+        return None
+
+def save_upload_capped(src, dest_path, max_bytes):
+    """
+    Stream the upload to disk in chunks, enforcing a byte cap.
+    Returns True if the whole file fit, False if the cap was exceeded
+    (the partial file is left on disk for the caller to remove).
+    """
+    written = 0
+    with open(dest_path, "wb") as buffer:
+        while True:
+            chunk = src.read(1024 * 1024)
+            if not chunk:
+                return True
+            written += len(chunk)
+            if written > max_bytes:
+                return False
+            buffer.write(chunk)
 
 @app.post("/upload")
 async def upload_pdf(
@@ -94,16 +120,30 @@ async def upload_pdf(
         filename = f"{job_id}.pdf"
         file_path = os.path.join(config.UPLOAD_DIR, filename)
         
-        # Save file temporarily
-        with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-            
-        print("DEBUG: File saved.")
-    
+        # Save file temporarily, enforcing the size cap while streaming
+        max_bytes = config.MAX_UPLOAD_MB * 1024 * 1024
+        if not save_upload_capped(file.file, file_path, max_bytes):
+            os.remove(file_path)
+            raise HTTPException(
+                status_code=413,
+                detail=f"File exceeds the {config.MAX_UPLOAD_MB} MB upload limit.",
+            )
+
         # --- 2. Input Sanitization ---
         if not validate_file_type(file_path):
             os.remove(file_path) # Cleanup
             raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
+
+        page_count = get_pdf_page_count(file_path)
+        if page_count is None:
+            os.remove(file_path)
+            raise HTTPException(status_code=400, detail="Could not read PDF page count; the file may be corrupt.")
+        if page_count > config.MAX_PDF_PAGES:
+            os.remove(file_path)
+            raise HTTPException(
+                status_code=413,
+                detail=f"PDF has {page_count} pages; the limit is {config.MAX_PDF_PAGES}.",
+            )
 
         file_size = os.path.getsize(file_path)
         upload_time = time.time()
@@ -151,6 +191,8 @@ async def upload_pdf(
             "task_id": task.id,
             "message": "File uploaded. Processing started in background."
         }
+    except HTTPException:
+        raise
     except Exception as e:
         import traceback
         traceback.print_exc()

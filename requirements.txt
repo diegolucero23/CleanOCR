@@ -1,21 +1,31 @@
-fastapi
-uvicorn
-python-multipart
-celery
-redis
-google-genai
-pillow
-pdf2image
-python-dotenv
-opencv-python-headless
-numpy
-python-magic
-python-magic-bin; sys_platform == 'win32'
-python-json-logger
-pyyaml
-pytest
-kombu
+# Exact pins, resolved on Python 3.11 (the version used by Dockerfile and CI).
+# Transitive dependencies are locked in constraints.txt — install with:
+#   pip install -r requirements.txt -c constraints.txt
+# To upgrade: bump a pin here, reinstall in a fresh venv, then regenerate
+# constraints.txt with `pip freeze`.
+fastapi==0.139.0
+uvicorn==0.50.0
+python-multipart==0.0.32
+celery==5.6.3
+redis==8.0.1
+google-genai==2.10.0
+pillow==12.3.0
+pdf2image==1.17.0
+python-dotenv==1.2.2
+opencv-python-headless==5.0.0.93
+numpy==2.4.6
+python-magic==0.4.27
+python-magic-bin==0.4.14; sys_platform == 'win32'
+python-json-logger==4.1.0
+pyyaml==6.0.3
+pytest==9.1.1
+kombu==5.6.2
 # google-auth → cryptography → _cffi_backend requires cffi on Python 3.11;
 # the system package is compiled for 3.12 and is not usable here.
-cffi
-httpx2
+cffi==2.0.0
+# Required by fastapi.testclient (tests) and google-genai. Replaces the
+# previously-listed "httpx2": that package appears to be the legitimate
+# successor (starlette's deprecation warning recommends it), but fastapi
+# still hard-imports classic httpx, so httpx2 added nothing yet. Revisit
+# once fastapi/starlette complete the migration.
+httpx==0.28.1
