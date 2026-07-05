@@ -67,7 +67,8 @@ def test_get_status_calculates_stats():
         
         mock_redis.get.side_effect = redis_get_side_effect
         
-        response = client.get("/status/job-123")
+        # job ids must be UUIDs (see require_valid_job_id in server.py)
+        response = client.get("/status/6f1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4d")
         assert response.status_code == 200
         data = response.json()
         

@@ -73,11 +73,27 @@ def get_pdf_page_count(file_path):
     """Return the PDF's page count via poppler, or None if it can't be read."""
     try:
         from pdf2image import pdfinfo_from_path
-        info = pdfinfo_from_path(file_path, poppler_path=config.POPPLER_PATH)
+        info = pdfinfo_from_path(
+            file_path,
+            poppler_path=config.POPPLER_PATH,
+            timeout=config.PDF_INFO_TIMEOUT,
+        )
         return int(info["Pages"])
     except Exception as e:
         logger.warning(f"Could not read PDF page count: {e}", extra={"file_path": file_path})
         return None
+
+def require_valid_job_id(job_id: str) -> None:
+    """
+    Reject job ids that are not UUIDs. job_id comes straight from the URL
+    and is joined into a workspace path; Starlette percent-decodes path
+    params, so without this check '..%2F..%2F...' traverses out of
+    WORKSPACES_DIR. All real job ids are uuid4 strings.
+    """
+    try:
+        uuid.UUID(job_id)
+    except (ValueError, AttributeError, TypeError):
+        raise HTTPException(status_code=400, detail="Invalid job id format.")
 
 def save_upload_capped(src, dest_path, max_bytes):
     """
@@ -299,6 +315,7 @@ async def system_status():
 @app.get("/status/{job_id}")
 async def get_status(job_id: str):
     """Fetch the status of a specific job from Redis State Tracking."""
+    require_valid_job_id(job_id)
     return _build_status_payload(job_id)
 
 
@@ -310,6 +327,8 @@ async def stream_job_status(job_id: str):
     (completed or failed). Sends a heartbeat comment every 15 s to
     keep the connection alive through proxies.
     """
+    require_valid_job_id(job_id)
+
     async def event_generator():
         last_snapshot: dict | None = None
         last_heartbeat = asyncio.get_event_loop().time()

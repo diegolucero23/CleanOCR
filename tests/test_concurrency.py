@@ -18,7 +18,15 @@ def test_convert_pdf_uses_process_pool_executor():
 
     with patch('app.services.pdf_converter.os.path.exists', return_value=True), \
          patch('app.services.pdf_converter.os.makedirs'), \
-         patch('app.services.pdf_converter.pdfinfo_from_path', return_value={'Pages': 4}), \
+         patch('app.services.pdf_converter.pdfinfo_from_path', return_value={
+             'Pages': 4,
+             # Per-page sizes are now required by the decompression-bomb
+             # guard (find_oversized_pages) before any chunk is dispatched.
+             'Page    1 size': '612 x 792 pts (letter)',
+             'Page    2 size': '612 x 792 pts (letter)',
+             'Page    3 size': '612 x 792 pts (letter)',
+             'Page    4 size': '612 x 792 pts (letter)',
+         }), \
          patch('app.services.pdf_converter.concurrent.futures.ThreadPoolExecutor') as mock_executor, \
          patch('app.services.pdf_converter.concurrent.futures.as_completed', return_value=[mock_future, mock_future]), \
          patch('app.services.pdf_converter.convert_from_path', return_value=[MagicMock(), MagicMock()]):
