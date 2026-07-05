@@ -9,6 +9,13 @@ from google.genai.errors import ClientError
 import PIL.Image
 from app.core import config
 from app.core import prompts
+
+# Align Pillow's decompression-bomb ceiling with the pipeline's page cap:
+# Image.open() raises DecompressionBombError above 2x this value instead of
+# silently allocating memory for a crafted or corrupt image. The error is
+# handled by the generic failure path in process_single_image (logged +
+# page marked failed).
+PIL.Image.MAX_IMAGE_PIXELS = config.MAX_PAGE_PIXELS
 from app.core.cost_guard import BudgetExceededError
 from app.core.secrets import redact
 

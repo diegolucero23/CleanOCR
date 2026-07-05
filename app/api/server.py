@@ -73,11 +73,48 @@ def get_pdf_page_count(file_path):
     """Return the PDF's page count via poppler, or None if it can't be read."""
     try:
         from pdf2image import pdfinfo_from_path
-        info = pdfinfo_from_path(file_path, poppler_path=config.POPPLER_PATH)
+        info = pdfinfo_from_path(
+            file_path,
+            poppler_path=config.POPPLER_PATH,
+            timeout=config.PDF_INFO_TIMEOUT,
+        )
         return int(info["Pages"])
     except Exception as e:
         logger.warning(f"Could not read PDF page count: {e}", extra={"file_path": file_path})
         return None
+
+def compute_stream_timeout_seconds(page_count) -> int:
+    """
+    Max seconds a client should expect a job (and its SSE stream) to run:
+    a base allowance for queue wait + PDF burst, plus a per-page OCR budget.
+    Disclosed in the /upload response and enforced by /stream.
+    """
+    pages = max(0, int(page_count or 0))
+    return config.STREAM_BASE_BUDGET_SECONDS + pages * config.STREAM_PAGE_BUDGET_SECONDS
+
+def ingestion_limits() -> dict:
+    """The upload caps disclosed via GET /limits and echoed at upload."""
+    return {
+        "max_upload_mb": config.MAX_UPLOAD_MB,
+        "max_pdf_pages": config.MAX_PDF_PAGES,
+        "max_page_pixels": config.MAX_PAGE_PIXELS,
+        "render_dpi": config.PDF_RENDER_DPI,
+        "accepted_types": ["application/pdf"],
+        "stream_base_budget_seconds": config.STREAM_BASE_BUDGET_SECONDS,
+        "stream_page_budget_seconds": config.STREAM_PAGE_BUDGET_SECONDS,
+    }
+
+def require_valid_job_id(job_id: str) -> None:
+    """
+    Reject job ids that are not UUIDs. job_id comes straight from the URL
+    and is joined into a workspace path; Starlette percent-decodes path
+    params, so without this check '..%2F..%2F...' traverses out of
+    WORKSPACES_DIR. All real job ids are uuid4 strings.
+    """
+    try:
+        uuid.UUID(job_id)
+    except (ValueError, AttributeError, TypeError):
+        raise HTTPException(status_code=400, detail="Invalid job id format.")
 
 def save_upload_capped(src, dest_path, max_bytes):
     """
@@ -191,7 +228,15 @@ async def upload_pdf(
             "status": "queued",
             "job_id": job_id,
             "task_id": task.id,
-            "message": "File uploaded. Processing started in background."
+            "message": "File uploaded. Processing started in background.",
+            # Disclose what the client can expect for THIS job, using the
+            # same budgets /stream enforces, plus the global ingestion caps.
+            "expectations": {
+                "page_count": page_count,
+                "estimated_max_processing_seconds": compute_stream_timeout_seconds(page_count),
+                "stream_timeout_seconds": compute_stream_timeout_seconds(page_count),
+                "limits": ingestion_limits(),
+            },
         }
     except HTTPException:
         raise
@@ -278,6 +323,16 @@ def _build_status_payload(job_id: str) -> dict:
     return response
 
 
+@app.get("/limits")
+async def get_limits():
+    """
+    Pre-upload disclosure of ingestion limits, so clients can show users
+    the caps (file size, page count, page dimensions) and streaming
+    budgets before a file is ever submitted.
+    """
+    return ingestion_limits()
+
+
 @app.get("/system-status")
 async def system_status():
     """Return tier configuration and Gemma availability for the local tier."""
@@ -299,6 +354,7 @@ async def system_status():
 @app.get("/status/{job_id}")
 async def get_status(job_id: str):
     """Fetch the status of a specific job from Redis State Tracking."""
+    require_valid_job_id(job_id)
     return _build_status_payload(job_id)
 
 
@@ -309,10 +365,20 @@ async def stream_job_status(job_id: str):
     Closes automatically when the job reaches a terminal state
     (completed or failed). Sends a heartbeat comment every 15 s to
     keep the connection alive through proxies.
+
+    Streams are bounded (see STREAM_* settings in config): a job id Redis
+    has never seen closes after STREAM_UNKNOWN_JOB_TIMEOUT; a real job's
+    stream closes after the same base + per-page budget disclosed in the
+    /upload response. Hitting the bound emits a final 'stream_timeout'
+    event and closes the CONNECTION ONLY — the job itself keeps running
+    and remains pollable via /status/{job_id}.
     """
+    require_valid_job_id(job_id)
+
     async def event_generator():
         last_snapshot: dict | None = None
-        last_heartbeat = asyncio.get_event_loop().time()
+        start_time = asyncio.get_event_loop().time()
+        last_heartbeat = start_time
         HEARTBEAT_INTERVAL = 15  # seconds
         POLL_INTERVAL = 0.5      # seconds
 
@@ -330,8 +396,42 @@ async def stream_job_status(job_id: str):
             if status in ("completed", "failed"):
                 break
 
-            # Heartbeat: a SSE comment keeps the connection alive
+            # --- Stream duration bound ---
+            # Real jobs leave a Redis footprint at upload (upload_time) and
+            # when the worker starts (status); an id with neither is either
+            # nonexistent or expired and gets only the short unknown-job
+            # window instead of streaming heartbeats forever.
             now = asyncio.get_event_loop().time()
+            elapsed = now - start_time
+            job_seen = bool(
+                redis_client.exists(f"cache:{job_id}:status")
+                or redis_client.exists(f"cache:{job_id}:upload_time")
+            )
+            if job_seen:
+                total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+                total_pages = int(total_bytes) if total_bytes else 0
+                max_stream = compute_stream_timeout_seconds(total_pages)
+                timeout_message = (
+                    "Live stream closed after reaching its maximum duration. "
+                    "The job may still be processing — poll /status/{job_id} "
+                    "for the final result."
+                )
+            else:
+                max_stream = config.STREAM_UNKNOWN_JOB_TIMEOUT
+                timeout_message = (
+                    "No job with this id was observed within the wait window. "
+                    "It may not exist, or its records may have expired."
+                )
+            if elapsed >= max_stream:
+                timeout_payload = {
+                    "job_id": job_id,
+                    "status": "stream_timeout",
+                    "message": timeout_message,
+                }
+                yield f"data: {json.dumps(timeout_payload)}\n\n"
+                break
+
+            # Heartbeat: a SSE comment keeps the connection alive
             if now - last_heartbeat >= HEARTBEAT_INTERVAL:
                 yield ": heartbeat\n\n"
                 last_heartbeat = now

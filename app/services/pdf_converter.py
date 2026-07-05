@@ -1,19 +1,54 @@
 import os
+import re
 import concurrent.futures
 from pdf2image import convert_from_path, pdfinfo_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError, PDFPageCountError
 from app.core import config
 from app.core import image_utils
 
+# Matches pdfinfo per-page size values, e.g. "612 x 792 pts (letter)"
+_PAGE_SIZE_VALUE_RE = re.compile(r"([\d.]+)\s*x\s*([\d.]+)\s*pts")
+
+
+def find_oversized_pages(pdf_info: dict, dpi: int) -> list:
+    """
+    Decompression-bomb guard. Given a pdfinfo_from_path() dict produced with
+    first_page/last_page set (which yields one 'Page N size' entry per page),
+    return the page numbers whose rasterized pixel count at `dpi` would
+    exceed config.MAX_PAGE_PIXELS.
+
+    Raises ValueError if no per-page sizes could be parsed, so callers fail
+    closed rather than rasterizing a PDF of unknown geometry.
+    """
+    oversized = []
+    pages_seen = 0
+    for key, value in pdf_info.items():
+        key_match = re.match(r"Page\s+(\d+)\s+size$", key)
+        if not key_match:
+            continue
+        pages_seen += 1
+        size_match = _PAGE_SIZE_VALUE_RE.search(str(value))
+        if not size_match:
+            raise ValueError(f"Unparseable page size for {key!r}: {value!r}")
+        width_px = float(size_match.group(1)) / 72.0 * dpi
+        height_px = float(size_match.group(2)) / 72.0 * dpi
+        if width_px * height_px > config.MAX_PAGE_PIXELS:
+            oversized.append(int(key_match.group(1)))
+    if pages_seen == 0:
+        raise ValueError("pdfinfo returned no per-page sizes")
+    return oversized
+
+
 def process_pdf_chunk(pdf_path, output_folder, start_page, end_page, poppler_path):
     print(f"Processing pages {start_page} to {end_page}...")
     try:
         pages = convert_from_path(
-            pdf_path, 
-            dpi=300, 
-            first_page=start_page, 
+            pdf_path,
+            dpi=config.PDF_RENDER_DPI,
+            first_page=start_page,
             last_page=end_page,
-            poppler_path=poppler_path
+            poppler_path=poppler_path,
+            timeout=config.PDF_CONVERT_TIMEOUT
         )
     except PDFPageCountError:
         return []
@@ -42,10 +77,36 @@ def convert_pdf_in_chunks(pdf_path, output_folder, chunk_size=10):
 
     try:
         print(f"Converting '{pdf_path}'...")
-        # Get total pages
-        info = pdfinfo_from_path(pdf_path, poppler_path=config.POPPLER_PATH)
+        # Get total pages plus per-page sizes (first_page/last_page makes
+        # pdfinfo emit a 'Page N size' line for every page in the range;
+        # a last_page beyond the real page count is clamped by poppler).
+        info = pdfinfo_from_path(
+            pdf_path,
+            poppler_path=config.POPPLER_PATH,
+            timeout=config.PDF_INFO_TIMEOUT,
+            first_page=1,
+            last_page=config.MAX_PDF_PAGES,
+        )
         total_pages = info["Pages"]
-        
+
+        # Refuse to rasterize pages that would decompress into huge bitmaps.
+        oversized = find_oversized_pages(info, config.PDF_RENDER_DPI)
+        if oversized:
+            print(
+                f"Error: pages {oversized[:10]} of '{pdf_path}' would exceed "
+                f"MAX_PAGE_PIXELS ({config.MAX_PAGE_PIXELS}) at "
+                f"{config.PDF_RENDER_DPI} DPI. Refusing to convert."
+            )
+            return []
+        if total_pages > config.MAX_PDF_PAGES:
+            # The API rejects these at upload; enforce the same cap for PDFs
+            # that reach the converter through other entry points (CLI).
+            print(
+                f"Error: '{pdf_path}' has {total_pages} pages; "
+                f"the limit is {config.MAX_PDF_PAGES}."
+            )
+            return []
+
         chunks = []
         for start_page in range(1, total_pages + 1, chunk_size):
             end_page = min(start_page + chunk_size - 1, total_pages)

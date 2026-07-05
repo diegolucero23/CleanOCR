@@ -17,6 +17,8 @@ export interface PersistedJob {
     file_size?: number;
     processing_time?: number;
     complexity?: number;
+    page_count?: number;         // from /upload expectations
+    expected_seconds?: number;   // stream/processing budget disclosed at upload
 }
 
 interface StorageSchema {

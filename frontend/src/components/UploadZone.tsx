@@ -2,13 +2,15 @@ import { useState, useCallback } from 'react';
 import { Upload, FileWarning } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { IngestionLimits } from '../lib/api';
 
 interface UploadZoneProps {
     onFileSelect: (file: File) => void;
     isUploading: boolean;
+    limits?: IngestionLimits | null;
 }
 
-export function UploadZone({ onFileSelect, isUploading }: UploadZoneProps) {
+export function UploadZone({ onFileSelect, isUploading, limits }: UploadZoneProps) {
     const [isDragOver, setIsDragOver] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,6 +29,12 @@ export function UploadZone({ onFileSelect, isUploading }: UploadZoneProps) {
             setError('Only PDF files are allowed.');
             return false;
         }
+        // Pre-flight size check against the server-disclosed cap, so the
+        // user learns the limit here instead of via a 413 after uploading.
+        if (limits && file.size > limits.max_upload_mb * 1024 * 1024) {
+            setError(`File is ${(file.size / (1024 * 1024)).toFixed(1)} MB — the limit is ${limits.max_upload_mb} MB.`);
+            return false;
+        }
         setError(null);
         return true;
     };
@@ -39,7 +47,7 @@ export function UploadZone({ onFileSelect, isUploading }: UploadZoneProps) {
         if (file && validateFile(file)) {
             onFileSelect(file);
         }
-    }, [onFileSelect]);
+    }, [onFileSelect, limits]);
 
     const handleBrowse = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -47,6 +55,12 @@ export function UploadZone({ onFileSelect, isUploading }: UploadZoneProps) {
             onFileSelect(file);
         }
     };
+
+    // Limits line under the CTA: sourced live from GET /limits so the UI
+    // never drifts from what the server actually enforces.
+    const limitsLine = limits
+        ? `PDF only · up to ${limits.max_upload_mb} MB · ${limits.max_pdf_pages} pages`
+        : 'PDF files only';
 
     return (
         <div className="w-full max-w-xl mx-auto">
@@ -102,7 +116,12 @@ export function UploadZone({ onFileSelect, isUploading }: UploadZoneProps) {
                             <p className="text-lg font-medium mb-1">
                                 <span className="text-primary">Click to upload</span> or drag and drop
                             </p>
-                            <p className="text-sm">PDF files only (max 50MB)</p>
+                            <p className="text-sm">{limitsLine}</p>
+                            {limits && (
+                                <p className="text-xs mt-1 text-muted-foreground/70">
+                                    Scanned at {limits.render_dpi} DPI · oversized pages are rejected
+                                </p>
+                            )}
                         </motion.div>
                     )}
                 </AnimatePresence>

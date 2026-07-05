@@ -58,6 +58,20 @@ UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
 MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "100"))
 MAX_PDF_PAGES = int(os.getenv("MAX_PDF_PAGES", "500"))
 
+# --- RASTERIZATION LIMITS ---
+# DPI used when bursting PDF pages to images (pdf_converter).
+PDF_RENDER_DPI = int(os.getenv("PDF_RENDER_DPI", "300"))
+# Decompression-bomb guard: reject any PDF page whose rasterized size at
+# PDF_RENDER_DPI would exceed this many pixels. A tiny PDF can declare an
+# arbitrarily large MediaBox and make poppler allocate gigabytes. The
+# default (150M px ~= a 29"x40" double-elephant broadsheet at 300 DPI,
+# ~450 MB of RGB) leaves generous headroom for real newspaper scans.
+MAX_PAGE_PIXELS = int(os.getenv("MAX_PAGE_PIXELS", "150000000"))
+# Kill poppler subprocesses that exceed these timeouts (seconds); malformed
+# PDFs can otherwise hang pdfinfo/pdftoppm indefinitely.
+PDF_INFO_TIMEOUT = int(os.getenv("PDF_INFO_TIMEOUT", "60"))
+PDF_CONVERT_TIMEOUT = int(os.getenv("PDF_CONVERT_TIMEOUT", "600"))
+
 # --- GEMINI COST GUARD ---
 # Hard caps on billed Gemini API calls, enforced in GoogleVisionProvider
 # before each request (see app/core/cost_guard.py). 0 disables a cap.
@@ -65,6 +79,20 @@ MAX_PDF_PAGES = int(os.getenv("MAX_PDF_PAGES", "500"))
 # GEMINI_RUN_CALL_CAP:   per-process, works even without Redis (CLI batch).
 GEMINI_DAILY_CALL_CAP = int(os.getenv("GEMINI_DAILY_CALL_CAP", "2000"))
 GEMINI_RUN_CALL_CAP = int(os.getenv("GEMINI_RUN_CALL_CAP", "5000"))
+
+# --- STREAM / PROCESSING EXPECTATIONS ---
+# /stream/{job_id} no longer runs forever. Two budgets bound it, and the
+# same numbers are disclosed to the client at upload so expectations match
+# enforcement:
+# STREAM_UNKNOWN_JOB_TIMEOUT: close the stream if Redis has never seen the
+#   job id (no status/upload_time key) after this many seconds — catches
+#   valid-format UUIDs that don't correspond to any real job.
+# STREAM_BASE_BUDGET_SECONDS: allowance for queue wait + PDF burst.
+# STREAM_PAGE_BUDGET_SECONDS: per-page OCR allowance. A job's max stream
+#   duration = base + page_count * per-page.
+STREAM_UNKNOWN_JOB_TIMEOUT = int(os.getenv("STREAM_UNKNOWN_JOB_TIMEOUT", "120"))
+STREAM_BASE_BUDGET_SECONDS = int(os.getenv("STREAM_BASE_BUDGET_SECONDS", "600"))
+STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
 
 # --- CLEANUP ---
 # How many hours to retain completed/failed job workspaces before deletion.
