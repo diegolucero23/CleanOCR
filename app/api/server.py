@@ -19,6 +19,7 @@ from app.workers.celery_worker import run_ocr_pipeline
 from celery.result import AsyncResult
 from dotenv import load_dotenv
 from app.core import config
+from app.core.secrets import SecretRedactingFilter, redact
 
 load_dotenv()
 
@@ -29,6 +30,7 @@ formatter = jsonlogger.JsonFormatter(
     "%(timestamp)s %(level)s %(message)s %(module)s %(funcName)s"
 )
 logHandler.setFormatter(formatter)
+logHandler.addFilter(SecretRedactingFilter())
 logger.addHandler(logHandler)
 logger.setLevel(logging.INFO)
 
@@ -195,7 +197,7 @@ async def upload_pdf(
         raise
     except Exception as e:
         import traceback
-        traceback.print_exc()
+        print(redact(traceback.format_exc()), flush=True)
         raise e
 
 def _build_status_payload(job_id: str) -> dict:

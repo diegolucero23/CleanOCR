@@ -1,0 +1,29 @@
+# Gitleaks configuration for CleanOCR.
+# Used by the pre-commit hook (.pre-commit-config.yaml) and the CI
+# secret-scan job (.github/workflows/ci.yml). See SECURITY.md.
+
+title = "CleanOCR secret scanning"
+
+[extend]
+# Start from gitleaks' built-in ruleset (covers Google API keys `AIza...`,
+# GCP service accounts, GitHub/Slack/Stripe tokens, private keys, etc.)
+useDefault = true
+
+# Note: no commit allowlist is needed. The January 2026 leak of the old
+# (revoked) Gemini key was purged by a full history rewrite in July 2026 —
+# the entire git history scans clean. Any gitleaks hit is a NEW leak: move
+# the value into .env, do not extend this allowlist.
+[allowlist]
+description = "Known non-secret placeholder/mock values used by CI and redteam mode"
+regexes = [
+  '''MOCK_KEY_DO_NOT_CHARGE''',
+  '''test-key-for-ci''',
+  '''mock_stripe''',
+  '''mock_smtp''',
+  '''your-gemini-api-key-here''',
+]
+paths = [
+  # Audit report references the historical leak by fingerprint only.
+  '''SECURITY_AUDIT\.md''',
+  '''frontend/package-lock\.json''',
+]

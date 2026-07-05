@@ -4,6 +4,7 @@ import time
 import PIL.Image
 from google.genai import types
 from app.core import config
+from app.core.secrets import redact
 from app.services.ocr_factory import get_provider
 import prompts
 
@@ -81,7 +82,7 @@ def repair_from_log():
             time.sleep(5)  # Be gentle on retry
 
         except Exception as e:
-            print(f" Failed again: {e}")
+            print(f" Failed again: {redact(e)}")
 
     print("\nRepair run complete. Check your folders.")
 

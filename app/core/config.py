@@ -58,6 +58,14 @@ UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
 MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "100"))
 MAX_PDF_PAGES = int(os.getenv("MAX_PDF_PAGES", "500"))
 
+# --- GEMINI COST GUARD ---
+# Hard caps on billed Gemini API calls, enforced in GoogleVisionProvider
+# before each request (see app/core/cost_guard.py). 0 disables a cap.
+# GEMINI_DAILY_CALL_CAP: shared across all workers via Redis, per UTC day.
+# GEMINI_RUN_CALL_CAP:   per-process, works even without Redis (CLI batch).
+GEMINI_DAILY_CALL_CAP = int(os.getenv("GEMINI_DAILY_CALL_CAP", "2000"))
+GEMINI_RUN_CALL_CAP = int(os.getenv("GEMINI_RUN_CALL_CAP", "5000"))
+
 # --- CLEANUP ---
 # How many hours to retain completed/failed job workspaces before deletion.
 # Set to 0 to disable automatic cleanup.

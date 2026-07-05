@@ -4,8 +4,11 @@ from google.genai.errors import ClientError
 from typing import Any
 from .ocr_interface import OCRProvider
 from app.core import config as app_config
+from app.core import cost_guard
+from app.core.secrets import SecretRedactingFilter, redact
 
 logger = logging.getLogger(__name__)
+logger.addFilter(SecretRedactingFilter())
 
 # Only 404 reliably signals a missing/deprecated model.
 # 400 (INVALID_ARGUMENT) covers too many unrelated failures (bad prompt,
@@ -37,19 +40,21 @@ class GoogleVisionProvider(OCRProvider):
             if _is_model_unavailable(e) and model_name != fallback:
                 logger.warning(
                     "Model '%s' unavailable (%s). Falling back to '%s'.",
-                    model_name, e, fallback,
+                    model_name, redact(e), fallback,
                 )
                 try:
                     return self._call(fallback, contents, config)
                 except ClientError as fe:
                     logger.error(
                         "Fallback model '%s' also failed (%s). Original model was '%s'.",
-                        fallback, fe, model_name,
+                        fallback, redact(fe), model_name,
                     )
                     raise fe
             raise
 
     def _call(self, model_name: str, contents: list, config: Any) -> str:
+        # Enforce the spend caps before any billable request leaves the box.
+        cost_guard.register_call()
         response = self.client.models.generate_content(
             model=model_name,
             contents=contents,

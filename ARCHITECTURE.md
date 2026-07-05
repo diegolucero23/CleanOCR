@@ -231,6 +231,8 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | `WORKSPACE_TTL_HOURS` | `24` | Hours before a job workspace is deleted by cleanup task. `0` disables cleanup |
 | `MAX_UPLOAD_MB` | `100` | Reject uploads larger than this (streamed size cap on `/upload`) |
 | `MAX_PDF_PAGES` | `500` | Reject PDFs with more pages than this before any OCR is dispatched |
+| `GEMINI_DAILY_CALL_CAP` | `2000` | Hard cap on billed Gemini calls per UTC day, shared across workers via Redis (`app/core/cost_guard.py`). `0` disables |
+| `GEMINI_RUN_CALL_CAP` | `5000` | Hard cap on billed Gemini calls per process; works without Redis (CLI batch mode). `0` disables |
 | `POPPLER_PATH` | `None` (Linux) | Path to Poppler binaries; only needed on Windows |
 | `OVERRIDE_IMAGE_FOLDER` | `output_images` | Experiment override for image output dir |
 | `OVERRIDE_OCR_JSON_FOLDER` | `ocr_jsonv2` | Experiment override for OCR JSON dir |

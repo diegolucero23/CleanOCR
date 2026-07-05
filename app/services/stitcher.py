@@ -4,6 +4,7 @@ import re
 import shutil
 from google.genai import types
 from app.core import config
+from app.core.secrets import redact
 from app.services.ocr_factory import get_provider
 
 # --- CONFIGURATION ---
@@ -194,7 +195,7 @@ def verify_boundary_text(prev_end_text, next_start_text):
         )
         return (result or "").strip() or prev_end_text + next_start_text
     except Exception as e:
-        print(f"LLM Verification failed: {e}")
+        print(f"LLM Verification failed: {redact(e)}")
         return prev_end_text + next_start_text
 
 def stitch_markdown(input_folder, output_folder, metadata_file=None):
