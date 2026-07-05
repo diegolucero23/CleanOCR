@@ -80,6 +80,20 @@ PDF_CONVERT_TIMEOUT = int(os.getenv("PDF_CONVERT_TIMEOUT", "600"))
 GEMINI_DAILY_CALL_CAP = int(os.getenv("GEMINI_DAILY_CALL_CAP", "2000"))
 GEMINI_RUN_CALL_CAP = int(os.getenv("GEMINI_RUN_CALL_CAP", "5000"))
 
+# --- STREAM / PROCESSING EXPECTATIONS ---
+# /stream/{job_id} no longer runs forever. Two budgets bound it, and the
+# same numbers are disclosed to the client at upload so expectations match
+# enforcement:
+# STREAM_UNKNOWN_JOB_TIMEOUT: close the stream if Redis has never seen the
+#   job id (no status/upload_time key) after this many seconds — catches
+#   valid-format UUIDs that don't correspond to any real job.
+# STREAM_BASE_BUDGET_SECONDS: allowance for queue wait + PDF burst.
+# STREAM_PAGE_BUDGET_SECONDS: per-page OCR allowance. A job's max stream
+#   duration = base + page_count * per-page.
+STREAM_UNKNOWN_JOB_TIMEOUT = int(os.getenv("STREAM_UNKNOWN_JOB_TIMEOUT", "120"))
+STREAM_BASE_BUDGET_SECONDS = int(os.getenv("STREAM_BASE_BUDGET_SECONDS", "600"))
+STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
+
 # --- CLEANUP ---
 # How many hours to retain completed/failed job workspaces before deletion.
 # Set to 0 to disable automatic cleanup.

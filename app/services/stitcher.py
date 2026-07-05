@@ -244,13 +244,16 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
                     
                     if user_title: pub_title = user_title
                     
-                    # Generate YAML Frontmatter
+                    # Generate YAML Frontmatter. Values are user-supplied at
+                    # upload; json.dumps produces a valid double-quoted YAML
+                    # scalar (quotes, backslashes, newlines escaped), so a
+                    # title containing '"' can't break the frontmatter.
                     frontmatter = (
                         "---\n"
-                        f"title: \"{pub_title}\"\n"
-                        f"date: \"{user_date or ''}\"\n"
-                        f"volume: \"{user_vol or ''}\"\n"
-                        f"issue: \"{user_iss or ''}\"\n"
+                        f"title: {json.dumps(str(pub_title))}\n"
+                        f"date: {json.dumps(str(user_date or ''))}\n"
+                        f"volume: {json.dumps(str(user_vol or ''))}\n"
+                        f"issue: {json.dumps(str(user_iss or ''))}\n"
                         "generated_by: \"CleanOCR\"\n"
                         "---\n\n"
                     )
