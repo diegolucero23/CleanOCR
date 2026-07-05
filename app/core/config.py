@@ -51,6 +51,13 @@ FALLBACK_MODEL_NAME = os.getenv("FALLBACK_MODEL_NAME", "gemini-2.5-flash")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
 
+# --- UPLOAD LIMITS ---
+# Reject uploads larger than this (MB) and PDFs with more pages than this.
+# The API is unauthenticated, and each page becomes a billed OCR call, so
+# these caps bound the worst-case disk/CPU/API cost of a single request.
+MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "100"))
+MAX_PDF_PAGES = int(os.getenv("MAX_PDF_PAGES", "500"))
+
 # --- CLEANUP ---
 # How many hours to retain completed/failed job workspaces before deletion.
 # Set to 0 to disable automatic cleanup.

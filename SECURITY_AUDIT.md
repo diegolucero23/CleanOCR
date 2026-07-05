@@ -77,10 +77,13 @@ None of `eval`, `exec`, `pickle`, `os.system`, `shell=True` in application code.
 
 ---
 
-## Recommended priority order (for the follow-up fix pass)
+## Remediation status (updated 2026-07-05)
 
-1. **Rotate/revoke the exposed Gemini key now** (independent of any code change).
-2. Pin `requirements.txt` + add a lockfile (`pip-compile`/`uv`); verify or remove `httpx2`.
-3. Stop publishing Redis to the host (drop `ports:` — compose services reach it by name) or set `requirepass`.
-4. Add upload size + page-count limits, and bind the API to `127.0.0.1` by default.
-5. Rewrite git history to purge the key (BFG/`git filter-repo`) once #1 is done.
+1. ✅ **Exposed Gemini key** — owner confirms the key was revoked and replaced months ago.
+2. ✅ **Dependency pinning** — `requirements.txt` now uses exact pins resolved on Python 3.11; full transitive lock in `constraints.txt` (used by both Dockerfiles and CI); `requirements-local.txt` pinned exactly (transformers kept on the 4.x series the code targets).
+   ✅ **`httpx2` resolved** — investigation showed it is *likely legitimate* (Starlette's own deprecation warning recommends it; hosted under the pydantic GitHub org), but FastAPI's TestClient still hard-imports classic `httpx` (which google-genai also requires), so `httpx2` added nothing. Replaced with pinned `httpx==0.28.1`; revisit once the FastAPI/Starlette migration completes.
+3. ✅ **Redis exposure** — published port removed from `docker-compose.yml` (services reach it via the compose network); redteam compose ports bound to `127.0.0.1`.
+4. ✅ **Upload limits + binding** — streaming size cap (`MAX_UPLOAD_MB`, default 100) and page-count cap (`MAX_PDF_PAGES`, default 500) enforced in `/upload` before any OCR work is dispatched; corrupt/unreadable PDFs rejected. API host port now binds to `127.0.0.1`. Verified live against a running server (413/400 responses, rejected files cleaned up, no task dispatched).
+5. ⬜ **History purge** — not performed. The key is revoked, so this is optional hygiene; doing it requires a coordinated force-push of `main` (`git filter-repo` or BFG + GitHub support ticket to drop cached views) and invalidates all existing clones. Run it deliberately if the repo will be made public.
+
+Still open (lower priority, from the findings table): fail-closed behavior when `python-magic` is missing (#8), pinning the HuggingFace model revision (#9), auth in front of `/uploads` and `/status` for any hosted deployment (#10), renaming `.env.redteam` to an `.example` (#13), and removing committed runtime artifacts (#14).
