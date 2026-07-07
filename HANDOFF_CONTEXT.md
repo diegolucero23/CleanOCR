@@ -1,7 +1,40 @@
 # CleanOCR — Session Handoff Context
-**Date:** 2026-06-09  
-**Branch:** `main`  
-**Status:** Phase 1 complete. 101 tests passing (up from 42). Gaps 2, 3, 5 fixed. Next session: Phase 2 feature hardening.
+**Date:** 2026-07-07  
+**Branch:** `claude/phase1-reliability-merge`  
+**Status:** Phase 1 merged onto the security-hardened remote line. Live verification passed (ingestion, transcription, result viewer). Next session: Phase 2 feature hardening.
+
+---
+
+## 0. Session 2026-07-07 — History Reconcile + Live Verification
+
+### Repo split-brain resolved
+The remote history was rewritten in July 2026 (credential scrub) and advanced with the
+security PRs (#7–#9: credential hardening, CVE audit, ingestion hardening, bounded SSE)
+while local `main` carried Phase 1 (silent-failure fix, job-tagged failure log, +59 tests).
+The two lines shared **no common ancestor**. This branch reconciles them: Phase 1 was
+cherry-picked onto `origin/main`, keeping both the security work and the reliability work.
+The one conflict (`app/services/ocr_processor.py`) was resolved to keep raise-on-failure
+semantics (Phase 1) plus `BudgetExceededError` handling and `redact()` in log/exception
+messages (security line). The 45 MB zip test artifact in old local history was **not**
+carried over.
+
+> **Note:** local `main` still points at the pre-rewrite history. After this PR merges,
+> reset local `main` to `origin/main` and delete the stale local history.
+
+### New in this session
+- `ocr_page_task`: when Celery retries are exhausted, the page is logged as permanently
+  failed and a sentinel is returned so the chord completes and the stitcher emits
+  **partial output** from the pages that succeeded (previously the whole job failed).
+- `REPAIR_TARGETS` moved from a hardcoded list to an env-driven config value
+  (empty default for generic documents) — pie_in_the_sky §2 item closed.
+- `scripts/test_upload.py --flush-job PREFIX`: delete a single job's Redis keys
+  (state + file-hash dedup) without flushing the whole cache.
+
+### Live verification (2026-07-07, Diego)
+Manually verified end-to-end on the running dev stack (Docker backend + Vite frontend):
+- **Ingestion engine** — upload, validation, job dispatch ✅
+- **Transcription** — OCR pipeline through stitched markdown output ✅
+- **Result viewer** — frontend job status + markdown/diff display ✅
 
 ---
 

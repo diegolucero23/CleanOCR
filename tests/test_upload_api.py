@@ -15,6 +15,15 @@ from fastapi.testclient import TestClient
 from app.api.server import app
 
 
+@pytest.fixture(autouse=True)
+def mock_page_count():
+    """The hardened /upload asks poppler for a page count, which the fake PDF
+    bytes used here can't satisfy. Page-count acceptance/rejection paths are
+    covered with real PDFs in test_upload_limits.py."""
+    with patch("app.api.server.get_pdf_page_count", return_value=3):
+        yield
+
+
 @pytest.fixture()
 def mock_redis():
     """Replace the module-level redis_client singleton with a fresh MagicMock."""

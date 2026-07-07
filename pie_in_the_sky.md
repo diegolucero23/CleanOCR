@@ -28,7 +28,7 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
 - [ ] **Metadata Input Validation:** Add a Pydantic schema to validate `title`, `volume`, `issue`, `date` fields on upload — currently unvalidated. (Frontmatter escaping is now handled in `stitcher.py`, so malformed YAML is no longer a risk; schema validation for field semantics is still open.)
 - [ ] **Structured Error Responses:** `/upload` currently swallows inner exceptions and returns a generic 500. Log full tracebacks and return structured error JSON with a `code` field.
 - [ ] **Dynamic Worker Concurrency:** `MAX_WORKERS=4` is hardcoded in `ocr_processor.py`. Auto-detect via `os.cpu_count()` and expose as a config value so it scales with the host machine.
-- [ ] **Remove Hardcoded Repair Targets:** `REPAIR_TARGETS` in `stitcher.py` is a hardcoded list of page names specific to one dataset. Replace with a config-driven or fully-generic approach.
+- [x] **Remove Hardcoded Repair Targets:** `REPAIR_TARGETS` is now an env-driven config value (comma-separated list, empty default); the stitcher audit skips the target check when unset.
 - [ ] **Conditional Image Preprocessing:** Deskew adds ~30% overhead on already-clean scans. Add a config flag (or auto-detect scan quality) to skip preprocessing when it isn't needed.
 - [ ] **LLM Response Schema Validation:** Replace the 4-layer regex fallback in `stitcher.py::load_and_repair_json()` with strict response schema validation + retry-on-parse-failure to reduce brittleness.
 
