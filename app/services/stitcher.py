@@ -144,20 +144,21 @@ def audit_files(files):
     else:
         print(f"[OK] All {max_page} pages found in sequence.")
 
-    print("\n[?] TARGET CHECK:")
-    all_targets_ok = True
-    for target_base in REPAIR_TARGETS:
-        target_file = f"{target_base}.json"
-        if target_file in found_filenames:
-            print(f"    [FOUND] {target_base}")
+    if REPAIR_TARGETS:
+        print("\n[?] TARGET CHECK:")
+        all_targets_ok = True
+        for target_base in REPAIR_TARGETS:
+            target_file = f"{target_base}.json"
+            if target_file in found_filenames:
+                print(f"    [FOUND] {target_base}")
+            else:
+                print(f"    [MISSING] {target_base} <<<< ACTION REQUIRED")
+                all_targets_ok = False
+
+        if not all_targets_ok:
+            print("\n[!] WARNING: Missing target pages. Proceeding anyway (Generic Mode).")
         else:
-            print(f"    [MISSING] {target_base} <<<< ACTION REQUIRED")
-            all_targets_ok = False
-            
-    if not all_targets_ok:
-        print("\n[!] WARNING: Missing target pages. Proceeding anyway (Generic Mode).")
-    else:
-        print("\n[OK] Targets verified. Proceeding to stitch.\n")
+            print("\n[OK] Targets verified. Proceeding to stitch.\n")
 
 # ... (Helpers remain)
 

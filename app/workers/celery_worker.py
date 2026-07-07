@@ -113,7 +113,9 @@ def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, o
     Process a single PDF page image through the OCR pipeline.
 
     Retries up to 3 times with exponential back-off on any failure.
-    After max_retries, the task_failure signal fires and the job is DLQ'd.
+    When all retries are exhausted the page is logged as failed but a sentinel
+    value is returned so the chord still completes and the stitcher produces
+    partial output from whichever pages succeeded.
     """
     try:
         batch_ocr.process_single_image((img_filename, 1, 0, input_images_dir, ocr_json_dir, job_id))
@@ -123,6 +125,17 @@ def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, o
         return img_filename
 
     except Exception as exc:
+        if self.request.retries >= self.max_retries:
+            # Retries exhausted — page is already logged in failed_pages.log.
+            # Return None so the chord completes and the stitcher runs on
+            # whatever pages succeeded rather than aborting the whole job.
+            logger.error(
+                "Page permanently failed after all retries — skipping",
+                extra={"job_id": job_id, "page": img_filename, "error": str(exc)},
+            )
+            r = redis.Redis.from_url(celery_app.conf.broker_url)
+            r.incr(f"cache:{job_id}:completed_pages")  # keep progress bar accurate
+            return None
         raise self.retry(exc=exc, countdown=2 ** self.request.retries * 30)
 
 

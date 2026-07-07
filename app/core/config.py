@@ -100,5 +100,6 @@ STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
 WORKSPACE_TTL_HOURS = int(os.getenv("WORKSPACE_TTL_HOURS", "24"))
 
 # --- REPAIR TARGETS ---
-# Pages that are known to need manual OCR repair (used by stitcher audit + repair script).
-REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]
+# Comma-separated list of page basenames (e.g. "page_004,page_064") that should be
+# flagged in the pre-flight audit. Leave empty (default) for generic/unknown documents.
+REPAIR_TARGETS = [p.strip() for p in os.getenv("REPAIR_TARGETS", "").split(",") if p.strip()]
