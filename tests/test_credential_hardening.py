@@ -38,6 +38,35 @@ def test_redact_accepts_exceptions_and_leaves_mock_values(monkeypatch):
     assert "MOCK_KEY_DO_NOT_CHARGE" in out
 
 
+def test_status_endpoint_redacts_celery_failure_message(monkeypatch):
+    """The FAILURE branch of /status reflects the exception Celery stored in
+    its result backend; that string must pass through redact() first."""
+    import uuid
+    from unittest.mock import patch
+
+    from fastapi.testclient import TestClient
+    from app.api.server import app
+
+    monkeypatch.setattr(config, "GOOGLE_API_KEY", FAKE_KEY)
+    client = TestClient(app)
+    job_id = str(uuid.uuid4())
+
+    with patch("app.api.server.redis_client") as mock_redis, \
+         patch("app.api.server.AsyncResult") as mock_result:
+        mock_redis.get.return_value = None  # no status key in Redis
+        mock_result.return_value.state = "FAILURE"
+        mock_result.return_value.info = RuntimeError(
+            f"auth rejected for key {KEY_SHAPED}"
+        )
+        response = client.get(f"/status/{job_id}")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "failed"
+    assert KEY_SHAPED not in body["message"]
+    assert REDACTED in body["message"]
+
+
 # ---------------------------------------------------------------------------
 # SecretRedactingFilter
 # ---------------------------------------------------------------------------

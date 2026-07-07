@@ -38,6 +38,7 @@ def test_limits_endpoint_discloses_caps():
 
 def test_upload_response_includes_expectations():
     with patch('app.api.server.redis_client') as mock_redis, \
+         patch('app.api.server.magic', object()), \
          patch('app.api.server.validate_file_type', return_value=True), \
          patch('app.api.server.get_pdf_page_count', return_value=3), \
          patch('app.api.server.run_ocr_pipeline.apply_async'):
