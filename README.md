@@ -80,6 +80,8 @@ Frontend live at: **http://localhost:5173**
 
 > The frontend proxies API calls to `localhost:8000`, so the Docker backend must be running first.
 
+> **Experimental:** a next-generation dark-theme document editor UI lives in [`frontend-v2/`](frontend-v2/) — `cd frontend-v2 && npm install && npm run dev`, served at **http://localhost:5174** (proxies `/api` and `/uploads` to the backend). The frontend above remains the default.
+
 ---
 
 ## 🏗 Architecture
