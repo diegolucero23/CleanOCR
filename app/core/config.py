@@ -13,6 +13,10 @@ load_dotenv(os.path.join(BASE_DIR, ".env"), override=True)
 OCR_TIER = os.getenv("OCR_TIER", "standard")
 # Gemma model to use for the local tier (any HuggingFace hub id).
 LOCAL_GEMMA_MODEL = os.getenv("LOCAL_GEMMA_MODEL", "google/gemma-4-E4B-it")
+# Pin the exact model revision (commit hash or tag) to protect against the
+# upstream Hub repo being replaced or tampered with. None = latest ("main");
+# set a commit hash for reproducible, tamper-resistant deployments.
+LOCAL_GEMMA_REVISION = os.getenv("LOCAL_GEMMA_REVISION")
 
 # --- API KEYS ---
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")

@@ -233,6 +233,7 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | `MAX_PDF_PAGES` | `500` | Reject PDFs with more pages than this before any OCR is dispatched |
 | `GEMINI_DAILY_CALL_CAP` | `2000` | Hard cap on billed Gemini calls per UTC day, shared across workers via Redis (`app/core/cost_guard.py`). `0` disables |
 | `GEMINI_RUN_CALL_CAP` | `5000` | Hard cap on billed Gemini calls per process; works without Redis (CLI batch mode). `0` disables |
+| `LOCAL_GEMMA_REVISION` | *(unset = latest)* | Pin the HuggingFace revision (commit hash) of the local Gemma model; safetensors-only loading is enforced |
 | `POPPLER_PATH` | `None` (Linux) | Path to Poppler binaries; only needed on Windows |
 | `OVERRIDE_IMAGE_FOLDER` | `output_images` | Experiment override for image output dir |
 | `OVERRIDE_OCR_JSON_FOLDER` | `ocr_jsonv2` | Experiment override for OCR JSON dir |
