@@ -1,10 +1,10 @@
 # Secrets
 .env
 .env.*
-# Tracked exceptions: the template (placeholders only) and the redteam
-# config (mock values only — MOCK_KEY_DO_NOT_CHARGE). Real keys go in .env.
+# Tracked exceptions: templates only (placeholders / mock values). The
+# working copies (.env, .env.redteam) are gitignored — real keys go there.
 !.env.example
-!.env.redteam
+!.env.redteam.example
 
 # System / IDE
 __pycache__/
@@ -47,10 +47,11 @@ test_images/
 *.log
 error_log.txt
 debug_log.txt
+logs.txt
 test_upload.pdf
 
-# Input Data ZIP
-"THE LATTER DAY SAINTS' MESSENGER AND ADVOCATE - Vols 1-24 - Broken OCR-pages.zip"
+# Input data archives (runtime data, not source)
+*.zip
 
 # Frontend
 frontend/node_modules/

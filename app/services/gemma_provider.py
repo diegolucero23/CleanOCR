@@ -44,13 +44,25 @@ class GemmaTextProvider:
                 "Install with: pip install -r requirements-local.txt"
             ) from exc
 
-        logger.info("Loading Gemma model '%s' (this may take a moment)…", self.model_name)
+        revision = app_config.LOCAL_GEMMA_REVISION
+        logger.info(
+            "Loading Gemma model '%s' (revision: %s; this may take a moment)…",
+            self.model_name, revision or "main",
+        )
+        if not revision:
+            logger.warning(
+                "LOCAL_GEMMA_REVISION is not set — loading the latest revision from "
+                "the Hub. Pin a commit hash for tamper-resistant deployments."
+            )
         dtype = "auto"
         self._pipeline = hf_pipeline(
             "text-generation",
             model=self.model_name,
+            revision=revision,
             torch_dtype=dtype,
             device_map="auto",
+            # safetensors only: never deserialize pickled .bin weights
+            model_kwargs={"use_safetensors": True},
         )
         logger.info("Gemma model loaded.")
 

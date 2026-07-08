@@ -86,7 +86,7 @@ Agents must adopt one of these specific personas based on the active task.
         * **NO HOST MODIFICATION:** You may generate load, but you generally cannot modify files outside the `/tmp/redteam_artifacts` directory.
     * **Safety Interlock (MANDATORY):**
         * **BEFORE** running any stress test or fuzzing script, you MUST perform a "Ping Check" to verify the environment is mocked.
-        * **Action:** Check the running container environment or the `.env.redteam` file.
+        * **Action:** Check the running container environment or the `.env.redteam` file (copied from the tracked `.env.redteam.example`; the copy itself is gitignored).
         * **Exit Condition:** If `GOOGLE_API_KEY` != `MOCK_KEY_DO_NOT_CHARGE`, **ABORT IMMEDIATELY**. Do not proceed. Report "Configuration Error" to the user.
     * **Actions:**
         * **Fuzzing:** Send garbage data, huge payloads, and malicious headers to *API Endpoints*.

@@ -1,3 +1,6 @@
+# Setup: copy the tracked template before first run —
+#   cp .env.redteam.example .env.redteam
+# .env.redteam itself is gitignored so real values can never be committed.
 version: '3.8'
 
 services:
