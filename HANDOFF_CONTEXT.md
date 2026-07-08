@@ -1,7 +1,40 @@
 # CleanOCR — Session Handoff Context
-**Date:** 2026-06-09  
-**Branch:** `main`  
-**Status:** Phase 0 complete. 42 tests passing. Live end-to-end test completed. Gaps logged. Next session: Phase 1 test coverage.
+**Date:** 2026-07-07  
+**Branch:** `claude/phase1-reliability-merge`  
+**Status:** Phase 1 merged onto the security-hardened remote line. Live verification passed (ingestion, transcription, result viewer). Next session: Phase 2 feature hardening.
+
+---
+
+## 0. Session 2026-07-07 — History Reconcile + Live Verification
+
+### Repo split-brain resolved
+The remote history was rewritten in July 2026 (credential scrub) and advanced with the
+security PRs (#7–#9: credential hardening, CVE audit, ingestion hardening, bounded SSE)
+while local `main` carried Phase 1 (silent-failure fix, job-tagged failure log, +59 tests).
+The two lines shared **no common ancestor**. This branch reconciles them: Phase 1 was
+cherry-picked onto `origin/main`, keeping both the security work and the reliability work.
+The one conflict (`app/services/ocr_processor.py`) was resolved to keep raise-on-failure
+semantics (Phase 1) plus `BudgetExceededError` handling and `redact()` in log/exception
+messages (security line). The 45 MB zip test artifact in old local history was **not**
+carried over.
+
+> **Note:** local `main` still points at the pre-rewrite history. After this PR merges,
+> reset local `main` to `origin/main` and delete the stale local history.
+
+### New in this session
+- `ocr_page_task`: when Celery retries are exhausted, the page is logged as permanently
+  failed and a sentinel is returned so the chord completes and the stitcher emits
+  **partial output** from the pages that succeeded (previously the whole job failed).
+- `REPAIR_TARGETS` moved from a hardcoded list to an env-driven config value
+  (empty default for generic documents) — pie_in_the_sky §2 item closed.
+- `scripts/test_upload.py --flush-job PREFIX`: delete a single job's Redis keys
+  (state + file-hash dedup) without flushing the whole cache.
+
+### Live verification (2026-07-07, Diego)
+Manually verified end-to-end on the running dev stack (Docker backend + Vite frontend):
+- **Ingestion engine** — upload, validation, job dispatch ✅
+- **Transcription** — OCR pipeline through stitched markdown output ✅
+- **Result viewer** — frontend job status + markdown/diff display ✅
 
 ---
 
@@ -140,9 +173,9 @@ LOCAL_GEMMA_MODEL=google/gemma-4-E4B-it   # local tier
 
 ```
 Branch:  main
-Commits: 2c492da (Phase 0 quick wins), 131e380 (README fix)
+Commits: (Phase 1 complete — see git log)
 Clean:   yes
-Tests:   42 passed, 0 failed, 0 warnings
+Tests:   101 passed, 0 failed, 1 warning (StarletteDeprecationWarning — cosmetic, not a bug)
 ```
 
 ### What Works Right Now
@@ -159,9 +192,8 @@ Tests:   42 passed, 0 failed, 0 warnings
 - User authentication / tier enforcement
 - Private Cloud tier (Gemma 4 27B)
 - End-to-end test with real Surya + Gemma (GPU required)
-- DPI tier-gating (Gap 4)
-- Embedded-text PDF fast-path (Gap 1)
-- Silent OCR failure fix (Gap 2) — **highest priority**
+- DPI tier-gating (Gap 4) — Phase 2
+- Embedded-text PDF fast-path (Gap 1) — Phase 2
 
 ---
 
@@ -202,20 +234,17 @@ docker exec cleanocr-web-1 python -m pytest tests/ -q
 - [x] Correct `MODEL_NAME` in `.env` (was dead `gemini-2.0-flash`)
 - [x] README: document frontend Vite dev server as separate step
 
-### Phase 1 — Test Coverage + Critical Bug Fixes (next session)
-Fix the silent data loss bug first, then fill test coverage gaps.
+### Phase 1 — Test Coverage + Critical Bug Fixes ✅ COMPLETE
+- [x] **[GAP 2] Fix silent OCR failure** — `OCRPageFailure` exception class added; `process_single_image` raises instead of returning failure strings; `completed_pages` only incremented on confirmed success
+- [x] **[GAP 3] Add job_id + timestamp to `failed_pages.log`** — new format: `job_id|ISO-timestamp|filename|reason`; `scripts/repair_pages.py` updated to parse new format (backward compatible with legacy 2-field lines)
+- [x] **[GAP 5] Strip hallucinated image markdown** — `re.sub(r'!\[[^\]]*\]\([^)]*\)', '', page_text)` applied in both stitch passes (full doc + per-issue files)
+- [x] Move `REPAIR_TARGETS` from `stitcher.py` hardcode to `config.py`; `scripts/audit_collection.py` updated to import from config
+- [x] `tests/test_ocr_retry.py` — 12 tests: raise on failure, completed_pages accuracy, log format
+- [x] `tests/test_stitcher_json_repair.py` — 28 tests: all 4 repair strategies, hallucination detection, Roman numerals, YAML frontmatter, image stripping *(HITL: assertions need human review before merge)*
+- [x] `tests/test_upload_api.py` — 9 tests: cache hit, MIME rejection, Redis stats, metadata passthrough
+- [x] `tests/test_google_vision.py` — 11 tests: fallback chain, pro tier model selection
 
-- [ ] **[GAP 2] Fix silent OCR failure** — `ocr_page_task` must raise on `process_single_image` failure so Celery retries engage; fix `completed_pages` counter accuracy *(high priority)*
-- [ ] **[GAP 3] Add job_id + timestamp to `failed_pages.log`**
-- [ ] **[GAP 5] Strip hallucinated image markdown** — post-process or prompt-level fix for fabricated `![alt](url)` tags
-- [ ] `tests/test_stitcher_json_repair.py` — 4 repair strategies, hallucination detection, Roman numeral normalization, YAML frontmatter shape *(spawn isolated sub-agent — stitcher.py is 454 lines)*
-- [ ] `tests/test_ocr_retry.py` — 429 backoff sequence, max-retries exhaustion, failed-page logging
-- [ ] `tests/test_upload_api.py` — cache hit path, invalid MIME rejection, metadata edge cases
-- [ ] `tests/test_google_vision.py` — model fallback chain (404 → retry → all fail)
-- [ ] Move `REPAIR_TARGETS` from `stitcher.py` hardcode to `config.py`
-
-**HITL gate:** Human reviews assertions in `test_stitcher_json_repair.py` before merge.  
-**Multi-agent note:** `test_stitcher_json_repair.py` and `test_ocr_retry.py` can be written by parallel sub-agents.
+**Tests:** 101 passed, 0 failed (run inside `cleanocr-web-1` container)
 
 ### Phase 2 — Feature Hardening (2–3 sessions)
 Prerequisites for any public-facing use. Auth before Postgres; Postgres before tier UI.

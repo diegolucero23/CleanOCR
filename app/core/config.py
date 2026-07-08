@@ -98,3 +98,8 @@ STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
 # How many hours to retain completed/failed job workspaces before deletion.
 # Set to 0 to disable automatic cleanup.
 WORKSPACE_TTL_HOURS = int(os.getenv("WORKSPACE_TTL_HOURS", "24"))
+
+# --- REPAIR TARGETS ---
+# Comma-separated list of page basenames (e.g. "page_004,page_064") that should be
+# flagged in the pre-flight audit. Leave empty (default) for generic/unknown documents.
+REPAIR_TARGETS = [p.strip() for p in os.getenv("REPAIR_TARGETS", "").split(",") if p.strip()]

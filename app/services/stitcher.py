@@ -13,7 +13,7 @@ INPUT_FOLDER = config.OCR_JSON_FOLDER
 OUTPUT_FOLDER = config.FINAL_MARKDOWN_FOLDER
 PUBLICATION_TITLE = "The Latter Day Saint's Messenger And Advocate"
 
-REPAIR_TARGETS = ["page_004", "page_064", "page_110", "page_207", "page_295", "page_335"]
+REPAIR_TARGETS = config.REPAIR_TARGETS
 
 # NEW: A threshold for what constitutes a "suspicious" jump in volume numbers
 MAX_VOL_JUMP = 2 
@@ -144,20 +144,21 @@ def audit_files(files):
     else:
         print(f"[OK] All {max_page} pages found in sequence.")
 
-    print("\n[?] TARGET CHECK:")
-    all_targets_ok = True
-    for target_base in REPAIR_TARGETS:
-        target_file = f"{target_base}.json"
-        if target_file in found_filenames:
-            print(f"    [FOUND] {target_base}")
+    if REPAIR_TARGETS:
+        print("\n[?] TARGET CHECK:")
+        all_targets_ok = True
+        for target_base in REPAIR_TARGETS:
+            target_file = f"{target_base}.json"
+            if target_file in found_filenames:
+                print(f"    [FOUND] {target_base}")
+            else:
+                print(f"    [MISSING] {target_base} <<<< ACTION REQUIRED")
+                all_targets_ok = False
+
+        if not all_targets_ok:
+            print("\n[!] WARNING: Missing target pages. Proceeding anyway (Generic Mode).")
         else:
-            print(f"    [MISSING] {target_base} <<<< ACTION REQUIRED")
-            all_targets_ok = False
-            
-    if not all_targets_ok:
-        print("\n[!] WARNING: Missing target pages. Proceeding anyway (Generic Mode).")
-    else:
-        print("\n[OK] Targets verified. Proceeding to stitch.\n")
+            print("\n[OK] Targets verified. Proceeding to stitch.\n")
 
 # ... (Helpers remain)
 
@@ -289,7 +290,9 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
         
         # --- BUILD PAGE CONTENT ---
         page_text = data.get("markdown_content") or data.get("full_text") or ""
-        
+        # Strip hallucinated image tags — CleanOCR is text-only, these are always noise
+        page_text = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', page_text)
+
         # TWO-PASS VERIFICATION (Context-Aware Boundary Stitching)
         # If we have previous content, let's look at the boundary
         if len(all_pages_content) > 1 and page_text.strip():
@@ -427,6 +430,7 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
             
         # Write Page MD
         raw_text = data.get("markdown_content") or data.get("full_text") or ""
+        raw_text = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', raw_text)
         page_filename = filename.replace(".json", ".md")
         with open(os.path.join(pages_subpath, page_filename), "w", encoding="utf-8") as f:
             f.write(raw_text)
