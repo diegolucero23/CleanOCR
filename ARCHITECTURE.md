@@ -45,6 +45,8 @@ CleanOCR/
 │           ├── api.ts          ★ HTTP + SSE client for the backend API
 │           └── utils.ts        Shared utilities
 │
+├── frontend-v2/                Experimental dark-theme document editor UI (React + Vite + Tailwind, :5174) — not yet the default
+│
 ├── tests/                      Pytest unit + integration tests
 ├── scripts/                    CLI verification + debug helpers
 │
@@ -315,9 +317,9 @@ docker-compose -f docker-compose.redteam.yml up
 
 ---
 
-## 12. Known Limitations (as of March 2026)
+## 12. Known Limitations (as of July 2026)
 
-- **No authentication** — all endpoints are public; see `pie_in_the_sky.md §2`
+- **No authentication** — all endpoints are open. Acceptable while compose binds every published port to `127.0.0.1` (single-user, loopback-only deployment); deferred by owner decision 2026-07-07. Auth + CSRF + strict CORS become prerequisites if the bind ever moves off loopback — see `SECURITY_AUDIT.md` finding #10
 - **No persistent job database** — job history is Redis (volatile) + browser localStorage; a Redis restart wipes server-side state
 - **Hardcoded repair targets** — `REPAIR_TARGETS` in `stitcher.py` is specific to one historical dataset
 - **Preprocessing always runs** — deskew adds overhead even on clean scans; no conditional bypass yet

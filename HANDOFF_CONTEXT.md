@@ -1,11 +1,26 @@
 # CleanOCR — Session Handoff Context
-**Date:** 2026-07-07  
-**Branch:** `claude/phase1-reliability-merge`  
-**Status:** Phase 1 merged onto the security-hardened remote line. Live verification passed (ingestion, transcription, result viewer). Next session: Phase 2 feature hardening.
+**Date:** 2026-07-08  
+**Branch:** `main`  
+**Status:** Sprint backlog fully cleared — all floating branches merged, zero open PRs, security audit down to one deliberately deferred item. Next session: Phase 2 feature hardening.
 
 ---
 
-## 0. Session 2026-07-07 — History Reconcile + Live Verification
+## 0. Session 2026-07-08 — Sprint Backlog Cleared
+
+All floating work from the post-history-rewrite era was merged to `main` in order, each step verified with green CI (suite at 138 tests):
+
+- **PR #11** — Phase 1 reliability + history reconcile (see §0.1 below for detail)
+- **PR #10** — fail-closed libmagic validation (`/upload` returns 503 when libmagic is missing) and `/status` Celery exception redaction
+- **PR #12** — salvage of the orphaned July-5 sprint branch (`claude/cleanorc-security-audit-5d5hz8`, since deleted): audit item #9 (`LOCAL_GEMMA_REVISION` pin + safetensors-only weight loading), #13 (`.env.redteam` → tracked `.env.redteam.example` template), #14 (gitignore hygiene for logs/archives); CI actions bumped to `checkout@v5` / `setup-python@v6`. The branch's duplicate fail-closed work was discarded (superseded by PR #10) and its `API_AUTH_TOKEN` middleware was deliberately **not** salvaged (auth deferred by owner — see below)
+- **PR #13** — `frontend_v2` branch merged: experimental dark-theme document editor UI in `frontend-v2/` (React + Vite + Tailwind, dev server on :5174; existing `frontend/` remains the default)
+
+**Security audit state:** every finding closed except **#10 (auth)** — deferred by owner decision 2026-07-07 while the deployment stays single-user and loopback-only. Do not re-implement without owner sign-off.
+
+**Repo hygiene:** local `main` was reset onto the rewritten (post-purge) history and the stale pre-rewrite line abandoned; all merged and duplicate branches deleted on origin.
+
+---
+
+## 0.1 Session 2026-07-07 — History Reconcile + Live Verification
 
 ### Repo split-brain resolved
 The remote history was rewritten in July 2026 (credential scrub) and advanced with the
@@ -251,7 +266,7 @@ Prerequisites for any public-facing use. Auth before Postgres; Postgres before t
 
 - [ ] **[GAP 1] Embedded-text PDF fast-path** — pre-flight `pypdf` check; skip OCR for text-native PDFs
 - [ ] **[GAP 4] DPI tier-gating** — 150 DPI for standard/free, 300 DPI for pro; `OCR_DPI` config var
-- [ ] **Auth** — JWT or API key on `/upload` and `/status`; job ownership enforcement *(HITL: human approves auth model)*
+- [ ] **Auth** — JWT or API key on `/upload` and `/status`; job ownership enforcement *(HITL: human approves auth model; deferred 2026-07-07 by owner decision while deployment is loopback-only — see `SECURITY_AUDIT.md` #10)*
 - [ ] **Postgres** — persistent job history *(HITL: human approves schema)*
 - [ ] **Frontend tier selector** — Free / Pro / Local picker in MetadataModal
 - [ ] **Metadata validation** — Pydantic schema for `title`, `volume`, `issue`, `date`; structured 422 errors
