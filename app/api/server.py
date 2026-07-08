@@ -9,7 +9,7 @@ try:
     import magic
 except ImportError:
     magic = None
-    print("WARNING: python-magic not found. File type validation will be limited.")
+    print("WARNING: python-magic not found. Uploads will be rejected (fail closed) until libmagic is installed.")
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -57,10 +57,13 @@ def calculate_sha256(file_path):
 def validate_file_type(file_path):
     """
     Uses python-magic to verify the file is actually a PDF,
-    not just named .pdf.
+    not just named .pdf. Fails closed: without libmagic there is no
+    content check, and an extension-only gate would let arbitrary
+    bytes reach Poppler.
     """
     if magic is None:
-        return file_path.lower().endswith(".pdf")
+        logger.error("libmagic unavailable; rejecting upload (fail closed).", extra={"file_path": file_path})
+        return False
 
     mime = magic.Magic(mime=True)
     file_type = mime.from_file(file_path)
@@ -169,6 +172,14 @@ async def upload_pdf(
             )
 
         # --- 2. Input Sanitization ---
+        if magic is None:
+            # Server-side problem, not a bad file: surface it as 503 so the
+            # client isn't told their valid PDF is "invalid".
+            os.remove(file_path)
+            raise HTTPException(
+                status_code=503,
+                detail="File type verification is unavailable on this server (libmagic missing); refusing all uploads.",
+            )
         if not validate_file_type(file_path):
             os.remove(file_path) # Cleanup
             raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
@@ -259,7 +270,10 @@ def _build_status_payload(job_id: str) -> dict:
         task_result = AsyncResult(job_id)
         if task_result.state == 'FAILURE':
             response["status"] = "failed"
-            response["message"] = str(task_result.info)
+            # Celery stores the raw exception in its result backend; redact
+            # before reflecting it to the client so key material or internal
+            # paths can't leak through this one unredacted path.
+            response["message"] = redact(task_result.info)
         return response
 
     status = status_bytes.decode('utf-8')

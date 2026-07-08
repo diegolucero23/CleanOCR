@@ -30,6 +30,7 @@ def test_upload_rejects_oversize_file():
 
 def test_upload_rejects_too_many_pages():
     with patch('app.api.server.redis_client', autospec=True), \
+         patch('app.api.server.magic', object()), \
          patch('app.api.server.validate_file_type', return_value=True), \
          patch('app.api.server.get_pdf_page_count', return_value=config.MAX_PDF_PAGES + 1), \
          patch('app.api.server.run_ocr_pipeline.apply_async') as mock_task:
@@ -42,6 +43,7 @@ def test_upload_rejects_too_many_pages():
 
 def test_upload_rejects_unreadable_page_count():
     with patch('app.api.server.redis_client', autospec=True), \
+         patch('app.api.server.magic', object()), \
          patch('app.api.server.validate_file_type', return_value=True), \
          patch('app.api.server.get_pdf_page_count', return_value=None), \
          patch('app.api.server.run_ocr_pipeline.apply_async') as mock_task:
@@ -53,6 +55,7 @@ def test_upload_rejects_unreadable_page_count():
 
 def test_upload_within_limits_is_queued():
     with patch('app.api.server.redis_client', autospec=True) as mock_redis, \
+         patch('app.api.server.magic', object()), \
          patch('app.api.server.validate_file_type', return_value=True), \
          patch('app.api.server.get_pdf_page_count', return_value=3), \
          patch('app.api.server.run_ocr_pipeline.apply_async') as mock_task:
@@ -62,3 +65,16 @@ def test_upload_within_limits_is_queued():
         assert response.status_code == 200
         assert response.json()["status"] == "queued"
         mock_task.assert_called_once()
+
+
+def test_upload_fails_closed_without_libmagic():
+    """Without libmagic there is no content check; the endpoint must reject
+    uploads with a 503 instead of falling back to extension matching."""
+    with patch('app.api.server.magic', None), \
+         patch('app.api.server.redis_client', autospec=True), \
+         patch('app.api.server.run_ocr_pipeline.apply_async') as mock_task:
+        response = _post_dummy_pdf()
+
+        assert response.status_code == 503
+        assert "libmagic" in response.json()["detail"]
+        mock_task.assert_not_called()
