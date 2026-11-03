@@ -51,10 +51,12 @@ CleanOCR/
 │
 ├── frontend-v2/                Experimental dark-theme document editor UI (React + Vite + Tailwind, :5174) — not yet the default
 │
-├── tests/                      Pytest unit + integration tests (inc. test_auth_and_rate_limit.py)
+├── tests/                      Pytest unit + integration tests (167 tests, 100% green)
+│   └── redteam_artifacts/      ★ RedTeam chaos campaigns, mock vision provider, fuzzer & stress suites
 ├── scripts/                    CLI verification + debug helpers
 │
 ├── docker-compose.yml          ★ Defines redis / web / worker services
+├── docker-compose.redteam.yml  ★ Dedicated RedTeam test harness (isolated mock environment)
 ├── Dockerfile                  Single image used by both web and worker
 ├── requirements.txt            Python dependencies
 └── .env                        Secrets (never committed) — see §8 for all vars
@@ -292,6 +294,13 @@ All API errors return a uniform, unnested JSON schema:
 }
 ```
 
+### Mobile-First UI/UX & Responsive Guidelines
+
+In accordance with [`AGENTS.md`](AGENTS.md) design standards:
+- **Viewport Resilience (320px to 4k):** Interfaces are built mobile-first. At small viewports (<640px), tabular displays (such as `JobHistory.tsx`) automatically transform into stacked touch cards with 44px minimum tap targets to avoid horizontal truncation.
+- **DiffViewer Responsiveness:** On desktop (>=640px), the original PDF scan and extracted Markdown appear side-by-side with synchronized scrolling. On mobile screens (<640px), it flips to a toggleable single-column view.
+- **Zero Native Browser Dialogs:** All application feedback (401 Auth Required, 429 Rate Limited, 500 Server Error) renders via animated, accessible inline banners or toast components with actionable retry countdowns or direct links to Settings modal. Raw `window.alert` / `window.confirm` calls are strictly prohibited.
+
 ---
 
 ## 7. Key Design Patterns
@@ -299,6 +308,8 @@ All API errors return a uniform, unnested JSON schema:
 | Pattern | Where | Purpose |
 |---------|-------|---------|
 | **Factory + Strategy** | `ocr_factory.py` + `ocr_interface.py` | Swap between Google Gemini and `RedTeamMockProvider` by setting `GOOGLE_API_KEY=MOCK_KEY` |
+| **Safety Interlock State Machine** | `tests/redteam_artifacts/campaign_3_adversarial.py` | Aborts chaos testing immediately if `GOOGLE_API_KEY != MOCK_KEY_DO_NOT_CHARGE` or external egress detected |
+| **CI/CD Build Matrix Dependency Gating** | `.github/workflows/ci.yml` | Strict TDD-enforced pipeline gating container packaging on Python matrix (3.11, 3.12) and Node 20.x `frontend-build` |
 | **Relational Persistence** | `app/db/` (`database.py`, `models.py`) | SQLAlchemy 2.0 dual-engine (SQLite default, PostgreSQL ready) with cascade relationships for jobs, metadata, and extracted text |
 | **Redis-to-DB State Fallback** | `app/api/server.py` | Graceful state recovery: queries Redis fast-path; falls back to relational DB if keys expire or Redis restarts |
 | **SQLite WAL Concurrency** | `app/db/database.py` | Automatically sets `PRAGMA journal_mode=WAL;` and 30s timeout on connect to eliminate lock contention during concurrent worker writes |
@@ -378,12 +389,19 @@ still in `queued` or `processing` state (page-refresh recovery).
 
 ```bash
 # Unit + integration tests
-pytest tests/  # 161 tests passing (100% green)
+pytest tests/  # 167 tests passing (100% green)
 
 # Specific suites
-pytest tests/  # 161 tests passing (100% green)test_concurrency.py
-pytest tests/  # 161 tests passing (100% green)test_two_pass_verification.py
-pytest tests/  # 161 tests passing (100% green)test_stats.py
+pytest tests/test_ci_pipeline.py
+pytest tests/test_concurrency.py
+pytest tests/test_two_pass_verification.py
+pytest tests/test_auth_and_rate_limit.py
+
+# RedTeam Adversarial Chaos Suite (10/10 attack vectors verified)
+python tests/redteam_artifacts/campaign_3_adversarial.py
+
+# Frontend Build & Typecheck Integrity
+cd frontend && npm run build
 
 # End-to-end against a running stack
 python scripts/verify_status_api.py
@@ -397,14 +415,41 @@ Mock mode is activated by setting `GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE`.
 The factory in `ocr_factory.py` returns `RedTeamMockProvider`, which replays
 fixtures from `tests/redteam_artifacts/` instead of calling Gemini.
 
-Red-team stress tests use a separate compose file:
+Red-team stress tests use a separate compose file and campaign scripts:
 ```bash
 docker-compose -f docker-compose.redteam.yml up
+python tests/redteam_artifacts/campaign_3_adversarial.py
 ```
+See [`tests/redteam_artifacts/README.md`](tests/redteam_artifacts/README.md) for complete details on chaos campaigns and safety interlocks.
 
 ---
 
-## 11. Common Tasks and Where to Start
+## 11. CI/CD Pipeline Architecture
+
+The CleanOCR automated test and build pipeline (`.github/workflows/ci.yml`) executes on every push and pull request against `main` and `master`:
+
+```mermaid
+flowchart TD
+    push(["Git Push / PR"]) --> secretScan["Job: secret-scan<br>(gitleaks / credential check)"]
+    push --> testMatrix["Job: test<br>(Python 3.11 & 3.12 Matrix + pytest)"]
+    push --> frontendBuild["Job: frontend-build<br>(Node 20.x + npm ci + npm run build)"]
+
+    secretScan --> buildJob["Job: build<br>(Docker Container Build Validation)"]
+    testMatrix --> buildJob
+    frontendBuild --> buildJob
+
+    buildJob --> deployReady(["Artifacts Verified & Ready for Deployment"])
+```
+
+### Pipeline Jobs & Gating Matrix
+1. **`secret-scan`**: Checks for hardcoded credentials, API keys, and sensitive tokens.
+2. **`test`**: Runs the complete 167-test suite against Python 3.11 and 3.12 with Poppler dependencies installed.
+3. **`frontend-build`**: Validates React 18 / TypeScript / Vite compilation (`tsc -b && vite build`) to prevent production asset regressions.
+4. **`build`**: Container packaging verification. **Hard-gated** via `needs: [test, frontend-build]` — docker images are never built or published if backend tests or frontend compilation fails.
+
+---
+
+## 12. Common Tasks and Where to Start
 
 | Task | File(s) to read first |
 |------|-----------------------|
@@ -422,8 +467,10 @@ docker-compose -f docker-compose.redteam.yml up
 
 ---
 
-## 12. Known Limitations & Active Hardening Status
+## 13. Known Limitations & Active Hardening Status
 
+- **Adversarial Testing & Chaos Verification (Resolved in Set C):** 10/10 attack vectors verified and defended (Rate limiting burst throttling, constant-time key comparison, auth header validation, SQL injection parameterization, SQLite WAL concurrency under load, malformed/0-byte binary rejection, path traversal UUID neutralization, and Redis disconnect graceful degradation) in `tests/redteam_artifacts/campaign_3_adversarial.py`.
+- **CI/CD Gating & Frontend Build Matrix (Resolved in Set C):** Automated via `.github/workflows/ci.yml` under strict TDD (`tests/test_ci_pipeline.py`), gating container packaging on Python matrix testing and Node 20.x TypeScript/Vite builds.
 - **Authentication & Rate Limiting (Resolved in Set A):** Implemented in `app/core/security.py` via `CLEANOCR_API_KEY` header/bearer checks, SSE query params, and sliding-window Redis rate limits.
 - **Relational database & Job History (Resolved in Set B):** Implemented in `app/db/` using SQLAlchemy 2.0, providing persistent job history, metadata, and extraction text across server/Redis restarts with `GET /jobs` and `GET /jobs/{job_id}` endpoints.
 - **Hardcoded repair targets:** `REPAIR_TARGETS` in `stitcher.py` is now env-driven, but defaults to Mormon historical publications if unset.

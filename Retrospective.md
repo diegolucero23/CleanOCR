@@ -215,8 +215,8 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 
 ### 2026-10-02 - IDE Type Checker Import Diagnostics & Deferred Scoping
 *   **What went wrong:** The IDE's language server (Pyrefly) raised 13 errors, including `Could not find name PIL` in `google_vision.py` and missing module imports (`google`, `PIL`, `pytest`, `numpy`).
-*   **Root Cause:** Two distinct issues: (1) `PIL.Image` was imported deferred inside `generate_content()` instead of module top-level, meaning `PIL` was absent from the module scope when evaluating the type hint `image: PIL.Image.Image` in `detect_layout_type()`; (2) Pyrefly automatically inspected the user's home virtualenv `c:\Users\dluce\venv`, which was an unpopulated environment with only `pip`/`setuptools`.
-*   **Action Taken:** (1) Hoisted `import PIL.Image` to top-level module imports in `app/services/google_vision.py`; (2) Installed all pinned dependencies from `requirements.txt` into `c:\Users\dluce\venv` and created `.vscode/settings.json`, verifying that all 17 tests execute cleanly under both Python 3.14 and the Python 3.11 virtualenv.
+*   **Root Cause:** Two distinct issues: (1) `PIL.Image` was imported deferred inside `generate_content()` instead of module top-level, meaning `PIL` was absent from the module scope when evaluating the type hint `image: PIL.Image.Image` in `detect_layout_type()`; (2) Pyrefly automatically inspected the user's home virtualenv (`%USERPROFILE%\venv`), which was an unpopulated environment with only `pip`/`setuptools`.
+*   **Action Taken:** (1) Hoisted `import PIL.Image` to top-level module imports in `app/services/google_vision.py`; (2) Installed all pinned dependencies from `requirements.txt` into `%USERPROFILE%\venv` and created `.vscode/settings.json`, verifying that all 17 tests execute cleanly under both Python 3.14 and the Python 3.11 virtualenv.
 *   **Rule Added:** (@Eng / @QA) Always import types used in function signatures at module top-level to preserve static typing integrity. Ensure that the active IDE virtualenv has project dependencies installed to prevent false-positive diagnostic clutter.
 
 ### 2026-11-01 - Pytest RedTeam Discovery Hang & Windows Poppler Path Fallback
@@ -288,3 +288,28 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 *   **Root Cause:** Absence of an explicit handoff standard requiring @QA to formulate an atomic commit plan with conventional commit messages and file groupings for human review.
 *   **Action Taken:** Formalized the "Git Commit Strategy & Human Decision Gate" in `AGENTS.md`, `implementation_plan.md`, and `task.md`. At the conclusion of a fully verified session, @QA loops the human in with a structured git commit recommendation, and the human makes the final decision on how changes are committed.
 *   **Rule Added:** (@QA) Never autonomously commit full-session work without presenting a structured git commit recommendation to the human engineer; the human retains sole decision authority on how changes are committed.
+
+### 2026-11-02 - RedTeam Mock Provider NameError & Stale Compose Commands
+*   **What went wrong:** 
+    1. Importing `tests.redteam_artifacts.mock_vision` failed with `NameError: name 'Any' is not defined`.
+    2. `docker-compose.redteam.yml` specified outdated root entry point commands (`server:app` and `worker.celery_app`) which were obsolete following the Phase 18 package migration to `app/`.
+*   **Root Cause:**
+    1. `mock_vision.py` used `config: Any` in `generate_content()` without importing `Any` from `typing`.
+    2. Compose commands were not kept in parity with the production `docker-compose.yml` during architectural package reorganization.
+*   **Action Taken:**
+    1. Added `from typing import Any` and inherited `OCRProvider` with `detect_layout_type()` in `mock_vision.py`.
+    2. Updated `docker-compose.redteam.yml` to use `uvicorn app.api.server:app` and `celery -A app.workers.celery_worker.celery_app`.
+    3. Updated `.env.redteam.example` to define all required service URLs (`REDIS_URL`, `DATABASE_URL`, `CLEANOCR_API_KEY`).
+*   **Rule Added:** (@Arch) Whenever refactoring root package structures, always audit and synchronize secondary compose files (e.g. `docker-compose.redteam.yml`). Always verify that mock testbed provider classes import all static typing symbols and conform to the parent interface contracts.
+
+### 2026-11-02 - Windows Console Encoding & FastAPI Query Parameter Validation in Adversarial Tests
+*   **What went wrong:** 
+    1. Running `campaign_3_adversarial.py` on Windows PowerShell failed with `UnicodeEncodeError: 'charmap' codec can't encode characters` when printing status emojis (`🔒`, `✅`).
+    2. A long SQL injection exploit payload (`' UNION SELECT ...`) returned HTTP 422 Unprocessable Entity instead of HTTP 200 with an empty list, causing a false assertion failure.
+*   **Root Cause:**
+    1. The Windows default console encoding for PowerShell is cp1252, which lacks character points for Unicode emojis.
+    2. FastAPI's Pydantic schema on `GET /jobs` enforces `search: Optional[str] = Query(None, max_length=100)`. The test's 107-character UNION SELECT attack string exceeded the max length and was properly rejected at the schema validation boundary before reaching SQLAlchemy.
+*   **Action Taken:**
+    1. Added `sys.stdout.reconfigure(encoding="utf-8")` and standardized console output on ASCII status tags (`[LOCK]`, `[ARMED]`, `[OK]`, `[DEFENDED]`).
+    2. Updated the adversarial test to recognize that both HTTP 422 (schema boundary length rejection) and HTTP 200 (parameterized literal match with 0 rows) are valid, secure defenses against SQL injection attacks.
+*   **Rule Added:** (@Eng / @RedTeam) On Windows hosts, scripts intended for CLI output must use ASCII status labels or reconfigure stdout to UTF-8 to prevent cp1252 encoding crashes. When fuzzing or testing injection payloads, verify framework-level schema constraints (`max_length`, regex) to distinguish between schema rejection (HTTP 422) and parameterized execution (HTTP 200).
