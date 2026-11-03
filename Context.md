@@ -13,9 +13,9 @@
 *   **Infra:** Docker, Docker Compose.
 
 ## Active Status
-*   **Phase:** Production Gaps Hardening — Set B: Persistence & Storage (Verification & HITL Review).
-*   **Status:** Set B is fully constructed, tested, and verified across all personas. 161 tests passing (100% green). Frontend built cleanly with zero errors. Documentation Clearinghouse executed across `ARCHITECTURE.md` and `README.md`. Structured Git Commit Strategy recommendation prepared for human final decision.
-*   **Next:** Human engineer reviews verification walkthrough and approves or executes recommended Git commit strategy before proceeding to Set C (Validation & Adversarial Testing).
+*   **Phase:** Production Gaps Hardening — Set C: Validation & Adversarial Testing (Active Sprint).
+*   **Status:** Set B (Persistence & Storage) completed and committed across 5 atomic commits (`96aa610..d5d1b6e`). Full test bed is 100% green (161 passing). Set C is active and ready for `@PM` Discovery & Requirements Breakdown.
+*   **Next:** `@PM` breaks down Set C: Phase 13 RedTeam Chaos Campaign (interlocked via `GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE`), Live historical PDF E2E verification, and automated GitHub Actions CI/CD workflow.
 
 ## Recent Decisions
 *   **2026-11-02:** **Persistence & Storage (Set B):** Implemented SQLAlchemy 2.0 dual-engine persistence (SQLite default with WAL pragma, PostgreSQL via `DATABASE_URL`). Built `GET /jobs` and `GET /jobs/{id}` APIs with automatic Redis-to-DB fallback. Built mobile-first responsive `JobHistory.tsx` component and executed Documentation Clearinghouse. Established Human Decision Gate for full-session Git commits.

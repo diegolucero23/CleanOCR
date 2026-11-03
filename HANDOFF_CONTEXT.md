@@ -1,10 +1,11 @@
-# CleanOCR — Session Handoff Context (Historical Archive)
-> **ARCHIVE NOTICE (November 2026):** This document is a historical snapshot from July 2026 preserved for reference only.
-> For current architectural guidance, see [`ARCHITECTURE.md`](ARCHITECTURE.md). For active sprint progress and governance, see [`task.md`](task.md) and [`AGENTS.md`](AGENTS.md). Note that the July 2026 deferral of authentication was resolved with the implementation of Set A (`CLEANOCR_API_KEY` and rate limiting).
+# CleanOCR — Session Handoff Context
+> **ACTIVE STATUS (November 2026):** Production Gaps **Set A (Security & Access Control)** and **Set B (Persistence & Storage)** are fully implemented, verified (161/161 tests passing), and committed to main (96aa610..d5d1b6e).
+> **ACTIVE SPRINT:** **Set C (Validation & Adversarial Testing)** is the active phase under [	ask.md](task.md) and [production_gaps_plan.md](production_gaps_plan.md).
+> For system architecture, see [ARCHITECTURE.md](ARCHITECTURE.md). For agent roles and workflow rules, see [AGENTS.md](AGENTS.md).
 
-**Date:** 2026-07-08  
-**Branch:** `main`  
-**Status:** Historical sprint archive.
+**Date:** 2026-11-02  
+**Branch:** main  
+**Status:** Active Sprint — Set C (Validation & Adversarial Testing) Ready for @PM Discovery.
 
 ---
 
