@@ -80,7 +80,7 @@ jobs:
           pytest tests/ -v --tb=short
 
   # ---------------------------------------------------------------------------
-  # frontend-build — compile TypeScript and Vite production bundle
+  # frontend-build — lint, unit tests, then TypeScript + Vite production bundle
   # ---------------------------------------------------------------------------
   frontend-build:
     runs-on: ubuntu-latest
@@ -100,6 +100,16 @@ jobs:
         run: |
           cd frontend
           npm ci
+
+      - name: Lint
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Run unit tests (vitest)
+        run: |
+          cd frontend
+          npm test
 
       - name: Run build
         run: |
