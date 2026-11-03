@@ -1,11 +1,37 @@
 # CleanOCR — Session Handoff Context
-> **ACTIVE STATUS (November 2026):** Production Gaps **Set A (Security & Access Control)** and **Set B (Persistence & Storage)** are fully implemented, verified (161/161 tests passing), and committed to main (96aa610..d5d1b6e).
-> **ACTIVE SPRINT:** **Set C (Validation & Adversarial Testing)** is the active phase under [	ask.md](task.md) and [production_gaps_plan.md](production_gaps_plan.md).
+> **ACTIVE STATUS (November 2026):** Production Gaps **Set A (Security & Access Control)** and **Set B (Persistence & Storage)** are complete. **Set C (Validation & Adversarial Testing)** is built, pushed, and green in CI; its exit gate is **in review, awaiting the owner's manual audit** (198/198 tests passing locally).
+> **Tracking:** [task.md](task.md) and [production_gaps_plan.md](production_gaps_plan.md) hold the Set C exit gate (both are gitignored, so they exist only in the owner's checkout). Public status lives in [Context.md](Context.md).
 > For system architecture, see [ARCHITECTURE.md](ARCHITECTURE.md). For agent roles and workflow rules, see [AGENTS.md](AGENTS.md).
 
-**Date:** 2026-11-02  
+**Date:** 2026-11-03  
 **Branch:** main  
-**Status:** Active Sprint — Set C (Validation & Adversarial Testing) Ready for @PM Discovery.
+**Status:** Set C exit gate in review. Next step is the owner's manual audit and a decision on the deferred items below.
+
+---
+
+## Latest: Session 2026-11-02 → 2026-11-03 — Set C Validation, Publishing & CI Hardening
+
+### Delivered (on `main`, pushed to `origin`)
+- **RedTeam suite published:** `tests/redteam_artifacts/` scripts, README, and Campaign 1–3 reports. Campaign 3 defended 10/10 attack vectors, run in-process via FastAPI `TestClient`.
+- **CI/CD:** `.github/workflows/ci.yml` runs `secret-scan`, `test` (Python 3.11 + live Redis service), `frontend-build` (Node 20), and a Docker `build` gated on both. All green on `c6e44f7` ([run 41672118016](https://github.com/diegolucero23/CleanOCR/actions/runs/41672118016)).
+- **Structured logging fix:** API and worker JSON logs emitted `"timestamp": null, "level": null` on every line (the Campaign 2 bug). Fixed with `timestamp=True` plus a `levelname → level` rename; covered by `tests/test_structured_logging.py`.
+- **RedTeam script guardrails:** `stress_test.py` capped by `STRESS_MAX_MB` (512 MB default); `flood_queue.py` and `fuzz_inputs.py` enforce the `MOCK_KEY_DO_NOT_CHARGE` interlock and find `.env.redteam` from any working directory. Covered by `tests/test_redteam_scripts.py`.
+- **Public-repo hygiene:** hardcoded user-profile paths removed; `tests/test_no_local_paths.py` fails CI if one is reintroduced.
+- **CI-only failure fixed:** 15 upload tests got HTTP 429 against CI's live Redis, because the limiter in `app/core/security.py` uses its own Redis client that tests did not mock. An autouse `_disable_rate_limiting` fixture in `tests/conftest.py` fixes it; `tests/test_rate_limit_isolation.py` reproduces it.
+
+### Open before Set C can close (owner decisions)
+- [ ] **Manual audit** by the owner (code, docs, published RedTeam artifacts).
+- [ ] **Deferred:** containerized RedTeam run against `docker-compose.redteam.yml` (memory stress, socket exhaustion, fuzzing against the capped containers).
+- [ ] **Deferred:** live OCR of `latter_day_saints_messenger_and_advocate_vol_1_and_2.pdf` through Gemini 3.1 Flash Lite, plus a `DiffViewer.tsx` side-by-side sync check. Only the Poppler burst stage has been verified.
+- [ ] **Not done:** CI lint gate (no lint step exists), and the Vite build's chunk-size warning.
+
+### Known trade-offs (published, by design)
+- The rate limiter **fails open** when Redis is unreachable (availability over strict throttling). It is documented in `tests/redteam_artifacts/README.md`. The alternatives are fail-closed or a per-process fallback limiter.
+
+### Corrections to older notes in this file
+- **Tests run locally now:** the project venv uses Python 3.11 (`python -m pytest`, about 6 s). The "always run tests inside Docker" warnings below (§1, §7, §9) date from the Python 3.14 environment and no longer apply.
+- **Start Redis before `pytest` when you want CI parity.** Without it, rate limiting and caching fail open and can hide CI failures (see `AGENTS.md` §3 and `Retrospective.md`, 2026-11-03).
+- **Superseded roadmap items:** Set A delivered API-key auth (optional, open when `CLEANOCR_API_KEY` is unset) and Redis rate limiting; Set B delivered persistent job history (SQLite by default, PostgreSQL via `DATABASE_URL`). The unchecked Phase 2/3 boxes for these in §8 are historical.
 
 ---
 

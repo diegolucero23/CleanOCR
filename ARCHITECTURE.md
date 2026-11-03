@@ -51,7 +51,7 @@ CleanOCR/
 │
 ├── frontend-v2/                Experimental dark-theme document editor UI (React + Vite + Tailwind, :5174) — not yet the default
 │
-├── tests/                      Pytest unit + integration tests (180 tests, 100% green)
+├── tests/                      Pytest unit + integration tests (198 tests, 100% green)
 │   └── redteam_artifacts/      ★ RedTeam chaos campaigns, mock vision provider, fuzzer & stress suites
 ├── scripts/                    CLI verification + debug helpers
 │
@@ -387,9 +387,11 @@ still in `queued` or `processing` state (page-refresh recovery).
 
 ## 10. Testing & Verification
 
+> **Redis parity:** CI runs the suite against a live Redis service. Start `redis-server` locally before running `pytest` ahead of a push; without Redis, rate limiting and caching fail open and can mask failures. `tests/conftest.py` disables API rate limiting for every test by default (autouse `_disable_rate_limiting`); throttling tests patch `app.core.security.check_rate_limit` themselves.
+
 ```bash
 # Unit + integration tests
-pytest tests/  # 180 tests passing (100% green)
+pytest tests/  # 198 tests passing (100% green)
 
 # Specific suites
 pytest tests/test_ci_pipeline.py
@@ -443,7 +445,7 @@ flowchart TD
 
 ### Pipeline Jobs & Gating Matrix
 1. **`secret-scan`**: Checks for hardcoded credentials, API keys, and sensitive tokens.
-2. **`test`**: Runs the complete 180-test suite against Python 3.11 with Poppler and libmagic installed.
+2. **`test`**: Runs the complete 198-test suite against Python 3.11 with Poppler and libmagic installed.
 3. **`frontend-build`**: Validates React 18 / TypeScript / Vite compilation (`tsc -b && vite build`) to prevent production asset regressions.
 4. **`build`**: Container packaging verification. **Hard-gated** via `needs: [test, frontend-build]` — docker images are never built or published if backend tests or frontend compilation fails.
 

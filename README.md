@@ -113,7 +113,7 @@ Frontend live at: **http://localhost:5173**
 ## 🧪 Testing & Verification
 
 ### 1. Automated Test Suite (Pytest)
-Run the full backend regression suite (all 180 tests):
+Run the full backend regression suite (all 198 tests):
 ```bash
 # Using project virtualenv
 python -m pytest
@@ -125,6 +125,8 @@ python -m pytest tests/test_auth_and_rate_limit.py
 ```
 
 > **Windows Note:** Ensure Poppler is installed (`winget install oschwartz10612.Poppler`). `config.py` automatically detects Poppler in your system PATH.
+
+> **Match CI before pushing:** CI runs the tests against a live Redis. Start Redis locally first (for example `docker run -d -p 6379:6379 redis:7-alpine`, or `redis-server`). Without it, rate limiting and caching quietly fail open, so a green local run can still fail in CI.
 
 ### 2. Live Verification Scripts
 To verify against a running Docker stack:

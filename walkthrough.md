@@ -474,3 +474,49 @@ All documentation suggestions submitted by `@PM`, `@Arch`, `@Eng`, and `@RedTeam
    - Added Section 4 CI/CD Pipeline matrix documentation.
 3. **`tests/redteam_artifacts/README.md`:**
    - Documented all three RedTeam campaigns (Fuzzing, Flooding, Adversarial System Hardening), the 10 defended attack vectors, and the safety interlock rules of engagement.
+
+---
+
+## Phase 23: Set C Post-Push Hardening & Final QA Run (2026-11-02 to 2026-11-03)
+
+### Summary
+*   **Local path scrub:** Replaced hardcoded user-profile paths in 5 scripts and the docs with repo-relative paths; `tests/test_no_local_paths.py` blocks any reintroduction (verified failing on 18 hits first).
+*   **Structured logging fix (Campaign 2 bug):** API and worker JSON logs emitted `"timestamp": null, "level": null` on every line. Fixed with `timestamp=True` and `rename_fields={"levelname": "level"}`; `tests/test_structured_logging.py`.
+*   **RedTeam script guardrails:** `stress_test.py` capped at `STRESS_MAX_MB`; `flood_queue.py` interlock added; `fuzz_inputs.py` interlock path made cwd-independent; `tests/test_redteam_scripts.py`.
+*   **CI red after push:** 15 upload tests got HTTP 429 against CI's live Redis (limiter uses its own client that tests did not mock). Autouse `_disable_rate_limiting` fixture in `tests/conftest.py`; reproduction in `tests/test_rate_limit_isolation.py`.
+
+### Verification Proof
+**Live API logging check (`/verify`, uvicorn on :8123, no Redis):**
+```json
+{"level": "ERROR", "message": "Rate limiter Redis failure; failing open", "module": "security", "funcName": "is_allowed", "timestamp": "2026-11-03T06:13:50.808532+00:00"}
+```
+
+**CI failure reproduced locally (real limiter forced to deny via scratch plugin), before fix:**
+```
+32 failed, 148 passed
+```
+**After fix, same simulation and normal run:**
+```
+180 passed, 1 warning in 6.39s   (simulated full Redis window)
+180 passed, 1 warning in 6.28s   (normal; was ~97s while waiting on refused Redis connections)
+```
+
+**GitHub Actions on `c6e44f7`** ([run 41672118016](https://github.com/diegolucero23/CleanOCR/actions/runs/41672118016)):
+```
+secret-scan: success | frontend-build: success | test: success (180 passed) | build: success
+```
+
+**Final QA run (2026-11-03):**
+```
+python -m pytest tests/ -q                      -> 183 passed, 1 warning in 6.13s
+python -m pytest tests/ -q -p ci_full_window    -> 183 passed, 1 warning in 5.38s (limiter forced to deny)
+npm --prefix frontend run build                 -> built in 8.59s (1 chunk-size warning)
+fuzz_inputs.py from repo root (requests blocked)-> Interlock Passed (previously: FATAL ../../.env.redteam not found)
+tests/test_rate_limit_isolation.py vs pre-fix conftest -> assert 429 != 429 (fails as expected)
+```
+
+### Open Items (carried to HITL sign-off)
+*   [ ] Containerized RedTeam run against `docker-compose.redteam.yml`.
+*   [ ] Live Gemini OCR of the historical scan + `DiffViewer.tsx` sync check.
+*   [ ] Lint gate in CI (none exists) and Vite chunk-size warning.
+*   [ ] Human manual audit.

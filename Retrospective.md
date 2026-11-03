@@ -336,3 +336,12 @@ This file serves as the project's long-term memory for mistakes, lessons learned
     3. The limiter landed in `4bebf0b`, which had never run in CI until this push.
 *   **Action Taken:** Added an autouse `_disable_rate_limiting` fixture in `tests/conftest.py` that patches `app.core.security.check_rate_limit` to allow. Throttling tests keep patching it themselves. Reproduced the CI failure locally first with a scratch plugin forcing the limiter to deny (32 failed), then confirmed 180/180 with the fixture. Local suite time dropped from ~97s to ~6s.
 *   **Rule Added:** (@Eng / @QA) A green local run without Redis is not CI parity: start `redis-server` before `pytest` (as the verify skill does), and when a test mocks a shared client, mock it where it is used by every code path under test, not only in the module being tested.
+
+### 2026-11-03 - Final QA Run: Docs Claimed More Than Was Verified
+*   **What went wrong:**
+    1. `Context.md`, `task.md`, and the @QA report described Set C as "100% complete and verified", but the containerized RedTeam run, live Gemini E2E, `DiffViewer.tsx` check, and a lint gate were never evidenced.
+    2. `fuzz_inputs.py` resolved `.env.redteam` relative to the working directory, so the command documented in `tests/redteam_artifacts/README.md` always aborted at the interlock.
+    3. Machine-specific paths (`c:\Users\<name>\...`) had been committed in 5 scripts and 2 docs.
+*   **Root Cause:** Checklist boxes were ticked from the plan's intent rather than from recorded evidence, and run instructions were never executed exactly as documented.
+*   **Action Taken:** Re-ticked exit gates against evidence (deferred items left open), fixed the `fuzz_inputs.py` path with a cwd-independence test, and added a local-path guard test.
+*   **Rule Added:** (@QA) Tick an exit-gate box only when `walkthrough.md` or CI holds the evidence; otherwise mark it DEFERRED with the reason. Run documented commands verbatim from the documented directory before signing off.
