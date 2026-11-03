@@ -16,8 +16,9 @@ Coverage:
 
   Jobs structure
     - 'test' job is present
+    - 'frontend-build' job is present
     - 'build' job is present
-    - 'build' job declares 'needs: test' (gates Docker build on passing tests)
+    - 'build' job declares 'needs: [test, frontend-build]' (gates Docker build on passing backend tests & frontend compilation)
 
   test job
     - Runs on ubuntu-latest
@@ -27,6 +28,12 @@ Coverage:
     - Executes pytest
     - Provides a Redis service (required by workers and stats tests)
     - Exposes GOOGLE_API_KEY as an environment variable
+
+  frontend-build job
+    - Runs on ubuntu-latest
+    - Has an actions/checkout step
+    - Sets up Node.js 20.x
+    - Installs dependencies and runs 'npm run build' in frontend/
 
   build job
     - Has an actions/checkout step
@@ -99,6 +106,9 @@ class TestJobsStructure:
     def test_has_test_job(self, workflow):
         assert "test" in workflow.get("jobs", {}), "A 'test' job must be defined"
 
+    def test_has_frontend_build_job(self, workflow):
+        assert "frontend-build" in workflow.get("jobs", {}), "A 'frontend-build' job must be defined"
+
     def test_has_build_job(self, workflow):
         assert "build" in workflow.get("jobs", {}), "A 'build' job must be defined"
 
@@ -109,6 +119,14 @@ class TestJobsStructure:
         if isinstance(needs, str):
             needs = [needs]
         assert "test" in needs, "'build' job must declare 'needs: test'"
+
+    def test_build_job_needs_frontend_build(self, workflow):
+        """Build must not run unless frontend build passes."""
+        build_job = workflow["jobs"]["build"]
+        needs = build_job.get("needs", [])
+        if isinstance(needs, str):
+            needs = [needs]
+        assert "frontend-build" in needs, "'build' job must declare 'needs: frontend-build'"
 
 
 # ===========================================================================
@@ -179,7 +197,6 @@ class TestTestJob:
 
     def test_sets_google_api_key_env_var(self):
         """Tests import config.py which calls sys.exit() without this key."""
-        # Check both job-level env and step-level env
         job_env = self.job.get("env", {})
         step_envs = [s.get("env", {}) for s in self.steps]
         all_envs = [job_env] + step_envs
@@ -191,7 +208,54 @@ class TestTestJob:
 
 
 # ===========================================================================
-# 5. build job details
+# 5. frontend-build job details
+# ===========================================================================
+
+class TestFrontendBuildJob:
+    @pytest.fixture(autouse=True)
+    def _job(self, workflow):
+        assert "frontend-build" in workflow.get("jobs", {}), "frontend-build job missing"
+        self.job = workflow["jobs"]["frontend-build"]
+        self.steps = self.job.get("steps", [])
+
+    def test_runs_on_ubuntu(self):
+        assert "ubuntu" in self.job.get("runs-on", ""), (
+            "frontend-build job must run on ubuntu-latest"
+        )
+
+    def test_has_checkout_step(self):
+        has_checkout = any(
+            "actions/checkout" in str(s.get("uses", ""))
+            for s in self.steps
+        )
+        assert has_checkout, "frontend-build job must have an actions/checkout step"
+
+    def test_sets_up_node(self):
+        setup_node = next(
+            (s for s in self.steps if "setup-node" in str(s.get("uses", ""))),
+            None,
+        )
+        assert setup_node is not None, "frontend-build job must have a setup-node step"
+        node_version = str(setup_node.get("with", {}).get("node-version", ""))
+        assert "20" in node_version, (
+            f"Node version must be 20.x, got '{node_version}'"
+        )
+
+    def test_runs_build(self):
+        build_step = next(
+            (
+                s for s in self.steps
+                if "npm run build" in str(s.get("run", ""))
+            ),
+            None,
+        )
+        assert build_step is not None, (
+            "frontend-build job must have a step that executes 'npm run build'"
+        )
+
+
+# ===========================================================================
+# 6. build job details
 # ===========================================================================
 
 class TestBuildJob:
