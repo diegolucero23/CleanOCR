@@ -236,14 +236,14 @@ async def upload_pdf(
         
         if cached_job_id:
             cached_job_id = cached_job_id.decode('utf-8')
-            cached_status_bytes = None
-            try:
-                cached_status_bytes = redis_client.get(f"cache:{cached_job_id}:status")
-            except Exception:
-                pass
-            cached_status = cached_status_bytes.decode('utf-8') if cached_status_bytes else None
+            # The database is the source of truth. A cache entry is only honoured
+            # when its job is recorded and not failed; otherwise the entry is stale
+            # (job deleted, or created before persistence existed) and is dropped.
+            cached_db_status = db.execute(
+                select(JobModel.status).where(JobModel.id == cached_job_id)
+            ).scalar_one_or_none()
 
-            if cached_status != "failed":
+            if cached_db_status and cached_db_status != "failed":
                 logger.info("Cache hit! Returning existing job.", extra={"new_job_id": job_id, "cached_job_id": cached_job_id})
                 os.remove(file_path)
                 return {
@@ -251,8 +251,14 @@ async def upload_pdf(
                     "job_id": cached_job_id,
                     "message": "Duplicate file detected. Returning cached result."
                 }
-            else:
-                logger.info("Cache hit on a FAILED job. Ignoring cache and re-processing.", extra={"job_id": job_id})
+
+            reason = "failed job" if cached_db_status == "failed" else "no database record"
+            logger.info(f"Ignoring cache entry ({reason}); processing as a new job.",
+                        extra={"job_id": job_id, "cached_job_id": cached_job_id})
+            try:
+                redis_client.delete(f"cache:{file_hash}")
+            except Exception as e:
+                logger.warning(f"Redis stale-cache cleanup failed: {e}", extra={"job_id": job_id})
 
         # --- 4. Relational Database Persistence (Set B) ---
         db_job = JobModel(
@@ -446,7 +452,7 @@ def _build_status_payload(job_id: str, db: Session = None) -> dict:
 async def list_jobs(
     page: int = Query(1, ge=1),
     limit: int = Query(10, ge=1, le=100),
-    status: str | None = Query(None, pattern="^(queued|processing|completed|failed)$"),
+    status: str | None = Query(None, pattern="^(queued|processing|completed|failed|active)$"),
     search: str | None = Query(None, max_length=100),
     sort_order: str = Query("desc", pattern="^(asc|desc)$"),
     db: Session = Depends(get_db),
@@ -454,10 +460,14 @@ async def list_jobs(
     """
     Retrieve a paginated, filterable, and searchable list of historical jobs from the database.
     Supports filtering by status, search by filename or title, and order by creation time.
+    status=active matches in-flight jobs (queued or processing), which the UI's
+    Processing tab shows together.
     """
     query = select(JobModel).outerjoin(JobModel.citation_metadata)
 
-    if status:
+    if status == "active":
+        query = query.where(JobModel.status.in_(("queued", "processing")))
+    elif status:
         query = query.where(JobModel.status == status)
 
     if search:

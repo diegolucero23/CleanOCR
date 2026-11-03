@@ -163,6 +163,106 @@ def test_upload_persists_to_database(mock_pages, mock_val, mock_celery, client, 
     db.close()
 
 
+LEGACY_JOB_ID = "1407f1a6-0478-4d69-803f-a8101674210d"
+
+
+def _redis_with_cached_job(mock_redis, status="completed"):
+    """Make the upload's file hash resolve to LEGACY_JOB_ID in the mocked Redis."""
+    values = {
+        f"cache:{LEGACY_JOB_ID}:status": status.encode(),
+        f"cache:{LEGACY_JOB_ID}:total_pages": b"13",
+        f"cache:{LEGACY_JOB_ID}:completed_pages": b"13",
+        f"cache:{LEGACY_JOB_ID}:end_time": b"1792028400.5",
+    }
+
+    def fake_get(key):
+        if key.startswith("cache:") and key.count(":") == 1:
+            return LEGACY_JOB_ID.encode()
+        return values.get(key)
+
+    mock_redis.get.side_effect = fake_get
+
+
+def _write_legacy_workspace(root):
+    ws = root / LEGACY_JOB_ID
+    (ws / "output").mkdir(parents=True)
+    (ws / "metadata.json").write_text(
+        '{"title": "STAR Interview Method", "volume": null, "issue": null, '
+        '"date": "February 27, 2025", "skip_metadata": false, "original_filename": "H08GNF-PDF-ENG.pdf"}'
+    )
+    (ws / "output" / "full_extracted_content.md").write_text("# STAR\n\nSituation Task Action Result")
+
+
+@patch("app.api.server.run_ocr_pipeline")
+@patch("app.api.server.validate_file_type", return_value=True)
+@patch("app.api.server.get_pdf_page_count", return_value=13)
+def test_stale_cache_without_db_record_is_reprocessed(mock_pages, mock_val, mock_celery, client, test_db, mock_redis, tmp_path):
+    """The DB is the source of truth: a Redis cache entry pointing at a job with no DB
+    record (deleted, or from before persistence existed) is dropped and the upload is
+    processed as a new job, so it is recorded and visible in Job History."""
+    TestingSessionLocal, _, _ = test_db
+    mock_celery.apply_async.return_value = MagicMock(id="task")
+    _redis_with_cached_job(mock_redis)
+
+    res = client.post("/upload", files={"file": ("H08GNF-PDF-ENG.pdf", b"%PDF-1.4 star", "application/pdf")})
+
+    assert res.status_code == 200
+    body = res.json()
+    assert body["status"] == "queued", "stale cache entry was served as a duplicate"
+    assert body["job_id"] != LEGACY_JOB_ID
+    mock_celery.apply_async.assert_called_once()
+    stale_key = next(c.args[0] for c in mock_redis.delete.call_args_list) if mock_redis.delete.called else None
+    assert stale_key is not None and stale_key.startswith("cache:") and stale_key.count(":") == 1
+
+    db = TestingSessionLocal()
+    job = db.execute(select(JobModel).where(JobModel.id == body["job_id"])).scalar_one_or_none()
+    assert job is not None and job.status == "queued"
+    assert db.execute(select(JobModel).where(JobModel.id == LEGACY_JOB_ID)).scalar_one_or_none() is None
+    db.close()
+
+
+@patch("app.api.server.run_ocr_pipeline")
+@patch("app.api.server.validate_file_type", return_value=True)
+@patch("app.api.server.get_pdf_page_count", return_value=13)
+def test_cache_hit_on_failed_db_job_is_reprocessed(mock_pages, mock_val, mock_celery, client, test_db, mock_redis, tmp_path):
+    """A cached job whose DB record is failed must be reprocessed, even if Redis still says completed."""
+    TestingSessionLocal, _, _ = test_db
+    mock_celery.apply_async.return_value = MagicMock(id="task")
+    _redis_with_cached_job(mock_redis, status="completed")
+    db = TestingSessionLocal()
+    db.add(JobModel(id=LEGACY_JOB_ID, status="failed", file_hash="h", original_filename="scan.pdf",
+                    file_size=10, total_pages=13, processed_pages=0, model_name="m", upload_time=1.0))
+    db.commit()
+    db.close()
+
+    res = client.post("/upload", files={"file": ("scan.pdf", b"%PDF-1.4 star", "application/pdf")})
+    assert res.json()["status"] == "queued"
+    assert res.json()["job_id"] != LEGACY_JOB_ID
+
+
+@patch("app.api.server.run_ocr_pipeline")
+@patch("app.api.server.validate_file_type", return_value=True)
+@patch("app.api.server.get_pdf_page_count", return_value=13)
+def test_cache_hit_keeps_existing_job_record(mock_pages, mock_val, mock_celery, client, test_db, mock_redis, tmp_path):
+    """A cache hit on a job that already has a DB row must not duplicate or overwrite it."""
+    TestingSessionLocal, _, _ = test_db
+    _redis_with_cached_job(mock_redis)
+    db = TestingSessionLocal()
+    db.add(JobModel(id=LEGACY_JOB_ID, status="completed", file_hash="h", original_filename="original.pdf",
+                    file_size=10, total_pages=13, processed_pages=13, model_name="m", upload_time=1.0))
+    db.commit()
+    db.close()
+
+    res = client.post("/upload", files={"file": ("renamed.pdf", b"%PDF-1.4 star", "application/pdf")})
+    assert res.json()["job_id"] == LEGACY_JOB_ID
+
+    db = TestingSessionLocal()
+    rows = db.execute(select(JobModel)).scalars().all()
+    assert len(rows) == 1
+    assert rows[0].original_filename == "original.pdf"
+    db.close()
+
+
 def test_get_jobs_pagination_and_filtering(client, test_db):
     """Test GET /jobs pagination, status filtering, and search functionality."""
     TestingSessionLocal, _, _ = test_db
@@ -224,6 +324,36 @@ def test_get_jobs_pagination_and_filtering(client, test_db):
     search_data = res_search.json()
     assert search_data["total"] == 3
     assert all("Messenger" in item["metadata"]["title"] for item in search_data["items"])
+
+
+def test_get_jobs_active_filter_includes_queued_and_processing(client, test_db):
+    """status=active returns in-flight jobs (queued + processing) for the UI's Processing tab."""
+    TestingSessionLocal, _, _ = test_db
+    db = TestingSessionLocal()
+    for i, status in enumerate(["queued", "processing", "completed", "failed", "queued"], start=1):
+        db.add(JobModel(
+            id=f"00000000-0000-0000-0000-0000000000a{i}",
+            status=status,
+            file_hash=f"active_hash_{i}",
+            original_filename=f"active_{i:03d}.pdf",
+            file_size=100,
+            total_pages=5,
+            processed_pages=0,
+            model_name="gemini-3.1-flash-lite",
+            upload_time=1700000000.0 + i,
+        ))
+    db.commit()
+    db.close()
+
+    res = client.get("/jobs?status=active")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["total"] == 3
+    assert {item["status"] for item in data["items"]} == {"queued", "processing"}
+
+    # Exact single-status filters keep their meaning.
+    assert client.get("/jobs?status=processing").json()["total"] == 1
+    assert client.get("/jobs?status=queued").json()["total"] == 2
 
 
 def test_get_job_by_id_and_not_found(client, test_db):

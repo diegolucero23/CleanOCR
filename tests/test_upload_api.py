@@ -62,7 +62,16 @@ def _pdf_bytes():
 
 class TestCacheHit:
     def test_duplicate_file_returns_cached_job_id(self, client):
-        """When the file hash matches a completed cached job, return that job_id."""
+        """When the file hash matches a completed job recorded in the DB, return that job_id."""
+        from app.db.database import get_db_context
+        from app.db.models import JobModel
+
+        with get_db_context() as db:
+            if db.get(JobModel, "existing-job-id") is None:
+                db.add(JobModel(id="existing-job-id", status="completed", file_hash="deadbeef",
+                                original_filename="test.pdf", file_size=1, total_pages=3,
+                                processed_pages=3, model_name="m", upload_time=1.0))
+
         def redis_get(key):
             if ":status" in key:
                 return b"completed"
