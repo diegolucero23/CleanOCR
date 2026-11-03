@@ -1,5 +1,6 @@
 import os
 import sys
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
 # Load the .env file
@@ -26,12 +27,13 @@ if not GOOGLE_API_KEY and OCR_TIER != "local":
 # --- PATHS ---
 # Determine OS: 'nt' is Windows, 'posix' is Linux/Mac
 if os.name == 'nt':
-    # On Windows, we need the specific path from .env
-    POPPLER_PATH = os.getenv("POPPLER_PATH")
+    # On Windows, use path from .env if it exists, otherwise fallback to system PATH (None)
+    raw_poppler = os.getenv("POPPLER_PATH")
+    POPPLER_PATH = raw_poppler if (raw_poppler and os.path.isdir(raw_poppler)) else None
 else:
     # On Linux (Docker), Poppler is installed in the system PATH.
     # Passing None tells pdf2image to look for it automatically.
-    POPPLER_PATH = None 
+    POPPLER_PATH = None
 
 PDF_SOURCE = os.getenv("PDF_SOURCE")
 
@@ -45,15 +47,18 @@ FINAL_MARKDOWN_FOLDER = "CleanOCR_Finalv2"
 LOG_FILE = "failed_pages.log"
 
 # --- CONFIG ---
-# Primary model (standard tier). Gemini 2.0 Flash was shut down June 1, 2026.
-MODEL_NAME = os.getenv("MODEL_NAME", "gemini-2.5-flash-lite")
+# Primary model (standard tier). Replaces retiring Gemini 2.5 family (Oct 20, 2026).
+MODEL_NAME = os.getenv("MODEL_NAME", "gemini-3.1-flash-lite")
 # Upgraded model for pro-tier users (selected when OCR_TIER=pro).
-PRO_MODEL_NAME = os.getenv("PRO_MODEL_NAME", "gemini-3.1-flash-lite")
+PRO_MODEL_NAME = os.getenv("PRO_MODEL_NAME", "gemini-3.8-flash")
+# Dedicated lightweight model for binary layout classification.
+LAYOUT_MODEL_NAME = os.getenv("LAYOUT_MODEL_NAME", "gemini-3.1-flash-lite")
 # Fallback if the active model is unavailable. Must differ from MODEL_NAME
-# for the fallback to engage; defaults to the heavier non-lite variant.
-FALLBACK_MODEL_NAME = os.getenv("FALLBACK_MODEL_NAME", "gemini-2.5-flash")
+# for the fallback to engage.
+FALLBACK_MODEL_NAME = os.getenv("FALLBACK_MODEL_NAME", "gemini-3.5-flash-lite")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./workspaces/cleanocr.db")
 
 # --- UPLOAD LIMITS ---
 # Reject uploads larger than this (MB) and PDFs with more pages than this.
@@ -107,3 +112,14 @@ WORKSPACE_TTL_HOURS = int(os.getenv("WORKSPACE_TTL_HOURS", "24"))
 # Comma-separated list of page basenames (e.g. "page_004,page_064") that should be
 # flagged in the pre-flight audit. Leave empty (default) for generic/unknown documents.
 REPAIR_TARGETS = [p.strip() for p in os.getenv("REPAIR_TARGETS", "").split(",") if p.strip()]
+
+# --- SECURITY & ACCESS CONTROL ---
+# API Key for authenticating /upload, /status, and /stream requests.
+# If empty or None, runs in open dev mode (pass-through).
+CLEANOCR_API_KEY = os.getenv("CLEANOCR_API_KEY")
+
+# --- RATE LIMITING ---
+# Sliding-window rate limits (requests per window) enforced via Redis.
+RATE_LIMIT_UPLOADS_PER_MIN = int(os.getenv("RATE_LIMIT_UPLOADS_PER_MIN", "3"))
+RATE_LIMIT_STATUS_PER_MIN = int(os.getenv("RATE_LIMIT_STATUS_PER_MIN", "60"))
+RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("RATE_LIMIT_WINDOW_SECONDS", "60"))
