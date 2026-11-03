@@ -1,7 +1,18 @@
 import time
+from datetime import timezone
 from sqlalchemy import Column, String, Integer, BigInteger, Float, Text, Boolean, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
 from app.db.database import Base
+
+
+def _utc_iso(value):
+    """ISO-8601 with an explicit offset. SQLite returns created_at naive (UTC);
+    without an offset, browsers would parse it as local time."""
+    if value is None:
+        return None
+    if value.tzinfo is None:
+        value = value.replace(tzinfo=timezone.utc)
+    return value.isoformat()
 
 
 class JobModel(Base):
@@ -66,7 +77,7 @@ class JobModel(Base):
             "complexity": self.complexity,
             "error_message": self.error_message,
             "metadata": meta_dict,
-            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "created_at": _utc_iso(self.created_at),
         }
 
     def to_detail_dict(self):
