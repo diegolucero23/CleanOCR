@@ -27,3 +27,12 @@ Return strictly this JSON structure:
     "markdown_content": "string"
 }
 """
+
+LAYOUT_PROMPT = """
+Analyze this document image.
+Determine if the layout is primarily a single column of text or multi-column (such as newspapers or double-column pages).
+Return strictly this JSON structure:
+{
+    "layout_type": "single-column" | "multi-column"
+}
+"""

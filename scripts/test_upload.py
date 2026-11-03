@@ -74,11 +74,32 @@ def flush_job(prefix: str):
         sys.exit(1)
 
 def create_dummy_pdf(filename="test_upload.pdf", unique=True):
+    # Generates a minimal valid 1-page PDF so poppler/pdfinfo can parse page count and dimensions.
+    w, h = 612, 792 # standard letter size
+    objs = [
+        "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
+        "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
+        f"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {w} {h}] >>\nendobj\n"
+    ]
+    pdf = "%PDF-1.4\n"
+    if unique:
+        pdf += f"%Uniqueness: {uuid.uuid4()}\n"
+        
+    offsets = []
+    for obj in objs:
+        offsets.append(len(pdf))
+        pdf += obj
+    xref_pos = len(pdf)
+    pdf += f"xref\n0 {len(objs) + 1}\n0000000000 65535 f \n"
+    for off in offsets:
+        pdf += f"{off:010d} 00000 n \n"
+    pdf += (
+        f"trailer\n<< /Size {len(objs) + 1} /Root 1 0 R >>\n"
+        f"startxref\n{xref_pos}\n%%EOF"
+    )
+    
     with open(filename, "wb") as f:
-        content = b"%PDF-1.4\n"
-        if unique:
-             content += f"%Uniqueness: {uuid.uuid4()}\n".encode()
-        f.write(content)
+        f.write(pdf.encode('ascii', errors='ignore'))
     return filename
 
 def run_test(file_path=None, use_dummy=False):

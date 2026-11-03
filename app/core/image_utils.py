@@ -6,9 +6,7 @@ def preprocess_image(pil_image: Image.Image) -> Image.Image:
     """
     Applies production pre-processing to a PIL Image:
     1. Deskew (correct rotation)
-    2. Add Padding (split center gutter)
     """
-    # 1. Deskew
     # Convert PIL to CV2 (OpenCV uses BGR, PIL uses RGB)
     open_cv_image = np.array(pil_image) 
     # Convert RGB to BGR 
@@ -16,11 +14,22 @@ def preprocess_image(pil_image: Image.Image) -> Image.Image:
     
     deskewed_cv = _deskew(open_cv_image)
     
-    # 2. Add Padding
-    padded_cv = _add_padding(deskewed_cv)
-    
     # Convert back to PIL
     # Convert BGR to RGB
+    final_rgb = cv2.cvtColor(deskewed_cv, cv2.COLOR_BGR2RGB)
+    return Image.fromarray(final_rgb)
+
+def add_padding(pil_image: Image.Image, padding_px: int = 50) -> Image.Image:
+    """
+    Splits the PIL image vertically and adds a white gutter in the center.
+    """
+    # Convert PIL to CV2
+    open_cv_image = np.array(pil_image)
+    open_cv_image = open_cv_image[:, :, ::-1].copy()
+    
+    padded_cv = _add_padding(open_cv_image, padding_px)
+    
+    # Convert back to PIL
     final_rgb = cv2.cvtColor(padded_cv, cv2.COLOR_BGR2RGB)
     return Image.fromarray(final_rgb)
 

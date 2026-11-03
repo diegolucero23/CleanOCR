@@ -10,16 +10,22 @@ try:
 except ImportError:
     magic = None
     print("WARNING: python-magic not found. Uploads will be rejected (fail closed) until libmagic is installed.")
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Depends, Query
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pythonjsonlogger import json as jsonlogger
 from redis import Redis
+from sqlalchemy import select, func, or_
+from sqlalchemy.orm import Session
 from app.workers.celery_worker import run_ocr_pipeline
 from celery.result import AsyncResult
 from dotenv import load_dotenv
 from app.core import config
 from app.core.secrets import SecretRedactingFilter, redact
+from app.core.security import verify_api_key, rate_limit_upload, rate_limit_status
+from app.db.database import init_db, get_db, get_db_context
+from app.db.models import JobModel, JobMetadataModel, JobResultModel
 
 load_dotenv()
 
@@ -34,7 +40,20 @@ logHandler.addFilter(SecretRedactingFilter())
 logger.addHandler(logHandler)
 logger.setLevel(logging.INFO)
 
-app = FastAPI(title="CleanOCR API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager: initializes database schema on startup."""
+    init_db()
+    yield
+
+app = FastAPI(title="CleanOCR API", lifespan=lifespan)
+
+@app.exception_handler(HTTPException)
+async def custom_http_exception_handler(request, exc: HTTPException):
+    headers = getattr(exc, "headers", None)
+    if isinstance(exc.detail, dict) and "error" in exc.detail:
+        return JSONResponse(status_code=exc.status_code, content=exc.detail, headers=headers)
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail}, headers=headers)
 
 # Mount upload directory for static access (PDF Viewer)
 # Check directory existence again to be safe
@@ -96,13 +115,14 @@ def compute_stream_timeout_seconds(page_count) -> int:
     return config.STREAM_BASE_BUDGET_SECONDS + pages * config.STREAM_PAGE_BUDGET_SECONDS
 
 def ingestion_limits() -> dict:
-    """The upload caps disclosed via GET /limits and echoed at upload."""
+    """Return the ingestion caps and streaming budgets for client-side disclosure."""
     return {
         "max_upload_mb": config.MAX_UPLOAD_MB,
         "max_pdf_pages": config.MAX_PDF_PAGES,
         "max_page_pixels": config.MAX_PAGE_PIXELS,
         "render_dpi": config.PDF_RENDER_DPI,
         "accepted_types": ["application/pdf"],
+        "stream_unknown_job_timeout_seconds": config.STREAM_UNKNOWN_JOB_TIMEOUT,
         "stream_base_budget_seconds": config.STREAM_BASE_BUDGET_SECONDS,
         "stream_page_budget_seconds": config.STREAM_PAGE_BUDGET_SECONDS,
     }
@@ -117,13 +137,16 @@ def require_valid_job_id(job_id: str) -> None:
     try:
         uuid.UUID(job_id)
     except (ValueError, AttributeError, TypeError):
-        raise HTTPException(status_code=400, detail="Invalid job id format.")
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid job id: must be a valid UUID",
+        )
 
-def save_upload_capped(src, dest_path, max_bytes):
+def save_upload_capped(src, dest_path, max_bytes: int) -> bool:
     """
-    Stream the upload to disk in chunks, enforcing a byte cap.
-    Returns True if the whole file fit, False if the cap was exceeded
-    (the partial file is left on disk for the caller to remove).
+    Stream bytes from `src` to `dest_path`, aborting and returning False
+    if more than `max_bytes` are read. Protects against unbounded disk
+    consumption from chunked uploads where Content-Length was missing.
     """
     written = 0
     with open(dest_path, "wb") as buffer:
@@ -136,14 +159,15 @@ def save_upload_capped(src, dest_path, max_bytes):
                 return False
             buffer.write(chunk)
 
-@app.post("/upload")
+@app.post("/upload", dependencies=[Depends(verify_api_key), Depends(rate_limit_upload)])
 async def upload_pdf(
     file: UploadFile = File(...),
     title: str | None = Form(None),
     volume: str | None = Form(None),
     issue: str | None = Form(None),
     date: str | None = Form(None),
-    skip_metadata: bool = Form(False)
+    skip_metadata: bool = Form(False),
+    db: Session = Depends(get_db)
 ):
     job_id = str(uuid.uuid4())
     logger.info("Received upload request", extra={"job_id": job_id, "uploaded_filename": file.filename})
@@ -173,15 +197,13 @@ async def upload_pdf(
 
         # --- 2. Input Sanitization ---
         if magic is None:
-            # Server-side problem, not a bad file: surface it as 503 so the
-            # client isn't told their valid PDF is "invalid".
             os.remove(file_path)
             raise HTTPException(
                 status_code=503,
                 detail="File type verification is unavailable on this server (libmagic missing); refusing all uploads.",
             )
         if not validate_file_type(file_path):
-            os.remove(file_path) # Cleanup
+            os.remove(file_path)
             raise HTTPException(status_code=400, detail="Invalid file type. Only strictly valid PDFs are accepted.")
 
         page_count = get_pdf_page_count(file_path)
@@ -202,13 +224,19 @@ async def upload_pdf(
         file_hash = calculate_sha256(file_path)
         logger.info(f"File hash calculated: {file_hash}", extra={"job_id": job_id})
         
-        cached_job_id = redis_client.get(f"cache:{file_hash}")
+        try:
+            cached_job_id = redis_client.get(f"cache:{file_hash}")
+        except Exception as e:
+            logger.warning(f"Redis cache check failed: {e}")
+            cached_job_id = None
         
         if cached_job_id:
             cached_job_id = cached_job_id.decode('utf-8')
-            
-            # Check if the cached job actually succeeded or is still running
-            cached_status_bytes = redis_client.get(f"cache:{cached_job_id}:status")
+            cached_status_bytes = None
+            try:
+                cached_status_bytes = redis_client.get(f"cache:{cached_job_id}:status")
+            except Exception:
+                pass
             cached_status = cached_status_bytes.decode('utf-8') if cached_status_bytes else None
 
             if cached_status != "failed":
@@ -221,27 +249,47 @@ async def upload_pdf(
                 }
             else:
                 logger.info("Cache hit on a FAILED job. Ignoring cache and re-processing.", extra={"job_id": job_id})
-                # Proceed to process as a new job
 
-        # If new, proceed
-        # Force Task ID = Job ID so we can query status easily later
-        # 4. Pass Metadata to Worker
+        # --- 4. Relational Database Persistence (Set B) ---
+        db_job = JobModel(
+            id=job_id,
+            status="queued",
+            file_hash=file_hash,
+            original_filename=file.filename or filename,
+            file_size=file_size,
+            total_pages=page_count,
+            processed_pages=0,
+            model_name=config.MODEL_NAME,
+            upload_time=upload_time,
+        )
+        db_meta = JobMetadataModel(
+            job_id=job_id,
+            title=title,
+            volume=volume,
+            issue=issue,
+            publication_date=date,
+            skip_metadata=skip_metadata,
+        )
+        db.add(db_job)
+        db.add(db_meta)
+        db.commit()
+
+        # Enqueue background Celery task
         task = run_ocr_pipeline.apply_async(args=[job_id, file_path, file_hash, metadata], task_id=job_id)
         
-        # 3b. Set Cache Immediately (Debounce/Dedupe)
-        redis_client.set(f"cache:{file_hash}", job_id, ex=86400)
-        
-        # 3c. Persist Upload Stats
-        redis_client.set(f"cache:{job_id}:upload_time", upload_time, ex=86400)
-        redis_client.set(f"cache:{job_id}:file_size", file_size, ex=86400)
+        # Redis Caching & Stats
+        try:
+            redis_client.set(f"cache:{file_hash}", job_id, ex=86400)
+            redis_client.set(f"cache:{job_id}:upload_time", upload_time, ex=86400)
+            redis_client.set(f"cache:{job_id}:file_size", file_size, ex=86400)
+        except Exception as e:
+            logger.warning(f"Redis write error on upload: {e}")
         
         return {
             "status": "queued",
             "job_id": job_id,
             "task_id": task.id,
             "message": "File uploaded. Processing started in background.",
-            # Disclose what the client can expect for THIS job, using the
-            # same budgets /stream enforces, plus the global ingestion caps.
             "expectations": {
                 "page_count": page_count,
                 "estimated_max_processing_seconds": compute_stream_timeout_seconds(page_count),
@@ -256,8 +304,8 @@ async def upload_pdf(
         print(redact(traceback.format_exc()), flush=True)
         raise e
 
-def _build_status_payload(job_id: str) -> dict:
-    """Build the status response dict for a given job_id from Redis state."""
+def _build_status_payload(job_id: str, db: Session = None) -> dict:
+    """Build the status response dict for a given job_id from Redis state, falling back to DB."""
     response = {
         "job_id": job_id,
         "status": "queued",
@@ -265,23 +313,67 @@ def _build_status_payload(job_id: str) -> dict:
         "message": "Waiting for worker..."
     }
 
-    status_bytes = redis_client.get(f"cache:{job_id}:status")
+    status_bytes = None
+    try:
+        status_bytes = redis_client.get(f"cache:{job_id}:status")
+    except Exception as e:
+        logger.warning(f"Redis error reading status: {e}")
+
+    # Fallback path: If Redis does not contain job status, query the persistent relational database
     if not status_bytes:
-        task_result = AsyncResult(job_id)
-        if task_result.state == 'FAILURE':
-            response["status"] = "failed"
-            # Celery stores the raw exception in its result backend; redact
-            # before reflecting it to the client so key material or internal
-            # paths can't leak through this one unredacted path.
-            response["message"] = redact(task_result.info)
+        db_job = None
+        try:
+            if db:
+                db_job = db.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
+            else:
+                with get_db_context() as session:
+                    db_job = session.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
+        except Exception as db_e:
+            logger.warning(f"Database query error during status fallback: {db_e}")
+
+        if db_job:
+            response["status"] = db_job.status
+            response["upload_time"] = db_job.upload_time
+            response["file_size"] = db_job.file_size
+            response["total_pages"] = db_job.total_pages
+
+            if db_job.status == "completed":
+                response["progress"] = 100
+                response["message"] = "Processing complete."
+                response["processing_time"] = db_job.duration_seconds
+                response["complexity"] = db_job.complexity
+                if db_job.result and db_job.result.markdown_text:
+                    response["markdown"] = db_job.result.markdown_text
+            elif db_job.status == "processing":
+                total = db_job.total_pages or 1
+                comp = db_job.processed_pages or 0
+                response["progress"] = int((comp / total) * 100) if total > 0 else 10
+                response["message"] = f"Processed {comp} of {total} images..."
+            elif db_job.status == "failed":
+                response["message"] = db_job.error_message or "Pipeline failed or encountered an error."
+            return response
+
+        # If not found in DB either, attempt Celery state lookup
+        try:
+            task_result = AsyncResult(job_id)
+            if task_result.state == 'FAILURE':
+                response["status"] = "failed"
+                response["message"] = redact(task_result.info)
+        except Exception:
+            pass
         return response
 
     status = status_bytes.decode('utf-8')
     response["status"] = status
 
     if status == "processing":
-        total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
-        comp_bytes = redis_client.get(f"cache:{job_id}:completed_pages")
+        total_bytes = None
+        comp_bytes = None
+        try:
+            total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+            comp_bytes = redis_client.get(f"cache:{job_id}:completed_pages")
+        except Exception:
+            pass
 
         total = int(total_bytes) if total_bytes else 0
         comp = int(comp_bytes) if comp_bytes else 0
@@ -304,7 +396,16 @@ def _build_status_payload(job_id: str) -> dict:
             with open(full_content_file, "r", encoding="utf-8") as f:
                 response["markdown"] = f.read()
         else:
-            response["message"] = "Completed, but full_extracted_content.md not found."
+            # Fall back to DB for markdown content if disk output is purged
+            try:
+                if db:
+                    res_row = db.execute(select(JobResultModel).where(JobResultModel.job_id == job_id)).scalar_one_or_none()
+                    if res_row and res_row.markdown_text:
+                        response["markdown"] = res_row.markdown_text
+            except Exception:
+                pass
+            if "markdown" not in response:
+                response["message"] = "Completed, but full_extracted_content.md not found."
 
         try:
             upload_time_bytes = redis_client.get(f"cache:{job_id}:upload_time")
@@ -337,6 +438,86 @@ def _build_status_payload(job_id: str) -> dict:
     return response
 
 
+@app.get("/jobs", dependencies=[Depends(verify_api_key), Depends(rate_limit_status)])
+async def list_jobs(
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, ge=1, le=100),
+    status: str | None = Query(None, pattern="^(queued|processing|completed|failed)$"),
+    search: str | None = Query(None, max_length=100),
+    sort_order: str = Query("desc", pattern="^(asc|desc)$"),
+    db: Session = Depends(get_db),
+):
+    """
+    Retrieve a paginated, filterable, and searchable list of historical jobs from the database.
+    Supports filtering by status, search by filename or title, and order by creation time.
+    """
+    query = select(JobModel).outerjoin(JobModel.citation_metadata)
+
+    if status:
+        query = query.where(JobModel.status == status)
+
+    if search:
+        search_pattern = f"%{search}%"
+        query = query.where(
+            or_(
+                JobModel.original_filename.ilike(search_pattern),
+                JobMetadataModel.title.ilike(search_pattern),
+            )
+        )
+
+    # Count total matching rows via subquery
+    subq = query.subquery()
+    count_query = select(func.count()).select_from(subq)
+    total = db.execute(count_query).scalar() or 0
+
+    # Sort
+    if sort_order == "asc":
+        query = query.order_by(JobModel.created_at.asc())
+    else:
+        query = query.order_by(JobModel.created_at.desc())
+
+    # Paginate
+    offset = (page - 1) * limit
+    items_query = query.offset(offset).limit(limit)
+    jobs = db.execute(items_query).scalars().all()
+
+    total_pages = (total + limit - 1) // limit if total > 0 else 0
+    job_summaries = [job.to_summary_dict() for job in jobs]
+
+    return {
+        "items": job_summaries,
+        "jobs": job_summaries,
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "total_pages": total_pages,
+    }
+
+
+@app.get("/jobs/{job_id}", dependencies=[Depends(verify_api_key), Depends(rate_limit_status)])
+async def get_job_by_id(
+    job_id: str,
+    db: Session = Depends(get_db),
+):
+    """
+    Retrieve detailed records for a specific job, including metadata and extracted markdown text.
+    Returns 404 if the job is not found in the persistence database.
+    """
+    require_valid_job_id(job_id)
+    job = db.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
+    if not job:
+        raise HTTPException(
+            status_code=404,
+            detail={
+                "error": {
+                    "code": "JOB_NOT_FOUND",
+                    "message": f"Job {job_id} was not found in persistence records.",
+                }
+            },
+        )
+    return job.to_detail_dict()
+
+
 @app.get("/limits")
 async def get_limits():
     """
@@ -365,27 +546,20 @@ async def system_status():
     }
 
 
-@app.get("/status/{job_id}")
-async def get_status(job_id: str):
-    """Fetch the status of a specific job from Redis State Tracking."""
+@app.get("/status/{job_id}", dependencies=[Depends(verify_api_key), Depends(rate_limit_status)])
+async def get_status(job_id: str, db: Session = Depends(get_db)):
+    """Fetch the status of a specific job from Redis State Tracking, falling back to DB."""
     require_valid_job_id(job_id)
-    return _build_status_payload(job_id)
+    return _build_status_payload(job_id, db=db)
 
 
-@app.get("/stream/{job_id}")
+@app.get("/stream/{job_id}", dependencies=[Depends(verify_api_key), Depends(rate_limit_status)])
 async def stream_job_status(job_id: str):
     """
     SSE endpoint: pushes a JSON event whenever job state changes.
     Closes automatically when the job reaches a terminal state
     (completed or failed). Sends a heartbeat comment every 15 s to
     keep the connection alive through proxies.
-
-    Streams are bounded (see STREAM_* settings in config): a job id Redis
-    has never seen closes after STREAM_UNKNOWN_JOB_TIMEOUT; a real job's
-    stream closes after the same base + per-page budget disclosed in the
-    /upload response. Hitting the bound emits a final 'stream_timeout'
-    event and closes the CONNECTION ONLY — the job itself keeps running
-    and remains pollable via /status/{job_id}.
     """
     require_valid_job_id(job_id)
 
@@ -411,18 +585,23 @@ async def stream_job_status(job_id: str):
                 break
 
             # --- Stream duration bound ---
-            # Real jobs leave a Redis footprint at upload (upload_time) and
-            # when the worker starts (status); an id with neither is either
-            # nonexistent or expired and gets only the short unknown-job
-            # window instead of streaming heartbeats forever.
             now = asyncio.get_event_loop().time()
             elapsed = now - start_time
-            job_seen = bool(
-                redis_client.exists(f"cache:{job_id}:status")
-                or redis_client.exists(f"cache:{job_id}:upload_time")
-            )
+            job_seen = False
+            try:
+                job_seen = bool(
+                    redis_client.exists(f"cache:{job_id}:status")
+                    or redis_client.exists(f"cache:{job_id}:upload_time")
+                )
+            except Exception:
+                pass
+
             if job_seen:
-                total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+                total_bytes = None
+                try:
+                    total_bytes = redis_client.get(f"cache:{job_id}:total_pages")
+                except Exception:
+                    pass
                 total_pages = int(total_bytes) if total_bytes else 0
                 max_stream = compute_stream_timeout_seconds(total_pages)
                 timeout_message = (
