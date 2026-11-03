@@ -23,6 +23,7 @@ import logging
 import os
 import sys
 import time
+from datetime import datetime, timezone
 
 logger = logging.getLogger("import_legacy_jobs")
 
@@ -127,6 +128,8 @@ def import_legacy_job(db, job_id: str, workspaces_dir: str, redis_client, dry_ru
         model_name=config.MODEL_NAME,
         upload_time=upload_time,
         end_time=end_time,
+        # Keep the original processing date so History sorts it correctly.
+        created_at=datetime.fromtimestamp(upload_time, tz=timezone.utc),
         duration_seconds=round(end_time - upload_time, 2) if end_time and upload_time <= end_time else None,
     ))
     db.add(JobMetadataModel(

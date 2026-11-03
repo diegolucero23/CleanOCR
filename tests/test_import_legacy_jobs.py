@@ -110,3 +110,19 @@ def test_skips_workspace_without_markdown(tmp_path):
         assert import_legacy_job(db, JOB_ID, str(tmp_path), _redis()) is False
     with database.get_db_context() as db:
         assert db.get(JobModel, JOB_ID) is None
+
+
+def test_created_at_uses_original_processing_time(tmp_path):
+    """Imported jobs must sort by when they were processed, not import day."""
+    from datetime import datetime, timezone
+
+    _delete(JOB_ID)
+    _workspace(tmp_path)
+    with database.get_db_context() as db:
+        import_legacy_job(db, JOB_ID, str(tmp_path), _redis())
+    with database.get_db_context() as db:
+        created = db.get(JobModel, JOB_ID).created_at
+        if created.tzinfo is None:  # SQLite drops tzinfo
+            created = created.replace(tzinfo=timezone.utc)
+        assert created == datetime.fromtimestamp(1792028400.5, tz=timezone.utc)
+    _delete(JOB_ID)
