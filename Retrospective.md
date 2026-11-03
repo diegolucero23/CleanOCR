@@ -327,3 +327,12 @@ This file serves as the project's long-term memory for mistakes, lessons learned
     2. Encapsulated `stress_test.py` in `run_stress(max_mb=DEFAULT_MAX_MB)` with a 512MB default safety cap and `if __name__ == '__main__':` guard.
     3. Added `check_interlock()` to `flood_queue.py` requiring `.env.redteam` with `GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE`. Added regression tests in `tests/test_redteam_scripts.py`.
 *   **Rule Added:** (@Eng / @RedTeam) In `python-json-logger`, always use `timestamp=True` and field renaming rather than non-existent LogRecord attribute tokens. All standalone testing scripts must guard procedural loops behind `if __name__ == '__main__':`, enforce safety caps, and verify mock environment interlocks before dispatching network requests.
+
+### 2026-11-03 - CI Red After Push: Rate Limiter Hidden by Local Fail-Open
+*   **What went wrong:** The first CI run after pushing 16 commits failed with 15 upload tests returning HTTP 429 instead of 200/400/413/503, although the same suite reported 180/180 locally.
+*   **Root Cause:**
+    1. Upload tests mocked `app.api.server.redis_client`, but the rate limiter in `app/core/security.py` uses its own module-level Redis client, which nothing replaced. CI runs a live Redis service, so the suite's uploads (all from one client IP) filled the 3-per-minute window.
+    2. Local runs had no Redis, so the limiter failed open on every call. That masked the bug and made each request wait on a refused connection (~97s suite).
+    3. The limiter landed in `4bebf0b`, which had never run in CI until this push.
+*   **Action Taken:** Added an autouse `_disable_rate_limiting` fixture in `tests/conftest.py` that patches `app.core.security.check_rate_limit` to allow. Throttling tests keep patching it themselves. Reproduced the CI failure locally first with a scratch plugin forcing the limiter to deny (32 failed), then confirmed 180/180 with the fixture. Local suite time dropped from ~97s to ~6s.
+*   **Rule Added:** (@Eng / @QA) A green local run without Redis is not CI parity: start `redis-server` before `pytest` (as the verify skill does), and when a test mocks a shared client, mock it where it is used by every code path under test, not only in the module being tested.

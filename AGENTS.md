@@ -128,6 +128,7 @@ Agents must adopt one of these specific personas based on the active task.
 2.  **Design (@Architect):** Requirements -> `implementation_plan.md` -> Review + Doc Suggestions.
 3.  **Construction (@Engineer):** Plan -> Code -> Local Test + Doc Suggestions.
     *   *Rule:* If you update `requirements.txt`, YOU must run `pip install`.
+    *   *Rule:* Run `pytest` with Redis running (`redis-server`) before pushing. Without Redis, rate limiting and caching fail open and can hide failures that CI (which runs a live Redis service) will catch.
 4.  **Verification, Documentation Clearinghouse & Git Strategy (@QA):** Code -> End-to-End Test -> Triage & apply Doc Suggestions -> `walkthrough.md` -> Loop in human with structured Git commit recommendations for final decision.
     *   *Rule:* verify shell syntax (PowerShell vs Bash) before executing commands.
 
