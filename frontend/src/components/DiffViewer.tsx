@@ -91,17 +91,17 @@ export function DiffViewer({ job_id, markdown, file_size, processing_time, compl
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className={`fixed z-50 flex flex-col bg-background/95 backdrop-blur-sm border rounded-xl shadow-2xl overflow-hidden ${isFullscreen ? 'inset-0' : 'inset-4'}`}
+            className={`fixed z-50 flex flex-col bg-background/95 backdrop-blur-md border rounded-xl shadow-2xl overflow-hidden ${isFullscreen ? 'inset-0' : 'inset-2 sm:inset-4'}`}
         >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b bg-card/50">
-                <div className="flex items-center gap-4">
-                    <h2 className="text-xl font-bold font-mono text-primary">Result Viewer</h2>
-                    <span className="text-sm text-muted-foreground font-mono">
+            <div className="flex flex-wrap items-center justify-between p-3 sm:p-4 gap-2 border-b bg-card/60">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                    <h2 className="text-lg sm:text-xl font-bold font-mono text-primary">Result Viewer</h2>
+                    <span className="text-xs sm:text-sm text-muted-foreground font-mono">
                         {job_id ? `ID: ${job_id.substring(0, 8)}...` : 'Preview'}
                     </span>
 
-                    <div className="hidden md:flex items-center gap-2 ml-4">
+                    <div className="hidden lg:flex items-center gap-2 ml-2">
                         {file_size && (
                             <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground border">
                                 {(file_size / (1024 * 1024)).toFixed(1)} MB
@@ -120,28 +120,27 @@ export function DiffViewer({ job_id, markdown, file_size, processing_time, compl
                     </div>
 
                     {/* Sync Toggle */}
-                    <div className="flex items-center gap-2 bg-muted/50 p-1 rounded-lg border ml-4">
+                    <div className="flex items-center gap-1 bg-muted/50 p-1 rounded-lg border">
                         <button
                             onClick={() => setIsSynced(true)}
-                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${isSynced ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted text-muted-foreground'}`}
+                            className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${isSynced ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted text-muted-foreground'}`}
                         >
                             Sync Page
                         </button>
                         <button
                             onClick={() => setIsSynced(false)}
-                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${!isSynced ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted text-muted-foreground'}`}
+                            className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${!isSynced ? 'bg-primary text-primary-foreground shadow-sm' : 'hover:bg-muted text-muted-foreground'}`}
                         >
                             Full Text
                         </button>
                     </div>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                     <SimpleButton onClick={() => {
                         navigator.clipboard.writeText(markdown || "");
-                        // Optional: Add toast notification here
-                    }}>
-                        <ClipboardCopy className="w-4 h-4" /> Copy
+                    }} className="text-xs px-2.5 py-1.5">
+                        <ClipboardCopy className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Copy</span>
                     </SimpleButton>
 
                     <SimpleButton onClick={() => {
@@ -151,15 +150,13 @@ export function DiffViewer({ job_id, markdown, file_size, processing_time, compl
                         a.href = url;
                         a.download = `${job_id || "result"}.md`;
                         a.click();
-                    }}>
-                        <Download className="w-4 h-4" /> MD
+                    }} className="text-xs px-2.5 py-1.5">
+                        <Download className="w-3.5 h-3.5" /> MD
                     </SimpleButton>
 
                     {/* JSON Download */}
                     <button
                         onClick={() => {
-                            // Reconstruct basic JSON structure since we don't have the full original response here easily
-                            // unless we passed it. But we can dump what we have.
                             const data = { job_id, markdown, source: "CleanOCR Export" };
                             const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
                             const url = URL.createObjectURL(blob);
@@ -168,28 +165,28 @@ export function DiffViewer({ job_id, markdown, file_size, processing_time, compl
                             a.download = `${job_id || "result"}.json`;
                             a.click();
                         }}
-                        className="p-2 hover:bg-muted rounded-full text-muted-foreground hover:text-foreground"
+                        className="p-1.5 hover:bg-muted rounded-md text-muted-foreground hover:text-foreground transition-colors"
                         title="Download Raw JSON"
                     >
-                        <FileJson className="w-5 h-5" />
+                        <FileJson className="w-4 h-4" />
                     </button>
 
-                    <div className="w-px h-6 bg-border mx-1 self-center" />
+                    <div className="w-px h-5 bg-border mx-1 self-center" />
 
-                    <button onClick={() => setIsFullscreen(!isFullscreen)} className="p-2 hover:bg-muted rounded-full">
-                        {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
+                    <button onClick={() => setIsFullscreen(!isFullscreen)} className="p-1.5 hover:bg-muted rounded-md transition-colors" title="Toggle Fullscreen">
+                        {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
                     </button>
-                    <button onClick={onClose} className="p-2 hover:bg-muted rounded-full text-muted-foreground" aria-label="Close">
-                        <X className="w-5 h-5" />
+                    <button onClick={onClose} className="p-1.5 hover:bg-muted rounded-md text-muted-foreground hover:text-foreground transition-colors" aria-label="Close">
+                        <X className="w-4 h-4" />
                     </button>
                 </div>
             </div>
 
             {/* Split View */}
-            <div className="flex-1 flex gap-4 p-4 min-h-0">
+            <div className="flex-1 flex flex-col md:flex-row gap-3 sm:gap-4 p-3 sm:p-4 min-h-0 overflow-y-auto md:overflow-hidden">
 
                 {/* Left: PDF Viewer */}
-                <div className="flex-1 rounded-lg border bg-muted/20 flex flex-col overflow-hidden relative group">
+                <div className="flex-1 min-h-[300px] md:min-h-0 rounded-lg border bg-muted/20 flex flex-col overflow-hidden relative group">
                     {/* Controls */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-background/80 backdrop-blur rounded-full px-4 py-2 shadow-lg border">
                         <button

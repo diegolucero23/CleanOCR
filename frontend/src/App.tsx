@@ -2,12 +2,14 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
+import { JobHistory } from './components/JobHistory';
 import { uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, type IngestionLimits } from './lib/api';
 import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
 import { OnboardingSteps } from './components/OnboardingSteps';
-import { EmptyState } from './components/EmptyState';
-import { LayoutDashboard, History, Trash2 } from 'lucide-react';
+import { LayoutDashboard, History, Trash2, Key } from 'lucide-react';
 import { MetadataModal, type MetadataForm } from './components/MetadataModal';
+import { SettingsModal } from './components/SettingsModal';
+import { NotificationToastContainer, type ToastNotification } from './components/NotificationToast';
 import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
@@ -16,10 +18,20 @@ function App() {
   const [metadataFile, setMetadataFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [limits, setLimits] = useState<IngestionLimits | null>(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [toasts, setToasts] = useState<ToastNotification[]>([]);
+  const [historyRefreshKey, setHistoryRefreshKey] = useState(0);
+
+  const addToast = (toast: ToastNotification) => {
+    setToasts((prev) => [...prev.filter((t) => t.id !== toast.id), toast]);
+  };
+
+  const dismissToast = (id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  };
 
   // Fetch server-disclosed ingestion limits once, so the upload UI shows
-  // the caps the backend actually enforces (older backends without
-  // /limits just leave the generic copy in place).
+  // the caps the backend actually enforces.
   useEffect(() => {
     fetchLimits()
       .then(setLimits)
@@ -31,12 +43,8 @@ function App() {
     return history.find(j => ['queued', 'processing'].includes(j.status)) || null;
   }, [history]);
 
-  // SSE Effect: open one EventSource per active job; reuse existing connections
-  // across re-renders so we never needlessly reconnect.
+  // SSE Effect: open one EventSource per active job
   const activeStreams = useRef<Map<string, () => void>>(new Map());
-  // Jobs whose live stream hit the server's time budget: we fall back to
-  // showing the last polled state instead of re-opening a stream, otherwise
-  // a very slow job would reconnect in a loop forever.
   const timedOutStreams = useRef<Set<string>>(new Set());
 
   useEffect(() => {
@@ -62,9 +70,6 @@ function App() {
           job.id,
           (result) => {
             if (result.status === 'stream_timeout') {
-              // The live view expired (job may still be running). Do one
-              // final /status poll so the card shows the latest real state,
-              // and don't re-open a stream for this job.
               timedOutStreams.current.add(job.id);
               activeStreams.current.delete(job.id);
               pollJobStatus(job.id)
@@ -100,6 +105,8 @@ function App() {
             });
             if (result.status === 'completed' || result.status === 'failed') {
               activeStreams.current.delete(job.id);
+              // Trigger refresh of persistent history list on completion
+              setHistoryRefreshKey((k) => k + 1);
             }
           },
           (err) => console.error(`SSE error for ${job.id}`, err),
@@ -109,33 +116,26 @@ function App() {
 
   }, [history, addOrUpdateJob]);
 
-  // On unmount close all open streams. This must NOT be the cleanup of the
-  // effect above: that cleanup runs on every history update, which would
-  // close and reopen every SSE connection each time an event arrives —
-  // defeating connection reuse and resetting the server's per-stream time
-  // budget on every reconnect.
   useEffect(() => {
     return () => {
       activeStreams.current.forEach(close => close());
       activeStreams.current.clear();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFileSelect = (file: File) => {
-    setMetadataFile(file); // Triggers Modal
+    setMetadataFile(file);
   };
 
   const handleProcess = async (file: File, meta?: MetadataForm, skip = false) => {
-    setMetadataFile(null); // Close Modal
+    setMetadataFile(null);
     setIsUploading(true);
 
     try {
       // 1. Upload
       const response = await uploadFile(file, meta, skip);
 
-      // 2. Add Job (carry the server-disclosed expectations so the card
-      // can show page count and the worst-case processing budget)
+      // 2. Add Job to in-memory active list
       const realJob: PersistedJob = {
         id: response.job_id,
         uploaded_filename: file.name,
@@ -148,10 +148,60 @@ function App() {
       };
 
       addOrUpdateJob(realJob);
+      setHistoryRefreshKey((k) => k + 1);
 
-    } catch (error) {
-      console.error(error);
-      alert("Upload Failed");
+      addToast({
+        id: `toast-success-${Date.now()}`,
+        type: 'success',
+        title: 'Upload Queued',
+        message: `Successfully queued "${file.name}" for extraction.`,
+        durationMs: 3500,
+      });
+
+    } catch (error: any) {
+      console.error('Upload failed:', error);
+      const status = error.response?.status;
+      const errorData = error.response?.data?.error;
+      const code = errorData?.code;
+      const message = errorData?.message || (typeof error.response?.data === 'string' ? error.response.data : error.message) || 'Upload Failed';
+      const retryAfter = errorData?.details?.retry_after_seconds || (error.response?.headers?.['retry-after'] ? parseInt(error.response.headers['retry-after'], 10) : undefined);
+
+      if (status === 401) {
+        addToast({
+          id: `toast-${Date.now()}`,
+          type: 'error',
+          code: 'UNAUTHORIZED',
+          title: 'Authentication Required',
+          message: message || 'A valid CleanOCR API key is required to submit extraction jobs.',
+          actionLabel: 'Configure API Key',
+          onAction: () => setIsSettingsOpen(true),
+        });
+      } else if (status === 429) {
+        addToast({
+          id: `toast-${Date.now()}`,
+          type: 'warning',
+          code: 'RATE_LIMIT_EXCEEDED',
+          title: 'Upload Rate Limit Exceeded',
+          message: message || 'You have exceeded the upload quota. Please wait before retrying.',
+          retryAfterSeconds: retryAfter || 20,
+        });
+      } else if (status === 413) {
+        addToast({
+          id: `toast-${Date.now()}`,
+          type: 'error',
+          code: 'FILE_TOO_LARGE',
+          title: 'File Too Large',
+          message: message || 'The selected file exceeds the maximum permitted upload size.',
+        });
+      } else {
+        addToast({
+          id: `toast-${Date.now()}`,
+          type: 'error',
+          code: code || 'UPLOAD_FAILED',
+          title: 'Upload Failed',
+          message: message || 'Failed to submit extraction job. Please check connection and retry.',
+        });
+      }
     } finally {
       setIsUploading(false);
     }
@@ -168,13 +218,24 @@ function App() {
             </div>
             <h1 className="text-xl font-bold tracking-tight">CleanOCR <span className="text-primary">Console</span></h1>
           </div>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <span>v1.2.0 (Resilient)</span>
-            <div className="w-px h-4 bg-border" />
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <button
+              onClick={() => setIsSettingsOpen(true)}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border/80 hover:bg-muted text-foreground transition-colors text-xs font-medium"
+              title="API Key Settings"
+            >
+              <Key className="w-3.5 h-3.5 text-primary" />
+              <span>API Key</span>
+            </button>
+            <div className="hidden sm:block w-px h-4 bg-border" />
+            <span className="hidden sm:inline">v1.2.0 (Resilient)</span>
             {history.length > 0 && (
-              <button onClick={clearHistory} className="flex items-center gap-1 hover:text-destructive transition-colors">
-                <Trash2 className="w-4 h-4" /> Clear History
-              </button>
+              <>
+                <div className="w-px h-4 bg-border" />
+                <button onClick={clearHistory} className="flex items-center gap-1 hover:text-destructive transition-colors text-xs" title="Clear Local Cache">
+                  <Trash2 className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Clear Local</span>
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -186,21 +247,21 @@ function App() {
         <section className="flex flex-col items-center space-y-8">
           <div className="text-center space-y-2 mb-4">
             <h2 className="text-3xl font-bold">New Extraction Job</h2>
-            <p className="text-muted-foreground">Upload a PDF. Your jobs are saved automatically.</p>
+            <p className="text-muted-foreground">Upload a PDF. Your extraction jobs are permanently persisted in the relational database.</p>
           </div>
 
           <OnboardingSteps />
 
           <UploadZone onFileSelect={handleFileSelect} isUploading={isUploading} limits={limits} />
 
-          {/* Active Job Status */}
+          {/* Active Job Real-Time Card */}
           <AnimatePresence>
             {activeJob && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="max-w-xl mx-auto"
+                className="w-full max-w-xl mx-auto"
               >
                 <JobCard
                   job_id={activeJob.id}
@@ -220,39 +281,25 @@ function App() {
           </AnimatePresence>
         </section>
 
-        {/* History Section */}
-        <section className="max-w-4xl mx-auto space-y-6">
-          <div className="flex items-center gap-2 pb-4 border-b">
-            <History className="w-5 h-5 text-muted-foreground" />
-            <h2 className="text-lg font-semibold">Recent Jobs ({history.length})</h2>
+        {/* Persistent History Section (Set B: Relational DB Engine) */}
+        <section className="max-w-4xl mx-auto space-y-4">
+          <div className="flex items-center gap-2 pb-3 border-b border-border/70">
+            <History className="w-5 h-5 text-primary" />
+            <h2 className="text-lg font-semibold tracking-tight">Database Job History</h2>
           </div>
 
-          <AnimatePresence mode="popLayout">
-            {history.length === 0 ? (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <EmptyState />
-              </motion.div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {history.map((job) => (
-                  <JobCard
-                    key={job.id}
-                    job_id={job.id}
-                    filename={job.uploaded_filename}
-                    status={job.status}
-                    progress={job.progress}
-                    message={job.resultMessage}
-                    file_size={job.file_size}
-                    processing_time={job.processing_time}
-                    complexity={job.complexity}
-                    page_count={job.page_count}
-                    expected_seconds={job.expected_seconds}
-                    onClick={() => job.status === 'completed' && setSelectedJob(job)}
-                  />
-                ))}
-              </div>
-            )}
-          </AnimatePresence>
+          <JobHistory
+            key={historyRefreshKey}
+            onSelectJob={(job) => setSelectedJob(job)}
+            onError={(msg, code) => addToast({
+              id: `toast-history-${Date.now()}`,
+              type: 'warning',
+              code: code || 'DATABASE_NOTICE',
+              title: 'History Notice',
+              message: msg,
+            })}
+            currentActiveJobId={activeJob?.id}
+          />
         </section>
 
       </main>
@@ -278,6 +325,18 @@ function App() {
         onClose={() => setMetadataFile(null)}
         onConfirm={(data) => handleProcess(metadataFile!, data)}
         onSkip={() => handleProcess(metadataFile!, undefined, true)}
+      />
+
+      {/* Security & Access Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+      />
+
+      {/* Global Notifications & Rate Limit Countdown Toasts */}
+      <NotificationToastContainer
+        notifications={toasts}
+        onDismiss={dismissToast}
       />
     </div>
   );

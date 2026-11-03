@@ -7,6 +7,26 @@ const API = axios.create({
     }
 });
 
+export const getActiveApiKey = (): string | null => {
+    return localStorage.getItem('cleanocr_api_key') || (import.meta.env.VITE_API_KEY as string) || null;
+};
+
+export const setActiveApiKey = (key: string | null): void => {
+    if (key && key.trim()) {
+        localStorage.setItem('cleanocr_api_key', key.trim());
+    } else {
+        localStorage.removeItem('cleanocr_api_key');
+    }
+};
+
+API.interceptors.request.use((config) => {
+    const key = getActiveApiKey();
+    if (key) {
+        config.headers['X-API-Key'] = key;
+    }
+    return config;
+});
+
 export interface IngestionLimits {
     max_upload_mb: number;
     max_pdf_pages: number;
@@ -94,7 +114,9 @@ export const subscribeToJobStatus = (
     onUpdate: (data: JobResponse) => void,
     onError?: (err: Event) => void,
 ): (() => void) => {
-    const source = new EventSource(`/api/stream/${jobId}`);
+    const key = getActiveApiKey();
+    const streamUrl = key ? `/api/stream/${jobId}?api_key=${encodeURIComponent(key)}` : `/api/stream/${jobId}`;
+    const source = new EventSource(streamUrl);
 
     source.onmessage = (event) => {
         try {
@@ -114,4 +136,48 @@ export const subscribeToJobStatus = (
     };
 
     return () => source.close();
+};
+
+
+export interface PersistedJobSummary {
+    id: string;
+    filename: string;
+    status: 'queued' | 'processing' | 'completed' | 'failed' | 'cached';
+    progress: number;
+    page_count?: number;
+    file_size_bytes?: number;
+    processing_time_seconds?: number;
+    created_at: string;
+    completed_at?: string;
+    error_message?: string;
+    metadata?: {
+        title?: string;
+        volume?: string;
+        issue?: string;
+        date?: string;
+    };
+}
+
+export interface JobsListResponse {
+    total: number;
+    page: number;
+    limit: number;
+    total_pages: number;
+    jobs: PersistedJobSummary[];
+    items?: PersistedJobSummary[];
+}
+
+export const fetchJobs = async (params?: {
+    page?: number;
+    limit?: number;
+    status?: string;
+    search?: string;
+}): Promise<JobsListResponse> => {
+    const response = await API.get<JobsListResponse>('/jobs', { params });
+    return response.data;
+};
+
+export const fetchJobDetail = async (jobId: string): Promise<PersistedJobSummary & { markdown?: string }> => {
+    const response = await API.get<PersistedJobSummary & { markdown?: string }>(`/jobs/${jobId}`);
+    return response.data;
 };
