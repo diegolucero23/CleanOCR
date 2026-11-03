@@ -136,7 +136,19 @@ def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, o
     """
     logger.info("Processing page %s for job %s", img_filename, job_id, extra={"job_id": job_id, "page": img_filename})
     try:
-        batch_ocr.process_single_image(img_filename, input_images_dir, ocr_json_dir)
+        # process_single_image takes ONE tuple:
+        # (filename, total_files, index, input_folder, output_folder, job_id).
+        # Passing separate arguments raised TypeError on every page (see
+        # tests/test_ocr_page_task_contract.py).
+        # total/index only feed progress log lines, so they are best-effort.
+        try:
+            pages = sorted(f for f in os.listdir(input_images_dir) if f.lower().endswith(".png"))
+        except OSError:
+            pages = []
+        index = pages.index(img_filename) if img_filename in pages else 0
+        batch_ocr.process_single_image(
+            (img_filename, len(pages) or 1, index, input_images_dir, ocr_json_dir, job_id)
+        )
 
         # Update progress counter in Redis
         r = redis.Redis.from_url(celery_app.conf.broker_url)
@@ -168,6 +180,29 @@ def stitch_markdown_task(self, results, job_id: str, ocr_json_dir: str, final_md
     Persists markdown output and diagnostic metrics to the relational database.
     """
     try:
+        # results holds one entry per page: the filename on success, None when
+        # the page permanently failed (see ocr_page_task).
+        page_results = list(results) if isinstance(results, (list, tuple)) else []
+        succeeded = sum(1 for r in page_results if r)
+        if page_results and succeeded == 0:
+            message = f"OCR failed on all {len(page_results)} pages; no text was extracted."
+            logger.error("Job failed: no pages were OCR'd", extra={"job_id": job_id, "pages": len(page_results)})
+            try:
+                with get_db_context() as db:
+                    db_job = db.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
+                    if db_job:
+                        db_job.status = "failed"
+                        db_job.processed_pages = 0
+                        db_job.error_message = message
+                        db_job.end_time = time.time()
+            except Exception as db_e:
+                logger.warning("Failed to persist job failure to DB", extra={"job_id": job_id, "error": str(db_e)})
+            r = redis.Redis.from_url(celery_app.conf.broker_url)
+            # Do not cache cache:{file_hash} -> job_id: a re-upload must reprocess.
+            r.set(f"cache:{job_id}:status", "failed")
+            r.set(f"cache:{job_id}:end_time", time.time())
+            return "failed"
+
         logger.info("Step 3: Stitching Markdown for job %s", job_id, extra={"job_id": job_id})
         stitch_to_markdown.stitch_markdown(ocr_json_dir, final_md_dir, metadata_file)
 
@@ -195,7 +230,8 @@ def stitch_markdown_task(self, results, job_id: str, ocr_json_dir: str, final_md
                     proc_time = db_job.duration_seconds or 1.0
                     complexity = (mb_size * 0.2) + (pages * 0.1) + (proc_time * 0.05)
                     db_job.complexity = min(10.0, round(complexity, 1))
-                    db_job.processed_pages = pages
+                    # Count pages that actually produced OCR output, not pages attempted.
+                    db_job.processed_pages = succeeded if page_results else pages
 
                     existing_res = db.execute(select(JobResultModel).where(JobResultModel.job_id == job_id)).scalar_one_or_none()
                     if not existing_res:
