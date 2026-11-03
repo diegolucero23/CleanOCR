@@ -313,3 +313,17 @@ This file serves as the project's long-term memory for mistakes, lessons learned
     1. Added `sys.stdout.reconfigure(encoding="utf-8")` and standardized console output on ASCII status tags (`[LOCK]`, `[ARMED]`, `[OK]`, `[DEFENDED]`).
     2. Updated the adversarial test to recognize that both HTTP 422 (schema boundary length rejection) and HTTP 200 (parameterized literal match with 0 rows) are valid, secure defenses against SQL injection attacks.
 *   **Rule Added:** (@Eng / @RedTeam) On Windows hosts, scripts intended for CLI output must use ASCII status labels or reconfigure stdout to UTF-8 to prevent cp1252 encoding crashes. When fuzzing or testing injection payloads, verify framework-level schema constraints (`max_length`, regex) to distinguish between schema rejection (HTTP 422) and parameterized execution (HTTP 200).
+
+### 2026-11-03 - Structured Logging Format Attributes & RedTeam Script Guardrails
+*   **What went wrong:** 
+    1. Worker and API JSON logs were emitting `"timestamp": null` and `"level": null` across all log events.
+    2. Importing `stress_test.py` in test suites triggered an unconstrained `while True:` loop allocating memory until killed by a timeout.
+    3. `flood_queue.py` lacked safety interlocks and could fire 50 requests at a live instance if run directly.
+*   **Root Cause:**
+    1. `JsonFormatter` in `python-json-logger` does not recognize `%(timestamp)s` or `%(level)s` as standard Python `LogRecord` attributes; it requires `timestamp=True` and `rename_fields={"levelname": "level"}`.
+    2. `stress_test.py` had top-level procedural code executing unconditionally on import rather than inside a guarded `run_stress()` function with a memory ceiling.
+*   **Action Taken:**
+    1. Configured `JsonFormatter` with `timestamp=True` and `rename_fields={"levelname": "level"}` in `app/api/server.py` and `app/workers/celery_worker.py`. Added unit tests in `tests/test_structured_logging.py`.
+    2. Encapsulated `stress_test.py` in `run_stress(max_mb=DEFAULT_MAX_MB)` with a 512MB default safety cap and `if __name__ == '__main__':` guard.
+    3. Added `check_interlock()` to `flood_queue.py` requiring `.env.redteam` with `GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE`. Added regression tests in `tests/test_redteam_scripts.py`.
+*   **Rule Added:** (@Eng / @RedTeam) In `python-json-logger`, always use `timestamp=True` and field renaming rather than non-existent LogRecord attribute tokens. All standalone testing scripts must guard procedural loops behind `if __name__ == '__main__':`, enforce safety caps, and verify mock environment interlocks before dispatching network requests.
