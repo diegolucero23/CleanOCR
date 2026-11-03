@@ -1,5 +1,5 @@
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 // --- Types ---
 
@@ -29,33 +29,37 @@ interface StorageSchema {
 const STORAGE_KEY = 'cleanocr_job_history_v1';
 const MAX_HISTORY = 50;
 
+/** Read saved jobs from localStorage; wipes and returns [] on bad or corrupt data. */
+function loadHistory(): PersistedJob[] {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+
+        const parsed: StorageSchema = JSON.parse(raw);
+
+        // Basic Schema Validation
+        if (parsed.version !== 1 || !Array.isArray(parsed.jobs)) {
+            console.warn("[Persistence] Invalid schema detected. Resetting history.");
+            localStorage.removeItem(STORAGE_KEY);
+            return [];
+        }
+
+        console.log(`[Persistence] Restored ${parsed.jobs.length} jobs from storage.`);
+        return parsed.jobs;
+    } catch (e) {
+        console.error("[Persistence] Failed to parse history:", e);
+        localStorage.removeItem(STORAGE_KEY); // Wipe corrupt data
+        return [];
+    }
+}
+
 // --- Hook ---
 
 export function useJobPersistence() {
-    const [history, setHistory] = useState<PersistedJob[]>([]);
+    // 1. Load once, synchronously, on first render (lazy initializer, so no
+    //    extra render from setting state in a mount effect).
+    const [history, setHistory] = useState<PersistedJob[]>(loadHistory);
 
-    // 1. Load on Mount
-    useEffect(() => {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-
-            const parsed: StorageSchema = JSON.parse(raw);
-
-            // Basic Schema Validation
-            if (parsed.version !== 1 || !Array.isArray(parsed.jobs)) {
-                console.warn("[Persistence] Invalid schema detected. Resetting history.");
-                localStorage.removeItem(STORAGE_KEY);
-                return;
-            }
-
-            setHistory(parsed.jobs);
-            console.log(`[Persistence] Restored ${parsed.jobs.length} jobs from storage.`);
-        } catch (e) {
-            console.error("[Persistence] Failed to parse history:", e);
-            localStorage.removeItem(STORAGE_KEY); // Wipe corrupt data
-        }
-    }, []);
 
     // 2. Saver (Debounce wrapping not strictly needed if state updates are atomic, 
     // but we use a distinct save function to be explicit)

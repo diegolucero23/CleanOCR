@@ -8,7 +8,7 @@
  * page with "History Notice: Network error" toasts while the backend was down.
  */
 import { useState } from 'react';
-import { cleanup, render, waitFor } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('../lib/api', async (importOriginal) => {
@@ -52,5 +52,17 @@ describe('JobHistory error handling', () => {
 
         expect(vi.mocked(fetchJobs)).toHaveBeenCalledTimes(1);
         expect(onToast).toHaveBeenCalledTimes(1);
+    });
+});
+
+describe('JobHistory empty states', () => {
+    it('All tab with no jobs says the history is empty, not status "all"', async () => {
+        vi.mocked(fetchJobs).mockResolvedValueOnce({
+            jobs: [], items: [], total: 0, page: 1, limit: 10, total_pages: 0,
+        } as unknown as Awaited<ReturnType<typeof fetchJobs>>);
+        render(<JobHistory onSelectJob={() => {}} />);
+
+        expect(await screen.findByText(/no jobs recorded in the database yet/i)).toBeTruthy();
+        expect(screen.queryByText(/status "all"/i)).toBeNull();
     });
 });

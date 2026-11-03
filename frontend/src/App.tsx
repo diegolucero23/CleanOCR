@@ -3,7 +3,7 @@ import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
 import { JobHistory } from './components/JobHistory';
-import { uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, type IngestionLimits } from './lib/api';
+import { apiErrorPayload, uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, type ApiError, type IngestionLimits } from './lib/api';
 import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
 import { OnboardingSteps } from './components/OnboardingSteps';
 import { LayoutDashboard, History, Trash2, Key } from 'lucide-react';
@@ -117,9 +117,11 @@ function App() {
   }, [history, addOrUpdateJob]);
 
   useEffect(() => {
+    // The Map instance never changes, so capture it once for the unmount cleanup.
+    const streams = activeStreams.current;
     return () => {
-      activeStreams.current.forEach(close => close());
-      activeStreams.current.clear();
+      streams.forEach(close => close());
+      streams.clear();
     };
   }, []);
 
@@ -158,13 +160,16 @@ function App() {
         durationMs: 3500,
       });
 
-    } catch (error: any) {
+    } catch (caught) {
+      const error = caught as ApiError;
       console.error('Upload failed:', error);
       const status = error.response?.status;
-      const errorData = error.response?.data?.error;
+      const data = error.response?.data;
+      const errorData = apiErrorPayload(error);
       const code = errorData?.code;
-      const message = errorData?.message || (typeof error.response?.data === 'string' ? error.response.data : error.message) || 'Upload Failed';
-      const retryAfter = errorData?.details?.retry_after_seconds || (error.response?.headers?.['retry-after'] ? parseInt(error.response.headers['retry-after'], 10) : undefined);
+      const message = errorData?.message || (typeof data === 'string' ? data : error.message) || 'Upload Failed';
+      const retryAfterHeader = error.response?.headers?.['retry-after'];
+      const retryAfter = errorData?.details?.retry_after_seconds || (retryAfterHeader ? parseInt(String(retryAfterHeader), 10) : undefined);
 
       if (status === 401) {
         addToast({

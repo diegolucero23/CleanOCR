@@ -1,4 +1,22 @@
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
+
+/** Structured error body returned by the CleanOCR API (see app/api/server.py). */
+export interface ApiErrorPayload {
+    error?: {
+        code?: string;
+        message?: string;
+        details?: { retry_after_seconds?: number };
+    };
+}
+
+/** What axios rejects with for a CleanOCR request; data may be plain text from a proxy. */
+export type ApiError = AxiosError<ApiErrorPayload | string>;
+
+/** The structured error body, or undefined when the server sent none (or plain text). */
+export function apiErrorPayload(err: ApiError): ApiErrorPayload['error'] {
+    const data = err.response?.data;
+    return data && typeof data === 'object' ? data.error : undefined;
+}
 
 const API = axios.create({
     baseURL: '/api', // Proxied by Vite to localhost:8000

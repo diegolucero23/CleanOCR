@@ -13,7 +13,7 @@ import {
     Loader2,
     X,
 } from 'lucide-react';
-import { fetchJobs, fetchJobDetail, jobStatusQuery, type PersistedJobSummary } from '../lib/api';
+import { apiErrorPayload, fetchJobs, fetchJobDetail, jobStatusQuery, type ApiError, type PersistedJobSummary } from '../lib/api';
 import type { PersistedJob } from '../hooks/useJobPersistence';
 import { cn } from '../lib/utils';
 
@@ -60,10 +60,11 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
             setTotal(resp.total);
             setTotalPages(Math.max(1, resp.total_pages));
             setPage(resp.page);
-        } catch (err: any) {
+        } catch (caught) {
+            const err = caught as ApiError;
             console.error('[JobHistory] Failed to load jobs:', err);
             const status = err.response?.status;
-            const msg = err.response?.data?.error?.message || err.message || 'Failed to load job history';
+            const msg = apiErrorPayload(err)?.message || err.message || 'Failed to load job history';
             onErrorRef.current?.(msg, status === 401 ? 'UNAUTHORIZED' : status === 429 ? 'RATE_LIMIT_EXCEEDED' : 'FETCH_ERROR');
         } finally {
             setIsLoading(false);
@@ -113,9 +114,10 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                 page_count: summary.page_count,
             };
             onSelectJob(persistedJob);
-        } catch (err: any) {
+        } catch (caught) {
+            const err = caught as ApiError;
             console.error(`[JobHistory] Failed to fetch detail for ${summary.id}:`, err);
-            const msg = err.response?.data?.error?.message || 'Could not load job details';
+            const msg = apiErrorPayload(err)?.message || 'Could not load job details';
             onError?.(msg, 'DETAIL_FETCH_FAILED');
         } finally {
             setLoadingJobId(null);
@@ -217,7 +219,9 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                 ? `No extraction jobs matched "${activeSearch}". Try clearing your search.`
                                 : statusFilter === 'processing'
                                   ? 'No queued or processing jobs right now.'
-                                  : `No jobs with status "${statusFilter}" recorded in the database.`}
+                                  : statusFilter === 'all'
+                                    ? 'No jobs recorded in the database yet. Upload a PDF to get started.'
+                                    : `No ${statusFilter} jobs recorded in the database.`}
                         </p>
                     </div>
                 ) : (

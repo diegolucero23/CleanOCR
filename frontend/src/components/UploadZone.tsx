@@ -24,7 +24,7 @@ export function UploadZone({ onFileSelect, isUploading, limits }: UploadZoneProp
         setIsDragOver(false);
     }, []);
 
-    const validateFile = (file: File) => {
+    const validateFile = useCallback((file: File) => {
         if (file.type !== 'application/pdf') {
             setError('Only PDF files are allowed.');
             return false;
@@ -37,7 +37,7 @@ export function UploadZone({ onFileSelect, isUploading, limits }: UploadZoneProp
         }
         setError(null);
         return true;
-    };
+    }, [limits]);
 
     const handleDrop = useCallback((e: React.DragEvent) => {
         e.preventDefault();
@@ -47,7 +47,7 @@ export function UploadZone({ onFileSelect, isUploading, limits }: UploadZoneProp
         if (file && validateFile(file)) {
             onFileSelect(file);
         }
-    }, [onFileSelect, limits]);
+    }, [onFileSelect, validateFile]);
 
     const handleBrowse = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

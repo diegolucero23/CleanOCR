@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Key, ShieldCheck, Eye, EyeOff, X, Save, Check } from 'lucide-react';
 import { getActiveApiKey, setActiveApiKey } from '../lib/api';
@@ -9,16 +9,21 @@ interface SettingsModalProps {
 }
 
 export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
-    const [apiKey, setApiKey] = useState('');
+    const [apiKey, setApiKey] = useState(() => getActiveApiKey() || '');
     const [showKey, setShowKey] = useState(false);
     const [savedSuccess, setSavedSuccess] = useState(false);
 
-    useEffect(() => {
+    // Reload the stored key each time the modal opens. Adjusting state during
+    // render (instead of in an effect) avoids an extra cascading render:
+    // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+    const [wasOpen, setWasOpen] = useState(isOpen);
+    if (isOpen !== wasOpen) {
+        setWasOpen(isOpen);
         if (isOpen) {
             setApiKey(getActiveApiKey() || '');
             setSavedSuccess(false);
         }
-    }, [isOpen]);
+    }
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();

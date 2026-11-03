@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type MouseEventHandler, type ReactNode } from 'react';
 import { Maximize2, Minimize2, Download, ChevronLeft, ChevronRight, Loader2, ClipboardCopy, FileJson, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -9,7 +9,14 @@ import 'react-pdf/dist/Page/TextLayer.css';
 // Standard way to load worker in Vite without extra plugins
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-const SimpleButton = ({ children, onClick, className, disabled }: any) => (
+interface SimpleButtonProps {
+    children: ReactNode;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    className?: string;
+    disabled?: boolean;
+}
+
+const SimpleButton = ({ children, onClick, className = '', disabled }: SimpleButtonProps) => (
     <button
         onClick={onClick}
         disabled={disabled}
