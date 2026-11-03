@@ -78,3 +78,43 @@ def test_partial_success_completes_with_accurate_page_count(tmp_path):
     assert status == "completed"
     assert processed == 2
     assert call(f"cache:{job_id}:status", "completed") in redis_mock.set.call_args_list
+
+
+# ---------------------------------------------------------------------------
+# Retry policy: only transient errors are retried
+# ---------------------------------------------------------------------------
+# A programming error (TypeError etc.) fails identically on every attempt, so
+# retrying it only delays the job (~3.5 min for the 4bebf0b regression).
+
+import pytest  # noqa: E402
+
+
+def _call_page_task(tmp_path, error):
+    images = tmp_path / "images"
+    images.mkdir(exist_ok=True)
+    (images / "page_001.png").write_bytes(b"png")
+    redis_mock = MagicMock()
+    with patch("app.workers.celery_worker.batch_ocr.process_single_image", side_effect=error), \
+         patch("app.workers.celery_worker.redis.Redis.from_url", return_value=redis_mock), \
+         patch.object(ocr_page_task, "retry", side_effect=RuntimeError("retry scheduled")) as mock_retry:
+        try:
+            result = ocr_page_task("job-retry", "page_001.png", str(images), str(tmp_path / "out"))
+        except RuntimeError as exc:
+            result = exc
+    return result, mock_retry, redis_mock
+
+
+@pytest.mark.parametrize("error", [TypeError("bad call"), AttributeError("x"), NameError("y"),
+                                   ImportError("z"), KeyError("k")])
+def test_permanent_errors_skip_page_without_retry(tmp_path, error):
+    result, mock_retry, redis_mock = _call_page_task(tmp_path, error)
+    assert result is None
+    mock_retry.assert_not_called()
+    redis_mock.incr.assert_called_once_with("cache:job-retry:completed_pages")
+
+
+@pytest.mark.parametrize("error", [ConnectionError("reset"), TimeoutError("slow"), RuntimeError("503")])
+def test_transient_errors_are_retried(tmp_path, error):
+    result, mock_retry, _ = _call_page_task(tmp_path, error)
+    assert isinstance(result, RuntimeError) and str(result) == "retry scheduled"
+    mock_retry.assert_called_once()

@@ -126,12 +126,18 @@ def on_task_failure(sender, task_id, exception, args, kwargs, traceback, einfo, 
 # 4. Tasks
 # ---------------------------------------------------------------------------
 
+# Errors that mean the code itself is wrong: retrying cannot help, and the
+# backoff (30s, 60s, 120s) only hides the failure for ~3.5 minutes.
+PERMANENT_PAGE_ERRORS = (TypeError, AttributeError, NameError, ImportError, KeyError)
+
+
 @celery_app.task(name="ocr_page_task", bind=True, max_retries=3, default_retry_delay=30)
 def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, ocr_json_dir: str):
     """
     Process a single page image through OCR and write its JSON result.
 
-    Retries up to 3 times with exponential backoff on transient errors.
+    Retries up to 3 times with exponential backoff on transient errors;
+    PERMANENT_PAGE_ERRORS skip the page immediately.
     Increments cache:{job_id}:completed_pages in Redis on completion.
     """
     logger.info("Processing page %s for job %s", img_filename, job_id, extra={"job_id": job_id, "page": img_filename})
@@ -157,12 +163,17 @@ def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, o
         return img_filename
 
     except Exception as exc:
-        if self.request.retries >= self.max_retries:
+        permanent = isinstance(exc, PERMANENT_PAGE_ERRORS)
+        if permanent or self.request.retries >= self.max_retries:
             # Return None so the chord completes and the stitcher runs on
             # whatever pages succeeded rather than aborting the whole job.
+            # Programming errors fail identically on every attempt, so they
+            # skip the retry backoff entirely.
             logger.error(
-                "Page permanently failed after all retries — skipping",
-                extra={"job_id": job_id, "page": img_filename, "error": str(exc)},
+                "Page failed with a non-retryable error — skipping" if permanent
+                else "Page permanently failed after all retries — skipping",
+                extra={"job_id": job_id, "page": img_filename, "error": str(exc),
+                       "error_type": type(exc).__name__, "retries": self.request.retries},
             )
             r = redis.Redis.from_url(celery_app.conf.broker_url)
             r.incr(f"cache:{job_id}:completed_pages")  # keep progress bar accurate
