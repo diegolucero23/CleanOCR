@@ -1,5 +1,6 @@
-$json_path = "c:\Users\dluce\Projects\CleanOCR\ocr_jsonv2"
-$md_path = "c:\Users\dluce\Projects\CleanOCR\CleanOCR_Finalv2\pages"
+$repo_root = Split-Path -Parent $PSScriptRoot
+$json_path = Join-Path $repo_root "ocr_jsonv2"
+$md_path = Join-Path $repo_root "CleanOCR_Finalv2\pages"
 
 if (-not (Test-Path $json_path)) { Write-Error "Input Path Not Found: $json_path"; exit 1 }
 if (-not (Test-Path $md_path)) { Write-Error "Output Path Not Found: $md_path"; exit 1 }
