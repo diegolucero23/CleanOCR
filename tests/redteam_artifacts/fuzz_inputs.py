@@ -1,10 +1,11 @@
 import requests
 import os
 import sys
+from pathlib import Path
 
 # --- SAFETY INTERLOCK ---
 REQUIRED_KEY = "MOCK_KEY_DO_NOT_CHARGE"
-ENV_FILE = "../../.env.redteam"
+ENV_FILE = Path(__file__).resolve().parents[2] / ".env.redteam"
 TARGET_PORT = 8001
 BASE_URL = f"http://localhost:{TARGET_PORT}"
 
@@ -18,7 +19,7 @@ def check_interlock():
                 sys.exit(1)
         print("✅ Interlock Passed: Environment is mocked.")
     except FileNotFoundError:
-        print(f"❌ FATAL: {ENV_FILE} not found. Are you in tests/redteam_artifacts?")
+        print(f"❌ FATAL: {ENV_FILE} not found. Create it with: cp .env.redteam.example .env.redteam")
         sys.exit(1)
 
 # --- ATTACK VECTORS ---

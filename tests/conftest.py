@@ -10,14 +10,55 @@ load_dotenv(override=True) in config.py will replace this dummy value after
 module load — so real credentials are never displaced when present.
 
 Also disables API rate limiting for every test by default (see
-_disable_rate_limiting below).
+_disable_rate_limiting below), and points the app at a throwaway SQLite
+database for the whole session (see pytest_sessionstart below).
 """
 import os
+import shutil
+import tempfile
+from pathlib import Path
 from unittest.mock import patch
 
 import pytest
 
 os.environ.setdefault("GOOGLE_API_KEY", "test-key-for-ci")
+
+# Throwaway database for the whole test session. Set before any app module is
+# imported so app.db.database never builds an engine on the developer's
+# workspaces/cleanocr.db (the default DATABASE_URL). Before this, every upload
+# test left a doc.pdf / dummy.pdf / test.pdf job in the dev UI's history.
+_TEST_DB_DIR = Path(tempfile.mkdtemp(prefix="cleanocr-tests-"))
+_TEST_DB_URL = f"sqlite:///{(_TEST_DB_DIR / 'cleanocr_test.db').as_posix()}"
+os.environ["DATABASE_URL"] = _TEST_DB_URL
+
+
+def pytest_sessionstart(session):
+    """Bind the app to the throwaway database and create its schema.
+
+    config.py calls load_dotenv(override=True), so a DATABASE_URL in .env would
+    win over the environment variable above. Rebinding the engine here keeps
+    tests off the real database either way; get_db() and get_db_context() look
+    up SessionLocal at call time, so they pick up the rebind.
+    """
+    from sqlalchemy.engine import make_url
+    from sqlalchemy.orm import sessionmaker
+
+    from app.db import database
+    import app.db.models  # noqa: F401  (registers tables on Base.metadata before init_db)
+
+    if database.engine.url.database != make_url(_TEST_DB_URL).database:
+        database.engine.dispose()
+        database.engine = database.get_engine(_TEST_DB_URL)
+        database.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=database.engine)
+    database.init_db()
+
+
+def pytest_sessionfinish(session, exitstatus):
+    """Release SQLite handles (required on Windows) and delete the throwaway database."""
+    from app.db import database
+
+    database.engine.dispose()
+    shutil.rmtree(_TEST_DB_DIR, ignore_errors=True)
 
 
 @pytest.fixture(autouse=True)

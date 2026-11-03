@@ -68,6 +68,15 @@ def test_flood_interlock_passes_with_mock_key(flood, tmp_path, monkeypatch):
     flood.check_interlock()
 
 
+@pytest.mark.parametrize("script", ["flood_queue", "fuzz_inputs"])
+def test_interlock_env_file_resolves_from_repo_root(script, monkeypatch, tmp_path):
+    """The interlock must find .env.redteam regardless of the caller's cwd
+    (README documents running the scripts from the repository root)."""
+    monkeypatch.chdir(tmp_path)
+    module = _load(script)
+    assert Path(module.ENV_FILE) == ARTIFACTS_DIR.parents[1] / ".env.redteam"
+
+
 # ---------------------------------------------------------------------------
 # stress_test.py
 # ---------------------------------------------------------------------------

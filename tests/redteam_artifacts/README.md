@@ -35,7 +35,14 @@ docker-compose -f docker-compose.redteam.yml up --build
 # 3. In another terminal, run fuzzing / flooding scripts:
 python tests/redteam_artifacts/fuzz_inputs.py
 python tests/redteam_artifacts/flood_queue.py
+
+# 4. Memory stress (stops at STRESS_MAX_MB, default 512 MB, so it is safe on the host too)
+STRESS_MAX_MB=256 python tests/redteam_artifacts/stress_test.py
 ```
+
+> **Script safety:** `fuzz_inputs.py` and `flood_queue.py` resolve `.env.redteam` from the repository root (any working directory works) and abort before sending traffic unless it sets `GOOGLE_API_KEY=MOCK_KEY_DO_NOT_CHARGE`. Guardrails are covered by `tests/test_redteam_scripts.py`.
+>
+> **Note:** `campaign_3_adversarial.py` regenerates `campaign_3_adversarial.md` on every run. Commit the report only when you intend to publish a new snapshot.
 
 ---
 
