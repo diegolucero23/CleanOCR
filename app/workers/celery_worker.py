@@ -25,8 +25,12 @@ from app.services import stitcher as stitch_to_markdown
 # ---------------------------------------------------------------------------
 logger = logging.getLogger("cleanocr_worker")
 logHandler = logging.StreamHandler()
+# timestamp=True emits an ISO-8601 UTC "timestamp"; levelname is renamed to
+# "level". (%(timestamp)s / %(level)s are not LogRecord attributes and were null.)
 formatter = jsonlogger.JsonFormatter(
-    "%(timestamp)s %(level)s %(message)s %(module)s %(funcName)s"
+    "%(levelname)s %(message)s %(module)s %(funcName)s",
+    timestamp=True,
+    rename_fields={"levelname": "level"},
 )
 logHandler.setFormatter(formatter)
 logHandler.addFilter(SecretRedactingFilter())
