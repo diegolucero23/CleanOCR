@@ -1,3 +1,10 @@
 *
 !.gitignore
 !.keep
+!*.md
+!*.py
+uploads/
+workspaces/
+*.pdf
+*.db
+*.log

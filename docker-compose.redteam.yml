@@ -15,7 +15,7 @@ services:
 
   web:
     build: .
-    command: uvicorn server:app --host 0.0.0.0 --port 8000
+    command: uvicorn app.api.server:app --host 0.0.0.0 --port 8000
     volumes:
       - .:/app:ro
       - ./tests/redteam_artifacts/uploads:/app/uploads
@@ -34,7 +34,7 @@ services:
 
   worker:
     build: .
-    command: celery -A worker.celery_app worker --loglevel=info
+    command: celery -A app.workers.celery_worker.celery_app worker --loglevel=info
     volumes:
       - .:/app:ro
       - ./tests/redteam_artifacts/uploads:/app/uploads
