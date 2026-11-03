@@ -6,23 +6,38 @@ for, and spend-capped. Companion to [SECURITY_AUDIT.md](SECURITY_AUDIT.md)
 
 ---
 
-## 1. Where the key lives
+## 1. Where keys live
 
-- The **only** supported location is the `.env` file at the repo root
-  (`GOOGLE_API_KEY=...`), loaded by `app/core/config.py` via `python-dotenv`.
-  Copy [`.env.example`](.env.example) to `.env` and fill it in.
+- The **only** supported location is the `.env` file at the repo root, loaded by `app/core/config.py` via `python-dotenv`:
+  - `GOOGLE_API_KEY=...` — Google Gemini Vision API key.
+  - `CLEANOCR_API_KEY=...` — Optional CleanOCR server authentication key.
 - `.env` and `.env.*` are excluded by both `.gitignore` and `.dockerignore`.
   The two tracked exceptions contain no secrets by design:
   - `.env.example` — placeholders only.
   - `.env.redteam` — mock values only (`MOCK_KEY_DO_NOT_CHARGE`).
-- Docker Compose injects the key into containers from your local `.env`
-  (`env_file: .env` / `GOOGLE_API_KEY=${GOOGLE_API_KEY}`); it is never baked
-  into an image.
+- Docker Compose injects keys into containers from your local `.env`
+  (`env_file: .env`); they are never baked into an image.
 - **Never** hardcode a key in source, tests, scripts, compose files, or CI
   YAML. CI and tests use the dummy `test-key-for-ci`; mock mode uses
   `MOCK_KEY_DO_NOT_CHARGE`.
 
-## 2. Secret scanning (pre-commit + CI)
+## 2. Server Access Control (`CLEANOCR_API_KEY`)
+
+CleanOCR supports server-level authentication to protect endpoints (`/upload`, `/status/{id}`, `/stream/{id}`) against unauthorized access and denial-of-service:
+
+- **Generation:** Generate a high-entropy key:
+  ```bash
+  openssl rand -hex 32
+  ```
+- **Configuration:** Set `CLEANOCR_API_KEY=<generated-key>` in `.env`.
+- **Zero-Friction Dev Fallback:** When `CLEANOCR_API_KEY` is empty or unset, the backend permits open access for local development. When configured, requests lacking a valid key return HTTP 401 Unauthorized.
+- **Client Transmission:** Clients can authenticate via:
+  - Header: `X-API-Key: <key>`
+  - Header: `Authorization: Bearer <key>`
+  - SSE Query Param: `GET /api/stream/{job_id}?api_key=<key>` (for EventSource)
+- **Frontend Storage:** The React console stores the active key in `localStorage` (`cleanocr_api_key`) and attaches it automatically via Axios request interceptors.
+
+## 3. Secret scanning (pre-commit + CI)
 
 Two layers block key-shaped strings (Google `AIza...` keys, GCP service
 accounts, GitHub/Slack/Stripe tokens, private keys, …) from entering history:
@@ -44,7 +59,7 @@ known mock/dummy values — the full git history scans clean (see §5), so any
 gitleaks hit is a **new** leak. If gitleaks blocks your commit, the fix is
 to move the value into `.env`, not to extend the allowlist.
 
-## 3. Key scoping (do this in the Google console)
+## 4. Key scoping (do this in the Google console)
 
 A default Gemini key is often unrestricted. CleanOCR calls exactly one
 Google service — `generativelanguage.googleapis.com`
@@ -66,7 +81,7 @@ to that surface:
 5. Use a **dedicated Google Cloud project** for CleanOCR so the key cannot
    touch resources of other projects and usage is easy to audit.
 
-## 4. Runtime protections in this codebase
+## 5. Runtime protections in this codebase
 
 - **No key in logs/errors/tracebacks** — `app/core/secrets.py` provides
   `redact()` plus a logging filter installed on the API server, the Celery
@@ -87,7 +102,7 @@ to that surface:
   further spend. Sizing guide: a full 500-page job ≈ 500 calls + retries +
   boundary-stitch calls, so 2000/day ≈ 3–4 max-size jobs.
 
-## 5. Known historical exposure & rotation procedure
+## 6. Known historical exposure & rotation procedure
 
 **Status: fully remediated.** An old Gemini key was hardcoded in scripts
 committed January 2026. It was **revoked and replaced** (SECURITY_AUDIT.md,

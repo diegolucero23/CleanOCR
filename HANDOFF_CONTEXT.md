@@ -1,7 +1,10 @@
-# CleanOCR — Session Handoff Context
+# CleanOCR — Session Handoff Context (Historical Archive)
+> **ARCHIVE NOTICE (November 2026):** This document is a historical snapshot from July 2026 preserved for reference only.
+> For current architectural guidance, see [`ARCHITECTURE.md`](ARCHITECTURE.md). For active sprint progress and governance, see [`task.md`](task.md) and [`AGENTS.md`](AGENTS.md). Note that the July 2026 deferral of authentication was resolved with the implementation of Set A (`CLEANOCR_API_KEY` and rate limiting).
+
 **Date:** 2026-07-08  
 **Branch:** `main`  
-**Status:** Sprint backlog fully cleared — all floating branches merged, zero open PRs, security audit down to one deliberately deferred item. Next session: Phase 2 feature hardening.
+**Status:** Historical sprint archive.
 
 ---
 

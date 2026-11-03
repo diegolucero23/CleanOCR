@@ -16,10 +16,14 @@ It features a modern **React Console**, a scalable **FastAPI/Celery Backend**, a
 *   **🛡️ Enterprise-Grade Backend:**
     *   **Streamed Pipeline:** Celery Chords (Producer-Consumer) stream OCR tasks in parallel rather than blocking.
     *   **Input Sanitization:** Blocks malware/fake files via `libmagic`.
+    *   **Relational Persistence (SQLAlchemy 2.0):** Zero-config SQLite database (`workspaces/cleanocr.db`), switchable to PostgreSQL via `DATABASE_URL`. Stores complete jobs, metadata, and extracted text.
+    *   **Persistent Job History API:** `GET /jobs` (paginated, searchable, status-filtered) and `GET /jobs/{job_id}` with automatic Redis-to-DB fallback.
+    *   **Security & Access Control:** Optional server API key protection (`CLEANOCR_API_KEY`) with seamless local dev fallback and interactive UI key management.
+    *   **Rate Limiting & Quota Guard:** Redis-backed sliding-window throttling (3 uploads/min, 60 status checks/min) to prevent quota exhaustion.
     *   **Smart Caching:** SHA-256 deduplication (Process once, serve forever).
     *   **Robust State Tracking:** Atomic Redis counters accurately calculate pipeline progress across disparate worker nodes.
     *   **Structured Logging:** JSON logs ready for Datadog/ELK.
-    *   **Resilience:** Browser-local job history persistence (don't lose jobs on refresh).
+    *   **Resilience:** Dual-layer state persistence (Redis fast-path + SQL database recovery).
     *   **Isolation:** Per-job sandboxed workspaces (`workspaces/{guid}`) for safe concurrency.
     *   **Research Ready:** Automated citation generation, YAML frontmatter, and metadata management.
 
@@ -102,9 +106,22 @@ Frontend live at: **http://localhost:5173**
 
 ---
 
-## 🧪 Verification
+## 🧪 Testing & Verification
 
-To verify the installation, you can run the included scripts from the `scripts/` directory:
+### 1. Automated Test Suite (Pytest)
+Run the full backend regression suite (all 161 tests):
+```bash
+# Using project virtualenv
+python -m pytest
+
+# Run security and rate-limiting tests specifically
+python -m pytest tests/test_persistence_db.py
+```
+
+> **Windows Note:** Ensure Poppler is installed (`winget install oschwartz10612.Poppler`). `config.py` automatically detects Poppler in your system PATH.
+
+### 2. Live Verification Scripts
+To verify against a running Docker stack:
 ```bash
 # Verify API & Worker Lifecycle
 python scripts/verify_status_api.py
@@ -112,20 +129,16 @@ python scripts/verify_status_api.py
 # Verify Static File Serving
 python scripts/verify_static.py
 
-## 🧹 Troubleshooting & Clearing Cache
-
-CleanOCR uses a **Smart Caching** system to deduplicate uploads and save AI processing costs. If you need to re-process a file that was already uploaded (for example, to test new OCR logic or if a job failed), you must clear the Redis cache first.
-
-**To clear the cache manually via terminal:**
-```bash
-docker-compose exec redis redis-cli FLUSHALL
+# Advanced Test CLI (Supports Cache Flushing & Mock PDF)
+python scripts/test_upload.py --flush --dummy
 ```
 
-Alternatively, you can use the test scripts to flush it:
+## 🧹 Troubleshooting & Clearing Cache
+
+CleanOCR uses a **Smart Caching** system to deduplicate uploads and save AI processing costs. If you need to re-process a file that was already uploaded (for example, to test new OCR logic or if a job failed), clear the Redis cache:
+
 ```bash
-# Advanced Test CLI (Support Cache Flushing)
-# Usage: python scripts/test_upload.py [--flush] [--dummy] [--file path/to/pdf]
-python scripts/test_upload.py --flush --dummy
+docker-compose exec redis redis-cli FLUSHALL
 ```
 
 ---

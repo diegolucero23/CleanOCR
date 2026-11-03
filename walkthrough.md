@@ -150,3 +150,176 @@ State: COMPLETED | Progress: 100% | Msg: Processing complete.
     *   Test suites in `tests/test_stats.py` verify Redis storage and calculation. ✅ PASSED.
     *   Frontend `npm run build` completes successfully handling new types. ✅ PASSED.
     *   **Result:** ✅ PASS
+
+## Phase 19: Gemini 3 Model Lineup & Token Optimization Verification (Milestone 0)
+
+### 1. Architectural Motivation & Scope
+*   **Retirement Cliff:** The entire Gemini 2.5 family (`gemini-2.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-pro`) reaches end-of-life on **October 20, 2026**. CleanOCR required an immediate migration to prevent 404 service failures.
+*   **Token Economics & Traps:**
+    *   300 DPI broadsheet scans generate ~20 tiles ($4 \times 5$) totaling ~5,160 input tokens/page.
+    *   Gemini 3.8 Flash introduces "thinking tokens" billed as output tokens ($3.75/1M in 2026, doubling to $7.50/1M on Jan 1, 2027). Unconstrained thinking on raw transcription jobs caused severe token bloat.
+    *   Routing layout detection through the primary model consumed full-resolution image tokens (~5,160 tokens) for a binary `{"layout_type": "..."}` JSON classification.
+*   **Solution Implemented:**
+    1. Standard Tier upgraded to `gemini-3.1-flash-lite` ($0.25 in / $1.50 out per 1M).
+    2. Pro Tier upgraded to `gemini-3.8-flash` ($0.75 in / $3.75 out per 1M) with default `thinking_level = types.ThinkingLevel.LOW`.
+    3. Layout detection decoupled to `LAYOUT_MODEL_NAME = "gemini-3.1-flash-lite"` with `media_resolution = types.MediaResolution.MEDIA_RESOLUTION_LOW` (reducing input tokens by ~95% to ~258 tokens).
+    4. Fallback chain pointed to `FALLBACK_MODEL_NAME = "gemini-3.5-flash-lite"`.
+
+### 2. TDD Methodology Enforcement (Proof of Test-First)
+Per `AGENTS.md` @QA directives, unit tests were authored in `tests/test_google_vision.py` (`TestLayoutAndThinkingConfig`) and verified failing *prior* to modifying production application logic:
+```
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1
+collected 17 items
+
+tests/test_google_vision.py::TestLayoutAndThinkingConfig::test_detect_layout_type_uses_layout_model_in_pro_tier FAILED
+    AttributeError: module 'app.core.config' has no attribute 'LAYOUT_MODEL_NAME'
+tests/test_google_vision.py::TestLayoutAndThinkingConfig::test_pro_model_thinking_config_applied FAILED
+    AssertionError: Expected ThinkingConfig with thinking_level LOW
+
+========================= 2 failed, 15 passed in 1.45s =========================
+```
+After updating `app/core/config.py`, `app/services/google_vision.py`, `.env`, and `.env.example`, the test suite passed:
+```
+tests/test_google_vision.py::TestLayoutAndThinkingConfig::test_detect_layout_type_uses_layout_model_in_pro_tier PASSED [ 70%]
+tests/test_google_vision.py::TestLayoutAndThinkingConfig::test_pro_model_thinking_config_applied PASSED [ 76%]
+============================= 17 passed in 1.62s ==============================
+```
+
+### 3. Verification of Non-Functionals (Performance, Reliability, Security)
+*   **Token & Cost Reduction:** Verified that layout detection calls explicitly transmit `media_resolution=types.MediaResolution.MEDIA_RESOLUTION_LOW`, slashing layout tokens per page from ~5,160 to ~258 tokens (~1.9M tokens saved on a 384-page volume).
+*   **Thinking Cost Interlock:** Verified that `_call()` injects `ThinkingConfig(thinking_level=ThinkingLevel.LOW)` when calling Gemini 3.8 Flash, shielding against runaway reasoning costs.
+*   **Fallback Reliability:** Verified that the 404 auto-fallback chain engages seamlessly when the primary model encounters a deprecated or missing model error (`tests/test_google_vision.py::TestFallbackChain`).
+*   **Static Typing & Environment Parity:** Hoisted `import PIL.Image` in `app/services/google_vision.py` to ensure `image: PIL.Image.Image` type annotations evaluate correctly. Synchronized virtualenv `c:\Users\dluce\venv` and `.vscode/settings.json`, passing all 109 unit/integration tests without diagnostic errors.
+
+### 4. Test Suite Execution Proof
+Execution across full unit and integration test suites:
+```
+c:\Users\dluce\venv\Scripts\python.exe -m pytest tests/test_google_vision.py tests/test_layout_detection.py tests/test_stitcher_json_repair.py tests/test_two_pass_verification.py tests/test_stats.py tests/test_ocr_retry.py tests/test_credential_hardening.py tests/test_ingestion_hardening.py tests/test_upload_limits.py tests/test_issue_separation.py tests/test_dlq.py -v
+
+======================= 109 passed, 1 warning in 6.04s ========================
+```
+*Result:* ✅ **PASS (109/109 Tests Passing)**
+
+## Phase 20: Production Gaps — Set A: Security & Access Control Verification
+
+### 1. Architectural Scope & HITL Alignments
+*   **Authentication Dependency:** Built `verify_api_key` in `app/core/security.py` supporting `X-API-Key` headers, `Authorization: Bearer <key>`, and SSE query parameters (`?api_key=`), with zero-friction local fallback when `CLEANOCR_API_KEY` is unset.
+*   **Rate Limiting:** Built Redis sliding-window token limiter enforcing strict quota protection (3 uploads/min, 60 status polls/min) per client key or IP hash.
+*   **Standardized Error Responses:** Registered FastAPI exception handler delivering uniform `{"error": {"code": "...", "message": "...", "details": {...}}}` payloads without nested detail wrappers.
+*   **Frontend UI & Persistence:** Added dual support in React: auto-injecting from `VITE_API_KEY`, attaching active keys via Axios interceptors, and adding a `SettingsModal` in the header for interactive key configuration stored in `localStorage`.
+
+### 2. TDD Proof of Verification (Test-First)
+Authored `tests/test_auth_and_rate_limit.py` and proved failing baseline:
+```
+FAILED tests/test_auth_and_rate_limit.py::TestRateLimiting::test_rate_limiter_in_redis_sliding_window
+ModuleNotFoundError: No module named 'app.core.security'
+AttributeError: module 'app.core' has no attribute 'security'
+```
+After full implementation of `app/core/security.py`, `app/api/server.py`, and `app/core/config.py`:
+```
+c:\Users\dluce\venv\Scripts\python.exe -m pytest tests/test_auth_and_rate_limit.py
+tests\test_auth_and_rate_limit.py .........                              [100%]
+======================== 9 passed, 1 warning in 9.75s =========================
+```
+
+### 3. Full Regression Test Proof
+Execution across all test suites in the repository:
+```
+c:\Users\dluce\venv\Scripts\python.exe -m pytest
+================== 153 passed, 1 warning in 84.56s (0:01:24) ==================
+```
+
+### 4. Frontend UI/UX Standards & Build Integrity (@Des)
+*   **Notification System (`NotificationToast.tsx`):** Replaced native browser `alert("Upload Failed")` with responsive, glassmorphic toast notifications with Framer Motion spring micro-animations.
+*   **Rate-Limit Live Feedback:** Automatically extracts `details.retry_after_seconds` or `Retry-After` headers on HTTP 429 and displays a real-time countdown badge (`X s remaining`).
+*   **1-Click Auth Action:** Surfaces actionable button directly on HTTP 401 toasts ("Configure API Key") to immediately open `SettingsModal`.
+*   **Mobile-First Responsiveness:**
+    *   Toasts float top-centered (`top-4 inset-x-4`) on mobile (<640px) and dock at bottom-right (`bottom-6 right-6`) on desktop.
+    *   `DiffViewer.tsx` stacks vertically on mobile (`flex-col md:flex-row`).
+    *   Header items collapse gracefully for small 320px viewports.
+*   **Clean TypeScript Build:**
+```
+cd frontend && npm run build
+> frontend@0.0.0 build
+> tsc -b && vite build
+✓ 2205 modules transformed.
+dist/index.html                   1.10 kB │ gzip:   0.59 kB
+dist/assets/index-BkyX-HY2.css   34.26 kB │ gzip:   6.90 kB
+dist/assets/index-D_8Rp32q.js   851.75 kB │ gzip: 263.93 kB
+✓ built in 7.23s
+```
+*Result:* ✅ **PASS (0 Errors, 153/153 Tests Passing, Build Clean, All Exit Gates Verified)**
+
+
+## Phase 21: Production Gaps — Set B: Persistence & Storage Verification
+
+### 1. Architectural Scope & Delivery Summary
+*   **Relational Database Engine (`app/db/`):** Built SQLAlchemy 2.0 ORM models (`JobModel`, `JobMetadataModel`, `JobResultModel`) in `app/db/models.py` with zero-config SQLite default (`workspaces/cleanocr.db`), switchable to PostgreSQL via `DATABASE_URL`.
+*   **Persistent Job History API:**
+    *   `GET /jobs`: Fully paginated (`page`, `limit`), status-filtered (`queued`, `processing`, `completed`, `failed`), searchable by filename or title, and ordered by timestamp. Returns dual `items` and `jobs` arrays for client compatibility.
+    *   `GET /jobs/{job_id}`: Fetches complete job telemetry, citation metadata, and full Markdown extracted text even after local cache key eviction.
+*   **State Resilience & Fallback:** Dual-layer architecture:
+    *   Volatile Redis fast-path for active streaming progress counters and Celery chords.
+    *   Durable SQLite/PostgreSQL fallback for `GET /status/{job_id}` and `_build_status_payload()` if Redis restarts or evicts keys.
+*   **Workspace Retention Daemon:** Scheduled Celery Beat task `cleanup_old_workspaces` prunes disk footprints (`workspaces/{job_id}`, `uploads/{job_id}.pdf`) older than `WORKSPACE_TTL_HOURS` (24h) while keeping all database rows permanently queryable.
+*   **Concurrency & ORM Hardening:**
+    *   Configured `PRAGMA journal_mode=WAL;` and `timeout=30.0` on SQLite connections to eliminate multi-worker database lock contention.
+    *   Mapped Declarative Base relationship as `citation_metadata` internally to protect `Base.metadata`, serialized cleanly as `"metadata"` in dictionary representations.
+
+### 2. Strict TDD Verification (Test-First Proof)
+Authored `tests/test_persistence_db.py` before writing backend implementation. Proved failing baseline:
+```
+FAILED tests/test_persistence_db.py::test_models_and_schema_initialization
+ModuleNotFoundError: No module named 'app.db'
+```
+After complete implementation of `app/db/`, `app/api/server.py`, and `app/workers/celery_worker.py`:
+```
+c:\Users\dluce\venv\Scripts\python.exe -m pytest tests/test_persistence_db.py
+tests\test_persistence_db.py ........                                    [100%]
+======================== 8 passed, 1 warning in 31.28s ========================
+```
+*Test Coverage:*
+1. Schema and table initialization (`jobs`, `job_metadata`, `job_results`).
+2. Full CRUD lifecycle and cascade deletions.
+3. Upload API DB persistence with citation metadata forward-fill.
+4. `GET /jobs` pagination, status filtering, and substring search.
+5. `GET /jobs/{job_id}` detailed record retrieval and 404 handling.
+6. `GET /status/{job_id}` DB fallback on Redis cache wipe.
+7. Scheduled workspace cleanup disk deletion with permanent DB preservation.
+8. Adversarial query bounds validation (`page=0`, `limit=500`, bad sort orders) and SQL injection resilience.
+
+### 3. Full Repository Regression Test Proof
+Executed all 161 tests across the entire repository test suite:
+```
+c:\Users\dluce\venv\Scripts\python.exe -m pytest
+================= 161 passed, 1 warning in 105.53s (0:01:45) ==================
+```
+*Result:* ✅ **PASS (161/161 Tests Passing, 0 Regressions, 100% Green)**
+
+### 4. Frontend UI/UX Standards & Build Integrity (@Des)
+*   **Job History Component (`frontend/src/components/JobHistory.tsx`):**
+    *   Search bar by filename or title metadata with 1-click clear.
+    *   Filter tabs (`All`, `Completed`, `Processing`, `Failed`) with active badge styling.
+    *   Previous / Next pagination controls with page indicators and bounds protection.
+    *   Direct "View Text" action button that loads full Markdown into `DiffViewer.tsx`.
+*   **Mobile-First Responsiveness:**
+    *   Tested down to 320px viewport: automatically switches from desktop table to stacked card layout (`sm:hidden` / `hidden sm:block`) to eliminate horizontal table clipping on phones.
+*   **Feedback & Error States:** Zero raw `alert()` calls. Uses `NotificationToast` for database sync notices and quota warnings.
+*   **Clean TypeScript Build:**
+```
+npm --prefix frontend run build
+> frontend@0.0.0 build
+> tsc -b && vite build
+✓ 2205 modules transformed.
+dist/index.html                   1.10 kB │ gzip:   0.59 kB
+dist/assets/index-DjFqfBxR.css   37.04 kB │ gzip:   7.35 kB
+dist/assets/index-DBeyJV4K.js   862.08 kB │ gzip: 266.25 kB
+✓ built in 7.43s
+```
+*Result:* ✅ **PASS (0 Build Errors, Clean Bundle, Fully Responsive)**
+
+### 5. Documentation Clearinghouse Execution (@QA Arbiter)
+All proactive documentation suggestions contributed across `@PM`, `@Arch`, `@Eng`, and `@Des` were evaluated and applied:
+1. `ARCHITECTURE.md`: Added `app/db/` to Repository Map; added Section 5b (Relational Persistence, Entity Relationship Diagram, Redis-to-DB fallback sequence diagram, SQLite WAL pragma); added `GET /jobs` and `GET /jobs/{job_id}` to Endpoint Matrix; added `DATABASE_URL` to Configuration Reference; marked Set B complete in Section 12.
+2. `README.md`: Documented SQLAlchemy 2.0 zero-config SQLite and PostgreSQL setup, updated test count to 161 tests, and documented `GET /jobs` persistent history API.

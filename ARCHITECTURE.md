@@ -21,14 +21,18 @@ CleanOCR/
 ├── app/                        ← Python backend package
 │   ├── api/
 │   │   └── server.py           ★ ENTRY POINT — FastAPI app, all HTTP endpoints
+│   ├── db/                     ★ Relational Database Engine (SQLAlchemy 2.0)
+│   │   ├── database.py         Base, sessionmaker, SQLite WAL pragma, get_db
+│   │   └── models.py           JobModel, JobMetadataModel, JobResultModel
 │   ├── core/
 │   │   ├── config.py           ★ Single source of truth for all config/env vars
+│   │   ├── security.py         API Key verification dependency & Redis RateLimiter
 │   │   ├── prompts.py          Gemini vision prompt template
 │   │   └── image_utils.py      Deskew + padding preprocessing (stateless)
 │   ├── services/
 │   │   ├── ocr_interface.py    Abstract base class OCRProvider
 │   │   ├── ocr_factory.py      Factory: returns Google or Mock provider
-│   │   ├── google_vision.py    Gemini 2.0 Flash implementation
+│   │   ├── google_vision.py    Gemini 3.1 Flash Lite / 3.8 Flash implementation
 │   │   ├── pdf_converter.py    PDF → PNG via pdf2image + ThreadPoolExecutor
 │   │   ├── ocr_processor.py    Per-page OCR with exponential-backoff retry
 │   │   └── stitcher.py         Assembles page JSON → final Markdown
@@ -38,16 +42,16 @@ CleanOCR/
 ├── frontend/
 │   └── src/
 │       ├── App.tsx             ★ ENTRY POINT — root component, SSE subscriptions
-│       ├── components/         UI components (JobCard, DiffViewer, UploadZone …)
+│       ├── components/         UI components (JobCard, DiffViewer, UploadZone, SettingsModal, NotificationToast …)
 │       ├── hooks/
 │       │   └── useJobPersistence.ts  localStorage job history (max 50 entries)
 │       └── lib/
-│           ├── api.ts          ★ HTTP + SSE client for the backend API
+│           ├── api.ts          ★ HTTP + SSE client for the backend API (with auth interceptor)
 │           └── utils.ts        Shared utilities
 │
 ├── frontend-v2/                Experimental dark-theme document editor UI (React + Vite + Tailwind, :5174) — not yet the default
 │
-├── tests/                      Pytest unit + integration tests
+├── tests/                      Pytest unit + integration tests (inc. test_auth_and_rate_limit.py)
 ├── scripts/                    CLI verification + debug helpers
 │
 ├── docker-compose.yml          ★ Defines redis / web / worker services
@@ -130,7 +134,7 @@ run_ocr_pipeline  (coordinator task)
   │
   └─ Phase 2+3: Celery Chord
        ├─ Header (parallel): ocr_page_task × N
-       │    └─ google_vision: call Gemini 2.0 Flash → page JSON
+       │    └─ google_vision: call Gemini 3.1 Flash Lite → page JSON
        │    └─ redis INCR cache:{job_id}:completed_pages
        │    └─ save workspaces/{job_id}/ocr_json/page_NNN.json
        │
@@ -184,20 +188,109 @@ A **cached** upload short-circuits the pipeline and the browser receives
 `{status: "cached", job_id: <existing_id>}` — the frontend treats this
 identically to a fresh completed job.
 
+### 5b. Dual-Layer State Persistence & Recovery (Set B)
+
+CleanOCR combines an ephemeral Redis fast-path with durable SQLAlchemy 2.0 relational persistence:
+
+1. **Redis (Fast-Path):** Active progress counters (`cache:{job_id}:completed_pages`), task coordination chords, token-bucket rate limits, and real-time SSE broadcasts.
+2. **Relational Database (Durable System of Record):** Persists jobs, citation metadata, and final Markdown extractions across container and Redis restarts.
+   - **Default:** SQLite (`workspaces/cleanocr.db`) with zero manual setup.
+   - **Production:** PostgreSQL configured via `DATABASE_URL=postgresql://user:pass@host:5432/cleanocr`.
+   - **Concurrency Hardening:** For multi-worker environments, `database.py` enforces SQLite `PRAGMA journal_mode=WAL;` and `timeout=30.0` on connection.
+   - **ORM Mapping Convention:** The child relationship on `JobModel` is named `citation_metadata` internally (because Declarative Base reserves `Base.metadata`) and serialized as `"metadata"` to preserve exact API backward compatibility.
+
+```mermaid
+erDiagram
+    JOBS ||--o| JOB_METADATA : has
+    JOBS ||--o| JOB_RESULTS : produces
+    JOBS {
+        string id PK "UUID4"
+        string status "queued | processing | completed | failed"
+        string file_hash "SHA-256"
+        string original_filename
+        int file_size_bytes
+        int total_pages
+        int processed_pages
+        string model_name
+        float upload_time
+        float end_time
+        float duration_seconds
+        datetime created_at
+        datetime updated_at
+    }
+    JOB_METADATA {
+        int id PK
+        string job_id FK
+        string title
+        string volume
+        string issue
+        string publication_date
+    }
+    JOB_RESULTS {
+        int id PK
+        string job_id FK
+        text markdown_text
+        int total_words
+        float confidence_score
+    }
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Client as Web Frontend
+    participant API as FastAPI Gateway
+    participant Redis as Redis (Fast-Path)
+    participant DB as SQLite / PostgreSQL (Durable)
+
+    Note over Client, DB: Dual-Layer Status Fallback Flow
+    Client->>API: GET /api/status/{job_id}
+    API->>Redis: Check cache:{job_id}:status
+    alt Redis Key Exists
+        Redis-->>API: {status, progress, times}
+        API-->>Client: 200 OK (Fast-Path Response)
+    else Redis Evicted or Restarted (Cache Miss)
+        API->>DB: SELECT * FROM jobs WHERE id = job_id
+        DB-->>API: JobModel (with metadata and result)
+        API-->>Client: 200 OK (DB Fallback Response)
+    end
+```
+
 ---
 
-## 6. API Contracts
+## 6. API Contracts & Security
 
 All endpoints are under the `/api` prefix (Vite proxy) in development,
 and behind `/api` in production.
 
-| Method | Path | Request | Response |
-|--------|------|---------|----------|
-| `POST` | `/upload` | `multipart/form-data`: `file` (PDF), optional `title`, `volume`, `issue`, `date`, `skip_metadata` | `{status, job_id, task_id?, message}` |
-| `GET` | `/status/{job_id}` | — | `{job_id, status, progress, message, markdown?, upload_time?, file_size?, processing_time?, complexity?}` |
-| `GET` | `/stream/{job_id}` | — | `text/event-stream` — repeated `data: <JSON>` (same shape as `/status`) until terminal state |
-| `GET` | `/uploads/{job_id}.pdf` | — | Static PDF binary (for DiffViewer) |
-| `GET` | `/docs` | — | FastAPI Swagger UI |
+### Endpoint Matrix
+
+| Method | Path | Auth Required | Rate Limit | Request | Response / Errors |
+|--------|------|---------------|------------|---------|-------------------|
+| `POST` | `/upload` | Yes (if configured) | 3 / min | `multipart/form-data`: `file` (PDF), optional `title`, `volume`, `issue`, `date`, `skip_metadata` | `200`: `{status, job_id, task_id?, message}`<br>`400`, `401`, `413`, `429` |
+| `GET` | `/jobs` | Yes (if configured) | 60 / min | `?page=1&limit=20&status=&search=&sort_order=desc` | `200`: Paginated jobs list (`items`, `jobs`, `total`, `page`, `limit`, `total_pages`)<br>`401`, `422`, `429` |
+| `GET` | `/jobs/{job_id}` | Yes (if configured) | 60 / min | — | `200`: Detailed record with metadata and extracted markdown text<br>`401`, `404`, `429` |
+| `GET` | `/status/{job_id}` | Yes (if configured) | 60 / min | — | `200`: `{job_id, status, progress, message, markdown?, upload_time?, file_size?, processing_time?, complexity?}` (with automatic DB fallback)<br>`401`, `404`, `429` |
+| `GET` | `/stream/{job_id}` | Yes (if configured) | 60 / min | `?api_key=` (query param fallback for SSE) | `text/event-stream` — repeated `data: <JSON>` until terminal state<br>`401`, `404`, `429` |
+| `GET` | `/limits` | No | None | — | `200`: Ingestion caps (`max_upload_mb`, `max_pdf_pages`, etc.) |
+| `GET` | `/system-status` | No | None | — | `200`: Health and active configuration diagnostics |
+| `GET` | `/uploads/{job_id}.pdf` | No | None | — | Static PDF binary (for DiffViewer) |
+| `GET` | `/docs` | No | None | — | FastAPI Swagger UI |
+
+### Standard Error Response Envelope
+
+All API errors return a uniform, unnested JSON schema:
+```json
+{
+  "error": {
+    "code": "UNAUTHORIZED | RATE_LIMIT_EXCEEDED | INVALID_FILE | FILE_TOO_LARGE | NOT_FOUND",
+    "message": "Human readable description",
+    "details": {
+      "retry_after_seconds": 23
+    }
+  }
+}
+```
 
 ---
 
@@ -206,6 +299,12 @@ and behind `/api` in production.
 | Pattern | Where | Purpose |
 |---------|-------|---------|
 | **Factory + Strategy** | `ocr_factory.py` + `ocr_interface.py` | Swap between Google Gemini and `RedTeamMockProvider` by setting `GOOGLE_API_KEY=MOCK_KEY` |
+| **Relational Persistence** | `app/db/` (`database.py`, `models.py`) | SQLAlchemy 2.0 dual-engine (SQLite default, PostgreSQL ready) with cascade relationships for jobs, metadata, and extracted text |
+| **Redis-to-DB State Fallback** | `app/api/server.py` | Graceful state recovery: queries Redis fast-path; falls back to relational DB if keys expire or Redis restarts |
+| **SQLite WAL Concurrency** | `app/db/database.py` | Automatically sets `PRAGMA journal_mode=WAL;` and 30s timeout on connect to eliminate lock contention during concurrent worker writes |
+| **Responsive History (Card/Table)** | `frontend/src/components/JobHistory.tsx` | Mobile-first design: renders stacked touch cards on mobile (<640px) and full sortable table on desktop (>=640px) with zero horizontal clipping |
+| **API Key Authentication** | `app/core/security.py` | Header-based verification (`X-API-Key` or `Authorization: Bearer`) with SSE query param fallback (`?api_key=`) and open local dev fallback |
+| **Sliding-Window Rate Limiting** | `app/core/security.py` | Redis-backed sliding window counter per client IP / API key hash (3 uploads/min, 60 status polls/min) |
 | **Celery Chord** | `celery_worker.py` | Fan-out N parallel OCR tasks; fan-in to one stitching callback |
 | **SHA-256 Smart Cache** | `server.py::POST /upload` | Identical PDFs (by content hash) skip re-processing |
 | **Per-Job Sandbox** | `workspaces/{job_id}/` | Concurrent jobs never touch each other's files |
@@ -223,11 +322,17 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `GOOGLE_API_KEY` | *(required)* | Gemini API key. Set to `MOCK_KEY_DO_NOT_CHARGE` to activate mock mode |
+| `CLEANOCR_API_KEY` | *(unset / None)* | Secret API key for CleanOCR server access. When unset, dev mode allows open access |
+| `DATABASE_URL` | `sqlite:///./workspaces/cleanocr.db` | SQLAlchemy connection string. Set to `postgresql://user:pass@host:5432/dbname` for production PostgreSQL |
+| `RATE_LIMIT_UPLOADS_PER_MIN` | `3` | Maximum PDF upload requests permitted per 60-second window per client |
+| `RATE_LIMIT_STATUS_PER_MIN` | `60` | Maximum status poll & SSE requests permitted per 60-second window per client |
+| `RATE_LIMIT_WINDOW_SECONDS` | `60` | Sliding window duration for rate limiting counters in Redis |
 | `REDIS_URL` | `redis://redis:6379/0` | Celery broker + backend URL |
 | `OCR_TIER` | `standard` | `standard` uses `MODEL_NAME`; `pro` uses `PRO_MODEL_NAME`. |
-| `MODEL_NAME` | `gemini-2.5-flash-lite` | Model used for standard tier. |
-| `PRO_MODEL_NAME` | `gemini-3.1-flash-lite` | Model used when `OCR_TIER=pro`. |
-| `FALLBACK_MODEL_NAME` | `gemini-2.5-flash` | Auto-fallback on 404 (deprecated/missing model). Must differ from the active model to engage. |
+| `MODEL_NAME` | `gemini-3.1-flash-lite` | Model used for standard tier ($0.25 in / $1.50 out). |
+| `PRO_MODEL_NAME` | `gemini-3.8-flash` | Model used when `OCR_TIER=pro` ($0.75 in / $3.75 out, with `thinking_level=LOW`). |
+| `LAYOUT_MODEL_NAME` | `gemini-3.1-flash-lite` | Dedicated lightweight model for pre-flight layout classification with `MEDIA_RESOLUTION_LOW`. |
+| `FALLBACK_MODEL_NAME` | `gemini-3.5-flash-lite` | Auto-fallback on 404 (deprecated/missing model). Must differ from the active model to engage. |
 | `WORKSPACES_DIR` | `workspaces` | Root directory for per-job sandboxes |
 | `UPLOAD_DIR` | `uploads` | Where raw PDFs are stored |
 | `WORKSPACE_TTL_HOURS` | `24` | Hours before a job workspace is deleted by cleanup task. `0` disables cleanup |
@@ -236,7 +341,7 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | `GEMINI_DAILY_CALL_CAP` | `2000` | Hard cap on billed Gemini calls per UTC day, shared across workers via Redis (`app/core/cost_guard.py`). `0` disables |
 | `GEMINI_RUN_CALL_CAP` | `5000` | Hard cap on billed Gemini calls per process; works without Redis (CLI batch mode). `0` disables |
 | `LOCAL_GEMMA_REVISION` | *(unset = latest)* | Pin the HuggingFace revision (commit hash) of the local Gemma model; safetensors-only loading is enforced |
-| `POPPLER_PATH` | `None` (Linux) | Path to Poppler binaries; only needed on Windows |
+| `POPPLER_PATH` | `None` (Linux) | Path to Poppler binaries; only needed on Windows (falls back to system PATH if directory is invalid) |
 | `OVERRIDE_IMAGE_FOLDER` | `output_images` | Experiment override for image output dir |
 | `OVERRIDE_OCR_JSON_FOLDER` | `ocr_jsonv2` | Experiment override for OCR JSON dir |
 
@@ -273,12 +378,12 @@ still in `queued` or `processing` state (page-refresh recovery).
 
 ```bash
 # Unit + integration tests
-pytest tests/
+pytest tests/  # 161 tests passing (100% green)
 
 # Specific suites
-pytest tests/test_concurrency.py
-pytest tests/test_two_pass_verification.py
-pytest tests/test_stats.py
+pytest tests/  # 161 tests passing (100% green)test_concurrency.py
+pytest tests/  # 161 tests passing (100% green)test_two_pass_verification.py
+pytest tests/  # 161 tests passing (100% green)test_stats.py
 
 # End-to-end against a running stack
 python scripts/verify_status_api.py
@@ -317,10 +422,10 @@ docker-compose -f docker-compose.redteam.yml up
 
 ---
 
-## 12. Known Limitations (as of July 2026)
+## 12. Known Limitations & Active Hardening Status
 
-- **No authentication** — all endpoints are open. Acceptable while compose binds every published port to `127.0.0.1` (single-user, loopback-only deployment); deferred by owner decision 2026-07-07. Auth + CSRF + strict CORS become prerequisites if the bind ever moves off loopback — see `SECURITY_AUDIT.md` finding #10
-- **No persistent job database** — job history is Redis (volatile) + browser localStorage; a Redis restart wipes server-side state
-- **Hardcoded repair targets** — `REPAIR_TARGETS` in `stitcher.py` is specific to one historical dataset
-- **Preprocessing always runs** — deskew adds overhead even on clean scans; no conditional bypass yet
-- **No Celery Beat process in `docker-compose.yml`** — workspace cleanup requires manually starting `celery beat` or adding a fourth service
+- **Authentication & Rate Limiting (Resolved in Set A):** Implemented in `app/core/security.py` via `CLEANOCR_API_KEY` header/bearer checks, SSE query params, and sliding-window Redis rate limits.
+- **Relational database & Job History (Resolved in Set B):** Implemented in `app/db/` using SQLAlchemy 2.0, providing persistent job history, metadata, and extraction text across server/Redis restarts with `GET /jobs` and `GET /jobs/{job_id}` endpoints.
+- **Hardcoded repair targets:** `REPAIR_TARGETS` in `stitcher.py` is now env-driven, but defaults to Mormon historical publications if unset.
+- **Preprocessing always runs:** deskew adds overhead even on clean scans; conditional bypass based on layout detection is planned.
+- **No Celery Beat process in `docker-compose.yml`:** workspace cleanup requires manually starting `celery beat` or adding a dedicated scheduler container.
