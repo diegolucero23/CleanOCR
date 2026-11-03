@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Search,
     RefreshCw,
@@ -13,7 +13,7 @@ import {
     Loader2,
     X,
 } from 'lucide-react';
-import { fetchJobs, fetchJobDetail, type PersistedJobSummary } from '../lib/api';
+import { fetchJobs, fetchJobDetail, jobStatusQuery, type PersistedJobSummary } from '../lib/api';
 import type { PersistedJob } from '../hooks/useJobPersistence';
 import { cn } from '../lib/utils';
 
@@ -38,13 +38,22 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
 
     const limit = 8;
 
+    // Parents usually pass onError inline, so its identity changes every render.
+    // Reading it through a ref keeps loadJobs stable; otherwise each error toast
+    // re-rendered the parent, recreated loadJobs, re-ran the load effect, and
+    // looped (one fetch + one toast per pass) for as long as the API was down.
+    const onErrorRef = useRef(onError);
+    useEffect(() => {
+        onErrorRef.current = onError;
+    }, [onError]);
+
     const loadJobs = useCallback(async (targetPage: number, status: FilterStatus, search: string) => {
         setIsLoading(true);
         try {
             const resp = await fetchJobs({
                 page: targetPage,
                 limit,
-                status: status === 'all' ? undefined : status,
+                status: jobStatusQuery(status),
                 search: search.trim() ? search.trim() : undefined,
             });
             setJobs(resp.jobs || resp.items || []);
@@ -55,11 +64,11 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
             console.error('[JobHistory] Failed to load jobs:', err);
             const status = err.response?.status;
             const msg = err.response?.data?.error?.message || err.message || 'Failed to load job history';
-            onError?.(msg, status === 401 ? 'UNAUTHORIZED' : status === 429 ? 'RATE_LIMIT_EXCEEDED' : 'FETCH_ERROR');
+            onErrorRef.current?.(msg, status === 401 ? 'UNAUTHORIZED' : status === 429 ? 'RATE_LIMIT_EXCEEDED' : 'FETCH_ERROR');
         } finally {
             setIsLoading(false);
         }
-    }, [onError]);
+    }, []);
 
     useEffect(() => {
         loadJobs(page, statusFilter, activeSearch);
@@ -206,7 +215,9 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                         <p className="text-xs text-muted-foreground max-w-sm mx-auto">
                             {activeSearch
                                 ? `No extraction jobs matched "${activeSearch}". Try clearing your search.`
-                                : `No jobs with status "${statusFilter}" recorded in the database.`}
+                                : statusFilter === 'processing'
+                                  ? 'No queued or processing jobs right now.'
+                                  : `No jobs with status "${statusFilter}" recorded in the database.`}
                         </p>
                     </div>
                 ) : (

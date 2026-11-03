@@ -167,17 +167,100 @@ export interface JobsListResponse {
     items?: PersistedJobSummary[];
 }
 
+// ---------------------------------------------------------------------------
+// Backend -> UI adapters for GET /jobs and GET /jobs/{id}.
+// The backend (app/db/models.py to_summary_dict / to_detail_dict) sends
+// job_id, original_filename, total_pages, processed_pages, file_size,
+// duration_seconds, upload_time/end_time (epoch seconds), metadata.publication_date
+// and result.markdown_text. The UI components read the PersistedJobSummary
+// shape above, so every record is normalized here before it reaches React.
+// ---------------------------------------------------------------------------
+type RawRecord = Record<string, unknown>;
+
+const asString = (value: unknown): string | undefined =>
+    typeof value === 'string' && value.length > 0 ? value : undefined;
+
+const asNumber = (value: unknown): number | undefined =>
+    typeof value === 'number' && Number.isFinite(value) ? value : undefined;
+
+const epochToIso = (seconds: unknown): string | undefined => {
+    const n = asNumber(seconds);
+    return n === undefined ? undefined : new Date(n * 1000).toISOString();
+};
+
+export const normalizeJobSummary = (raw: RawRecord): PersistedJobSummary => {
+    const status = (asString(raw.status) ?? 'failed') as PersistedJobSummary['status'];
+    const totalPages = asNumber(raw.total_pages) ?? asNumber(raw.page_count);
+    const processedPages = asNumber(raw.processed_pages);
+
+    let progress = asNumber(raw.progress);
+    if (progress === undefined) {
+        if (status === 'completed' || status === 'cached') progress = 100;
+        else if (totalPages && processedPages !== undefined) progress = Math.round((processedPages / totalPages) * 100);
+        else progress = 0;
+    }
+
+    const rawMeta = (raw.metadata ?? null) as RawRecord | null;
+    const metadata = rawMeta
+        ? {
+              title: asString(rawMeta.title),
+              volume: asString(rawMeta.volume),
+              issue: asString(rawMeta.issue),
+              date: asString(rawMeta.date) ?? asString(rawMeta.publication_date),
+          }
+        : undefined;
+
+    return {
+        id: asString(raw.id) ?? asString(raw.job_id) ?? 'unknown-job',
+        filename: asString(raw.filename) ?? asString(raw.original_filename) ?? 'Untitled document',
+        status,
+        progress,
+        page_count: totalPages,
+        file_size_bytes: asNumber(raw.file_size_bytes) ?? asNumber(raw.file_size),
+        processing_time_seconds: asNumber(raw.processing_time_seconds) ?? asNumber(raw.duration_seconds),
+        created_at: asString(raw.created_at) ?? epochToIso(raw.upload_time) ?? new Date(0).toISOString(),
+        completed_at: asString(raw.completed_at) ?? epochToIso(raw.end_time),
+        error_message: asString(raw.error_message),
+        metadata,
+    };
+};
+
+export const normalizeJobsList = (raw: RawRecord): JobsListResponse => {
+    const records = (Array.isArray(raw.items) ? raw.items : Array.isArray(raw.jobs) ? raw.jobs : []) as RawRecord[];
+    const jobs = records.map(normalizeJobSummary);
+    return {
+        total: asNumber(raw.total) ?? jobs.length,
+        page: asNumber(raw.page) ?? 1,
+        limit: asNumber(raw.limit) ?? jobs.length,
+        total_pages: asNumber(raw.total_pages) ?? 0,
+        jobs,
+    };
+};
+
+export const normalizeJobDetail = (raw: RawRecord): PersistedJobSummary & { markdown?: string } => {
+    const result = (raw.result ?? null) as RawRecord | null;
+    return {
+        ...normalizeJobSummary(raw),
+        markdown: asString(raw.markdown) ?? (result ? asString(result.markdown_text) : undefined),
+    };
+};
+
+// The Processing tab covers every in-flight job: the UI renders both `queued`
+// and `processing` as running, so it asks the backend for status=active.
+export const jobStatusQuery = (tab: 'all' | 'completed' | 'processing' | 'failed'): string | undefined =>
+    tab === 'all' ? undefined : tab === 'processing' ? 'active' : tab;
+
 export const fetchJobs = async (params?: {
     page?: number;
     limit?: number;
     status?: string;
     search?: string;
 }): Promise<JobsListResponse> => {
-    const response = await API.get<JobsListResponse>('/jobs', { params });
-    return response.data;
+    const response = await API.get<RawRecord>('/jobs', { params });
+    return normalizeJobsList(response.data);
 };
 
 export const fetchJobDetail = async (jobId: string): Promise<PersistedJobSummary & { markdown?: string }> => {
-    const response = await API.get<PersistedJobSummary & { markdown?: string }>(`/jobs/${jobId}`);
-    return response.data;
+    const response = await API.get<RawRecord>(`/jobs/${jobId}`);
+    return normalizeJobDetail(response.data);
 };
