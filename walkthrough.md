@@ -517,6 +517,31 @@ tests/test_rate_limit_isolation.py vs pre-fix conftest -> assert 429 != 429 (fai
 
 ### Open Items (carried to HITL sign-off)
 *   [ ] Containerized RedTeam run against `docker-compose.redteam.yml`.
-*   [ ] Live Gemini OCR of the historical scan + `DiffViewer.tsx` sync check.
-*   [ ] Lint gate in CI (none exists) and Vite chunk-size warning.
+*   [x] Live Gemini OCR + `DiffViewer.tsx` sync check: H090I3 re-run (job `135a9c57`) 9/9 pages, 2,533 words; owner confirmed Sync Page text on page 2 (2026-11-03).
+*   [x] Lint gate in CI: `frontend-build` now runs `npm run lint` and `npm test` before the build (2026-11-03).
+*   [ ] Vite chunk-size warning.
 *   [ ] Human manual audit.
+
+
+---
+
+## Phase 24: Session Gap Cleanup (2026-11-03)
+
+Each change started from a failing test (or a failing `eslint` run for the lint fixes).
+
+| Gap | Fix | Proof |
+|---|---|---|
+| Programming errors retried for ~3.5 min | `PERMANENT_PAGE_ERRORS` (TypeError, AttributeError, NameError, ImportError, KeyError) skip the page at once; transient errors still back off | `tests/test_ocr_page_task_contract.py`: 5 permanent cases failed before the fix |
+| Imported legacy jobs dated "today" | `import_legacy_jobs` sets `created_at` from the original upload time; 3 dev-DB rows corrected (backup `workspaces/cleanocr.db.bak-1793742413`) | `test_created_at_uses_original_processing_time` failed before the fix; `/jobs` now lists Jul 11, Oct 14, Oct 14, Nov 3 |
+| All-tab empty state read `status "all"` | Says "No jobs recorded in the database yet" | `JobHistory.test.tsx` empty-state test failed before the fix |
+| 7 eslint errors, 2 warnings | Typed API errors (`ApiError`, `apiErrorPayload`), typed `SimpleButton`, lazy history load, render-time modal reset, memoized `validateFile`, captured ref in cleanup | `npm run lint` -> 0 problems; new `useJobPersistence.test.ts`, `SettingsModal.test.tsx` |
+| History showed UTC clock times as local (8:18 PM for a 1:18 PM upload) | `to_summary_dict` serializes `created_at` with an explicit `+00:00` (SQLite returns it naive) | `tests/test_job_serialization.py` failed before the fix; UI now shows Nov 3, 01:18 PM |
+| `/verify` skill said all-failed dummy-key jobs end `completed` | Text now says they end `failed` | `.claude/skills/verify/SKILL.md` |
+
+```
+docker exec cleanocr-web-1 python -m pytest tests/ -q   -> 208 passed, 1 skipped (live Redis: redis://redis:6379/0 ping True)
+python -m pytest tests/test_no_local_paths.py -q (host) -> 1 passed (needs git; skipped in container)
+npm test                                                -> 16 passed
+npm run lint                                            -> 0 problems
+npm run build                                           -> built (1 chunk-size warning)
+```

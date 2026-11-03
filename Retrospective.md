@@ -345,3 +345,13 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 *   **Root Cause:** Checklist boxes were ticked from the plan's intent rather than from recorded evidence, and run instructions were never executed exactly as documented.
 *   **Action Taken:** Re-ticked exit gates against evidence (deferred items left open), fixed the `fuzz_inputs.py` path with a cwd-independence test, and added a local-path guard test.
 *   **Rule Added:** (@QA) Tick an exit-gate box only when `walkthrough.md` or CI holds the evidence; otherwise mark it DEFERRED with the reason. Run documented commands verbatim from the documented directory before signing off.
+
+### 2026-11-03 - Every Upload Since Set B Produced Empty Markdown
+*   **What went wrong:** Since `4bebf0b` (Nov 2), every OCR page raised `TypeError: process_single_image() takes 1 positional argument but 3 were given`. Each page retried with backoff for ~3.5 minutes at 0%, then the job was reported **completed** with no text. The Redis-only cache also kept pre-DB jobs out of Job History while still returning them as "cached".
+*   **Root Cause:**
+    1. Tests replaced `process_single_image` with an unspecced `MagicMock`, which accepts any call signature, so the broken call passed.
+    2. The page task retried every exception, including programming errors that fail identically each time.
+    3. `stitch_markdown_task` marked a job completed even when zero pages succeeded.
+    4. Separately, SQLite returns `created_at` without tzinfo, so the API sent UTC times with no offset and browsers showed them as local time.
+*   **Action Taken:** Fixed the call and added an `autospec=True` contract test; all-pages-failed jobs now end `failed` and are not cached; `PERMANENT_PAGE_ERRORS` skip retries; the DB is now the source of truth for cache hits (stale Redis entries are deleted); `scripts/import_legacy_jobs.py` records pre-DB jobs with their original dates; `created_at` is serialized with `+00:00`.
+*   **Rule Added:** (@Eng / @QA) Mock a collaborator with `autospec=True` (or `create_autospec`) whenever the test's purpose includes the call into it. A job's success status must be derived from the work that actually succeeded, never from the pipeline merely finishing.

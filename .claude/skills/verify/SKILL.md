@@ -45,10 +45,12 @@ GOOGLE_API_KEY=dummy REDIS_URL=redis://localhost:6379/0 \
 UPLOAD_DIR=/tmp/v/uploads WORKSPACES_DIR=/tmp/v/workspaces \
 timeout 75 celery -A app.workers.celery_worker worker --loglevel=warning --concurrency=2
 ```
-PDF burst (PHASE 1) runs for real; OCR calls fail on the dummy key but the
-chord still completes and stitches, so a valid PDF reaches
-`cache:{job_id}:status = completed` with images in the workspace. Check
-per-job outcomes with `redis-cli get cache:<job_id>:status`.
+PDF burst (PHASE 1) runs for real, so page images land in the workspace.
+OCR calls fail on the dummy key; the chord still completes, but a job whose
+pages ALL fail ends `cache:{job_id}:status = failed` with an
+`error_message` like "OCR failed on all N pages" (since 2026-11-03), and no
+`cache:{file_hash}` entry is written. Only a real key yields `completed`.
+Check per-job outcomes with `redis-cli get cache:<job_id>:status`.
 
 ## Gotchas
 - `docker compose config` validates port bindings without a daemon, but

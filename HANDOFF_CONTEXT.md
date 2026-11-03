@@ -1,5 +1,5 @@
 # CleanOCR — Session Handoff Context
-> **ACTIVE STATUS (November 2026):** Production Gaps **Set A (Security & Access Control)** and **Set B (Persistence & Storage)** are complete. **Set C (Validation & Adversarial Testing)** is built, pushed, and green in CI; its exit gate is **in review, awaiting the owner's manual audit** (198/198 tests passing locally).
+> **ACTIVE STATUS (November 2026):** Production Gaps **Set A (Security & Access Control)** and **Set B (Persistence & Storage)** are complete. **Set C (Validation & Adversarial Testing)** is built, pushed, and green in CI; its exit gate is **in review, awaiting the owner's manual audit** (209/209 tests passing locally).
 > **Tracking:** [task.md](task.md) and [production_gaps_plan.md](production_gaps_plan.md) hold the Set C exit gate (both are gitignored, so they exist only in the owner's checkout). Public status lives in [Context.md](Context.md).
 > For system architecture, see [ARCHITECTURE.md](ARCHITECTURE.md). For agent roles and workflow rules, see [AGENTS.md](AGENTS.md).
 
