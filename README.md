@@ -113,7 +113,7 @@ Frontend live at: **http://localhost:5173**
 ## 🧪 Testing & Verification
 
 ### 1. Automated Test Suite (Pytest)
-Run the full backend regression suite (all 168 tests):
+Run the full backend regression suite (all 180 tests):
 ```bash
 # Using project virtualenv
 python -m pytest
