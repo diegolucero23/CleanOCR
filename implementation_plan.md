@@ -1,358 +1,214 @@
-# Implementation Plan: Set B — Persistence & Storage
+# Implementation Plan: Set C — Validation & Adversarial Testing
 
-> **Status:** 🏗️ System Design Approved (@Arch) — Ready for Strict TDD Construction (@Eng)  
-> **Authors:** @PM, @Architect, @Eng, @Des, @QA  
-> **Target:** FastAPI Backend, SQLAlchemy 2.0, Celery Beat, React Frontend  
+> **Status:** 🎯 Requirements & Discovery Approved (@PM) — Ready for Architectural & Adversarial Execution  
+> **Authors:** @PM, @Architect, @Eng, @Des, @RedTeam, @QA  
+> **Target:** RedTeam Testbed, Historical OCR Pipeline, GitHub Actions CI/CD, React Frontend  
 > **Governing Standards:** [`AGENTS.md`](AGENTS.md) — Production First, Strict TDD, Full Observability, Zero Raw Alerts, Continuous Documentation Continuity, Human-in-the-Loop Git Decisions  
-> **Preceding Phase:** Set A (Security & Access Control) — ✅ Fully Verified & Closed  
+> **Preceding Phases:** Set A (Security & Access Control) — ✅ Completed | Set B (Persistence & Storage) — ✅ Completed  
 
 ---
 
 ## 1. Executive Summary & Product Requirements (@PM)
 
 ### Problem Statement
-Currently, CleanOCR relies on Redis for active job coordination and client-side `localStorage` for job history. If Redis is restarted or memory is evicted, server-side job records are lost. Furthermore, `localStorage` is unbounded, causing performance degradation after 100+ uploads, and does not synchronize across browser sessions or devices. Finally, `workspaces/{job_id}` and `uploads/` accumulate indefinitely on disk without a lifecycle retention daemon.
+With Set A (Security & Access Control) and Set B (Persistence & Storage) fully operational and committed, the CleanOCR architecture features API Key authentication, Redis token-bucket rate limiting, and SQLAlchemy 2.0 dual-engine persistence (SQLite WAL / PostgreSQL). However, the platform has not yet been subjected to comprehensive adversarial fuzzing, fault-injection chaos, real 19th-century multi-column historical PDF verification, or complete end-to-end continuous integration gating including the modern React/TypeScript frontend.
 
-### Objectives & Scope (Set B)
-1. **Relational Database Engine:**
-   - Integrate SQLAlchemy 2.0 with a zero-configuration SQLite default (`workspaces/cleanocr.db`), switchable to PostgreSQL via `DATABASE_URL` in production/Docker.
-   - Persist job records (`jobs`), citation metadata (`job_metadata`), and markdown extraction outputs (`job_results`).
-   - Track AI model telemetry in the schema (`model_name`, `layout_type`, `total_pages`, `duration_seconds`) to support the Model Lifecycle Roadmap (Gemini 3.1 Flash Lite / 3.8 Flash).
-2. **Persistent Job History API:**
-   - Implement `GET /jobs` with pagination (`page`, `limit`), status filtering (`queued`, `processing`, `completed`, `failed`), search by filename/title, and sorting.
-   - Implement `GET /jobs/{job_id}` to retrieve historical markdown text and diagnostic stats even after Redis cache expiration.
-   - Protect both routes with Set A's `verify_api_key` and Redis `RateLimiter`.
-3. **Workspace Retention Daemon:**
-   - Implement an automated Celery Beat task pruning expired workspaces and uploads older than `WORKSPACE_TTL_HOURS` (default: 24h), while keeping the DB records intact.
-4. **Frontend Job History & Sync (@Des):**
-   - Upgrade the frontend job history interface to display a paginated, searchable, status-filtered grid/table with mobile-first responsiveness (down to 320px).
-   - Support loading historical extractions directly into `DiffViewer.tsx`.
-5. **Continuous Documentation Continuity Protocol:**
-   - Every participating persona must document suggestions for clean, frictionless support for future AI agents and human collaborators.
-   - `@QA` acts as the centralized clearinghouse: collects, evaluates, decides if/how to implement, and applies the documentation changes before milestone sign-off.
-6. **Git Commit Strategy & Human Decision Gate:**
-   - At the conclusion of the fully verified session, `@QA` loops the human in with a structured Git commit recommendation (atomic groupings, conventional commit messages, staged files).
-   - The human makes the final decision on how the work is committed.
+### Objectives & Scope (Set C)
+1. **Phase 13 RedTeam Chaos Campaign (@RedTeam):**
+   - **Safety Interlock:** Strictly enforce Ping Check interlock (`GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE"`). Abort immediately if live credentials or external network access are detected.
+   - **Target Isolation:** Run against isolated `docker-compose.redteam.yml` (capped at 512MB RAM, 0.5 CPU, Redis capped at 256MB).
+   - **Vector 1: Auth & Rate Limiting Fuzzing:** Test spoofed headers (`X-Forwarded-For`, `X-Real-IP`), bearer token tampering, timing attack resistance (`secrets.compare_digest`), and token bucket exhaustion.
+   - **Vector 2: Database & SQL Injection Fuzzing:** Hammer `GET /jobs?search=` and `GET /jobs?status=` with SQL injection payloads and SQLite dialect stress.
+   - **Vector 3: Binary Corruption & Payload Fuzzing:** Malformed PDFs (broken xref tables, truncated streams, polyglot ZIP/PDF, decompression bombs, 0-byte files).
+   - **Vector 4: Chaos & Fault Injection:** Simulate Redis disconnects during active Celery chord execution, worker termination mid-job, and SQLite lock contention.
+   - **Hygiene:** Strict cleanup in `finally` blocks; publish `campaign_3_adversarial.md`.
+
+2. **Live Historical PDF End-to-End Validation (@QA):**
+   - Process real 19th-century multi-column scans from `latter_day_saints_messenger_and_advocate_vol_1_and_2.pdf`.
+   - Validate live transcription via `gemini-3.1-flash-lite` (Standard Tier).
+   - Verify low-resolution pre-flight layout classification (`LAYOUT_PROMPT` with `MEDIA_RESOLUTION_LOW` ~258 tokens).
+   - Verify dynamic gutter padding applied strictly to multi-column pages.
+   - Verify citation metadata persistence in SQLite and side-by-side verification in `DiffViewer.tsx`.
+   - Maintain 100% regression test pass rate across the full test bed (161+ tests).
+
+3. **CI/CD Pipeline Automation (@Eng):**
+   - Update `.github/workflows/ci.yml` to include:
+     - `secret-scan`: gitleaks credential scanning.
+     - `test`: Python 3.11 with Redis service, system libraries (`poppler-utils`, `libmagic1`), dependencies, and `pytest`.
+     - `frontend-build`: Node.js 20.x, TypeScript build check (`tsc -b`), and Vite production compilation (`npm run build`).
+     - `build`: Docker container build gated on both `test` and `frontend-build`.
+   - Update `tests/test_ci_pipeline.py` using Strict TDD to assert the enhanced CI pipeline structure.
+
+4. **Continuous Documentation Continuity (@QA Clearinghouse):**
+   - Proactive suggestions logged across all personas (@PM, @Arch, @Eng, @Des, @RedTeam).
+   - `@QA` evaluates, approves, and executes updates across `ARCHITECTURE.md` and `README.md`.
+
+5. **Git Commit Strategy & Human Decision Gate (@QA):**
+   - Formulate structured atomic commit recommendations for human review and final approval.
 
 ---
 
-## 2. System Architecture & Database Design (@Arch)
+## 2. System Architecture & Attack Surface Design (@Arch)
 
-### A. Architectural Overview & State Flow
-
-CleanOCR uses a dual-layer state strategy:
-1. **Redis (Volatile Fast-Path):** Real-time progress counters (`cache:{job_id}:completed_pages`), token-bucket rate limits, task locks, and Server-Sent Events broadcasting.
-2. **SQLAlchemy 2.0 (Durable Relational Persistence):** Master record of all historical jobs, metadata, execution diagnostics, and final markdown texts. If Redis restarts or evicts keys, the application gracefully degrades to the database.
+### A. Architectural Overview & RedTeam Isolation Topology
 
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor Client as Web Frontend
-    participant API as FastAPI Server
-    participant DB as SQLite / PostgreSQL (SQLAlchemy)
-    participant Redis as Redis Cache & Broker
-    participant Worker as Celery Worker Chord
-
-    Note over Client,API: 1. Job Ingestion & Double-Write
-    Client->>API: POST /upload (PDF + Metadata)
-    API->>DB: INSERT JobModel (queued) & JobMetadataModel
-    API->>Redis: SET cache:{hash} & enqueue task
-    API-->>Client: 200 OK (job_id, expectations)
-
-    Note over Redis,Worker: 2. Distributed Execution & DB Sync
-    Redis->>Worker: run_ocr_pipeline (Burst -> Chord -> Stitch)
-    Worker->>Redis: INCR completed_pages
-    Worker->>DB: UPDATE jobs (total_pages, processing)
-    Worker->>Worker: stitch_to_markdown()
-    Worker->>DB: INSERT JobResultModel (markdown_text, stats)
-    Worker->>DB: UPDATE JobModel (completed, duration, complexity)
-    Worker->>Redis: SET cache:{job_id}:status = completed
-
-    Note over Client,DB: 3. Resilient Read & Fallback
-    Client->>API: GET /status/{job_id}
-    alt Redis Key Exists
-        API->>Redis: GET cache:{job_id}:status
-        Redis-->>API: Active Status
-    else Redis Flushed / Expired (Degraded Fallback)
-        API->>DB: SELECT JobModel + JobResultModel
-        DB-->>API: Persisted State & Markdown
+flowchart TD
+    subgraph HostSystem["Host Operating System"]
+        Interlock["Mandatory Safety Interlock Check<br/>(GOOGLE_API_KEY == 'MOCK_KEY_DO_NOT_CHARGE')"]
+        Interlock -->|PASS| AttackRunner["Adversarial Attack Suite<br/>(tests/redteam_artifacts/campaign_3_adversarial.py)"]
+        Interlock -->|FAIL| Abort["ABORT IMMEDIATELY<br/>(Configuration Error)"]
     end
-    API-->>Client: Complete Status & Result
 
-    Note over Client,DB: 4. Historical Search & Pagination
-    Client->>API: GET /jobs?page=1&limit=10&status=completed&search=advocate
-    API->>DB: SELECT jobs JOIN metadata LIMIT 10 OFFSET 0
-    DB-->>API: Filtered records + Total count
-    API-->>Client: Paginated JSON Envelope
+    subgraph RedTeamTarget["Isolated Docker Network (docker-compose.redteam.yml)"]
+        Web["FastAPI Web API (:8001)<br/>Limits: 512MB RAM, 0.5 CPU"]
+        Worker["Celery Worker (:512MB RAM, 0.5 CPU)"]
+        Redis["Redis Cache (:6380, 256MB RAM)"]
+        DB["SQLite /tmp/redteam_artifacts/cleanocr.db"]
+        
+        Web --> Redis
+        Web --> DB
+        Worker --> Redis
+        Worker --> DB
+    end
+
+    AttackRunner -->|Fuzz & Flood Ports 8001/6380| Web
 ```
 
----
+### B. Attack Vector Matrix & Resilience Expectations
 
-### B. Entity-Relationship Schema (`app/db/models.py`)
+| Vector ID | Target Subsystem | Attack Payload / Scenario | Expected Defensive Behavior | Severity if Failed |
+| :--- | :--- | :--- | :--- | :--- |
+| **V-01** | Rate Limiter | Spoofed `X-Forwarded-For` / `X-Real-IP` IP cycling | Request tracked by direct peer IP unless trusted reverse proxy configured; bucket enforced. | High (Quota Exhaustion) |
+| **V-02** | Rate Limiter | Rapid burst of 20 uploads in 1 second | First 3 succeed, subsequent 17 return structured HTTP 429 with `Retry-After`. | High (Cost Inflation) |
+| **V-03** | Auth Module | Timing attack / brute-force byte guessing on `X-API-Key` | Constant-time evaluation via `secrets.compare_digest`; no timing side-channel. | Medium (Key Leakage) |
+| **V-04** | Auth Module | Malformed headers (`Bearer null`, SQL injection in header) | Clean HTTP 401 Unauthorized with structured error envelope. | Medium (Bypass Risk) |
+| **V-05** | Relational DB | SQL Injection on `GET /jobs?search=' OR 1=1 --` | SQLAlchemy 2.0 ORM parameterization treats payload as literal string; 0 rows or valid matches. | Critical (Data Leak) |
+| **V-06** | Relational DB | Fuzzing `status` param with non-enum strings | Pydantic regex validator rejects invalid status with HTTP 422 Unprocessable Entity. | Low (Validation Drift) |
+| **V-07** | Relational DB | 50 concurrent DB reads & writes | SQLite WAL mode (`PRAGMA journal_mode=WAL;`) and 30s timeout prevent `database is locked`. | High (Worker Starvation) |
+| **V-08** | Ingestion Engine | Corrupted PDF xref tables / truncated byte stream | `pdf2image` / Poppler raises handled error; worker marks job `failed` with sanitized message. | Medium (Crash Loop) |
+| **V-09** | Ingestion Engine | Polyglot PDF+ZIP and Decompression Bomb | `python-magic` and file limit guards reject payload with HTTP 400 Bad Request. | High (DoS) |
+| **V-10** | Distributed Core | Redis broker crash/disconnect mid-task | Server returns structured HTTP 500/503; worker logs disconnect and reconnects cleanly without zombie process. | Critical (System Deadlock) |
+
+### C. Safety Interlock State Machine
 
 ```mermaid
-erDiagram
-    jobs ||--o| job_metadata : "has citation"
-    jobs ||--o| job_results : "yields markdown"
-
-    jobs {
-        string id PK "UUID4 string (36)"
-        string status "queued | processing | completed | failed (indexed)"
-        string file_hash "SHA-256 hex (64) (indexed)"
-        string original_filename "Original PDF filename (255)"
-        bigint file_size "Bytes on disk"
-        int total_pages "Total PDF page count"
-        int processed_pages "Number of pages completed"
-        string model_name "AI Model (e.g. gemini-3.1-flash-lite)"
-        string layout_type "single_column | multi_column"
-        float upload_time "Epoch timestamp"
-        float end_time "Epoch timestamp"
-        float duration_seconds "Total elapsed seconds"
-        float complexity "Diagnostic score (0.0 - 10.0)"
-        text error_message "Sanitized error details on failure"
-        datetime created_at "Server timestamp (indexed)"
-        datetime updated_at "Auto-updated server timestamp"
+stateDiagram-v2
+    [*] --> ReadEnvironment: Load .env.redteam
+    ReadEnvironment --> KeyInspection: Inspect GOOGLE_API_KEY
+    KeyInspection --> SafetyCheck: Check if key == "MOCK_KEY_DO_NOT_CHARGE"
+    
+    state SafetyCheck {
+        [*] --> Evaluator
+        Evaluator --> InterlockTripped: Key Mismatched / Missing
+        Evaluator --> InterlockArmed: Key Exactly Matches
     }
 
-    job_metadata {
-        int id PK "Autoincrement"
-        string job_id FK "jobs.id (unique, indexed, cascade delete)"
-        string title "Publication title"
-        string volume "Volume identifier"
-        string issue "Issue identifier"
-        string publication_date "Publication date string"
-        boolean skip_metadata "Bypass metadata stitching flag"
-    }
+    InterlockTripped --> AbortExecution: System Exit / Abort Script
+    AbortExecution --> [*]: Emit ConfigurationError (Fatal)
 
-    job_results {
-        int id PK "Autoincrement"
-        string job_id FK "jobs.id (unique, indexed, cascade delete)"
-        text markdown_text "Full extracted markdown document"
-        int total_words "Total word count in extracted markdown"
-        float confidence_score "Aggregated extraction confidence"
-        text statistics_json "Detailed telemetry payload (JSON)"
-    }
+    InterlockArmed --> MockProviderBinding: Load RedTeamMockProvider
+    MockProviderBinding --> TestbedExecution: Dispatch Fuzzing & Chaos to :8001/:6380
+    TestbedExecution --> CleanupVerification: Finally: Wipe temp artifacts
+    CleanupVerification --> [*]: Publish campaign_3_adversarial.md
 ```
 
----
+### D. Explicit Adversarial API Contracts & Structured Envelopes
 
-### C. Database Connection & Lifespan Architecture (`app/db/database.py`)
+#### 1. Adversarial Ingestion Contract (`POST /upload`)
+*   **Method / Route:** `POST /upload`
+*   **Headers:**
+    *   `X-API-Key` (Optional/Enforced): Validates access token when `CLEANOCR_API_KEY` is set.
+    *   `X-Forwarded-For` / `X-Real-IP`: Evaluated by `RateLimiter` sliding window.
+*   **Body:** `multipart/form-data` with `file: UploadFile` and optional citation metadata form fields (`title`, `volume`, `issue`, `date`).
+*   **Adversarial Bounds:**
+    *   `Content-Length > 100MB` ➔ HTTP 413 Payload Too Large / HTTP 400 Bad Request.
+    *   MIME spoofing (non-PDF header with `.pdf` extension) ➔ HTTP 400 Bad Request (`INVALID_FILE`).
+    *   Burst uploads (>3 req/min) ➔ HTTP 429 Too Many Requests with `Retry-After: <seconds>`.
+    *   Invalid/tampered `X-API-Key` ➔ HTTP 401 Unauthorized (`UNAUTHORIZED`).
 
-*   **Configuration (`app/core/config.py`):**
-    ```python
-    DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./workspaces/cleanocr.db")
-    ```
-*   **Engine & Pooling:**
-    *   For SQLite: Uses `connect_args={"check_same_thread": False}`.
-    *   For PostgreSQL: Standard connection pooling with `pool_pre_ping=True` and `pool_size=10, max_overflow=20`.
-*   **Dependency Injection for FastAPI:**
-    ```python
-    def get_db():
-        db = SessionLocal()
-        try:
-            yield db
-        finally:
-            db.close()
-    ```
-*   **Worker Context Manager:**
-    ```python
-    @contextmanager
-    def get_db_context():
-        db = SessionLocal()
-        try:
-            yield db
-            db.commit()
-        except Exception:
-            db.rollback()
-            raise
-        finally:
-            db.close()
-    ```
-*   **Lifespan Hook (`app/api/server.py`):**
-    Calls `init_db()` upon server startup, ensuring `workspaces/` exists and tables are created before the first request is served.
-
----
-
-### D. Explicit API Contracts
-
-#### 1. `GET /jobs`
-*   **Description:** Retrieve a paginated, filterable, and searchable list of historical jobs.
-*   **Authentication:** Protected by `verify_api_key` (if `CLEANOCR_API_KEY` is configured).
-*   **Rate Limit:** 60 requests per minute (`RateLimiter(60, 60)`).
+#### 2. Adversarial Query & SQL Injection Contract (`GET /jobs`)
+*   **Method / Route:** `GET /jobs`
 *   **Query Parameters:**
-    | Parameter | Type | Required | Default | Validation | Description |
-    | :--- | :--- | :--- | :--- | :--- | :--- |
-    | `page` | `int` | No | `1` | `ge=1` | Page number (1-indexed) |
-    | `limit` | `int` | No | `10` | `ge=1, le=100` | Number of items per page |
-    | `status` | `str` | No | `None` | `regex="^(queued\|processing\|completed\|failed)$"` | Filter by status |
-    | `search` | `str` | No | `None` | `max_length=100` | Substring match on filename or title |
-    | `sort_order` | `str` | No | `"desc"` | `regex="^(asc\|desc)$"` | Sort by created_at |
+    *   `page`: integer, `ge=1` (fuzzed with negative, zero, and huge values).
+    *   `limit`: integer, `ge=1, le=100` (fuzzed with >100 values to assert clamping).
+    *   `status`: string regex `^(queued|processing|completed|failed)$` (fuzzed with SQL injection and non-enum strings to assert HTTP 422).
+    *   `search`: string `max_length=100` (fuzzed with `' OR 1=1 --`, `UNION SELECT`, and nested quotes to assert parameterized safety).
+*   **Response on Validation Failure:** HTTP 422 Unprocessable Entity with standard FastAPI detail envelope.
 
-*   **Success Response (HTTP 200 OK):**
-    ```json
-    {
-      "items": [
-        {
-          "job_id": "c1f7a0b3-96f1-4f0e-b7d1-0f7f32997e33",
-          "status": "completed",
-          "original_filename": "messenger_and_advocate_vol1.pdf",
-          "file_size": 1542389,
-          "total_pages": 16,
-          "processed_pages": 16,
-          "model_name": "gemini-3.1-flash-lite",
-          "layout_type": "multi_column",
-          "upload_time": 1793635200.0,
-          "end_time": 1793635274.2,
-          "duration_seconds": 74.2,
-          "complexity": 4.8,
-          "error_message": null,
-          "metadata": {
-            "title": "Latter Day Saints' Messenger and Advocate",
-            "volume": "1",
-            "issue": "1",
-            "publication_date": "1834-10"
-          },
-          "created_at": "2026-11-02T16:00:00Z"
-        }
-      ],
-      "total": 35,
-      "page": 1,
-      "limit": 10,
-      "total_pages": 4
-    }
-    ```
+#### 3. Standardized Error Envelope (`app/api/server.py`)
+All application-level HTTP errors conform to the top-level structured envelope:
+```json
+{
+  "error": {
+    "code": "RATE_LIMIT_EXCEEDED | UNAUTHORIZED | INVALID_FILE | JOB_NOT_FOUND",
+    "message": "Human-readable description of the constraint violation",
+    "details": {}
+  }
+}
+```
 
-#### 2. `GET /jobs/{job_id}`
-*   **Description:** Retrieve full details of a specific job, including the persisted markdown text.
-*   **Authentication:** Protected by `verify_api_key`.
-*   **Rate Limit:** 60 requests per minute.
-*   **Path Parameter:** `job_id: str` (UUID string).
-*   **Success Response (HTTP 200 OK):**
-    ```json
-    {
-      "job_id": "c1f7a0b3-96f1-4f0e-b7d1-0f7f32997e33",
-      "status": "completed",
-      "original_filename": "messenger_and_advocate_vol1.pdf",
-      "file_size": 1542389,
-      "total_pages": 16,
-      "processed_pages": 16,
-      "model_name": "gemini-3.1-flash-lite",
-      "layout_type": "multi_column",
-      "upload_time": 1793635200.0,
-      "end_time": 1793635274.2,
-      "duration_seconds": 74.2,
-      "complexity": 4.8,
-      "error_message": null,
-      "metadata": {
-        "title": "Latter Day Saints' Messenger and Advocate",
-        "volume": "1",
-        "issue": "1",
-        "publication_date": "1834-10"
-      },
-      "result": {
-        "markdown_text": "# Latter Day Saints' Messenger and Advocate...",
-        "total_words": 8420,
-        "confidence_score": 0.98,
-        "statistics": { ... }
-      },
-      "created_at": "2026-11-02T16:00:00Z"
-    }
-    ```
-*   **Error Response (HTTP 404 Not Found):**
-    ```json
-    {
-      "error": {
-        "code": "JOB_NOT_FOUND",
-        "message": "Job c1f7a0b3-96f1-4f0e-b7d1-0f7f32997e33 was not found in persistence records."
-      }
-    }
-    ```
-
-#### 3. `GET /status/{job_id}` (Updated Contract with DB Fallback)
-*   **Description:** Live status tracking. Queries Redis fast-path; falls back to DB if Redis is cleared.
-*   **Authentication:** Protected by `verify_api_key`.
-*   **Rate Limit:** 60 requests per minute.
-*   **Behavior on Redis Cache Miss:** Queries `jobs` and `job_results` table in DB. Returns status, progress (100 if completed), and markdown without raising 404 if the job exists in the DB.
+### E. As-Built Container & Package Topology Alignment
+1.  **Entry Point Alignment:** `docker-compose.redteam.yml` web service updated to `uvicorn app.api.server:app` and worker updated to `celery -A app.workers.celery_worker.celery_app worker` in lockstep with the Phase 18 package architecture.
+2.  **Mock Provider Contract:** `tests/redteam_artifacts/mock_vision.py::RedTeamMockProvider` conforms to `OCRProvider`, implements `detect_layout_type(image) -> str` (returning `"single-column"`), and imports all static typing symbols (`from typing import Any`).
+3.  **Sandboxed Storage:** Volume mounts isolate `uploads/` and `workspaces/` inside `tests/redteam_artifacts/`, guaranteeing zero write contamination of root workspaces during adversarial runs.
 
 ---
 
-### E. Workspace Retention Strategy (`WORKSPACE_TTL_HOURS`)
+## 3. CI/CD Matrix Architecture & TDD Strategy (@Eng)
 
-*   **Daemon:** Scheduled hourly Celery Beat task `cleanup_old_workspaces`.
-*   **Target Files for Pruning:**
-    *   Directory `workspaces/{job_id}/` (heavy image bursts, raw OCR JSONs).
-    *   File `uploads/{job_id}.pdf` (temporary uploaded PDF).
-    *   Redis keys `cache:{job_id}:*`.
-*   **Preserved State:**
-    *   SQLAlchemy `jobs`, `job_metadata`, and `job_results` records are **NEVER deleted** by the retention daemon.
-    *   Extracted Markdown and diagnostics remain permanently queryable via `GET /jobs` and `GET /jobs/{job_id}`.
+### A. CI Workflow Schema (`.github/workflows/ci.yml`)
 
----
+```mermaid
+flowchart LR
+    Push["Git Push / PR (main)"] --> SecretScan["Job: secret-scan<br/>(Gitleaks 8.24.3)"]
+    Push --> Test["Job: test<br/>(Python 3.11 + Redis + Pytest)"]
+    Push --> FrontendBuild["Job: frontend-build<br/>(Node 20 + tsc -b + vite build)"]
+    
+    Test --> Build["Job: build<br/>(Docker Container Build)"]
+    FrontendBuild --> Build
+```
 
-## 3. Construction Plan & Strict TDD Strategy (@Eng)
-
-Per [`AGENTS.md`](AGENTS.md), **no implementation code without a test written first.**
-
-### Step 1: Write Failing Tests (`tests/test_persistence_db.py`)
-1.  `test_database_initialization`: Verifies SQLite schema creation and tables presence.
-2.  `test_job_crud_lifecycle`: Asserts model persistence, metadata relationship cascade, and result attachment.
-3.  `test_upload_persists_to_database`: Asserts `POST /upload` writes job and metadata records to DB.
-4.  `test_get_jobs_pagination`: Asserts `page`, `limit`, `total`, and page clamping.
-5.  `test_get_jobs_filtering_and_search`: Asserts status filtering (`status=completed`) and search substring matching (`search=messenger`).
-6.  `test_get_jobs_endpoint_auth_and_ratelimit`: Asserts 401 when API key configured and rate limit throttling.
-7.  `test_status_endpoint_db_fallback`: Asserts that when Redis keys are completely flushed, `GET /status/{job_id}` retrieves state from SQLite DB.
-8.  `test_get_job_by_id_endpoint`: Asserts 200 with complete markdown and 404 on invalid UUID.
-9.  `test_workspace_cleanup_preserves_db`: Asserts that expired files are deleted from disk while database rows remain intact.
-
-### Step 2: Implementation Sequence
-1.  **Dependencies:** Add `sqlalchemy>=2.0.0` to `requirements.txt` and run `pip install`.
-2.  **Config:** Expose `DATABASE_URL` in `app/core/config.py`.
-3.  **Database Module:** Implement `app/db/__init__.py`, `app/db/database.py`, and `app/db/models.py`.
-4.  **Backend Integration:**
-    *   Initialize DB in `app/api/server.py` startup.
-    *   Persist initial job in `upload_file`.
-    *   Update `celery_worker.py` to write completion/failure records to DB.
-    *   Implement `GET /jobs` and `GET /jobs/{job_id}` endpoints in `server.py`.
-    *   Update `_build_status_payload` in `server.py` to query DB if Redis returns None.
-5.  **Build Verification:** Run `python -m pytest` ensuring 100% test pass rate.
+### B. Strict TDD Execution Sequence
+1.  **Write Failing Tests First (`tests/test_ci_pipeline.py`):**
+    - `test_has_frontend_build_job`: Asserts `.github/workflows/ci.yml` declares a `frontend-build` job.
+    - `test_frontend_build_runs_on_ubuntu`: Asserts runner is `ubuntu-latest`.
+    - `test_frontend_build_sets_up_node`: Asserts `actions/setup-node` step with Node 20.
+    - `test_frontend_build_executes_build`: Asserts `npm run build` or `npm test` step.
+    - `test_docker_build_needs_frontend_build`: Asserts `build` job depends on both `test` and `frontend-build`.
+2.  **Verify Test Fails:** Run pytest to verify assertions fail as expected.
+3.  **Implement Updates:** Modify `.github/workflows/ci.yml` to satisfy the contracts.
+4.  **Verify Test Passes:** Run pytest to verify all CI assertions pass green.
 
 ---
 
-## 4. UI/UX Design Standards & Frontend Specifications (@Des)
+## 4. UI/UX Verification & Design Standards (@Des)
 
-### A. Persistent Job History Interface (`frontend/src/components/JobHistory.tsx`)
-*   **Visual Hierarchy:** Clean, glassmorphic card table with subtle borders and status badges:
-    *   `completed`: Green indicator badge (`bg-emerald-500/10 text-emerald-400 border-emerald-500/20`).
-    *   `processing`: Blue animated pulse badge (`bg-cyan-500/10 text-cyan-400 border-cyan-500/20`).
-    *   `queued`: Amber indicator badge (`bg-amber-500/10 text-amber-400 border-amber-500/20`).
-    *   `failed`: Rose indicator badge (`bg-rose-500/10 text-rose-400 border-rose-500/20`).
-*   **Search & Filtering Toolbar:**
-    *   Search input with debounced querying against filename or publication title.
-    *   Segmented filter buttons: `All`, `Completed`, `Processing`, `Failed`.
-*   **Actions:**
-    *   "Open Diff": Loads original PDF and saved Markdown into `DiffViewer.tsx`.
-    *   "Download Markdown": 1-click export of the extracted `.md` document.
-*   **Responsive Viewport Support (320px - 4k):**
-    *   On desktop: Clean tabular layout with filename, date, model tag, page count, and action buttons.
-    *   On mobile (<640px): Stacks into individual cards with clear spacing to avoid horizontal scroll and crushed columns.
+### Standards to Verify
+1. **Responsive Viewport Audit (320px - 4k):**
+   - Audit `DiffViewer.tsx` and `JobHistory.tsx` on 320px mobile viewport with real multi-column extracted text.
+   - Verify stacked layout, absence of horizontal scrolling, and legible typography (`Inter` / `JetBrains Mono`).
+2. **Adversarial Error UI Feedback:**
+   - Verify that HTTP 429 Too Many Requests triggers the `NotificationToast.tsx` animated banner with the live second-by-second countdown.
+   - Verify that HTTP 401 Unauthorized triggers the toast with the 1-click "Configure API Key" button opening `SettingsModal.tsx`.
+   - Zero raw `window.alert` calls.
 
 ---
 
 ## 5. Documentation Continuity & Suggestions Clearinghouse Protocol
 
 ### Mandate
-To guarantee frictionless onboarding and collaboration for both human developers and future AI agents, every persona is required to contribute proactive documentation improvement suggestions. The `@QA` role serves as the central clearinghouse and final arbiter: evaluating each suggestion, deciding if and how it should be implemented, and executing the documentation changes in `ARCHITECTURE.md`, `README.md`, or relevant manuals before concluding the phase.
+Every active persona must document suggestions for clean, frictionless support for future AI agents and human collaborators. `@QA` acts as the centralized clearinghouse: collects, evaluates, decides if/how to implement, and applies the documentation changes before milestone sign-off.
 
 ### Agent Suggestion Log
 | Persona | Target Doc | Friction / Opportunity Identified | Proposed Improvement | @QA Verdict |
 | :--- | :--- | :--- | :--- | :--- |
-| **🧠 @PM** | `ARCHITECTURE.md` | §5 Data Storage currently states job state is volatile in Redis and client-side only | Add comprehensive SQLite/PostgreSQL schema section and entity relationship map for `jobs`, `job_metadata`, and `job_results`. | Pending @QA |
-| **🧠 @PM** | `README.md` | Setup instructions omit `DATABASE_URL` configuration and automatic SQLite creation | Document zero-config SQLite `workspaces/cleanocr.db` default and Docker PostgreSQL environment variable setup. | Pending @QA |
-| **🏗️ @Arch** | `ARCHITECTURE.md` | Fast-path Redis + DB fallback architecture needs explicit sequence diagram | Add mermaid sequence diagram illustrating active job reading from Redis and historical fallback to DB. | Pending @QA |
-| **🏗️ @Arch** | `ARCHITECTURE.md` | Celery Beat workspace cleaner behavior with DB retention is undocumented | Document that `cleanup_old_workspaces` prunes heavy images/temp files while preserving `jobs` and `job_results` in the relational DB. | Pending @QA |
-| **🔨 @Eng** | `ARCHITECTURE.md` | Concurrent worker SQLite access can trigger "database is locked" errors without WAL mode | Document SQLite `PRAGMA journal_mode=WAL;` and `timeout=30.0` configuration in `database.py` and requirement for PostgreSQL in multi-worker production. | Pending @QA |
-| **🔨 @Eng** | `ARCHITECTURE.md` | SQLAlchemy Declarative Base reserves `Base.metadata`, causing conflicts if a model relationship is named `metadata` | Document mapping convention: name ORM relationship `citation_metadata` while serializing dictionary key as `"metadata"` to preserve API contracts. | Pending @QA |
-| **🎨 @Des** | `ARCHITECTURE.md` | Front-end historical jobs view needs documentation on responsive layout switching and lazy-loading | Document dual responsive strategy (stacked cards on mobile <640px vs tabular on desktop >=640px) and lazy-loading full Markdown from `GET /jobs/{id}` on view click. | Pending @QA |
+| **🧠 @PM** | `README.md` | Testing instructions omit isolated RedTeam execution and CI/CD matrix explanation | Document `docker-compose.redteam.yml` setup, Ping Check interlock, and GitHub Actions workflow stages. | Pending @QA |
+| **🧠 @PM** | `ARCHITECTURE.md` | System architecture does not document the RedTeam isolation topology or safety interlock | Add RedTeam container topology diagram and safety interlock state machine to §7 Security Architecture. | Pending @QA |
+| **🏗️ @Arch** | `ARCHITECTURE.md` | CI/CD testing pipeline dependencies lack frontend gating documentation | Add §9 CI/CD Pipeline section detailing the parallel Python backend and Node.js frontend gating architecture. | Pending @QA |
+| **🔨 @Eng** | `ARCHITECTURE.md` | RedTeam mock vision configuration requires explicit instructions on mock providers | Document `RedTeamMockProvider` and `.env.redteam` configuration in testing manual. | Pending @QA |
+| **😈 @RedTeam** | `tests/redteam_artifacts/README.md` | RedTeam artifacts directory lacks execution instructions and cleanup guidelines | Create a README in `tests/redteam_artifacts/` detailing safety protocols, ping checks, and execution scripts. | Pending @QA |
+| **🎨 @Des** | `ARCHITECTURE.md` | Responsive breakpoint standards (320px mobile stack) are not explicitly specified | Document mobile layout breakpoints and responsive diff viewing guidelines in §6 Frontend Architecture. | Pending @QA |
 
 ---
 
@@ -361,7 +217,7 @@ To guarantee frictionless onboarding and collaboration for both human developers
 ### Protocol
 *   **Mandatory Human Loop-In:** Upon completing all verification tests and executing approved documentation changes, `@QA` must loop the human user in.
 *   **Structured Recommendations:** `@QA` presents a structured Git staging and commit plan, organizing changes into logical, atomic units (e.g., `feat:`, `fix:`, `docs:`, `test:`, `refactor:`) with draft commit messages and explicit file lists.
-*   **Human Authority:** The human user has sole authority to decide how changes are committed to git (e.g. approve the recommended commits, request squashing, or execute custom commit commands).
+*   **Human Authority:** The human user has sole authority to decide how changes are committed to git.
 
 ---
 
@@ -370,20 +226,23 @@ To guarantee frictionless onboarding and collaboration for both human developers
 | Persona | Exit Gate Requirement | Status |
 | :--- | :--- | :--- |
 | **🧠 @PM** | Requirements breakdown, acceptance criteria, roadmap alignment, `task.md` & `Context.md` updated, doc suggestions logged | ✅ Completed |
-| **🏗️ @Arch** | SQLAlchemy 2.0 schema, explicit API contracts, sync/fallback flow verified, doc suggestions logged | ✅ Completed |
-| **🔨 @Eng** | Strict TDD (failing tests first), 0 regressions, all tests green (`pytest`), build passes, doc suggestions logged | ✅ Completed |
-| **🎨 @Des** | Mobile responsiveness checked (320px), zero raw alerts, micro-interactions <300ms, doc suggestions logged | ✅ Completed |
-| **🕵️ @QA** | Proof of verification in `walkthrough.md`, Redis crash recovery tested, `Retrospective.md` updated, **Documentation Clearinghouse executed**, **Git Commit Recommendation presented to human** | In Queue |
+| **🏗️ @Arch** | RedTeam isolation design, CI/CD workflow architecture, attack vector matrix defined, doc suggestions logged | In Queue |
+| **😈 @RedTeam** | Safety interlock verified (`MOCK_KEY_DO_NOT_CHARGE`), fuzzing & chaos campaigns executed, `campaign_3_adversarial.md` saved, cleanup verified, doc suggestions logged | In Queue |
+| **🔨 @Eng** | Strict TDD (failing CI tests first), `.github/workflows/ci.yml` updated, 100% tests green, doc suggestions logged | In Queue |
+| **🎨 @Des** | 320px mobile viewport verified with historical document, error toasts & countdown verified, zero raw alerts, doc suggestions logged | In Queue |
+| **🕵️ @QA** | Live historical PDF E2E verified, proof in `walkthrough.md`, `Retrospective.md` updated, **Documentation Clearinghouse executed**, **Git Commit Recommendation presented to human** | In Queue |
 
 ---
 
 ## 8. Acceptance Criteria
-1. [ ] SQLite database is automatically created at `workspaces/cleanocr.db` on server startup if not present.
-2. [ ] All uploaded jobs, metadata, and final Markdown results persist across backend and Redis restarts.
-3. [ ] `GET /jobs` returns paginated list with total count, supporting `page`, `limit`, `status`, and `search` parameters.
-4. [ ] `GET /status/{job_id}` gracefully falls back to database state if the Redis cache is wiped or expired.
-5. [ ] Scheduled Celery Beat workspace cleaner safely prunes old disk files according to `WORKSPACE_TTL_HOURS` without deleting database records.
-6. [ ] Frontend Job History UI renders cleanly on both 320px mobile viewports and desktop displays.
-7. [ ] 100% test pass rate across all existing (153) and new persistence test suites.
-8. [ ] All persona documentation suggestions are reviewed and judged by `@QA`, and approved improvements are applied across project documentation.
-9. [ ] `@QA` loops the human user in with a structured Git commit recommendation, and the human decides how to commit the session changes.
+1. [ ] Safety interlock script verifies `GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE"` before any adversarial script runs.
+2. [ ] RedTeam Campaign 3 completes fuzzing across Rate Limiter, Auth, SQL injection, binary corruption, and chaos fault injection with clean system survival.
+3. [ ] All RedTeam artifacts are strictly confined to `tests/redteam_artifacts/` and cleaned up upon execution.
+4. [ ] Real multi-column historical scan (`latter_day_saints_messenger_and_advocate_vol_1_and_2.pdf`) successfully processes through the live pipeline with `gemini-3.1-flash-lite`.
+5. [ ] Dynamic layout classification properly classifies multi-column vs single-column pages and applies padding selectively.
+6. [ ] Side-by-side verification and metadata are visible and responsive on both 320px mobile and desktop in `DiffViewer.tsx`.
+7. [ ] `.github/workflows/ci.yml` includes secret-scan, python 3.11 test suite, frontend-build (tsc & vite build), and docker build gates.
+8. [ ] `tests/test_ci_pipeline.py` verifies the enhanced CI/CD workflow structure.
+9. [ ] 100% test pass rate across the full test bed (161+ tests passing).
+10. [ ] All persona documentation suggestions are evaluated and executed by `@QA` in the Documentation Clearinghouse.
+11. [ ] `@QA` loops the human user in with a structured Git commit recommendation, and the human decides how to commit the session changes.

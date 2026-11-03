@@ -3,7 +3,8 @@
 This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, improvements, and features required to take the system from a working prototype to a robust, scalable, and user-friendly product.
 
 ## 1. Infrastructure & DevOps (The Foundation)
-- [ ] **CI/CD Pipeline:** Implement GitHub Actions for automated testing (pytest) and Docker image building on push.
+- [/] **CI/CD Pipeline Matrix (Set C Active):** Implement GitHub Actions for automated testing (pytest with Redis service), frontend TypeScript/Vite compilation gating, and Docker image building on push/PR.
+- [ ] **Nightly Automated Fuzzing:** Run scheduled RedTeam fuzz campaigns in headless CI against mock endpoints to detect regression vulnerabilities.
 - [ ] **Infrastructure as Code (IaC):** Use Terraform or Pulumi to define cloud resources (AWS/GCP) to avoid manual configuration drift.
 - [ ] **Centralized Logging:** Move beyond local logs. Ship logs to a centralized aggregator (ELK Stack, Loki, or Datadog) for analysis.
 - [ ] **Monitoring & Alerting:**
@@ -64,7 +65,8 @@ This document serves as the backlog for "CleanOCR-Enterprise". It tracks ideas, 
 
 ## 7. Testing (Confidence at Scale)
 - [ ] **Load Testing:** No tests for concurrent uploads or high-volume PDFs. Add `pytest-asyncio` scenarios with 50+ simultaneous jobs to find Celery queue limits and Redis memory ceilings.
-- [ ] **Negative / Adversarial Tests:** No coverage for corrupted PDFs, empty files, invalid metadata, or simulated network failures. Untested error paths risk silent crashes in production.
+- [/] **Negative / Adversarial Tests (Set C Active):** Broaden coverage for corrupted PDFs, empty files, invalid metadata, SQL injection payloads, rate limit header spoofing, and simulated Redis disconnects.
+- [ ] **Historical Transcription Accuracy Benchmarking:** Automated WER/CER (Word Error Rate / Character Error Rate) scoring of Gemini 3.1 Flash Lite transcription against ground-truth transcriptions of 19th-century Mormon history periodicals.
 - [ ] **Richer Mock Provider:** `RedTeamMockProvider` returns static fixtures. Generate realistic, dynamic OCR responses keyed to page content so mock-mode tests better reflect real API behavior.
 
 ## 8. Documentation & Manuals (Knowledge Base)
