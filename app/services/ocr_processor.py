@@ -19,6 +19,26 @@ from app.core import prompts
 PIL.Image.MAX_IMAGE_PIXELS = config.MAX_PAGE_PIXELS
 from app.core.cost_guard import BudgetExceededError
 from app.core.secrets import redact
+from app.core.image_utils import normalize_broadsheet_image
+
+
+def write_atomic_json(output_path: str, data_str: str) -> None:
+    """
+    Atomically writes OCR JSON response to disk.
+    Prevents 0-byte corrupt files and partial writes from poisoning the cache on retry.
+    """
+    if not data_str or not isinstance(data_str, str) or len(data_str.strip()) == 0:
+        raise ValueError("Cannot write empty or null OCR response to disk")
+    
+    # Assert payload is valid JSON before touching the filesystem
+    json.loads(data_str)
+    
+    tmp_path = output_path + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        f.write(data_str)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp_path, output_path)
 
 # --- CONFIGURATION ---
 # --- CONFIGURATION ---
@@ -59,8 +79,8 @@ def process_single_image(args):
     json_filename = filename.replace(os.path.splitext(filename)[1], ".json")
     json_path = os.path.join(output_folder, json_filename)
 
-    # Skip if done
-    if os.path.exists(json_path):
+    # Skip only if done and file is non-empty (never skip 0-byte corrupt files)
+    if os.path.exists(json_path) and os.path.getsize(json_path) > 0:
         return f"[{index+1}/{total_files}] Skipped {filename} (Exists)"
 
     # Adaptive Retry Loop
@@ -75,17 +95,19 @@ def process_single_image(args):
             from app.services.ocr_factory import get_provider
             provider = get_provider(config.GOOGLE_API_KEY)
 
+            opened_img = PIL.Image.open(img_path)
+            normalized_img = normalize_broadsheet_image(opened_img)
+
             response_text = provider.generate_content(
-                contents=[prompts.OCR_PROMPT, PIL.Image.open(img_path)],
+                contents=[prompts.OCR_PROMPT, normalized_img],
                 config=types.GenerateContentConfig(
                         temperature=0.1,
                         response_mime_type="application/json"
                 )
             )
 
-            # Save Output
-            with open(json_path, "w", encoding="utf-8") as f:
-                f.write(response_text)
+            # Save Output Atomically (validates non-null JSON before writing)
+            write_atomic_json(json_path, response_text)
 
             return f"[{index+1}/{total_files}] ✅ Success: {filename}"
 

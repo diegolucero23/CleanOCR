@@ -2,6 +2,27 @@ import cv2
 import numpy as np
 from PIL import Image
 
+# Broadsheet & Oversized Image Safety Constants
+MAX_IMAGE_DIMENSION = 4096
+MAX_SAFE_PIXELS = 36_000_000  # 36 Megapixels (~6000x6000)
+
+
+def normalize_broadsheet_image(pil_img: Image.Image) -> Image.Image:
+    """
+    Downscales oversized broadside/newspaper scans while maintaining 100% text legibility.
+    Protects Gemini API from 503 Deadline Expired errors caused by 70MB+ / 114M-pixel images.
+    """
+    if not hasattr(pil_img, "size") or not isinstance(pil_img.size, (tuple, list)):
+        return pil_img
+    width, height = pil_img.size
+    total_pixels = width * height
+    if total_pixels > MAX_SAFE_PIXELS or max(width, height) > MAX_IMAGE_DIMENSION:
+        scale = min(MAX_IMAGE_DIMENSION / width, MAX_IMAGE_DIMENSION / height)
+        new_size = (int(width * scale), int(height * scale))
+        return pil_img.resize(new_size, Image.Resampling.LANCZOS)
+    return pil_img
+
+
 def preprocess_image(pil_image: Image.Image) -> Image.Image:
     """
     Applies production pre-processing to a PIL Image:

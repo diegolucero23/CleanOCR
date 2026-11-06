@@ -290,31 +290,22 @@ def stitch_markdown(input_folder, output_folder, metadata_file=None):
         
         # --- BUILD PAGE CONTENT ---
         page_text = data.get("markdown_content") or data.get("full_text") or ""
+        is_blank = data.get("is_blank", False) or not page_text.strip()
+        if is_blank:
+            page_num_str = str(get_page_from_filename(filename) or filename)
+            page_text = f"*<!-- Page {page_num_str} is blank / non-text scan -->*"
+
         # Strip hallucinated image tags — CleanOCR is text-only, these are always noise
         page_text = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', page_text)
 
         # TWO-PASS VERIFICATION (Context-Aware Boundary Stitching)
         # If we have previous content, let's look at the boundary
-        if len(all_pages_content) > 1 and page_text.strip():
-            # Get the very last block of text we appended (excluding headers)
-            # A rough heuristic: the last 150 words of the previous page, and first 150 of this page
+        if len(all_pages_content) > 1 and page_text.strip() and not is_blank:
+            # Check for trailing hyphen on previous block
             prev_block = all_pages_content[-1]
-            words_prev = prev_block.split()
-            words_next = page_text.split()
-            
-            if len(words_prev) > 0 and len(words_next) > 0:
-                prev_sample = " ".join(words_prev[-150:])
-                next_sample = " ".join(words_next[:150])
-                
-                # Check for obvious hyphenation
-                if prev_sample.endswith("-"):
-                    print(f"[*] Hyphenation detected at boundary of {filename}. Running LLM Verification...")
-                    verified_boundary = verify_boundary_text(prev_sample, next_sample)
-                    
-                    # We inject the LLM's opinion of the boundary into a blockquote for review
-                    # (In a fully mature system we'd parse this back into the actual text, 
-                    # but for now we append it as a unified crossing block to prevent dataloss)
-                    all_pages_content.append(f"\n\n> **[LLM Boundary Fix]**\n> {verified_boundary}\n\n")
+            if prev_block.rstrip().endswith("-"):
+                # Seamless hyphenation connection: remove trailing hyphen to splice cleanly
+                all_pages_content[-1] = prev_block.rstrip()[:-1]
 
         # --- METADATA & FORWARD FILL ---
         v_norm = normalize_number(meta.get("volume"))

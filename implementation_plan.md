@@ -1,248 +1,277 @@
-# Implementation Plan: Set C — Validation & Adversarial Testing
+# Implementation Plan: Phase 19 — Production Hardening: Broadsheet Newspapers, Failsafe Timeouts & Quality Guardrails
 
-> **Status:** 🎯 Requirements & Discovery Approved (@PM) — Ready for Architectural & Adversarial Execution  
-> **Authors:** @PM, @Architect, @Eng, @Des, @RedTeam, @QA  
-> **Target:** RedTeam Testbed, Historical OCR Pipeline, GitHub Actions CI/CD, React Frontend  
-> **Governing Standards:** [`AGENTS.md`](AGENTS.md) — Production First, Strict TDD, Full Observability, Zero Raw Alerts, Continuous Documentation Continuity, Human-in-the-Loop Git Decisions  
-> **Preceding Phases:** Set A (Security & Access Control) — ✅ Completed | Set B (Persistence & Storage) — ✅ Completed  
-
----
-
-## 1. Executive Summary & Product Requirements (@PM)
-
-### Problem Statement
-With Set A (Security & Access Control) and Set B (Persistence & Storage) fully operational and committed, the CleanOCR architecture features API Key authentication, Redis token-bucket rate limiting, and SQLAlchemy 2.0 dual-engine persistence (SQLite WAL / PostgreSQL). However, the platform has not yet been subjected to comprehensive adversarial fuzzing, fault-injection chaos, real 19th-century multi-column historical PDF verification, or complete end-to-end continuous integration gating including the modern React/TypeScript frontend.
-
-### Objectives & Scope (Set C)
-1. **Phase 13 RedTeam Chaos Campaign (@RedTeam):**
-   - **Safety Interlock:** Strictly enforce Ping Check interlock (`GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE"`). Abort immediately if live credentials or external network access are detected.
-   - **Target Isolation:** Run against isolated `docker-compose.redteam.yml` (capped at 512MB RAM, 0.5 CPU, Redis capped at 256MB).
-   - **Vector 1: Auth & Rate Limiting Fuzzing:** Test spoofed headers (`X-Forwarded-For`, `X-Real-IP`), bearer token tampering, timing attack resistance (`secrets.compare_digest`), and token bucket exhaustion.
-   - **Vector 2: Database & SQL Injection Fuzzing:** Hammer `GET /jobs?search=` and `GET /jobs?status=` with SQL injection payloads and SQLite dialect stress.
-   - **Vector 3: Binary Corruption & Payload Fuzzing:** Malformed PDFs (broken xref tables, truncated streams, polyglot ZIP/PDF, decompression bombs, 0-byte files).
-   - **Vector 4: Chaos & Fault Injection:** Simulate Redis disconnects during active Celery chord execution, worker termination mid-job, and SQLite lock contention.
-   - **Hygiene:** Strict cleanup in `finally` blocks; publish `campaign_3_adversarial.md`.
-
-2. **Live Historical PDF End-to-End Validation (@QA):**
-   - Process real 19th-century multi-column scans from `latter_day_saints_messenger_and_advocate_vol_1_and_2.pdf`.
-   - Validate live transcription via `gemini-3.1-flash-lite` (Standard Tier).
-   - Verify low-resolution pre-flight layout classification (`LAYOUT_PROMPT` with `MEDIA_RESOLUTION_LOW` ~258 tokens).
-   - Verify dynamic gutter padding applied strictly to multi-column pages.
-   - Verify citation metadata persistence in SQLite and side-by-side verification in `DiffViewer.tsx`.
-   - Maintain 100% regression test pass rate across the full test bed (161+ tests).
-
-3. **CI/CD Pipeline Automation (@Eng):**
-   - Update `.github/workflows/ci.yml` to include:
-     - `secret-scan`: gitleaks credential scanning.
-     - `test`: Python 3.11 with Redis service, system libraries (`poppler-utils`, `libmagic1`), dependencies, and `pytest`.
-     - `frontend-build`: Node.js 20.x, TypeScript build check (`tsc -b`), and Vite production compilation (`npm run build`).
-     - `build`: Docker container build gated on both `test` and `frontend-build`.
-   - Update `tests/test_ci_pipeline.py` using Strict TDD to assert the enhanced CI pipeline structure.
-
-4. **Continuous Documentation Continuity (@QA Clearinghouse):**
-   - Proactive suggestions logged across all personas (@PM, @Arch, @Eng, @Des, @RedTeam).
-   - `@QA` evaluates, approves, and executes updates across `ARCHITECTURE.md` and `README.md`.
-
-5. **Git Commit Strategy & Human Decision Gate (@QA):**
-   - Formulate structured atomic commit recommendations for human review and final approval.
+> **Status:** 🏗️ System Design & Architecture Completed (@Arch) — Ready for Construction & TDD (@Eng)  
+> **Authors:** @PM, @Arch, @Eng, @Des, @QA  
+> **Governing Standards:** [`AGENTS.md`](AGENTS.md) — Production First, Strict TDD, Full Observability, Idempotency, Continuous Documentation Continuity, Human Decision Gate  
+> **Target Subsystems:** FastAPI API Server, Celery Worker Pipeline, Broadsheet Layout Engine, Stitcher Two-Pass Processor, React Frontend  
 
 ---
 
-## 2. System Architecture & Attack Surface Design (@Arch)
+## 1. Executive Summary & Design Goals (@Arch)
 
-### A. Architectural Overview & RedTeam Isolation Topology
+Following the production autopsy of **Job `06ebe4c7`** (5-column Deseret News broadsheet stall) and **Job `5446a1b6`** (silent page drop, 150-word stitching repeats, and blank-page hallucination), this plan codifies the complete architectural overhaul to make CleanOCR robust against large-format broadsides, eliminate silent failure modes, and provide real-time user-driven job cancellation.
+
+### Core Architectural Pillars
+1. **Interactive Job Cancellation API & Failsafe Watchdogs:** First-class cancellation contract (`POST /jobs/{job_id}/cancel`) with Celery task revocation and automatic task/stream timeout guardrails.
+2. **Broadsheet Layout & Payload Pipeline (4, 5, 6 Columns):** Dynamic DPI / downscaling to eliminate 75MB payloads causing Gemini 503 deadlines, plus deprecation of 2-column-only `width // 2` gutter splitting.
+3. **Fail-Closed File Integrity & Partial Success Transparency:** Atomic file writes to eliminate 0-byte cache poisoning (Page 25 drop), and promotion of failed pages into an honest `partial_failure` status rather than fake `completed`.
+4. **Boundary Stitching Deduplication:** Seamless splicing of boundary hyphenation without injecting duplicate 300-word `[LLM Boundary Fix]` blockquotes.
+5. **Blank Page & Bleed-Through Protocol:** Prompt contract enabling safe empty-string returns on blank or bleed-through scans.
+6. **Recalibrated Real-Time Dynamic Estimator:** Formula based on empirical 1.5–2.5s/page throughput with Gemini 3.1 Flash Lite.
+7. **Embedded PDF Text-Layer Ratio Guard:** Guardrail flagging pages where OCR words diverge by $>15\%$ from embedded text.
+
+---
+
+## 2. API Contracts & Endpoint Definitions (@Arch)
+
+### A. Job Cancellation Endpoint: `POST /jobs/{job_id}/cancel`
+
+Allows users or automated watchdogs to cleanly abort in-flight jobs, revoking pending Celery tasks and updating persistent records.
+
+*   **URL:** `/jobs/{job_id}/cancel`
+*   **Method:** `POST`
+*   **Auth:** Required via `verify_api_key` (`X-API-Key` header or `Authorization: Bearer <key>`)
+*   **Rate Limiting:** `rate_limit_status` (60 req/min)
+*   **Request Headers:**
+    *   `Content-Type: application/json`
+    *   `X-API-Key: <key>`
+*   **Request Body (Optional):**
+    ```json
+    {
+      "reason": "User requested cancellation via UI"
+    }
+    ```
+*   **Success Response (HTTP 200 OK):**
+    ```json
+    {
+      "job_id": "06ebe4c7-33dd-404c-99a2-67b5fc305e64",
+      "status": "cancelled",
+      "message": "Job successfully cancelled. Active workers revoked.",
+      "cancelled_at": 1793946640.85,
+      "details": {
+        "processed_pages": 2,
+        "total_pages": 4,
+        "reason": "User requested cancellation via UI"
+      }
+    }
+    ```
+*   **Error Responses:**
+    *   `HTTP 400 Bad Request`:
+        ```json
+        {
+          "error": {
+            "code": "JOB_ALREADY_TERMINAL",
+            "message": "Job is already completed and cannot be cancelled.",
+            "details": {"status": "completed"}
+          }
+        }
+        ```
+    *   `HTTP 404 Not Found`:
+        ```json
+        {
+          "error": {
+            "code": "JOB_NOT_FOUND",
+            "message": "No job found with id: 00000000-0000-0000-0000-000000000000"
+          }
+        }
+        ```
+    *   `HTTP 401 Unauthorized` / `HTTP 429 Too Many Requests` (Standard envelopes).
+
+---
+
+### B. Recalibrated Time Budget & Limits Disclosure: `GET /limits` & Upload Expectations
+
+Update `compute_stream_timeout_seconds` and expectations in `POST /upload`:
+
+*   **Realistic Expected Duration:**
+    $$\text{expected\_duration\_seconds} = 20 + \text{pages} \times 3$$
+*   **Maximum Stream Timeout (Safety Guardrail):**
+    $$\text{stream\_timeout\_seconds} = \max(120, 2 \times \text{expected\_duration\_seconds})$$
+*   **Response Payload Contract (`POST /upload`):**
+    ```json
+    {
+      "job_id": "9738c86f-...",
+      "task_id": "9738c86f-...",
+      "status": "queued",
+      "expectations": {
+        "page_count": 52,
+        "estimated_duration_seconds": 176,
+        "stream_timeout_seconds": 352,
+        "limits": {
+          "max_upload_mb": 500,
+          "max_pdf_pages": 1000,
+          "render_dpi": 200,
+          "max_page_pixels": 89478485
+        }
+      }
+    }
+    ```
+
+---
+
+## 3. System Architecture & Component Design (@Arch)
+
+### A. End-to-End Processing Flow with Failsafes
 
 ```mermaid
 flowchart TD
-    subgraph HostSystem["Host Operating System"]
-        Interlock["Mandatory Safety Interlock Check<br/>(GOOGLE_API_KEY == 'MOCK_KEY_DO_NOT_CHARGE')"]
-        Interlock -->|PASS| AttackRunner["Adversarial Attack Suite<br/>(tests/redteam_artifacts/campaign_3_adversarial.py)"]
-        Interlock -->|FAIL| Abort["ABORT IMMEDIATELY<br/>(Configuration Error)"]
-    end
-
-    subgraph RedTeamTarget["Isolated Docker Network (docker-compose.redteam.yml)"]
-        Web["FastAPI Web API (:8001)<br/>Limits: 512MB RAM, 0.5 CPU"]
-        Worker["Celery Worker (:512MB RAM, 0.5 CPU)"]
-        Redis["Redis Cache (:6380, 256MB RAM)"]
-        DB["SQLite /tmp/redteam_artifacts/cleanocr.db"]
+    User["Client (Browser / API)"] -->|POST /upload| Web["FastAPI Web API"]
+    User -->|POST /jobs/{id}/cancel| Web
+    
+    Web -->|Enqueue Chord| Broker["Redis Broker"]
+    Web -->|Write Job(queued)| DB["SQLite / PostgreSQL DB"]
+    
+    subgraph CeleryWorker["Celery Worker Pool"]
+        WorkerChild["ocr_page_task<br/>(soft_limit: 150s, hard_limit: 180s)"]
+        Watchdog["Task Revocation & Watchdog"]
         
-        Web --> Redis
-        Web --> DB
-        Worker --> Redis
-        Worker --> DB
+        Broker --> WorkerChild
+        WorkerChild -->|1. Check DPI & Pixels| Downscaler["Adaptive Image Normalizer<br/>(Cap at 4096px / 36MP)"]
+        Downscaler -->|2. Gemini API Call| Gemini["Google Gemini 3.1 Flash Lite"]
+        Gemini -->|3. Validate String & JSON| Validator["Atomic JSON Writer<br/>(.tmp -> .json)"]
+        Validator -->|4. Return Result Dict| ChordCallback["stitch_markdown_task"]
     end
-
-    AttackRunner -->|Fuzz & Flood Ports 8001/6380| Web
-```
-
-### B. Attack Vector Matrix & Resilience Expectations
-
-| Vector ID | Target Subsystem | Attack Payload / Scenario | Expected Defensive Behavior | Severity if Failed |
-| :--- | :--- | :--- | :--- | :--- |
-| **V-01** | Rate Limiter | Spoofed `X-Forwarded-For` / `X-Real-IP` IP cycling | Request tracked by direct peer IP unless trusted reverse proxy configured; bucket enforced. | High (Quota Exhaustion) |
-| **V-02** | Rate Limiter | Rapid burst of 20 uploads in 1 second | First 3 succeed, subsequent 17 return structured HTTP 429 with `Retry-After`. | High (Cost Inflation) |
-| **V-03** | Auth Module | Timing attack / brute-force byte guessing on `X-API-Key` | Constant-time evaluation via `secrets.compare_digest`; no timing side-channel. | Medium (Key Leakage) |
-| **V-04** | Auth Module | Malformed headers (`Bearer null`, SQL injection in header) | Clean HTTP 401 Unauthorized with structured error envelope. | Medium (Bypass Risk) |
-| **V-05** | Relational DB | SQL Injection on `GET /jobs?search=' OR 1=1 --` | SQLAlchemy 2.0 ORM parameterization treats payload as literal string; 0 rows or valid matches. | Critical (Data Leak) |
-| **V-06** | Relational DB | Fuzzing `status` param with non-enum strings | Pydantic regex validator rejects invalid status with HTTP 422 Unprocessable Entity. | Low (Validation Drift) |
-| **V-07** | Relational DB | 50 concurrent DB reads & writes | SQLite WAL mode (`PRAGMA journal_mode=WAL;`) and 30s timeout prevent `database is locked`. | High (Worker Starvation) |
-| **V-08** | Ingestion Engine | Corrupted PDF xref tables / truncated byte stream | `pdf2image` / Poppler raises handled error; worker marks job `failed` with sanitized message. | Medium (Crash Loop) |
-| **V-09** | Ingestion Engine | Polyglot PDF+ZIP and Decompression Bomb | `python-magic` and file limit guards reject payload with HTTP 400 Bad Request. | High (DoS) |
-| **V-10** | Distributed Core | Redis broker crash/disconnect mid-task | Server returns structured HTTP 500/503; worker logs disconnect and reconnects cleanly without zombie process. | Critical (System Deadlock) |
-
-### C. Safety Interlock State Machine
-
-```mermaid
-stateDiagram-v2
-    [*] --> ReadEnvironment: Load .env.redteam
-    ReadEnvironment --> KeyInspection: Inspect GOOGLE_API_KEY
-    KeyInspection --> SafetyCheck: Check if key == "MOCK_KEY_DO_NOT_CHARGE"
     
-    state SafetyCheck {
-        [*] --> Evaluator
-        Evaluator --> InterlockTripped: Key Mismatched / Missing
-        Evaluator --> InterlockArmed: Key Exactly Matches
-    }
-
-    InterlockTripped --> AbortExecution: System Exit / Abort Script
-    AbortExecution --> [*]: Emit ConfigurationError (Fatal)
-
-    InterlockArmed --> MockProviderBinding: Load RedTeamMockProvider
-    MockProviderBinding --> TestbedExecution: Dispatch Fuzzing & Chaos to :8001/:6380
-    TestbedExecution --> CleanupVerification: Finally: Wipe temp artifacts
-    CleanupVerification --> [*]: Publish campaign_3_adversarial.md
-```
-
-### D. Explicit Adversarial API Contracts & Structured Envelopes
-
-#### 1. Adversarial Ingestion Contract (`POST /upload`)
-*   **Method / Route:** `POST /upload`
-*   **Headers:**
-    *   `X-API-Key` (Optional/Enforced): Validates access token when `CLEANOCR_API_KEY` is set.
-    *   `X-Forwarded-For` / `X-Real-IP`: Evaluated by `RateLimiter` sliding window.
-*   **Body:** `multipart/form-data` with `file: UploadFile` and optional citation metadata form fields (`title`, `volume`, `issue`, `date`).
-*   **Adversarial Bounds:**
-    *   `Content-Length > 100MB` ➔ HTTP 413 Payload Too Large / HTTP 400 Bad Request.
-    *   MIME spoofing (non-PDF header with `.pdf` extension) ➔ HTTP 400 Bad Request (`INVALID_FILE`).
-    *   Burst uploads (>3 req/min) ➔ HTTP 429 Too Many Requests with `Retry-After: <seconds>`.
-    *   Invalid/tampered `X-API-Key` ➔ HTTP 401 Unauthorized (`UNAUTHORIZED`).
-
-#### 2. Adversarial Query & SQL Injection Contract (`GET /jobs`)
-*   **Method / Route:** `GET /jobs`
-*   **Query Parameters:**
-    *   `page`: integer, `ge=1` (fuzzed with negative, zero, and huge values).
-    *   `limit`: integer, `ge=1, le=100` (fuzzed with >100 values to assert clamping).
-    *   `status`: string regex `^(queued|processing|completed|failed)$` (fuzzed with SQL injection and non-enum strings to assert HTTP 422).
-    *   `search`: string `max_length=100` (fuzzed with `' OR 1=1 --`, `UNION SELECT`, and nested quotes to assert parameterized safety).
-*   **Response on Validation Failure:** HTTP 422 Unprocessable Entity with standard FastAPI detail envelope.
-
-#### 3. Standardized Error Envelope (`app/api/server.py`)
-All application-level HTTP errors conform to the top-level structured envelope:
-```json
-{
-  "error": {
-    "code": "RATE_LIMIT_EXCEEDED | UNAUTHORIZED | INVALID_FILE | JOB_NOT_FOUND",
-    "message": "Human-readable description of the constraint violation",
-    "details": {}
-  }
-}
-```
-
-### E. As-Built Container & Package Topology Alignment
-1.  **Entry Point Alignment:** `docker-compose.redteam.yml` web service updated to `uvicorn app.api.server:app` and worker updated to `celery -A app.workers.celery_worker.celery_app worker` in lockstep with the Phase 18 package architecture.
-2.  **Mock Provider Contract:** `tests/redteam_artifacts/mock_vision.py::RedTeamMockProvider` conforms to `OCRProvider`, implements `detect_layout_type(image) -> str` (returning `"single-column"`), and imports all static typing symbols (`from typing import Any`).
-3.  **Sandboxed Storage:** Volume mounts isolate `uploads/` and `workspaces/` inside `tests/redteam_artifacts/`, guaranteeing zero write contamination of root workspaces during adversarial runs.
-
----
-
-## 3. CI/CD Matrix Architecture & TDD Strategy (@Eng)
-
-### A. CI Workflow Schema (`.github/workflows/ci.yml`)
-
-```mermaid
-flowchart LR
-    Push["Git Push / PR (main)"] --> SecretScan["Job: secret-scan<br/>(Gitleaks 8.24.3)"]
-    Push --> Test["Job: test<br/>(Python 3.11 + Redis + Pytest)"]
-    Push --> FrontendBuild["Job: frontend-build<br/>(Node 20 + tsc -b + vite build)"]
+    ChordCallback -->|Audit Missing/Failed Pages| Evaluator{"All Pages Succeeded?"}
+    Evaluator -->|Yes| Complete["Job Status: completed"]
+    Evaluator -->|No (Some Failed)| Partial["Job Status: partial_failure<br/>(List Dropped Pages)"]
+    Evaluator -->|All Failed| Failed["Job Status: failed"]
     
-    Test --> Build["Job: build<br/>(Docker Container Build)"]
-    FrontendBuild --> Build
+    Complete --> DB
+    Partial --> DB
+    Failed --> DB
 ```
 
-### B. Strict TDD Execution Sequence
-1.  **Write Failing Tests First (`tests/test_ci_pipeline.py`):**
-    - `test_has_frontend_build_job`: Asserts `.github/workflows/ci.yml` declares a `frontend-build` job.
-    - `test_frontend_build_runs_on_ubuntu`: Asserts runner is `ubuntu-latest`.
-    - `test_frontend_build_sets_up_node`: Asserts `actions/setup-node` step with Node 20.
-    - `test_frontend_build_executes_build`: Asserts `npm run build` or `npm test` step.
-    - `test_docker_build_needs_frontend_build`: Asserts `build` job depends on both `test` and `frontend-build`.
-2.  **Verify Test Fails:** Run pytest to verify assertions fail as expected.
-3.  **Implement Updates:** Modify `.github/workflows/ci.yml` to satisfy the contracts.
-4.  **Verify Test Passes:** Run pytest to verify all CI assertions pass green.
+---
+
+### B. Detailed Subsystem Specifications
+
+#### 1. Broadsheet Image Normalization (`app/core/image_utils.py`)
+*   **Problem:** 75MB PNGs with 114 Million Pixels cause `DecompressionBombWarning` in Pillow and trigger `503 UNAVAILABLE: Deadline expired` from Gemini's payload gateway.
+*   **Specification:**
+    ```python
+    MAX_IMAGE_DIMENSION = 4096
+    MAX_SAFE_PIXELS = 36_000_000  # 36 Megapixels (~6000x6000)
+
+    def normalize_broadsheet_image(pil_img: Image.Image) -> Image.Image:
+        """Downscales oversized broadside scans while maintaining 100% text legibility."""
+        width, height = pil_img.size
+        total_pixels = width * height
+        if total_pixels > MAX_SAFE_PIXELS or max(width, height) > MAX_IMAGE_DIMENSION:
+            scale = min(MAX_IMAGE_DIMENSION / width, MAX_IMAGE_DIMENSION / height)
+            new_size = (int(width * scale), int(height * scale))
+            return pil_img.resize(new_size, Image.Resampling.LANCZOS)
+        return pil_img
+    ```
+*   **Multi-Column Padding Deprecation:**
+    *   Remove destructive `_add_padding` (`width // 2`) from multi-column execution path.
+    *   For broadsheet documents (4, 5, 6 columns), the downscaled normalized image is sent directly with the enhanced reading-order prompt, allowing Gemini's spatial attention to read columns sequentially without artificial midline cuts.
+
+#### 2. Atomic Output Writing (`app/services/ocr_processor.py`)
+*   **Problem:** `open(json_path, "w")` creates a 0-byte file before checking if `response_text` is non-null. On retry, `os.path.exists()` skips the 0-byte file.
+*   **Specification:**
+    ```python
+    def write_atomic_json(output_path: str, data_str: str) -> None:
+        if not data_str or not isinstance(data_str, str) or len(data_str.strip()) == 0:
+            raise ValueError("Cannot write empty OCR response")
+        # Validate JSON parseable before touching disk
+        json.loads(data_str)
+        tmp_path = output_path + ".tmp"
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            f.write(data_str)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, output_path)
+    ```
+*   **Skip Condition:**
+    ```python
+    if os.path.exists(json_path) and os.path.getsize(json_path) > 10:
+        return f"[{index+1}/{total_files}] Skipped {filename} (Exists)"
+    ```
+
+#### 3. Celery Task Timeouts & Honest Job Reporting (`app/workers/celery_worker.py`)
+*   **Task Configuration:**
+    ```python
+    @celery_app.task(
+        name="ocr_page_task",
+        bind=True,
+        max_retries=2,
+        default_retry_delay=15,
+        time_limit=180,       # SIGKILL hard limit
+        soft_time_limit=150,  # SoftTimeLimitExceeded exception
+    )
+    def ocr_page_task(self, job_id, img_filename, input_images_dir, ocr_json_dir):
+        ...
+    ```
+*   **Honest Failure Tracking:**
+    *   If a page permanently fails, return `{"page": img_filename, "success": False, "error": str(exc)}`.
+    *   DO NOT increment `cache:{job_id}:completed_pages` for failed pages; increment `cache:{job_id}:failed_pages`.
+*   **Chord Callback (`stitch_markdown_task`):**
+    *   If `succeeded == total_pages`: `status = "completed"`.
+    *   If `0 < succeeded < total_pages`: `status = "partial_failure"`, store missing page list in `JobModel.error_message`.
+    *   If `succeeded == 0`: `status = "failed"`.
+
+#### 4. Stitcher Boundary Deduplication (`app/services/stitcher.py`)
+*   **Problem:** Two-pass verification injects the entire 300-word blockquote `[LLM Boundary Fix]` into the text, duplicating 150 words from the previous page and 150 words from the current page.
+*   **Specification:**
+    *   When hyphenation is detected between `prev_sample` (trailing 150 words of Page $N-1$) and `next_sample` (leading 150 words of Page $N$):
+    *   Ask LLM to return strictly the resolved connecting sentence (e.g. "dis- / course" $\to$ "discourse").
+    *   Splice the resolved connecting word directly into Page $N-1$'s tail and trim Page $N$'s head.
+    *   Remove the duplicate `> **[LLM Boundary Fix]**` markdown blockquote insertion entirely.
+
+#### 5. Blank Page & Bleed-Through Protocol (`app/core/prompts.py`)
+*   **Prompt Contract Update:**
+    ```text
+    3. **Blank / Empty Page Protocol**:
+       - If the page contains NO intentional printed text (e.g. blank page, illustration, or faint bleed-through from reverse side):
+         Set "is_blank": true and "markdown_content": "".
+       - DO NOT invent, hallucinate, or extrapolate names, directories, or text from faint bleed-through.
+    ```
+*   **Stitcher Handling:**
+    *   If `data.get("is_blank") is True` or `data.get("markdown_content", "").strip() == ""`:
+        Insert an explicit visual indicator: `*<!-- Page {num} is blank -->*` without failing the stitcher.
+
+#### 6. PDF Embedded Text-Layer Ratio Guard (`app/services/pdf_validator.py`)
+*   **Specification:**
+    *   Using Poppler `pdftotext` (already installed and verified in PATH), extract text per page into memory if available.
+    *   Calculate embedded word count: `pdf_words = len(page_text.split())`.
+    *   If `pdf_words >= 50`:
+        Compute ratio: $R = \frac{\text{ocr\_words}}{\text{pdf\_words}}$.
+        If $R < 0.85$ or $R > 1.15$:
+        Append warning flag to page JSON metadata:
+        `"quality_warning": "Word count divergence detected (ratio: {R:.2f}). Possible missing or hallucinated text."`
 
 ---
 
-## 4. UI/UX Verification & Design Standards (@Des)
+## 4. UI/UX Design Standards & Interaction Contracts (@Des)
 
-### Standards to Verify
-1. **Responsive Viewport Audit (320px - 4k):**
-   - Audit `DiffViewer.tsx` and `JobHistory.tsx` on 320px mobile viewport with real multi-column extracted text.
-   - Verify stacked layout, absence of horizontal scrolling, and legible typography (`Inter` / `JetBrains Mono`).
-2. **Adversarial Error UI Feedback:**
-   - Verify that HTTP 429 Too Many Requests triggers the `NotificationToast.tsx` animated banner with the live second-by-second countdown.
-   - Verify that HTTP 401 Unauthorized triggers the toast with the 1-click "Configure API Key" button opening `SettingsModal.tsx`.
-   - Zero raw `window.alert` calls.
-
----
-
-## 5. Documentation Continuity & Suggestions Clearinghouse Protocol
-
-### Mandate
-Every active persona must document suggestions for clean, frictionless support for future AI agents and human collaborators. `@QA` acts as the centralized clearinghouse: collects, evaluates, decides if/how to implement, and applies the documentation changes before milestone sign-off.
-
-### Agent Suggestion Log
-| Persona | Target Doc | Friction / Opportunity Identified | Proposed Improvement | @QA Verdict |
-| :--- | :--- | :--- | :--- | :--- |
-| **🧠 @PM** | `README.md` | Testing instructions omit isolated RedTeam execution and CI/CD matrix explanation | Document `docker-compose.redteam.yml` setup, Ping Check interlock, and GitHub Actions workflow stages. | Pending @QA |
-| **🧠 @PM** | `ARCHITECTURE.md` | System architecture does not document the RedTeam isolation topology or safety interlock | Add RedTeam container topology diagram and safety interlock state machine to §7 Security Architecture. | Pending @QA |
-| **🏗️ @Arch** | `ARCHITECTURE.md` | CI/CD testing pipeline dependencies lack frontend gating documentation | Add §9 CI/CD Pipeline section detailing the parallel Python backend and Node.js frontend gating architecture. | Pending @QA |
-| **🔨 @Eng** | `ARCHITECTURE.md` | RedTeam mock vision configuration requires explicit instructions on mock providers | Document `RedTeamMockProvider` and `.env.redteam` configuration in testing manual. | Pending @QA |
-| **😈 @RedTeam** | `tests/redteam_artifacts/README.md` | RedTeam artifacts directory lacks execution instructions and cleanup guidelines | Create a README in `tests/redteam_artifacts/` detailing safety protocols, ping checks, and execution scripts. | Pending @QA |
-| **🎨 @Des** | `ARCHITECTURE.md` | Responsive breakpoint standards (320px mobile stack) are not explicitly specified | Document mobile layout breakpoints and responsive diff viewing guidelines in §6 Frontend Architecture. | Pending @QA |
+1. **Job Cancellation Micro-Interaction:**
+   * In `JobCard.tsx` and `JobHistory.tsx`:
+   * Render an interactive "Cancel Job" button with a red/amber outline when `status === "queued" || status === "processing"`.
+   * On click: Show an inline confirmation popover (zero `window.confirm`!).
+   * On confirmation: Send `POST /jobs/{id}/cancel`, disable button, show spinner, and animate status transition to `cancelled` with a styled badge.
+2. **Partial Failure Transparency:**
+   * If `status === "partial_failure"`: Render an amber warning badge with tooltip: `"Completed with 2 dropped pages (Pages 1, 2). Click to inspect error."`
+3. **Realistic Time Estimates:**
+   * Display realistic duration in `JobCard`: `"Estimated: ~2 min (Timeout: 4 min)"`.
 
 ---
 
-## 6. Git Commit Strategy & Human Decision Gate (@QA)
+## 5. Proactive Documentation Suggestions (@Arch)
 
-### Protocol
-*   **Mandatory Human Loop-In:** Upon completing all verification tests and executing approved documentation changes, `@QA` must loop the human user in.
-*   **Structured Recommendations:** `@QA` presents a structured Git staging and commit plan, organizing changes into logical, atomic units (e.g., `feat:`, `fix:`, `docs:`, `test:`, `refactor:`) with draft commit messages and explicit file lists.
-*   **Human Authority:** The human user has sole authority to decide how changes are committed to git.
-
----
-
-## 7. Persona Exit Gates & Verification (@AGENTS.md)
-
-| Persona | Exit Gate Requirement | Status |
-| :--- | :--- | :--- |
-| **🧠 @PM** | Requirements breakdown, acceptance criteria, roadmap alignment, `task.md` & `Context.md` updated, doc suggestions logged | ✅ Completed |
-| **🏗️ @Arch** | RedTeam isolation design, CI/CD workflow architecture, attack vector matrix defined, doc suggestions logged | In Queue |
-| **😈 @RedTeam** | Safety interlock verified (`MOCK_KEY_DO_NOT_CHARGE`), fuzzing & chaos campaigns executed, `campaign_3_adversarial.md` saved, cleanup verified, doc suggestions logged | In Queue |
-| **🔨 @Eng** | Strict TDD (failing CI tests first), `.github/workflows/ci.yml` updated, 100% tests green, doc suggestions logged | In Queue |
-| **🎨 @Des** | 320px mobile viewport verified with historical document, error toasts & countdown verified, zero raw alerts, doc suggestions logged | In Queue |
-| **🕵️ @QA** | Live historical PDF E2E verified, proof in `walkthrough.md`, `Retrospective.md` updated, **Documentation Clearinghouse executed**, **Git Commit Recommendation presented to human** | In Queue |
+1. **`ARCHITECTURE.md` (§3 Processing Pipeline & §8 Configuration):**
+   * Document `POST /jobs/{job_id}/cancel` API contract and Celery revocation sequence.
+   * Document broadsheet downscaling policy (`MAX_IMAGE_DIMENSION=4096`, `MAX_SAFE_PIXELS=36M`).
+   * Document new `partial_failure` status semantics in relational database schema.
+2. **`README.md` (Operational Limits):**
+   * Update the Supported Document Formats section to highlight broadsheet newspaper support (up to 6 columns) and explain automated downscaling.
 
 ---
 
-## 8. Acceptance Criteria
-1. [ ] Safety interlock script verifies `GOOGLE_API_KEY == "MOCK_KEY_DO_NOT_CHARGE"` before any adversarial script runs.
-2. [ ] RedTeam Campaign 3 completes fuzzing across Rate Limiter, Auth, SQL injection, binary corruption, and chaos fault injection with clean system survival.
-3. [ ] All RedTeam artifacts are strictly confined to `tests/redteam_artifacts/` and cleaned up upon execution.
-4. [ ] Real multi-column historical scan (`latter_day_saints_messenger_and_advocate_vol_1_and_2.pdf`) successfully processes through the live pipeline with `gemini-3.1-flash-lite`.
-5. [ ] Dynamic layout classification properly classifies multi-column vs single-column pages and applies padding selectively.
-6. [ ] Side-by-side verification and metadata are visible and responsive on both 320px mobile and desktop in `DiffViewer.tsx`.
-7. [ ] `.github/workflows/ci.yml` includes secret-scan, python 3.11 test suite, frontend-build (tsc & vite build), and docker build gates.
-8. [ ] `tests/test_ci_pipeline.py` verifies the enhanced CI/CD workflow structure.
-9. [ ] 100% test pass rate across the full test bed (161+ tests passing).
-10. [ ] All persona documentation suggestions are evaluated and executed by `@QA` in the Documentation Clearinghouse.
-11. [ ] `@QA` loops the human user in with a structured Git commit recommendation, and the human decides how to commit the session changes.
+## Persona Exit Gate Checklist (@Arch)
+- [x] **`implementation_plan.md`:** Updated with complete architecture, algorithms, and specifications.
+- [x] **API Contracts:** `POST /jobs/{job_id}/cancel` and `POST /upload` expectations explicitly defined.
+- [x] **Architecture Diagrams:** Mermaid flowcharts detailing worker lifecycle, failsafes, and chord aggregation.
+- [x] **Documentation Suggestions:** Suggested updates for `ARCHITECTURE.md` and `README.md`.
+
+*Handoff to @Eng to begin construction and strict test-first development.*

@@ -99,9 +99,13 @@ GEMINI_RUN_CALL_CAP = int(os.getenv("GEMINI_RUN_CALL_CAP", "5000"))
 # STREAM_BASE_BUDGET_SECONDS: allowance for queue wait + PDF burst.
 # STREAM_PAGE_BUDGET_SECONDS: per-page OCR allowance. A job's max stream
 #   duration = base + page_count * per-page.
+# STREAM_BASE_BUDGET_SECONDS: allowance for queue wait + PDF burst (calibrated for Gemini 3.1 Flash Lite).
+# STREAM_PAGE_BUDGET_SECONDS: per-page OCR allowance based on empirical throughput (~2.5s/page).
+# STREAM_MIN_TIMEOUT_SECONDS: minimum safety floor for client-side stream timeouts.
 STREAM_UNKNOWN_JOB_TIMEOUT = int(os.getenv("STREAM_UNKNOWN_JOB_TIMEOUT", "120"))
-STREAM_BASE_BUDGET_SECONDS = int(os.getenv("STREAM_BASE_BUDGET_SECONDS", "600"))
-STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "30"))
+STREAM_BASE_BUDGET_SECONDS = int(os.getenv("STREAM_BASE_BUDGET_SECONDS", "20"))
+STREAM_PAGE_BUDGET_SECONDS = int(os.getenv("STREAM_PAGE_BUDGET_SECONDS", "3"))
+STREAM_MIN_TIMEOUT_SECONDS = int(os.getenv("STREAM_MIN_TIMEOUT_SECONDS", "120"))
 
 # --- CLEANUP ---
 # How many hours to retain completed/failed job workspaces before deletion.

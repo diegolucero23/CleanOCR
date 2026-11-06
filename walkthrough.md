@@ -545,3 +545,46 @@ npm test                                                -> 16 passed
 npm run lint                                            -> 0 problems
 npm run build                                           -> built (1 chunk-size warning)
 ```
+
+---
+
+## Phase 25: Broadsheet Newspapers, Failsafe Timeouts & Quality Guardrails (2026-11-06)
+
+Verified and closed incident autopsy across **Job `06ebe4c7`** (5-column broadsheet stall) and **Job `5446a1b6`** (silent drop & stitch repeats).
+
+| Incident / Gap | Architectural Fix | Test Proof |
+| :--- | :--- | :--- |
+| **No Job Cancellation Failsafe** | Implemented `POST /jobs/{job_id}/cancel` with Celery task revocation (`celery_app.control.revoke`), synchronous DB & Redis state transition to `cancelled`, and rejection of terminal states (HTTP 400). | `tests/test_job_cancellation_and_hardening.py::test_cancel_active_job_success`, `test_cancel_terminal_job_fails`, `test_cancel_nonexistent_job_fails` |
+| **Broadsheet 75MB Payload Timeout** | Implemented `normalize_broadsheet_image` in `image_utils.py` (capping dimensions at 4096px / 36MP via Lanczos downscaling). Removed destructive 2-column midline split `_add_padding`. | `tests/test_job_cancellation_and_hardening.py::test_normalize_broadsheet_image_oversized`, `test_normalize_broadsheet_image_standard` |
+| **0-Byte Cache Poisoning (Page 25 Drop)** | Implemented `write_atomic_json`: validates non-null string and parseable JSON before writing to `.json.tmp` and atomically replacing. Skip check updated to `os.path.getsize(json_path) > 0`. | `tests/test_job_cancellation_and_hardening.py::test_write_atomic_json_success`, `test_write_atomic_json_rejects_empty_or_invalid`, `test_ocr_skip_ignores_zero_byte_file` |
+| **Silent Page Drops Marked "Completed"** | Celery chord callback in `stitch_markdown_task` promotes incomplete jobs to honest `partial_failure` status, recording failed page count in `JobModel.error_message`. | `tests/test_job_cancellation_and_hardening.py::test_stitch_markdown_task_partial_failure`, `tests/test_ocr_page_task_contract.py` |
+| **150-Word Boundary Repeat Blocks** | Replaced 300-word duplicate blockquote injection `> **[LLM Boundary Fix]**` in `stitcher.py` with seamless hyphenation splicing. | `tests/test_job_cancellation_and_hardening.py` |
+| **Blank Page Hallucinations (Page 52)** | Updated `prompts.OCR_PROMPT` with explicit Blank Page Protocol allowing empty markdown returns on blank/bleed-through scans; `stitcher.py` annotates blank pages safely. | `app/core/prompts.py`, `app/services/stitcher.py` |
+| **Outdated 10-Minute Time Estimates** | Recalibrated `STREAM_BASE_BUDGET_SECONDS` to 20s and `STREAM_PAGE_BUDGET_SECONDS` to 3s based on measured Gemini 3.1 Flash Lite speeds (1.2–2.6s/page). Disclosed realistic duration alongside timeout. | `tests/test_job_cancellation_and_hardening.py::test_recalibrated_time_budgets`, `tests/test_ingestion_disclosure.py` |
+| **UI Interactive Cancellation & Status** | Added interactive "Cancel Job" button to `JobCard.tsx`, amber warning badge for `partial_failure`, and zinc badge for `cancelled` in `JobHistory.tsx`. | `npm --prefix frontend run build` (2205 modules compiled, 0 errors). |
+
+### Full Test Suite Results (2026-11-06)
+```text
+python -m pytest tests/                                 -> 219 passed, 57 warnings in 11.72s (100% GREEN)
+npm --prefix frontend run build                         -> built in 8.20s (0 errors)
+```
+
+---
+
+## Phase 26: Frontend Client Resilience & Blank Screen Recovery (2026-11-06)
+
+Verified and resolved the issue where `http://localhost:5173/` rendered a blank page after container restarts.
+
+| Incident / Gap | Root Cause | Architectural Fix | Test Proof |
+| :--- | :--- | :--- | :--- |
+| **Blank White Screen on `http://localhost:5173/`** | `localStorage` contained a malformed persisted job without an `id` field. `JobCard.tsx:70` called `job_id.slice(0, 8)` on `undefined`, throwing an uncaught `TypeError`. With no React ErrorBoundary, React crashed and unmounted the root `<App />`. | 1. Added schema sanitation in `useJobPersistence.ts` `loadHistory()`, filtering out jobs lacking valid IDs and re-saving cleanly.<br>2. Defensive fallbacks in `JobCard.tsx`, `JobHistory.tsx`, and `App.tsx` (`safeJobId = job_id \|\| 'unknown'`).<br>3. Built `<ErrorBoundary>` in `frontend/src/components/ErrorBoundary.tsx` wrapping root `<App />` with a 1-click "Clear Cache & Reload" recovery button. | `frontend/src/App.test.tsx` (reproduced crash then verified clean render), `frontend/src/components/ErrorBoundary.test.tsx` (verified crash recovery & storage wipe), 19/19 vitest tests passed. |
+
+### Verification Outputs
+```text
+python -m pytest tests/                                 -> 219 passed, 57 warnings in 12.24s (100% GREEN)
+npm --prefix frontend test                              -> 19 passed across 6 test files
+npm --prefix frontend run lint                          -> 0 errors, 0 warnings
+npm --prefix frontend run build                         -> built in 8.49s (0 errors)
+```
+
+

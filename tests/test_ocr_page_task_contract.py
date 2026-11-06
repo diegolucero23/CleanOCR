@@ -75,9 +75,9 @@ def test_partial_success_completes_with_accurate_page_count(tmp_path):
 
     status, processed, _, redis_mock = _run_stitch(job_id, ["page_001.png", None, "page_003.png"], tmp_path)
 
-    assert status == "completed"
+    assert status == "partial_failure"
     assert processed == 2
-    assert call(f"cache:{job_id}:status", "completed") in redis_mock.set.call_args_list
+    assert call(f"cache:{job_id}:status", "partial_failure") in redis_mock.set.call_args_list
 
 
 # ---------------------------------------------------------------------------

@@ -33,9 +33,22 @@ class GoogleVisionProvider(OCRProvider):
         self.client = genai.Client(api_key=api_key)
 
     def generate_content(self, contents: list, config: Any) -> str:
+        from app.core.image_utils import normalize_broadsheet_image
+
         images = [c for c in contents if isinstance(c, PIL.Image.Image)]
         text_prompts = [c for c in contents if isinstance(c, str)]
         
+        # Always normalize oversized images to prevent 503 Deadline Expired payload failures
+        if images:
+            normalized_contents = []
+            for c in contents:
+                if isinstance(c, PIL.Image.Image):
+                    normalized_contents.append(normalize_broadsheet_image(c))
+                else:
+                    normalized_contents.append(c)
+            contents = normalized_contents
+            images = [c for c in contents if isinstance(c, PIL.Image.Image)]
+
         if images and text_prompts and "LAYOUT DETECTION" in text_prompts[0]:
             image = images[0]
             layout_type = self.detect_layout_type(image)
@@ -46,6 +59,14 @@ class GoogleVisionProvider(OCRProvider):
                 image = add_padding(image)
             else:
                 logger.info("Single-column layout detected. Skipping center gutter padding.")
+                
+            new_contents = []
+            for c in contents:
+                if isinstance(c, PIL.Image.Image):
+                    new_contents.append(image)
+                else:
+                    new_contents.append(c)
+            contents = new_contents
                 
             new_contents = []
             for c in contents:

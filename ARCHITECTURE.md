@@ -270,6 +270,7 @@ and behind `/api` in production.
 | Method | Path | Auth Required | Rate Limit | Request | Response / Errors |
 |--------|------|---------------|------------|---------|-------------------|
 | `POST` | `/upload` | Yes (if configured) | 3 / min | `multipart/form-data`: `file` (PDF), optional `title`, `volume`, `issue`, `date`, `skip_metadata` | `200`: `{status, job_id, task_id?, message}`<br>`400`, `401`, `413`, `429` |
+| `POST` | `/jobs/{job_id}/cancel` | Yes (if configured) | 60 / min | Optional JSON: `{"reason": "string"}` | `200`: `{job_id, status: 'cancelled', message, cancelled_at}`<br>`400` (already terminal), `401`, `404`, `429` |
 | `GET` | `/jobs` | Yes (if configured) | 60 / min | `?page=1&limit=20&status=&search=&sort_order=desc` | `200`: Paginated jobs list (`items`, `jobs`, `total`, `page`, `limit`, `total_pages`)<br>`401`, `422`, `429` |
 | `GET` | `/jobs/{job_id}` | Yes (if configured) | 60 / min | — | `200`: Detailed record with metadata and extracted markdown text<br>`401`, `404`, `429` |
 | `GET` | `/status/{job_id}` | Yes (if configured) | 60 / min | — | `200`: `{job_id, status, progress, message, markdown?, upload_time?, file_size?, processing_time?, complexity?}` (with automatic DB fallback)<br>`401`, `404`, `429` |
@@ -322,6 +323,10 @@ In accordance with [`AGENTS.md`](AGENTS.md) design standards:
 | **Exponential Backoff** | `ocr_processor.py` | Retry on Gemini 429 rate-limit: 5 s, 10 s, 20 s, 40 s, 80 s (max 5 retries) |
 | **Two-Pass Verification** | `stitcher.py::stitch_markdown()` | LLM re-checks page boundary text to fix split hyphenated words |
 | **SSE Push** | `server.py::GET /stream` + `App.tsx` | Live progress without polling; browser `EventSource` + `useRef` map prevents reconnect churn on re-render |
+| **Job Cancellation & Revocation** | `app/api/server.py::POST /jobs/{id}/cancel` | First-class endpoint revoking Celery tasks (`revoke(terminate=True)`), transitioning Redis & DB state to `cancelled` |
+| **Broadsheet Image Normalization** | `app/core/image_utils.py` | Caps broadside newspaper scans at 4096px / 36MP via Lanczos downscaling, preventing 75MB payload 503 deadlines |
+| **Atomic JSON Writing** | `app/services/ocr_processor.py` | Validates non-null JSON before writing to `.json.tmp` and atomically replacing, eliminating 0-byte cache poisoning |
+| **Honest Partial Failure** | `app/workers/celery_worker.py` | Celery chord flags incomplete extractions as `partial_failure` and lists dropped pages rather than falsely marking `completed` |
 | **TTL Cleanup** | `celery_worker.py::cleanup_old_workspaces` | Celery Beat runs at the top of every hour; deletes workspaces, PDFs, and Redis keys older than `WORKSPACE_TTL_HOURS` |
 
 ---
@@ -349,6 +354,11 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 | `WORKSPACE_TTL_HOURS` | `24` | Hours before a job workspace is deleted by cleanup task. `0` disables cleanup |
 | `MAX_UPLOAD_MB` | `100` | Reject uploads larger than this (streamed size cap on `/upload`) |
 | `MAX_PDF_PAGES` | `500` | Reject PDFs with more pages than this before any OCR is dispatched |
+| `STREAM_BASE_BUDGET_SECONDS` | `20` | Base streaming time allowance for queue wait and Poppler PDF bursting |
+| `STREAM_PAGE_BUDGET_SECONDS` | `3` | Per-page processing allowance calibrated for Gemini 3.1 Flash Lite |
+| `STREAM_MIN_TIMEOUT_SECONDS` | `120` | Minimum client stream timeout safety floor |
+| `MAX_IMAGE_DIMENSION` | `4096` | Downscale ceiling for oversized broadside scans (preserves aspect ratio) |
+| `MAX_SAFE_PIXELS` | `36000000` | 36 Megapixel threshold above which broadside images are auto-downscaled |
 | `GEMINI_DAILY_CALL_CAP` | `2000` | Hard cap on billed Gemini calls per UTC day, shared across workers via Redis (`app/core/cost_guard.py`). `0` disables |
 | `GEMINI_RUN_CALL_CAP` | `5000` | Hard cap on billed Gemini calls per process; works without Redis (CLI batch mode). `0` disables |
 | `LOCAL_GEMMA_REVISION` | *(unset = latest)* | Pin the HuggingFace revision (commit hash) of the local Gemma model; safetensors-only loading is enforced |
@@ -361,27 +371,32 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 ## 9. Frontend Architecture
 
 ```
-App.tsx
- ├─ useJobPersistence()          localStorage, max 50 jobs, versioned schema
- ├─ activeStreams (useRef Map)   one EventSource per active job; persists across re-renders
- │
- ├─ UploadZone                  drag-drop → handleFileSelect → MetadataModal
- ├─ MetadataModal               optional citation fields → handleProcess → POST /upload
- │
- ├─ JobCard (active)            real-time status badge + progress bar
- ├─ JobCard[] (history)         completed jobs, click opens DiffViewer
- └─ DiffViewer                  react-pdf (left) vs Markdown (right)
-                                10-dash delimiter parsing for page sync
+main.tsx
+ └─ ErrorBoundary                 catches render-time exceptions; offers 1-click "Clear Cache & Reload"
+     └─ App.tsx
+         ├─ useJobPersistence()          localStorage, max 50 jobs, schema validation + malformed ID filtering
+         ├─ activeStreams (useRef Map)   one EventSource per active job; persists across re-renders
+         │
+         ├─ UploadZone                  drag-drop → handleFileSelect → MetadataModal
+         ├─ MetadataModal               optional citation fields → handleProcess → POST /upload
+         │
+         ├─ JobCard (active)            real-time status badge, progress bar, interactive cancellation
+         ├─ JobHistory                  paginated DB history with status filters (completed, active, failed, partial_failure, cancelled)
+         └─ DiffViewer                  react-pdf (left) vs Markdown (right)
+                                        10-dash delimiter parsing for page sync
 ```
 
 **`lib/api.ts`** is the only file that talks to the backend:
 - `uploadFile()` — `POST /upload`
 - `pollJobStatus()` — `GET /status/{id}` (kept for one-off checks)
 - `subscribeToJobStatus()` — `EventSource` wrapper, returns a `() => void` cleanup
+- `cancelJob()` — `POST /jobs/{id}/cancel` (revokes background workers)
+- `fetchJobs()` / `fetchJobDetail()` — `GET /jobs`, `GET /jobs/{id}` (relational persistence)
 
-**State persistence:** `useJobPersistence` stores jobs in `localStorage` under
-`cleanocr_job_history_v1`. On load it re-attaches SSE streams to any jobs
-still in `queued` or `processing` state (page-refresh recovery).
+**State persistence & resilience:**
+1. `useJobPersistence`: stores jobs in `localStorage` under `cleanocr_job_history_v1`. On load, `loadHistory()` rigorously sanitizes stored records, filtering out malformed entries lacking valid string IDs to prevent `TypeError` crashes during render, and re-saving the sanitized list to disk.
+2. `ErrorBoundary`: root-level wrapper in `main.tsx`. If any unexpected error occurs during component rendering or lifecycle execution, instead of unmounting to a blank white screen, it displays a themed recovery UI with technical details and a 1-click "Clear Cache & Reload" button.
+3. Stream reconnect: On load, `App.tsx` re-attaches SSE streams to any jobs still in `queued` or `processing` state (page-refresh recovery).
 
 ---
 

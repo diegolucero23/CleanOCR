@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 
 // --- Types ---
 
-export type JobStatus = 'queued' | 'processing' | 'completed' | 'failed' | 'cached';
+export type JobStatus = 'queued' | 'processing' | 'completed' | 'failed' | 'cached' | 'cancelled' | 'partial_failure';
 
 export interface PersistedJob {
     id: string;              // UUID from backend
@@ -44,8 +44,22 @@ function loadHistory(): PersistedJob[] {
             return [];
         }
 
-        console.log(`[Persistence] Restored ${parsed.jobs.length} jobs from storage.`);
-        return parsed.jobs;
+        // Sanitize: enforce that every entry has a valid, non-empty string ID
+        const validJobs = parsed.jobs.filter((j): j is PersistedJob =>
+            Boolean(j && typeof j === 'object' && typeof j.id === 'string' && j.id.trim().length > 0)
+        );
+
+        if (validJobs.length !== parsed.jobs.length) {
+            console.warn(`[Persistence] Filtered out ${parsed.jobs.length - validJobs.length} malformed job(s) lacking an ID.`);
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, jobs: validJobs.slice(0, MAX_HISTORY) }));
+            } catch {
+                // Ignore storage write errors on startup sanitization
+            }
+        }
+
+        console.log(`[Persistence] Restored ${validJobs.length} jobs from storage.`);
+        return validJobs;
     } catch (e) {
         console.error("[Persistence] Failed to parse history:", e);
         localStorage.removeItem(STORAGE_KEY); // Wipe corrupt data
@@ -79,6 +93,11 @@ export function useJobPersistence() {
     // --- Public Actions ---
 
     const addOrUpdateJob = useCallback((job: PersistedJob) => {
+        if (!job || typeof job.id !== 'string' || !job.id.trim()) {
+            console.warn('[Persistence] Rejected job without valid id:', job);
+            return;
+        }
+
         setHistory(prev => {
             // Check if exists
             const existingIdx = prev.findIndex(j => j.id === job.id);

@@ -3,7 +3,7 @@ import { UploadZone } from './components/UploadZone';
 import { JobCard } from './components/JobCard';
 import { DiffViewer } from './components/DiffViewer';
 import { JobHistory } from './components/JobHistory';
-import { apiErrorPayload, uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, type ApiError, type IngestionLimits } from './lib/api';
+import { apiErrorPayload, uploadFile, subscribeToJobStatus, fetchLimits, pollJobStatus, cancelJob, type ApiError, type IngestionLimits } from './lib/api';
 import { useJobPersistence, type JobStatus, type PersistedJob } from './hooks/useJobPersistence';
 import { OnboardingSteps } from './components/OnboardingSteps';
 import { LayoutDashboard, History, Trash2, Key } from 'lucide-react';
@@ -40,7 +40,7 @@ function App() {
 
   // Derived State: The "Active" job is the most recent one if it's still processing
   const activeJob = useMemo(() => {
-    return history.find(j => ['queued', 'processing'].includes(j.status)) || null;
+    return history.find(j => Boolean(j && typeof j.id === 'string' && j.id.trim() && ['queued', 'processing'].includes(j.status))) || null;
   }, [history]);
 
   // SSE Effect: open one EventSource per active job
@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     const incompleteIds = new Set(
       history
-        .filter(j => ['queued', 'processing'].includes(j.status) && !timedOutStreams.current.has(j.id))
+        .filter(j => Boolean(j && typeof j.id === 'string' && j.id.trim() && ['queued', 'processing'].includes(j.status) && !timedOutStreams.current.has(j.id)))
         .map(j => j.id)
     );
 
@@ -212,6 +212,36 @@ function App() {
     }
   };
 
+  const handleCancelJob = async (jobId: string) => {
+    try {
+      await cancelJob(jobId);
+      const target = history.find((j) => j.id === jobId);
+      if (target) {
+        addOrUpdateJob({
+          ...target,
+          status: 'cancelled',
+          resultMessage: 'Job cancelled by user request.',
+        });
+      }
+      setHistoryRefreshKey((k) => k + 1);
+      addToast({
+        id: `toast-cancel-${Date.now()}`,
+        type: 'info',
+        title: 'Job Cancelled',
+        message: 'Job was cancelled successfully. Active workers revoked.',
+      });
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { error?: { message?: string } } }; message?: string };
+      const msg = e.response?.data?.error?.message || e.message || 'Failed to cancel job';
+      addToast({
+        id: `toast-cancel-err-${Date.now()}`,
+        type: 'error',
+        title: 'Cancellation Failed',
+        message: msg,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
       {/* Header */}
@@ -279,7 +309,8 @@ function App() {
                   complexity={activeJob.complexity}
                   page_count={activeJob.page_count}
                   expected_seconds={activeJob.expected_seconds}
-                  onClick={() => activeJob.status === 'completed' && setSelectedJob(activeJob)}
+                  onClick={() => (activeJob.status === 'completed' || activeJob.status === 'partial_failure') && setSelectedJob(activeJob)}
+                  onCancel={handleCancelJob}
                 />
               </motion.div>
             )}

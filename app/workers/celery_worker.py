@@ -131,7 +131,14 @@ def on_task_failure(sender, task_id, exception, args, kwargs, traceback, einfo, 
 PERMANENT_PAGE_ERRORS = (TypeError, AttributeError, NameError, ImportError, KeyError)
 
 
-@celery_app.task(name="ocr_page_task", bind=True, max_retries=3, default_retry_delay=30)
+@celery_app.task(
+    name="ocr_page_task",
+    bind=True,
+    max_retries=3,
+    default_retry_delay=15,
+    time_limit=180,
+    soft_time_limit=150,
+)
 def ocr_page_task(self, job_id: str, img_filename: str, input_images_dir: str, ocr_json_dir: str):
     """
     Process a single page image through OCR and write its JSON result.
@@ -227,13 +234,19 @@ def stitch_markdown_task(self, results, job_id: str, ocr_json_dir: str, final_md
         word_count = len(markdown_content.split())
         end_time = time.time()
 
+        total_count = len(page_results) if page_results else 1
+        has_partial_failures = bool(page_results and succeeded < total_count)
+        job_status = "partial_failure" if has_partial_failures else "completed"
+
         # 1. Update Database Record
         try:
             with get_db_context() as db:
                 db_job = db.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
                 if db_job:
-                    db_job.status = "completed"
+                    db_job.status = job_status
                     db_job.end_time = end_time
+                    if has_partial_failures:
+                        db_job.error_message = f"{total_count - succeeded} of {total_count} pages failed during extraction and were skipped."
                     if db_job.upload_time:
                         db_job.duration_seconds = round(end_time - db_job.upload_time, 2)
                     mb_size = (db_job.file_size or 0) / (1024 * 1024)
@@ -250,12 +263,14 @@ def stitch_markdown_task(self, results, job_id: str, ocr_json_dir: str, final_md
                             job_id=job_id,
                             markdown_text=markdown_content,
                             total_words=word_count,
-                            confidence_score=0.98,
+                            confidence_score=0.98 if not has_partial_failures else 0.70,
                             statistics_json=json.dumps({
                                 "processing_time": db_job.duration_seconds,
                                 "complexity": db_job.complexity,
                                 "file_size": db_job.file_size,
                                 "total_pages": db_job.total_pages,
+                                "partial_failure": has_partial_failures,
+                                "succeeded_pages": succeeded,
                             }),
                         )
                         db.add(result_row)
@@ -265,12 +280,15 @@ def stitch_markdown_task(self, results, job_id: str, ocr_json_dir: str, final_md
         # 2. Update Redis Cache
         r = redis.Redis.from_url(celery_app.conf.broker_url)
 
-        if file_hash:
+        if file_hash and not has_partial_failures:
+            # Only cache successful whole-document hashes; partial runs shouldn't mask re-uploads
             r.set(f"cache:{file_hash}", job_id)
 
         r.set(f"cache:{job_id}:end_time", end_time)
-        r.set(f"cache:{job_id}:status", "completed")
-        return "done"
+        r.set(f"cache:{job_id}:status", job_status)
+        if has_partial_failures:
+            r.set(f"cache:{job_id}:error", f"{total_count - succeeded} of {total_count} pages failed during extraction and were skipped.")
+        return "partial_failure" if has_partial_failures else "done"
 
     except Exception as exc:
         raise self.retry(exc=exc, countdown=2 ** self.request.retries * 30)
