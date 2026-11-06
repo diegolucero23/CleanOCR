@@ -18,6 +18,9 @@ It features a modern **React Console**, a scalable **FastAPI/Celery Backend**, a
     *   **Input Sanitization:** Blocks malware/fake files via `libmagic`.
     *   **Relational Persistence (SQLAlchemy 2.0):** Zero-config SQLite database (`workspaces/cleanocr.db`), switchable to PostgreSQL via `DATABASE_URL`. Stores complete jobs, metadata, and extracted text.
     *   **Persistent Job History API:** `GET /jobs` (paginated, searchable, status-filtered) and `GET /jobs/{job_id}` with automatic Redis-to-DB fallback.
+    *   **Interactive Job Cancellation:** `POST /jobs/{job_id}/cancel` endpoint and one-click UI cancel button revokes in-flight Celery workers cleanly.
+    *   **Broadsheet & Multi-Column Newspapers:** Adaptive image normalization downscales oversized 70MB+ broadside scans (capped at 4096px / 36MP), eliminating Gemini 503 payload timeouts on 4, 5, and 6-column historical newspapers.
+    *   **Fail-Closed File Integrity:** Atomic file writes eliminate 0-byte cache poisoning, and dropped pages are honestly surfaced as `partial_failure`.
     *   **Security & Access Control:** Optional server API key protection (`CLEANOCR_API_KEY`) with seamless local dev fallback and interactive UI key management.
     *   **Rate Limiting & Quota Guard:** Redis-backed sliding-window throttling (3 uploads/min, 60 status checks/min) to prevent quota exhaustion.
     *   **Smart Caching:** SHA-256 deduplication (Process once, serve forever).
@@ -139,7 +142,7 @@ python scripts/verify_static.py
 
 # Advanced Test CLI (Supports Cache Flushing & Mock PDF)
 python scripts/test_upload.py --flush --dummy
-```
+``` 
 
 ### 3. Adversarial & Chaos Testing (@RedTeam)
 Run the automated chaos campaign (10 attack vectors) under mandatory safety interlock:

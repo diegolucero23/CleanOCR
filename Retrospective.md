@@ -13,6 +13,7 @@ This file serves as the project's long-term memory for mistakes, lessons learned
 ---
 
 ## Log
+
 ### 2026-01-27 - OCR Experiments Implementation
 *   **What went wrong:** Tried to use CMD syntax (`set VAR=val && cmd`) in PowerShell, causing parser error.
 *   **Root Cause:** Assumption that shell was CMD or generic, ignored checking `run_command` tool definition.
@@ -355,3 +356,38 @@ This file serves as the project's long-term memory for mistakes, lessons learned
     4. Separately, SQLite returns `created_at` without tzinfo, so the API sent UTC times with no offset and browsers showed them as local time.
 *   **Action Taken:** Fixed the call and added an `autospec=True` contract test; all-pages-failed jobs now end `failed` and are not cached; `PERMANENT_PAGE_ERRORS` skip retries; the DB is now the source of truth for cache hits (stale Redis entries are deleted); `scripts/import_legacy_jobs.py` records pre-DB jobs with their original dates; `created_at` is serialized with `+00:00`.
 *   **Rule Added:** (@Eng / @QA) Mock a collaborator with `autospec=True` (or `create_autospec`) whenever the test's purpose includes the call into it. A job's success status must be derived from the work that actually succeeded, never from the pipeline merely finishing.
+
+### 2026-11-06 - Persona Boundary Violation (@Eng / @QA Protocol Breach)
+*   **What went wrong:** After completing the code construction as `@Eng`, the agent jumped straight into the `@QA` role (running the clearinghouse and proposing git commits) within the same response turn, bypassing the explicit `@Eng` handoff gate.
+*   **Root Cause:** Rushed execution across persona boundaries; failed to stop and query the role exit gate for `@Eng` before handing off.
+*   **Action Taken:** Immediately paused, logged the incident in `Retrospective.md`, and reset context to `@Eng` to present the proper Engineer exit gate and request human sign-off for the handoff to `@QA`.
+*   **Rule Added:** Never collapse multiple role lifecycles into a single response. When completing an implementation as `@Eng`, stop at the `@Eng` Exit Gate, present build/test verification, and await explicit approval before transitioning to `@QA`.
+
+### 2026-11-06 - Production Autopsy: 06ebe4c7 & 5446a1b6 (Broadside Newspapers, Silent Page Drops, Stitching Loops)
+*   **What went wrong:**
+    1.  **Job 06ebe4c7 Hang / 50% Stall:** A 5-column broadsheet newspaper (`trial-of-gen-r-t-burton-deseret-news.pdf`) burst into 113.6M-pixel, 75MB PNG images. Sending these images to Gemini 3.1 Flash Lite caused `503 UNAVAILABLE (Deadline expired)`. Celery retried pages 1 & 2 for ~14 minutes while UI stalled at 2/4.
+    2.  **Silent Page Drops & False "Completed":** When `ocr_page_task` exhausted retries, it caught the error, incremented `cache:{job_id}:completed_pages` in Redis, returned `None`, and `stitch_markdown_task` marked the job as "completed" despite dropping 50% of the document.
+    3.  **Zero-Byte Cache Poisoning (Job 5446a1b6, Page 25):** In `ocr_processor.py`, `open(json_path, "w")` created a 0-byte file before validating `response_text`. On `TypeError: write() argument must be str, not None`, Celery retried, and `if os.path.exists(json_path):` skipped the page as already done, silently dropping Page 25 from the final output.
+    4.  **150-Word Repeating Text (Job 5446a1b6):** `stitcher.py` hyphenation detection appended a 300-word `[LLM Boundary Fix]` blockquote into the document without splicing or deduplicating the trailing/leading 150 words from the page bodies.
+    5.  **Blank Page Hallucinations (Job 5446a1b6, Page 52):** `OCR_PROMPT` lacked an explicit empty/blank page protocol, forcing the model to hallucinate a "LIST OF MEMBERS" from faint bleed-through.
+    6.  **Severely Outdated Time Estimates:** `STREAM_BASE_BUDGET_SECONDS` (600s = 10 min) + 30s/page estimated 52 pages at 36 min (actually took 2.1 min) and 288 pages at 154 min (actually took 5.9 min).
+*   **Root Cause:**
+    *   No cancellation endpoint or task timeout failsafes (`POST /jobs/{id}/cancel`).
+    *   `_add_padding` in `image_utils.py` assumes all multi-column layouts are strictly 2-column (`width // 2`).
+    *   `ocr_page_task` hid failures by incrementing `completed_pages` and failing open in Celery chords.
+    *   File handle opened for writing before verifying model output.
+*   **Action Taken:**
+    *   Immediately cancelled `06ebe4c7` in SQLite and Redis, marking error reason and preserving workspaces for autopsy.
+    *   Identified empirical processing rates (1.2 - 2.6s/page with Gemini 3.1 Flash Lite) to recalibrate estimates.
+    *   Formulated Phase 19 Production Hardening plan across Broadside Splitting, Job Failsafe/Cancellation, Blank Page Detection, Boundary Stitch Deduplication, and PDF Embedded Text Layer Guards.
+*   **Rule Added:** (@Eng / @Arch) Never create or overwrite an output file until the content payload is validated non-null; never mark a Celery chord or Job as `completed` if any page task returned `None` or failed.
+
+### 2026-11-06 - Frontend Blank Screen on Browser Mount (Corrupt Job Without ID in localStorage)
+*   **What went wrong:** Opening `http://localhost:5173/` rendered a completely blank white screen after restarting Docker. Headless browser with a fresh profile rendered fine, but existing user browser sessions failed.
+*   **Root Cause:** A persisted job in the browser's `localStorage` (`cleanocr_job_history_v1`) lacked an `id` field. `useJobPersistence.ts` did not sanitize individual job objects on load. `App.tsx` matched the malformed job as `activeJob` because `status === 'queued'`, passing `activeJob.id` (`undefined`) to `<JobCard>`. `JobCard.tsx:70` called `job_id.slice(0, 8)`, throwing an uncaught `TypeError: Cannot read properties of undefined (reading 'slice')`. Because the app lacked a top-level React `ErrorBoundary`, React unmounted the entire tree, leaving `<div id="root"></div>` completely blank.
+*   **Action Taken:**
+    1.  Updated `useJobPersistence.ts` `loadHistory()` to strictly sanitize items, automatically filtering out any malformed jobs lacking valid string IDs and saving the cleaned list back to disk; guarded `addOrUpdateJob` against invalid inputs.
+    2.  Guarded `JobCard.tsx`, `JobHistory.tsx`, and `App.tsx` with safe fallbacks (`safeJobId = (typeof job_id === 'string' && job_id.trim()) ? job_id : 'unknown'`).
+    3.  Created `ErrorBoundary.tsx` styled to CleanOCR's dark cyber theme, with technical detail toggles and 1-click "Reload Application" / "Clear Cache & Reload" recovery buttons, wrapping `<App />` in `main.tsx`.
+    4.  Added regression test in `App.test.tsx` and unit tests in `ErrorBoundary.test.tsx` (19/19 vitest tests passing).
+*   **Rule Added:** (@Des / @Eng) All React root mounts MUST be wrapped in a top-level `<ErrorBoundary>` offering 1-click recovery ("Clear Cache & Reload"). Never perform string operations (`.slice()`, `.trim()`, etc.) directly on properties from storage or external APIs without defensive fallbacks.
