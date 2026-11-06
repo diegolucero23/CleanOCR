@@ -109,6 +109,15 @@ def get_pdf_page_count(file_path):
         logger.warning(f"Could not read PDF page count: {e}", extra={"file_path": file_path})
         return None
 
+def compute_expected_duration_seconds(page_count) -> int:
+    """
+    Realistic expected completion duration in seconds, calibrated for
+    Gemini 3.1 Flash Lite throughput (~2.5s/page plus 20s burst base).
+    """
+    pages = max(0, int(page_count or 0))
+    return config.STREAM_BASE_BUDGET_SECONDS + pages * config.STREAM_PAGE_BUDGET_SECONDS
+
+
 def compute_stream_timeout_seconds(page_count) -> int:
     """
     Max seconds a client should expect a job (and its SSE stream) to run:
@@ -530,6 +539,84 @@ async def get_job_by_id(
             },
         )
     return job.to_detail_dict()
+
+
+@app.post("/jobs/{job_id}/cancel", dependencies=[Depends(verify_api_key), Depends(rate_limit_status)])
+async def cancel_job_endpoint(
+    job_id: str,
+    payload: dict = None,
+    db: Session = Depends(get_db),
+):
+    """
+    Cancel an in-flight (queued or processing) job.
+    Revokes active Celery tasks, sets Redis and DB status to 'cancelled',
+    and records cancellation timestamp and reason.
+    Returns 400 if the job is already in a terminal state (completed or failed).
+    Returns 404 if the job is not found.
+    """
+    require_valid_job_id(job_id)
+    job = db.execute(select(JobModel).where(JobModel.id == job_id)).scalar_one_or_none()
+    if not job:
+        raise HTTPException(
+            status_code=404,
+            detail={
+                "error": {
+                    "code": "JOB_NOT_FOUND",
+                    "message": f"Job {job_id} was not found in persistence records.",
+                }
+            },
+        )
+    if job.status in ("completed", "failed", "cancelled"):
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "error": {
+                    "code": "JOB_ALREADY_TERMINAL",
+                    "message": f"Job {job_id} is already in terminal state '{job.status}' and cannot be cancelled.",
+                    "details": {"status": job.status},
+                }
+            },
+        )
+
+    reason = (payload or {}).get("reason", "Cancelled by user request")
+    now_ts = time.time()
+
+    # 1. Revoke Celery task
+    try:
+        from app.workers.celery_worker import celery_app
+        celery_app.control.revoke(job_id, terminate=True, signal="SIGTERM")
+    except Exception as revoke_err:
+        logger.warning("Could not revoke Celery task for job %s: %s", job_id, revoke_err, extra={"job_id": job_id})
+
+    # 2. Update Redis
+    try:
+        redis_client.set(f"cache:{job_id}:status", "cancelled")
+        redis_client.set(f"cache:{job_id}:error", f"Cancelled: {reason}")
+        redis_client.set(f"cache:{job_id}:end_time", now_ts)
+    except Exception as r_err:
+        logger.warning("Could not update Redis for cancelled job %s: %s", job_id, r_err, extra={"job_id": job_id})
+
+    # 3. Update DB
+    job.status = "cancelled"
+    job.end_time = now_ts
+    if job.upload_time:
+        job.duration_seconds = round(now_ts - job.upload_time, 2)
+    job.error_message = f"Cancelled: {reason}"
+    db.commit()
+
+    logger.info("Job %s cancelled successfully", job_id, extra={"job_id": job_id, "reason": reason})
+
+    return {
+        "job_id": job_id,
+        "status": "cancelled",
+        "message": "Job successfully cancelled. Active workers revoked.",
+        "cancelled_at": now_ts,
+        "details": {
+            "processed_pages": job.processed_pages,
+            "total_pages": job.total_pages,
+            "reason": reason,
+        },
+    }
 
 
 @app.get("/limits")
