@@ -14,6 +14,10 @@ Analyze this document image.
    - **DO NOT** attempt to visually reproduce columns with spacing or vertical bars.
    - Use standard Markdown headers (#, ##) for titles.
    - Ignore running headers and footers (page numbers, issue titles) in the main text body.
+3. **Blank / Empty Page Protocol**:
+   - If this page is blank, has no intentional printed text body, or contains only faint bleed-through from the reverse side:
+     Set "is_blank": true and "markdown_content": "".
+   - **DO NOT** invent, hallucinate, or extrapolate names, member directories, addresses, or text from blank paper or faint bleed-through.
 
 Return strictly this JSON structure:
 {
@@ -23,6 +27,7 @@ Return strictly this JSON structure:
         "date": "string or null",
         "page_number": "string or null"
     },
+    "is_blank": false,
     "layout_type": "string",
     "markdown_content": "string"
 }
