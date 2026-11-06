@@ -371,27 +371,32 @@ All configuration lives in `app/core/config.py`, loaded from `.env`.
 ## 9. Frontend Architecture
 
 ```
-App.tsx
- ├─ useJobPersistence()          localStorage, max 50 jobs, versioned schema
- ├─ activeStreams (useRef Map)   one EventSource per active job; persists across re-renders
- │
- ├─ UploadZone                  drag-drop → handleFileSelect → MetadataModal
- ├─ MetadataModal               optional citation fields → handleProcess → POST /upload
- │
- ├─ JobCard (active)            real-time status badge + progress bar
- ├─ JobCard[] (history)         completed jobs, click opens DiffViewer
- └─ DiffViewer                  react-pdf (left) vs Markdown (right)
-                                10-dash delimiter parsing for page sync
+main.tsx
+ └─ ErrorBoundary                 catches render-time exceptions; offers 1-click "Clear Cache & Reload"
+     └─ App.tsx
+         ├─ useJobPersistence()          localStorage, max 50 jobs, schema validation + malformed ID filtering
+         ├─ activeStreams (useRef Map)   one EventSource per active job; persists across re-renders
+         │
+         ├─ UploadZone                  drag-drop → handleFileSelect → MetadataModal
+         ├─ MetadataModal               optional citation fields → handleProcess → POST /upload
+         │
+         ├─ JobCard (active)            real-time status badge, progress bar, interactive cancellation
+         ├─ JobHistory                  paginated DB history with status filters (completed, active, failed, partial_failure, cancelled)
+         └─ DiffViewer                  react-pdf (left) vs Markdown (right)
+                                        10-dash delimiter parsing for page sync
 ```
 
 **`lib/api.ts`** is the only file that talks to the backend:
 - `uploadFile()` — `POST /upload`
 - `pollJobStatus()` — `GET /status/{id}` (kept for one-off checks)
 - `subscribeToJobStatus()` — `EventSource` wrapper, returns a `() => void` cleanup
+- `cancelJob()` — `POST /jobs/{id}/cancel` (revokes background workers)
+- `fetchJobs()` / `fetchJobDetail()` — `GET /jobs`, `GET /jobs/{id}` (relational persistence)
 
-**State persistence:** `useJobPersistence` stores jobs in `localStorage` under
-`cleanocr_job_history_v1`. On load it re-attaches SSE streams to any jobs
-still in `queued` or `processing` state (page-refresh recovery).
+**State persistence & resilience:**
+1. `useJobPersistence`: stores jobs in `localStorage` under `cleanocr_job_history_v1`. On load, `loadHistory()` rigorously sanitizes stored records, filtering out malformed entries lacking valid string IDs to prevent `TypeError` crashes during render, and re-saving the sanitized list to disk.
+2. `ErrorBoundary`: root-level wrapper in `main.tsx`. If any unexpected error occurs during component rendering or lifecycle execution, instead of unmounting to a blank white screen, it displays a themed recovery UI with technical details and a 1-click "Clear Cache & Reload" button.
+3. Stream reconnect: On load, `App.tsx` re-attaches SSE streams to any jobs still in `queued` or `processing` state (page-refresh recovery).
 
 ---
 

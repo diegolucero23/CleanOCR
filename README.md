@@ -96,9 +96,10 @@ Frontend live at: **http://localhost:5173**
 ### Frontend (`/frontend`)
 *   **Stack:** React 18, Vite, TailwindCSS, Framer Motion.
 *   **Key Components:**
+    *   `ErrorBoundary`: Top-level crash guard catching render-time exceptions, eliminating blank white screens, and providing a 1-click "Clear Cache & Reload" recovery button.
     *   `UploadZone`: Draggable file upload with immediate validation.
-    *   `JobHistory`: Paginated, searchable, status-filtered history with mobile-first responsiveness (stacked cards <640px, full table >=640px).
-    *   `JobCard`: Live polling of job status (`GET /status/{id}`).
+    *   `JobHistory`: Paginated, searchable, status-filtered history (`completed`, `active`, `failed`, `partial_failure`, `cancelled`) with mobile-first responsiveness (stacked cards <640px, full table >=640px).
+    *   `JobCard`: Live polling of job status (`GET /status/{id}`), expectation disclosures, and 1-click active cancellation (`POST /jobs/{id}/cancel`).
     *   `DiffViewer`: `react-pdf` integration for split-screen audit with 320px mobile viewport support.
     *   `NotificationToast`: Animated structured error toasts with live second-by-second 429 countdown.
 
