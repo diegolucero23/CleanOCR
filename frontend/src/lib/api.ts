@@ -160,7 +160,7 @@ export const subscribeToJobStatus = (
 export interface PersistedJobSummary {
     id: string;
     filename: string;
-    status: 'queued' | 'processing' | 'completed' | 'failed' | 'cached';
+    status: 'queued' | 'processing' | 'completed' | 'failed' | 'cached' | 'cancelled' | 'partial_failure';
     progress: number;
     page_count?: number;
     file_size_bytes?: number;
@@ -281,4 +281,12 @@ export const fetchJobs = async (params?: {
 export const fetchJobDetail = async (jobId: string): Promise<PersistedJobSummary & { markdown?: string }> => {
     const response = await API.get<RawRecord>(`/jobs/${jobId}`);
     return normalizeJobDetail(response.data);
+};
+
+export const cancelJob = async (
+    jobId: string,
+    reason = 'Cancelled by user request'
+): Promise<{ job_id: string; status: string; message: string }> => {
+    const response = await API.post(`/jobs/${jobId}/cancel`, { reason });
+    return response.data;
 };

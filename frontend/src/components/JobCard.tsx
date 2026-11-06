@@ -1,10 +1,10 @@
-import { FileText, CheckCircle2, AlertCircle, Database } from "lucide-react";
+import { FileText, CheckCircle2, AlertCircle, Database, XCircle, AlertTriangle } from "lucide-react";
 import { Card } from "./ui/card";
 import { ProgressBar } from "./ProgressBar";
 import { cn } from "../lib/utils";
 import { motion } from "framer-motion";
 
-export type JobCardStatus = "queued" | "processing" | "completed" | "failed" | "cached";
+export type JobCardStatus = "queued" | "processing" | "completed" | "failed" | "cached" | "cancelled" | "partial_failure";
 
 interface JobCardProps {
     job_id: string;
@@ -18,6 +18,7 @@ interface JobCardProps {
     page_count?: number;
     expected_seconds?: number;
     onClick?: () => void;
+    onCancel?: (job_id: string) => void;
 }
 
 function formatDuration(seconds: number): string {
@@ -34,7 +35,9 @@ function formatDuration(seconds: number): string {
     return `${Math.round(seconds)}s`;
 }
 
-export function JobCard({ job_id, filename, status, progress, message, file_size, processing_time, complexity, page_count, expected_seconds, onClick }: JobCardProps) {
+export function JobCard({ job_id, filename, status, progress, message, file_size, processing_time, complexity, page_count, expected_seconds, onClick, onCancel }: JobCardProps) {
+    const safeJobId = (typeof job_id === 'string' && job_id.trim()) ? job_id : 'unknown';
+
     return (
         <motion.div
             layout
@@ -49,36 +52,52 @@ export function JobCard({ job_id, filename, status, progress, message, file_size
                     "p-3 rounded-full flex-shrink-0",
                     status === "completed" ? "bg-green-500/10 text-green-500" :
                         status === "cached" ? "bg-emerald-500/10 text-emerald-600" :
-                            status === "failed" ? "bg-red-500/10 text-red-500" :
-                                "bg-blue-500/10 text-primary"
+                            status === "partial_failure" ? "bg-amber-500/10 text-amber-500" :
+                                status === "cancelled" ? "bg-zinc-500/10 text-zinc-500" :
+                                    status === "failed" ? "bg-red-500/10 text-red-500" :
+                                        "bg-blue-500/10 text-primary"
                 )}>
                     {status === "completed" ? <CheckCircle2 className="w-6 h-6" /> :
                         status === "cached" ? <Database className="w-6 h-6" /> :
-                            status === "failed" ? <AlertCircle className="w-6 h-6" /> :
-                                <FileText className="w-6 h-6" />}
+                            status === "partial_failure" ? <AlertTriangle className="w-6 h-6" /> :
+                                status === "cancelled" ? <XCircle className="w-6 h-6" /> :
+                                    status === "failed" ? <AlertCircle className="w-6 h-6" /> :
+                                        <FileText className="w-6 h-6" />}
                 </div>
 
                 <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start mb-1">
                         <div className="min-w-0 pr-2">
-                            <h3 className="font-semibold truncate">{filename}</h3>
-                            <span className="text-xs text-muted-foreground font-mono">{job_id.slice(0, 8)}</span>
+                            <h3 className="font-semibold truncate">{filename || 'Untitled document'}</h3>
+                            <span className="text-xs text-muted-foreground font-mono">{safeJobId.slice(0, 8)}</span>
                         </div>
 
-                        {/* Actions (Only show when complete) */}
-                        {status === "completed" && (
-                            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        {/* Actions */}
+                        <div className="flex items-center gap-2">
+                            {(status === "queued" || status === "processing") && onCancel && (
                                 <button
                                     onClick={(e) => {
-                                        e.stopPropagation(); // Don't trigger card click
+                                        e.stopPropagation();
+                                        onCancel(safeJobId);
+                                    }}
+                                    className="px-2 py-1 text-xs font-medium border border-destructive/40 text-destructive rounded hover:bg-destructive/10 transition-colors"
+                                    title="Cancel running job"
+                                >
+                                    Cancel
+                                </button>
+                            )}
+                            {(status === "completed" || status === "partial_failure") && (
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         onClick?.();
                                     }}
-                                    className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded hover:bg-primary/20"
+                                    className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded hover:bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"
                                 >
                                     View
                                 </button>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
 
                     {status === "processing" ? (
@@ -86,7 +105,9 @@ export function JobCard({ job_id, filename, status, progress, message, file_size
                     ) : (
                         <p className={cn("text-sm truncate",
                             status === "completed" ? "text-muted-foreground" :
-                                status === "failed" ? "text-destructive" : "text-muted-foreground"
+                                status === "partial_failure" ? "text-amber-500 font-medium" :
+                                    status === "cancelled" ? "text-muted-foreground italic" :
+                                        status === "failed" ? "text-destructive" : "text-muted-foreground"
                         )}>
                             {message || status}
                         </p>

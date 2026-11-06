@@ -12,6 +12,8 @@ import {
     BookOpen,
     Loader2,
     X,
+    AlertTriangle,
+    XCircle,
 } from 'lucide-react';
 import { apiErrorPayload, fetchJobs, fetchJobDetail, jobStatusQuery, type ApiError, type PersistedJobSummary } from '../lib/api';
 import type { PersistedJob } from '../hooks/useJobPersistence';
@@ -255,10 +257,14 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                         <div className={cn(
                                                             "p-2 rounded-lg flex-shrink-0",
                                                             job.status === "completed" ? "bg-emerald-500/10 text-emerald-500" :
+                                                            job.status === "partial_failure" ? "bg-amber-500/10 text-amber-500" :
+                                                            job.status === "cancelled" ? "bg-zinc-500/10 text-zinc-500" :
                                                             job.status === "failed" ? "bg-red-500/10 text-red-500" :
                                                             "bg-blue-500/10 text-primary"
                                                         )}>
                                                             {job.status === "completed" ? <CheckCircle2 className="w-4 h-4" /> :
+                                                             job.status === "partial_failure" ? <AlertTriangle className="w-4 h-4" /> :
+                                                             job.status === "cancelled" ? <XCircle className="w-4 h-4" /> :
                                                              job.status === "failed" ? <AlertCircle className="w-4 h-4" /> :
                                                              isRunning ? <Loader2 className="w-4 h-4 animate-spin text-primary" /> :
                                                              <FileText className="w-4 h-4" />}
@@ -268,7 +274,7 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                                 {job.filename}
                                                             </div>
                                                             <div className="text-[10px] font-mono text-muted-foreground">
-                                                                {job.id.slice(0, 8)}...
+                                                                {(job.id || 'unknown').slice(0, 8)}...
                                                             </div>
                                                         </div>
                                                     </div>
@@ -296,10 +302,12 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                     <span className={cn(
                                                         "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium capitalize",
                                                         job.status === "completed" ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20" :
+                                                        job.status === "partial_failure" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20" :
+                                                        job.status === "cancelled" ? "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border border-zinc-500/20" :
                                                         job.status === "failed" ? "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20" :
                                                         "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
                                                     )}>
-                                                        {job.status}
+                                                        {job.status === "partial_failure" ? "Partial (Dropped pgs)" : job.status}
                                                     </span>
                                                 </td>
 
@@ -316,7 +324,7 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                 </td>
 
                                                 <td className="py-3 px-4 text-right">
-                                                    {job.status === "completed" && (
+                                                    {(job.status === "completed" || job.status === "partial_failure") && (
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
@@ -351,10 +359,14 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                 <div className={cn(
                                                     "p-1.5 rounded-md flex-shrink-0",
                                                     job.status === "completed" ? "bg-emerald-500/10 text-emerald-500" :
+                                                    job.status === "partial_failure" ? "bg-amber-500/10 text-amber-500" :
+                                                    job.status === "cancelled" ? "bg-zinc-500/10 text-zinc-500" :
                                                     job.status === "failed" ? "bg-red-500/10 text-red-500" :
                                                     "bg-blue-500/10 text-primary"
                                                 )}>
                                                     {job.status === "completed" ? <CheckCircle2 className="w-4 h-4" /> :
+                                                     job.status === "partial_failure" ? <AlertTriangle className="w-4 h-4" /> :
+                                                     job.status === "cancelled" ? <XCircle className="w-4 h-4" /> :
                                                      job.status === "failed" ? <AlertCircle className="w-4 h-4" /> :
                                                      <FileText className="w-4 h-4" />}
                                                 </div>
@@ -363,7 +375,7 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                                         {job.filename}
                                                     </h4>
                                                     <span className="text-[10px] font-mono text-muted-foreground">
-                                                        {job.id.slice(0, 8)}
+                                                        {(job.id || 'unknown').slice(0, 8)}
                                                     </span>
                                                 </div>
                                             </div>
@@ -371,10 +383,12 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                             <span className={cn(
                                                 "px-2 py-0.5 rounded-full text-[10px] font-medium capitalize flex-shrink-0",
                                                 job.status === "completed" ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" :
+                                                job.status === "partial_failure" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20" :
+                                                job.status === "cancelled" ? "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border border-zinc-500/20" :
                                                 job.status === "failed" ? "bg-red-500/10 text-red-600 dark:text-red-400" :
                                                 "bg-blue-500/10 text-blue-600 dark:text-blue-400"
                                             )}>
-                                                {job.status}
+                                                {job.status === "partial_failure" ? "Partial" : job.status}
                                             </span>
                                         </div>
 
@@ -389,7 +403,7 @@ export function JobHistory({ onSelectJob, onError, currentActiveJobId }: JobHist
                                             <span>{formatDate(job.created_at)}</span>
                                             <div className="flex items-center gap-2">
                                                 <span>{job.page_count ? `${job.page_count} pgs` : ''}</span>
-                                                {job.status === "completed" && (
+                                                {(job.status === "completed" || job.status === "partial_failure") && (
                                                     <button
                                                         onClick={(e) => {
                                                             e.stopPropagation();
